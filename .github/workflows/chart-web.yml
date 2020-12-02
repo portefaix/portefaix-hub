@@ -14,10 +14,11 @@
 
 name: Chart website
 
-on:
-  push:
-    branches:
-      - gh-pages
+# on:
+#   push:
+#     branches:
+#       - gh-pages
+on: pull_request
 
 jobs:
   update-ui:
