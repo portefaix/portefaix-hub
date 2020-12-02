@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -euxo pipefail
 
 # renovate: datasource=github-releases depName=norwoodj/helm-docs
