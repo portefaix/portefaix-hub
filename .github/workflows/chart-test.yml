@@ -77,8 +77,8 @@ jobs:
         # Only build a kind cluster if there are chart changes to test.
         if: steps.lint.outputs.changed == 'true'
 
-      - name: Run chart-testing (install)
-        uses: helm/chart-testing-action@v1.1.0
-        with:
-          command: install
-          config: .github/ct.yaml
+      # - name: Run chart-testing (install)
+      #   uses: helm/chart-testing-action@v1.1.0
+      #   with:
+      #     command: install
+      #     config: .github/ct.yaml
