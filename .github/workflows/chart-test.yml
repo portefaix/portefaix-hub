@@ -14,7 +14,11 @@
 
 name: Lint and Test Charts
 
-on: pull_request
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 # jobs:
 #   lint-test:
@@ -49,12 +53,6 @@ on: pull_request
 #         if: steps.list-changed.outputs.changed == 'true'
 
 
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   # Reference https://github.com/marketplace/actions/helm-chart-testing
