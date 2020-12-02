@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "portefaix-charts"
+name = "portefaix-hub"
 version = "0.1.0"
 description = ""
 authors = ["Nicolas Lamirault <nicolas.lamirault@gmail.com>"]
