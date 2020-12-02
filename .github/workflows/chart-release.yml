@@ -75,3 +75,30 @@ jobs:
             git commit -sm "Update generated timestamp [ci-skip]" || exit 0
             git push
           fi
+
+  update-website:
+    needs: post-release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: "gh-pages"
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - run: npx js-yaml index.yaml | npx hbs-cli .github/templates/index.hbs -i - -e md
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
