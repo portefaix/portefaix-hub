@@ -1,0 +1,7 @@
+# Terraform
+**/.terraform
+.tfstate.*
+
+# Python
+.venv
+__pycache__
