@@ -1,0 +1,11 @@
+# Portefaix Hub - Helm charts repository
+
+Welcome to the Portefaix Hub.
+
+|Name|version|description|Type|appVersion|created|
+|:--|:-:|:--|:--|:--:|:--|
+{{#each entries}}
+{{#each .}}
+{{this.name}}|{{this.version}}|{{this.description}}|{{this.type}}|{{this.appVersion}}|{{this.created}}
+{{/each}}
+{{/each}}
