@@ -98,7 +98,13 @@ jobs:
 
       - run: npx js-yaml index.yaml | npx hbs-cli .github/templates/index.hbs -i - -e md
 
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v5
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Commit changes
+      #   uses: EndBug/add-and-commit@v5
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit and push website
+        run: |
+          git add index.md
+          git commit -sm "Update website [ci-skip]" || exit 0
+          git push
