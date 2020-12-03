@@ -15,6 +15,46 @@ entries:
           email: nicolas.lamirault@gmail.com
     apiVersion: v2
     appVersion: 0.17.1
+    created: "2020-12-03T08:49:14.777226203Z"
+    dependencies:
+    - name: kube-prometheus-stack
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 12.3.0
+    - name: thanos
+      repository: https://kubernetes-charts.banzaicloud.com
+      version: 0.3.30
+    description: A Helm chart for Thanos Mixin
+    digest: 090ab2d3f4618b6b3558d958aadd9031ad4f24a0d5ae2b1a31b1a84e6993d97a
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/thanos-io/thanos/master/docs/img/Thanos-logo_fullmedium.png
+    keywords:
+    - thanos
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: thanos-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/thanos-mixin
+    type: application
+    urls:
+    - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.4.0/thanos-mixin-0.4.0.tgz
+    version: 0.4.0
+  - annotations:
+      artifacthub.io/changes: |
+        - Artifact Hub informations
+        - Refactoring Prometheus rules configuration
+      artifacthub.io/links: |
+        - name: Thanos
+          url: https://thanos.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 0.17.1
     created: "2020-12-02T15:10:07.56614002Z"
     dependencies:
     - name: kube-prometheus-stack
