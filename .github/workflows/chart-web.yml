@@ -12,21 +12,36 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: GitHub Pages
+name: Chart website
+
 on:
   push:
     branches:
-      - master
+      - gh-pages
 
 jobs:
-  build:
-    name: Deploy docs
+  update-ui:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master
-        uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: "gh-pages"
+          fetch-depth: 0
 
-      - name: Deploy docs
-        uses: mhausenblas/mkdocs-deploy-gh-pages@master
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - run: npx js-yaml index.yaml | npx hbs-cli .github/templates/index.hbs -i - -e md
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

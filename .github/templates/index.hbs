@@ -1,0 +1,14 @@
+# Portefaix Hub - Helm charts repository
+
+[![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/portefaix-hub)](https://artifacthub.io/packages/search?repo=portefaix-hub)
+
+Welcome to the Portefaix Hub.
+
+|Name|version|description|Type|created|
+|:--|:-:|:--|:--|:--:|:--|
+{{#each entries}}
+{{#each .}}
+[{{this.name}}](https://artifacthub.io/packages/helm/portefaix-hub/{{this.name}})|{{this.version}}|{{this.description}}|{{this.type}}|{{this.created}}
+{{!-- {{this.name}}|{{this.version}}|{{this.description}}|{{this.type}}|{{this.appVersion}}|{{this.created}} --}}
+{{/each}}
+{{/each}}
