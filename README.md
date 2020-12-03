@@ -1,4 +1,4 @@
-# Portefaix Helm Hub
+# Portefaix Hub
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![](https://github.com/portefaix-hub/charts/workflows/Release%20Charts/badge.svg?branch=master)](https://github.com/portefaix-hub/charts/actions)
@@ -19,7 +19,7 @@ You can then run `helm search repo portefaix-hub` to see the charts.
 
 ## Charts
 
-See [artifact hub](https://artifacthub.io/packages/search?org=portefaix-hub) for a complete list.
+See [Artifact Hub](https://artifacthub.io/packages/search?repo=portefaix-hub) for a complete list.
 
 ## Contributing
 
