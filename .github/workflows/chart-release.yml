@@ -14,13 +14,13 @@
 
 name: Release Charts
 
-# on:
-#   push:
-#     branches:
-#       - master
-#     paths:
-#       - "charts/**"
-on: pull_request
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "charts/**"
+# on: pull_request
 
 jobs:
   release:
