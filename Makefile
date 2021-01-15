@@ -39,4 +39,6 @@ init:
 
 ##@ Helm
 
-
+.PHONY: helm-doc
+helm-doc: guard-CHART ## Generate Helm chart documentation
+	cd $(CHART) && helm-docs 

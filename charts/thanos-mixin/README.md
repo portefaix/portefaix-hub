@@ -20,8 +20,8 @@ A Helm chart for Thanos Mixin
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://kubernetes-charts.banzaicloud.com | thanos | 0.3.30 |
-| https://prometheus-community.github.io/helm-charts | kube-prometheus-stack | 12.3.0 |
+| https://kubernetes-charts.banzaicloud.com | thanos | 0.3.31 |
+| https://prometheus-community.github.io/helm-charts | kube-prometheus-stack | 12.12.1 |
 
 ## Values
 
