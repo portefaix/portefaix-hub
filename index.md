@@ -6,6 +6,7 @@ Welcome to the Portefaix Hub.
 
 |Name|version|description|Type|created|
 |:--|:-:|:--|:--|:--:|:--|
+[thanos-mixin](https://artifacthub.io/packages/helm/portefaix-hub/thanos-mixin)|0.6.0|A Helm chart for Thanos Mixin|application|2021-02-02T13:50:06.522817603Z
 [thanos-mixin](https://artifacthub.io/packages/helm/portefaix-hub/thanos-mixin)|0.5.0|A Helm chart for Thanos Mixin|application|2021-01-15T13:54:21.330542505Z
 [thanos-mixin](https://artifacthub.io/packages/helm/portefaix-hub/thanos-mixin)|0.4.0|A Helm chart for Thanos Mixin|application|2020-12-03T08:49:14.777226203Z
 [thanos-mixin](https://artifacthub.io/packages/helm/portefaix-hub/thanos-mixin)|0.3.0|A Helm chart for Thanos Mixin|application|2020-12-02T15:10:07.56614002Z
