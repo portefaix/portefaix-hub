@@ -13,4 +13,9 @@
 !.vscode/extensions.json
 *.code-workspace
 
+# OPA
+addons/policies/deprek8ion/
+addons/policies/instrumenta/
+
+
 # End of https://www.toptal.com/developers/gitignore/api/helm,vscode
