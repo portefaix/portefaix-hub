@@ -33,23 +33,25 @@ Create chart name and version as used by the chart label.
 {{- end }}
 
 {{/*
+Selector labels
+*/}}
+{{- define "thanos-mixin.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "thanos-mixin.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+{{/*
 Common labels
 */}}
 {{- define "thanos-mixin.labels" -}}
 helm.sh/chart: {{ include "thanos-mixin.chart" . }}
 {{ include "thanos-mixin.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+app.kubernetes.io/version: {{ .Chart.Version | quote }}
 {{- end }}
+app.kubernetes.io/component: monitoring-mixin
+app.kubernetes.io/part-of: {{ include "thanos-mixin.name" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
-{{- end }}
-
-{{/*
-Selector labels
-*/}}
-{{- define "thanos-mixin.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "thanos-mixin.name" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
