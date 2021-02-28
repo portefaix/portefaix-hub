@@ -40,5 +40,31 @@ init:
 ##@ Helm
 
 .PHONY: helm-doc
-helm-doc: guard-CHART ## Generate Helm chart documentation
+helm-doc: guard-CHART ## Generate documentation
 	cd $(CHART) && helm-docs 
+
+.PHONY: helm-template
+helm-template: guard-CHART ## Generate manifest
+	helm template $(CHART)
+
+.PHONY: helm-policy
+helm-policy: guard-CHART guard-POLICY ## Check manifest
+	helm template $(CHART) | conftest test -p $(POLICY) -
+
+
+# ====================================
+# O P A
+# ====================================
+
+##@ Opa
+
+.PHONY: opa-deps
+opa-deps: ## Setup OPA dependencies
+	@echo -e "$(OK_COLOR)[$(APP)] Install OPA policy $(POLICY)$(NO_COLOR)"
+	conftest pull --policy addons/policies/instrumenta github.com/instrumenta/policies.git//kubernetes
+	conftest pull --policy addons/policies/deprek8ion github.com/swade1987/deprek8ion//policies
+
+.PHONY: opa-install
+opa-install: guard-NAME guard-URL ## Install OPA policies
+	@echo -e "$(OK_COLOR)[$(APP)] Install OPA policy $(POLICY)$(NO_COLOR)"
+	conftest pull --policy addons/policies/$(NAME) $(URL)
