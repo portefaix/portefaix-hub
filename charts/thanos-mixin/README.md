@@ -1,6 +1,6 @@
 # thanos-mixin
 
-![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.17.1](https://img.shields.io/badge/AppVersion-0.17.1-informational?style=flat-square)
+![Version: 0.7.0](https://img.shields.io/badge/Version-0.7.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.17.1](https://img.shields.io/badge/AppVersion-0.17.1-informational?style=flat-square)
 
 A Helm chart for Thanos Mixin
 
@@ -15,13 +15,6 @@ A Helm chart for Thanos Mixin
 ## Source Code
 
 * <https://github.com/nlamirault/portefaix-hub/tree/master/charts/thanos-mixin>
-
-## Requirements
-
-| Repository | Name | Version |
-|------------|------|---------|
-| https://kubernetes-charts.banzaicloud.com | thanos | 0.3.31 |
-| https://prometheus-community.github.io/helm-charts | kube-prometheus-stack | 12.12.1 |
 
 ## Values
 
