@@ -2,7 +2,8 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: thanos-mixin-rules
+  name: {{ printf "%s-%s" (include "thanos-mixin.fullname" .) "rules" | trunc 63 | trimSuffix "-" }}
+  namespace: {{ include "thanos-mixin.namespace" . }}
   labels:
     app: {{ include "thanos-mixin.name" . }}
 {{ include "thanos-mixin.labels" . | indent 4 }}
