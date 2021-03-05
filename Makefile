@@ -28,10 +28,15 @@ clean: ## Cleanup
 .PHONY: check
 check: check-poetry check-helm ## Check requirements
 
-.PHONY: init ## Initialize environment
-init:
+.PHONY: init
+init: ## Initialize environment
 	poetry install
-	$(ANSIBLE_VENV)/bin/pre-commit install
+	$(VENV)/bin/pre-commit install
+
+# .PHONY: init ## Initialize environment
+# init:
+# 	poetry install
+# 	$(ANSIBLE_VENV)/bin/pre-commit install
 
 # ====================================
 # H E L M
