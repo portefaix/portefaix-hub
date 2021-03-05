@@ -4,9 +4,15 @@ kind: PrometheusRule
 metadata:
   name: thanos-mixin-alerts
   labels:
-    app: prometheus
-    prometheus: k8s
-    role: alert-rules
+    app: {{ include "thanos-mixin.name" . }}
+{{ include "thanos-mixin.labels" . | indent 4 }}
+{{- if .Values.additionalLabels }}
+{{ toYaml .Values.additionalLabels | indent 4 }}
+{{- end }}
+{{- if .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml .Values.additionalAnnotations | indent 4 }}
+{{- end }}
 spec:
   groups:
   - name: thanos-compact
