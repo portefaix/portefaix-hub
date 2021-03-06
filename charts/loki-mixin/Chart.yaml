@@ -1,0 +1,54 @@
+# Copyright (C) 2020 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: v2
+name: loki-mixin
+description: A Helm chart for loki Mixin
+home: https://charts.portefaix.xyz
+icon: https://grafana.com/static/img/heros/hero-loki.svg
+sources:
+  - https://github.com/nlamirault/portefaix-hub/tree/master/charts/loki-mixin
+type: application
+keywords:
+  - loki
+  - monitoring-mixin
+  - portefaix
+
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+# Versions are expected to follow Semantic Versioning (https://semver.org/)
+version: 0.1.0
+
+# This is the version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application. Versions are not expected to
+# follow Semantic Versioning. They should reflect the version the application is using.
+appVersion: 2.1.0
+
+maintainers:
+  - name: nlamirault
+    email: nicolas.lamirault@gmail.com
+
+# https://artifacthub.io/docs/topics/repositories/
+annotations:
+  artifacthub.io/changes: |
+    - Artifact Hub informations
+    - Refactoring Prometheus rules configuration
+  artifacthub.io/links: |
+    - name: loki
+      url: https://grafana.com/oss/loki/
+    - name: Portefaix
+      url: https://portefaix.xyz
+  artifacthub.io/maintainers: |
+    - name: nlamirault
+      email: nicolas.lamirault@gmail.com
