@@ -25,14 +25,13 @@ import coloredlogs
 import requests
 
 
-MIXINS_VERSION="v0.1.0"
-MIXIN_ARCHIVE="portefaix-mixins-%s.zip" % MIXINS_VERSION
+MIXINS_VERSION="v0.2.0"
+MIXIN_ARCHIVE="monitoring-mixins-%s.zip" % MIXINS_VERSION
 MIXIN_URL="https://github.com/nlamirault/monitoring-mixins/releases/download/%s/%s" % (
     MIXINS_VERSION, MIXIN_ARCHIVE
 )
-MIXIN_DIRECTORY="portefaix-mixins"
+MIXIN_DIRECTORY="monitoring-mixins"
 
-DIR="portefaix-mixins"
 
 logger = logging.getLogger(__name__)
 coloredlogs.install(level='DEBUG')

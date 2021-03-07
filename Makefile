@@ -33,6 +33,10 @@ init: ## Initialize environment
 	poetry install
 	$(VENV)/bin/pre-commit install
 
+.PHONY: mixins
+mixins: ## Install mixins
+	$(VENV)/bin/python3 ./hack/mixins.py
+
 # .PHONY: init ## Initialize environment
 # init:
 # 	poetry install
