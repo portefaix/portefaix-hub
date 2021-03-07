@@ -14,6 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import argparse
 import glob
 import logging
 import os
@@ -67,16 +68,20 @@ def manage_mixin(mixin_directory, mixin):
             logger.warning("Mixin chart not found")
     
 
-def main(url, filename, mixin_directory):
+def main(url, filename, mixin_directory, chart):
     download(url, filename)
     with zipfile.ZipFile(filename,"r") as zf:
         zf.extractall()
         logger.info("Monitoring mixins")
         for mixin in os.listdir(path=mixin_directory):
-            manage_mixin(mixin_directory, mixin)
+            if mixin == chart:
+                manage_mixin(mixin_directory, mixin)
         os.remove(filename)
         shutil.rmtree(mixin_directory)
 
 
 if __name__ == '__main__':
-    main(MIXIN_URL, MIXIN_ARCHIVE, MIXIN_DIRECTORY)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('chart', type=str, help='Chart to update')
+    args = parser.parse_args()
+    main(MIXIN_URL, MIXIN_ARCHIVE, MIXIN_DIRECTORY, args.chart)
