@@ -34,8 +34,8 @@ init: ## Initialize environment
 	$(VENV)/bin/pre-commit install
 
 .PHONY: mixins
-mixins: ## Install mixins
-	$(VENV)/bin/python3 ./hack/mixins.py
+mixins: guard-CHART ## Install mixins
+	$(VENV)/bin/python3 ./hack/mixins.py $(CHART)
 
 # .PHONY: init ## Initialize environment
 # init:
