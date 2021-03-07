@@ -14,39 +14,45 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import argparse
 import glob
 import logging
 import os
 from os import path
-import shutil 
+import shutil
 import zipfile
 
 import coloredlogs
 import requests
 
 
-MIXINS_VERSION="v0.1.0"
-MIXIN_ARCHIVE="portefaix-mixins-%s.zip" % MIXINS_VERSION
-MIXIN_URL="https://github.com/nlamirault/monitoring-mixins/releases/download/%s/%s" % (
-    MIXINS_VERSION, MIXIN_ARCHIVE
+MIXINS_VERSION = "v0.2.0"
+MIXIN_ARCHIVE = "monitoring-mixins-%s.zip" % MIXINS_VERSION
+MIXIN_URL = (
+    "https://github.com/nlamirault/monitoring-mixins/releases/download/%s/%s"
+    % (MIXINS_VERSION, MIXIN_ARCHIVE)
 )
-MIXIN_DIRECTORY="portefaix-mixins"
+MIXIN_DIRECTORY = "monitoring-mixins"
 
-DIR="portefaix-mixins"
 
 logger = logging.getLogger(__name__)
-coloredlogs.install(level='DEBUG')
+coloredlogs.install(level="DEBUG")
 
 
 def escape(s):
-    return s.replace("{{", "{{`{{").replace("}}", "}}`}}").replace("{{`{{", "{{`{{`}}").replace("}}`}}", "{{`}}`}}")
+    return (
+        s.replace("{{", "{{`{{")
+        .replace("}}", "}}`}}")
+        .replace("{{`{{", "{{`{{`}}")
+        .replace("}}`}}", "{{`}}`}}")
+    )
 
 
 def download(url, filename):
     logger.info("Download Mixin : %s", url)
     r = requests.get(url)
-    with open(filename,'wb') as f: 
-        f.write(r.content) 
+    with open(filename, "wb") as f:
+        f.write(r.content)
 
 
 def manage_mixin(mixin_directory, mixin):
@@ -66,18 +72,22 @@ def manage_mixin(mixin_directory, mixin):
                 fout.write(escape(line))
         else:
             logger.warning("Mixin chart not found")
-    
 
-def main(url, filename, mixin_directory):
+
+def main(url, filename, mixin_directory, chart):
     download(url, filename)
-    with zipfile.ZipFile(filename,"r") as zf:
+    with zipfile.ZipFile(filename, "r") as zf:
         zf.extractall()
         logger.info("Monitoring mixins")
         for mixin in os.listdir(path=mixin_directory):
-            manage_mixin(mixin_directory, mixin)
+            if mixin == chart:
+                manage_mixin(mixin_directory, mixin)
         os.remove(filename)
         shutil.rmtree(mixin_directory)
 
 
-if __name__ == '__main__':
-    main(MIXIN_URL, MIXIN_ARCHIVE, MIXIN_DIRECTORY)
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("chart", type=str, help="Chart to update")
+    args = parser.parse_args()
+    main(MIXIN_URL, MIXIN_ARCHIVE, MIXIN_DIRECTORY, args.chart)
