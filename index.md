@@ -6,6 +6,7 @@ Welcome to the Portefaix Hub.
 
 |Name|version|description|Type|created|
 |:--|:-:|:--|:--|:--:|:--|
+[kube-state-metrics-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kube-state-metrics-mixin)|0.1.0|A Helm chart for Kube-State-Metrics Mixin|application|2021-03-07T06:59:37.616260149Z
 [loki-mixin](https://artifacthub.io/packages/helm/portefaix-hub/loki-mixin)|0.1.0|A Helm chart for loki Mixin|application|2021-03-06T15:36:52.563562032Z
 [prometheus-operator-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-operator-mixin)|0.1.0|A Helm chart for Prometheus Operator Mixin|application|2021-03-06T21:55:29.923555529Z
 [promtail-mixin](https://artifacthub.io/packages/helm/portefaix-hub/promtail-mixin)|0.1.0|A Helm chart for Promtail Mixin|application|2021-03-06T17:29:21.283395175Z
