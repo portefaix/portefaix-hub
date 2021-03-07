@@ -1,0 +1,22 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: grafana-mixin-rules
+  labels:
+    app: {{ include "grafana-mixin.name" . }}
+{{ include "grafana-mixin.labels" . | indent 4 }}
+{{- if .Values.additionalLabels }}
+{{ toYaml .Values.additionalLabels | indent 4 }}
+{{- end }}
+{{- if .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml .Values.additionalAnnotations | indent 4 }}
+{{- end }}
+spec:
+  groups:
+  - name: grafana_rules
+    rules:
+    - expr: |
+        sum by (namespace, job, handler, statuscode) (rate(http_request_total[5m]))
+      record: namespace_job_handler_statuscode:http_request_total:rate5m
