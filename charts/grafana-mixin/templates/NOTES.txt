@@ -1,0 +1,4 @@
+{{ $.Chart.Name }} has been installed. Check its status by running:
+  kubectl --namespace {{ template "grafana-mixin.namespace" . }} get prometheusrules
+
+Visit https://github.com/nlamirault/portefaix-hub/charts/grafana-mixin.
