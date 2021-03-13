@@ -26,7 +26,7 @@ import coloredlogs
 import requests
 
 
-MIXINS_VERSION = "v0.2.0"
+MIXINS_VERSION = "v0.3.0"
 MIXIN_ARCHIVE = "monitoring-mixins-%s.zip" % MIXINS_VERSION
 MIXIN_URL = (
     "https://github.com/nlamirault/monitoring-mixins/releases/download/%s/%s"
