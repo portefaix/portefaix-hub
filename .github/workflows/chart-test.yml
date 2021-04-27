@@ -26,40 +26,6 @@ on:
     paths:
       - "charts/**"
 
-# jobs:
-#   lint-test:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v2
-
-#       - name: Set up Helm
-#         uses: azure/setup-helm@v1
-#         with:
-#           version: v3.4.0
-
-#       - uses: actions/setup-python@v2
-#         with:
-#           python-version: 3.7
-
-#       - name: Set up chart-testing
-#         uses: helm/chart-testing-action@v2.0.1
-
-#       - name: Run chart-testing (lint)
-#         id: lint
-#         run: ct lint --config .github/ct.yaml
-#         if: steps.list-changed.outputs.changed == 'true'
-
-#       - name: Create kind cluster
-#         uses: helm/kind-action@v1.1.0
-#         if: steps.list-changed.outputs.changed == 'true'
-
-#       - name: Run chart-testing (install)
-#         run: ct install --config .github/ct.yaml
-#         if: steps.list-changed.outputs.changed == 'true'
-
-
-
 jobs:
   # Reference https://github.com/marketplace/actions/helm-chart-testing
   lint-chart:
@@ -75,8 +41,18 @@ jobs:
         id: lint
         uses: helm/chart-testing-action@v2.0.1
         with:
-          command: lint
-          config: .github/ct.yaml
+          version: v3.3.0
+
+      - name: Run chart-testing (list-changed)
+        id: list-changed
+        run: |
+          changed=$(ct list-changed --config .github/ct.yaml)
+          if [[ -n "$changed" ]]; then
+            echo "::set-output name=changed::true"
+          fi
+          
+      - name: Run chart-testing (lint)
+        run: ct lint --config .github/ct.yaml
 
   lint-docs:
     runs-on: ubuntu-latest
@@ -136,6 +112,8 @@ jobs:
 
       - name: Setup chart-testing
         uses: helm/chart-testing-action@v2.0.1
+        with:
+          version: v3.3.0
 
       - name: Create kind ${{ matrix.k8s }} cluster
         uses: helm/kind-action@v1.1.0
@@ -149,4 +127,4 @@ jobs:
           kubectl get crd
 
       - name: Run chart-testing (install)
-        run: ct install --config ct.yaml
+        run: ct install --config .github/ct.yaml
