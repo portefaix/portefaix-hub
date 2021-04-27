@@ -2,7 +2,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: prometheus-operator-mixin-alerts
+  name: {{ printf "%s-%s" (include "prometheus-operator-mixin.fullname" .) "alerts" | trunc 63 | trimSuffix "-" }}
   labels:
     app: {{ include "prometheus-operator-mixin.name" . }}
 {{ include "prometheus-operator-mixin.labels" . | indent 4 }}
