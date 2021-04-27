@@ -54,6 +54,19 @@ app.kubernetes.io/part-of: {{ include "prometheus-operator-mixin.name" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
+{{/* See: https://ambassadorlabs.github.io/k8s-for-humans/ */}}
+{{/*
+Common annotations 
+*/}}
+{{- define "prometheus-operator-mixin.annotations" -}}
+a8r.io/description: Monitoring Mixin for Prometheus Operator
+a8r.io/owner: portefaix
+a8r.io/bugs: https://github.com/portefaix/portefaix-hub/issues
+a8r.io/documentation: https://artifacthub.io/packages/helm/portefaix-hub/prometheus-operator-mixin
+a8r.io/repository: https://github.com/portefaix/portefaix-hub
+a8r.io/support: https://github.com/portefaix/portefaix-hub/issues
+{{- end }}
+
 {{/*
 Allow the release namespace to be overridden
 */}}
