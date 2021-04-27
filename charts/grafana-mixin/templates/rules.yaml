@@ -2,7 +2,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: grafana-mixin-rules
+  name: {{ printf "%s-%s" (include "grafana-mixin.fullname" .) "rules" | trunc 63 | trimSuffix "-" }}
   labels:
     app: {{ include "grafana-mixin.name" . }}
 {{ include "grafana-mixin.labels" . | indent 4 }}

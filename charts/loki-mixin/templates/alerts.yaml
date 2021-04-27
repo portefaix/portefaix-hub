@@ -2,7 +2,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: loki-mixin-alerts
+  name: {{ printf "%s-%s" (include "loki-mixin.fullname" .) "alerts" | trunc 63 | trimSuffix "-" }}
   labels:
     app: {{ include "loki-mixin.name" . }}
 {{ include "loki-mixin.labels" . | indent 4 }}

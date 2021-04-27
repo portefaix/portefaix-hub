@@ -2,7 +2,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: promtail-mixin-alerts
+  name: {{ printf "%s-%s" (include "promtail-mixin.fullname" .) "alerts" | trunc 63 | trimSuffix "-" }}
   labels:
     app: {{ include "promtail-mixin.name" . }}
 {{ include "promtail-mixin.labels" . | indent 4 }}

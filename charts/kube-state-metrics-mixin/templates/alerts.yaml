@@ -2,7 +2,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: kube-state-metrics-mixin-alerts
+  name: {{ printf "%s-%s" (include "kube-state-metrics-mixin.fullname" .) "alerts" | trunc 63 | trimSuffix "-" }}
   labels:
     app: {{ include "kube-state-metrics-mixin.name" . }}
 {{ include "kube-state-metrics-mixin.labels" . | indent 4 }}

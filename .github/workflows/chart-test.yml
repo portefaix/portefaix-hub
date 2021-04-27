@@ -26,40 +26,6 @@ on:
     paths:
       - "charts/**"
 
-# jobs:
-#   lint-test:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v2
-
-#       - name: Set up Helm
-#         uses: azure/setup-helm@v1
-#         with:
-#           version: v3.4.0
-
-#       - uses: actions/setup-python@v2
-#         with:
-#           python-version: 3.7
-
-#       - name: Set up chart-testing
-#         uses: helm/chart-testing-action@v2.0.1
-
-#       - name: Run chart-testing (lint)
-#         id: lint
-#         run: ct lint --config .github/ct.yaml
-#         if: steps.list-changed.outputs.changed == 'true'
-
-#       - name: Create kind cluster
-#         uses: helm/kind-action@v1.1.0
-#         if: steps.list-changed.outputs.changed == 'true'
-
-#       - name: Run chart-testing (install)
-#         run: ct install --config .github/ct.yaml
-#         if: steps.list-changed.outputs.changed == 'true'
-
-
-
 jobs:
   # Reference https://github.com/marketplace/actions/helm-chart-testing
   lint-chart:
@@ -75,8 +41,18 @@ jobs:
         id: lint
         uses: helm/chart-testing-action@v2.0.1
         with:
-          command: lint
-          config: .github/ct.yaml
+          version: v3.3.0
+
+      - name: Run chart-testing (list-changed)
+        id: list-changed
+        run: |
+          changed=$(ct list-changed --config .github/ct.yaml)
+          if [[ -n "$changed" ]]; then
+            echo "::set-output name=changed::true"
+          fi
+          
+      - name: Run chart-testing (lint)
+        run: ct lint --config .github/ct.yaml
 
   lint-docs:
     runs-on: ubuntu-latest
@@ -84,6 +60,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.4
+
       - name: Run helm-docs
         run: .github/helm-docs.sh
 
@@ -123,23 +100,30 @@ jobs:
       matrix:
         k8s:
           # from https://hub.docker.com/r/kindest/node/tags
-          - v1.16.15
-          - v1.17.11
-          - v1.18.8
-          - v1.19.3
+          - v1.18.15
+          - v1.19.7
+          - v1.20.2
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.4
         with:
           fetch-depth: 0
 
+      - name: Setup chart-testing
+        uses: helm/chart-testing-action@v2.0.1
+        with:
+          version: v3.3.0
+
       - name: Create kind ${{ matrix.k8s }} cluster
         uses: helm/kind-action@v1.1.0
         with:
           node_image: kindest/node:${{ matrix.k8s }}
 
-      # - name: Run chart-testing (install)
-      #   uses: helm/chart-testing-action@v1.1.0
-      #   with:
-      #     command: install
-      #     config: .github/ct.yaml
+      - name: Deploy kube-prometheus-stack
+        run: |
+          helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+          helm install my-kube-prometheus-stack prometheus-community/kube-prometheus-stack --version 15.2.1
+          kubectl get crd
+
+      - name: Run chart-testing (install)
+        run: ct install --config .github/ct.yaml

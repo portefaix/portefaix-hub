@@ -1,5 +1,5 @@
-# Copyright (C) 2020-2021 Nicolas Lamirault <nicolas.lamirault@gmail.com>
-
+# Copyright (C) 2021 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -33,6 +33,10 @@ init: ## Initialize environment
 	poetry install
 	$(VENV)/bin/pre-commit install
 
+.PHONY: validate
+validate: ## Execute git-hooks
+	@pre-commit run -a
+
 .PHONY: mixins
 mixins: guard-CHART ## Install mixins
 	$(VENV)/bin/python3 ./hack/mixins.py $(CHART)
@@ -50,16 +54,19 @@ mixins: guard-CHART ## Install mixins
 
 .PHONY: helm-doc
 helm-doc: guard-CHART ## Generate documentation
-	cd $(CHART) && helm-docs 
+	@cd $(CHART) && helm-docs 
 
 .PHONY: helm-template
 helm-template: guard-CHART ## Generate manifest
-	helm template $(CHART)
+	@helm template $(CHART)
 
 .PHONY: helm-policy
 helm-policy: guard-CHART guard-POLICY ## Check manifest
-	helm template $(CHART) | conftest test -p $(POLICY) -
+	@helm template $(CHART) | conftest test -p $(POLICY) --all-namespaces -
 
+.PHONY: helm-lint
+helm-lint: guard-CHART ## Lint Helm chart
+	@docker run -it --rm --name ct --volume $$(pwd):/data quay.io/helmpack/chart-testing sh -c "cd /data; ct lint --config .github/ct.yaml"
 
 # ====================================
 # O P A
@@ -70,10 +77,10 @@ helm-policy: guard-CHART guard-POLICY ## Check manifest
 .PHONY: opa-deps
 opa-deps: ## Setup OPA dependencies
 	@echo -e "$(OK_COLOR)[$(APP)] Install OPA policy $(POLICY)$(NO_COLOR)"
-	conftest pull --policy addons/policies/instrumenta github.com/instrumenta/policies.git//kubernetes
-	conftest pull --policy addons/policies/deprek8ion github.com/swade1987/deprek8ion//policies
+	@conftest pull --policy addons/policies/deprek8ion github.com/swade1987/deprek8ion//policies
+	@conftest pull --policy addons/policies/portefaix github.com/portefaix/portefaix-policies//policy
 
 .PHONY: opa-install
 opa-install: guard-NAME guard-URL ## Install OPA policies
 	@echo -e "$(OK_COLOR)[$(APP)] Install OPA policy $(POLICY)$(NO_COLOR)"
-	conftest pull --policy addons/policies/$(NAME) $(URL)
+	@conftest pull --policy addons/policies/$(NAME) $(URL)
