@@ -15,6 +15,38 @@ entries:
           email: nicolas.lamirault@gmail.com
     apiVersion: v2
     appVersion: 7.4.3
+    created: "2021-04-27T10:11:10.373191529Z"
+    description: A Helm chart for Grafana Mixin
+    digest: 7cc483b3d4e4f70a9fc00fee0bdf6339e53a2c3569b149db77d8ce6bee2b48bf
+    home: https://charts.portefaix.xyz
+    keywords:
+    - grafana
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: grafana-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/grafana-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/grafana-mixin-0.3.0/grafana-mixin-0.3.0.tgz
+    version: 0.3.0
+  - annotations:
+      artifacthub.io/changes: |
+        - Artifact Hub informations
+        - Refactoring grafana rules configuration
+      artifacthub.io/links: |
+        - name: grafana
+          url: https://github.com/grafana/grafana
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 7.4.3
     created: "2021-04-27T07:12:04.990763325Z"
     description: A Helm chart for Grafana Mixin
     digest: 08d5acd3f8b1da70bb1efd8ce4170238b545c0210258b4e3c94329f148d9f61b
@@ -80,6 +112,38 @@ entries:
           email: nicolas.lamirault@gmail.com
     apiVersion: v2
     appVersion: 2.0.0-rc0
+    created: "2021-04-27T10:11:10.479452822Z"
+    description: A Helm chart for Kube-State-Metrics Mixin
+    digest: 1e6d85e118eec21709e536110e29bf55a045c5b5becf77a9ae05791a6933612c
+    home: https://charts.portefaix.xyz
+    keywords:
+    - kube-state-metrics
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: kube-state-metrics-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kube-state-metrics-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/kube-state-metrics-mixin-0.3.0/kube-state-metrics-mixin-0.3.0.tgz
+    version: 0.3.0
+  - annotations:
+      artifacthub.io/changes: |
+        - Artifact Hub informations
+        - Refactoring Prometheus rules configuration
+      artifacthub.io/links: |
+        - name: Kube-State-Metrics
+          url: https://github.com/kubernetes/kube-state-metrics
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 2.0.0-rc0
     created: "2021-04-27T07:12:05.171974647Z"
     description: A Helm chart for Kube-State-Metrics Mixin
     digest: eaaf43477a03cb791037394cdfb129c0d6e7e9146e1970b63f06a397f633c8d7
@@ -131,6 +195,39 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/kube-state-metrics-mixin-0.1.0/kube-state-metrics-mixin-0.1.0.tgz
     version: 0.1.0
   loki-mixin:
+  - annotations:
+      artifacthub.io/changes: |
+        - Artifact Hub informations
+        - Refactoring Prometheus rules configuration
+      artifacthub.io/links: |
+        - name: loki
+          url: https://grafana.com/oss/loki/
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 2.2.0
+    created: "2021-04-27T10:11:10.599324617Z"
+    description: A Helm chart for loki Mixin
+    digest: be5067daaf20cbd7d560a1712543735c527499ff2a1f8b187900d56643a42d13
+    home: https://charts.portefaix.xyz
+    icon: https://grafana.com/static/img/heros/hero-loki.svg
+    keywords:
+    - loki
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: loki-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/loki-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/loki-mixin-0.4.0/loki-mixin-0.4.0.tgz
+    version: 0.4.0
   - annotations:
       artifacthub.io/changes: |
         - Artifact Hub informations
@@ -245,6 +342,39 @@ entries:
           email: nicolas.lamirault@gmail.com
     apiVersion: v2
     appVersion: 0.46.0
+    created: "2021-04-27T10:11:10.699833767Z"
+    description: A Helm chart for Prometheus Mixin
+    digest: c5693dcde7624ab4930130c4517372b335dc8e2ae8ebba8a43743b6629d20f46
+    home: https://charts.portefaix.xyz
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/242px-Prometheus_software_logo.svg.png
+    keywords:
+    - prometheus
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: prometheus-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/prometheus-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/prometheus-mixin-0.3.0/prometheus-mixin-0.3.0.tgz
+    version: 0.3.0
+  - annotations:
+      artifacthub.io/changes: |
+        - Artifact Hub informations
+        - Refactoring Prometheus rules configuration
+      artifacthub.io/links: |
+        - name: prometheus
+          url: https://github.com/prometheus/prometheus
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 0.46.0
     created: "2021-04-27T07:12:05.588003885Z"
     description: A Helm chart for Prometheus Mixin
     digest: 60378928dab45bcfbcbb159b6dd921581e7166f29f5b29104d4320cb4d19640a
@@ -312,6 +442,39 @@ entries:
           email: nicolas.lamirault@gmail.com
     apiVersion: v2
     appVersion: 0.46.0
+    created: "2021-04-27T10:11:10.809543285Z"
+    description: A Helm chart for Prometheus Operator Mixin
+    digest: 4430d250706cef9d10158bf736e6ff0d79aa79ce1a61f5654b408682504213d3
+    home: https://charts.portefaix.xyz
+    icon: https://avatars.githubusercontent.com/u/66682517?s=200&v=4
+    keywords:
+    - prometheus-operator
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: prometheus-operator-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/prometheus-operator-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/prometheus-operator-mixin-0.3.0/prometheus-operator-mixin-0.3.0.tgz
+    version: 0.3.0
+  - annotations:
+      artifacthub.io/changes: |
+        - Artifact Hub informations
+        - Refactoring Prometheus rules configuration
+      artifacthub.io/links: |
+        - name: prometheus-operator
+          url: https://github.com/prometheus-operator/prometheus-operator
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 0.46.0
     created: "2021-04-27T07:12:05.838444206Z"
     description: A Helm chart for Prometheus Operator Mixin
     digest: 3cc1b7e070c9e4ff557da7f26fdcf949b2d12cbccd0502e004f730a56c1ab773
@@ -365,6 +528,38 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/prometheus-operator-mixin-0.1.0/prometheus-operator-mixin-0.1.0.tgz
     version: 0.1.0
   promtail-mixin:
+  - annotations:
+      artifacthub.io/changes: |
+        - Artifact Hub informations
+        - Refactoring Prometheus rules configuration
+      artifacthub.io/links: |
+        - name: promtail
+          url: https://grafana.com/docs/promtail/latest/clients/promtail/
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 2.2.0
+    created: "2021-04-27T10:11:10.915742378Z"
+    description: A Helm chart for Promtail Mixin
+    digest: 442ca0e15618252903631f26b4a9b2895ad66eaf76ec0536b1db2b4849e786fe
+    home: https://charts.portefaix.xyz
+    keywords:
+    - promtail
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: promtail-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/promtail-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/promtail-mixin-0.4.0/promtail-mixin-0.4.0.tgz
+    version: 0.4.0
   - annotations:
       artifacthub.io/changes: |
         - Artifact Hub informations
@@ -462,6 +657,39 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/promtail-mixin-0.1.0/promtail-mixin-0.1.0.tgz
     version: 0.1.0
   thanos-mixin:
+  - annotations:
+      artifacthub.io/changes: |
+        - Artifact Hub informations
+        - Refactoring Prometheus rules configuration
+      artifacthub.io/links: |
+        - name: Thanos
+          url: https://thanos.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 0.18.0
+    created: "2021-04-27T10:11:11.036592779Z"
+    description: A Helm chart for Thanos Mixin
+    digest: f8bc4ed0224a513874c25063039111ac6065da4884fb331d3a61dc4e1ff98b6c
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/thanos-io/thanos/master/docs/img/Thanos-logo_fullmedium.png
+    keywords:
+    - thanos
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: thanos-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/thanos-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/thanos-mixin-0.11.0/thanos-mixin-0.11.0.tgz
+    version: 0.11.0
   - annotations:
       artifacthub.io/changes: |
         - Artifact Hub informations
@@ -754,4 +982,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2021-04-27T07:12:27.859717861Z"
+generated: "2021-04-27T10:11:11.03667608Z"
