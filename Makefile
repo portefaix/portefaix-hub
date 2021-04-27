@@ -78,8 +78,8 @@ helm-lint: guard-CHART ## Lint Helm chart
 opa-deps: ## Setup OPA dependencies
 	@echo -e "$(OK_COLOR)[$(APP)] Install OPA policy $(POLICY)$(NO_COLOR)"
 	@conftest pull --policy addons/policies/deprek8ion github.com/swade1987/deprek8ion//policies
-	@conftest pull --policy addons/policies/portefaix github.com/portefaix/portefaix-policies//policy
-
+	@conftest pull --policy addons/policies/portefaix github.com/portefaix/portefaix-policies?ref=v0.3.0//policy
+	
 .PHONY: opa-install
 opa-install: guard-NAME guard-URL ## Install OPA policies
 	@echo -e "$(OK_COLOR)[$(APP)] Install OPA policy $(POLICY)$(NO_COLOR)"
