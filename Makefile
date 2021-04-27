@@ -60,6 +60,9 @@ helm-template: guard-CHART ## Generate manifest
 helm-policy: guard-CHART guard-POLICY ## Check manifest
 	@helm template $(CHART) | conftest test -p $(POLICY) --all-namespaces -
 
+.PHONY: helm-lint
+helm-lint: guard-CHART ## Lint Helm chart
+	@docker run -it --rm --name ct --volume $$(pwd):/data quay.io/helmpack/chart-testing sh -c "cd /data; ct lint --config .github/ct.yaml"
 
 # ====================================
 # O P A
