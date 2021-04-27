@@ -100,7 +100,7 @@ jobs:
       matrix:
         k8s:
           # from https://hub.docker.com/r/kindest/node/tags
-          - v1.18.16
+          - v1.18.15
           - v1.19.7
           - v1.20.2
     steps:
