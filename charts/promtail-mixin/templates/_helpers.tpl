@@ -54,6 +54,26 @@ app.kubernetes.io/part-of: {{ include "promtail-mixin.name" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
+{{/* See: https://ambassadorlabs.github.io/k8s-for-humans/ */}}
+{{/*
+Common annotations 
+*/}}
+{{- define "promtail-mixin.annotations" -}}
+a8r.io/description: Monitoring Mixin for Promtail
+a8r.io/owner: portefaix
+a8r.io/bugs: https://github.com/portefaix/portefaix-hub/issues
+a8r.io/documentation: https://artifacthub.io/packages/helm/portefaix-hub/promtail-mixin
+a8r.io/repository: https://github.com/portefaix/portefaix-hub
+a8r.io/support: https://github.com/portefaix/portefaix-hub/issues
+{{- end }}
+
+{{/* a8r.io/logs: */}}
+{{/* a8r.io/runbook: */}}
+{{/* a8r.io/incidents:  */}}
+{{/* a8r.io/uptime */}}
+{{/* a8r.io/performance */}}
+{{/* a8r.io/dependencies */}}
+
 {{/*
 Allow the release namespace to be overridden
 */}}
