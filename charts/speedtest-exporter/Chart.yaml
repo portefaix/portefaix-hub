@@ -16,7 +16,7 @@ apiVersion: v2
 name: speedtest-exporter
 description: A Helm chart for Prometheus Speedtest exporter
 home: https://charts.portefaix.xyz
-icon: https://raw.githubusercontent.com/thanos-io/thanos/master/docs/img/Thanos-logo_fullmedium.png
+# icon: htt
 sources:
   - https://github.com/nlamirault/portefaix-hub/tree/master/charts/speedtest-exporter
 type: application
