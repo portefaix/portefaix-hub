@@ -82,12 +82,9 @@ resources: {}
   #   cpu: 10m
   #   memory: 32Mi
 
-prometheus:
-  monitor:
-    enabled: false
-    interval: 60m
-    scrapeTimeout: 60s
-    additionalLabels: {}
-      # release: kube-prometheus-stack
-    namespace: ""
-    honorLabels: false
+serviceMonitor:
+  enabled: false
+  # interval: 60m
+  # scrapeTimeout: 60s
+  # additionalLabels:
+  #   release: kube-prometheus-stack
