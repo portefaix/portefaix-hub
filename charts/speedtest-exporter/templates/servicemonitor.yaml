@@ -1,0 +1,31 @@
+{{- if .Values.prometheus.monitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+{{- if or .Values.additionalAnnotations .Values.serviceAccount.annotations }}
+  annotations:
+{{ toYaml .Values.additionalAnnotations | indent 4 }}
+{{- if .Values.serviceAccount.annotations }}
+{{ toYaml .Values.serviceAccount.annotations | indent 4 }}
+{{- end }}
+{{- end }}
+  labels:
+    app: {{ template "speedtest-exporter.name" . }}
+{{- include "speedtest-exporter.labels" . | indent 4 }}
+{{- if .Values.prometheus.monitor.additionalLabels }}
+{{ toYaml .Values.prometheus.monitor.additionalLabels | indent 4 }}
+{{- end }}
+  name: {{ template "speedtest-exporter.fullname" . }}
+  namespace: {{ template "speedtest-exporter.namespace" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "speedtest-exporter.name" . }}
+  endpoints:
+    - port: http
+      interval: {{ .Values.prometheus.monitor.interval }}
+      scrapeTimeout: {{ .Values.prometheus.monitor.scrapeTimeout }}
+      {{- if .Values.prometheus.monitor.honorLabels }}
+      honorLabels: true
+      {{- end }}
+{{- end }}

@@ -1,0 +1,24 @@
+# Values for CI
+#
+
+additionalLabels:
+  exporter: speedtest
+
+additionalAnnotations:
+  made-by: portefaix
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 64Mi
+  requests:
+    cpu: 10m
+    memory: 32Mi
+
+prometheus:
+  monitor:
+    enabled: true
+    interval: 15m
+    scrapeTimeout: 60s
+    additionalLabels:
+      release: kube-prometheus-stack

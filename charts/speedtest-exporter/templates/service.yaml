@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+{{- if .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml .Values.additionalAnnotations | indent 4 }}
+{{- end }}
+  labels:
+    app: {{ template "speedtest-exporter.name" . }}
+    {{- include "speedtest-exporter.labels" . | indent 4 }}
+  name: {{ template "speedtest-exporter.fullname" . }}
+  namespace: {{ template "speedtest-exporter.namespace" . }}
+spec:
+  type: "{{ .Values.service.type }}"
+  ports:
+  - name: http
+    protocol: TCP
+    port: {{ .Values.service.port }}
+    {{- if .Values.service.nodePort }}
+    nodePort: {{ .Values.service.nodePort }}
+    {{- end }}
+    targetPort: 9090
+  {{- if .Values.service.loadBalancerIP }}
+  loadBalancerIP: "{{ .Values.service.loadBalancerIP }}"
+  {{- end }}
+  selector:
+    app: {{ template "speedtest-exporter.name" . }}
