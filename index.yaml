@@ -851,6 +851,38 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/promtail-mixin-0.1.0/promtail-mixin-0.1.0.tgz
     version: 0.1.0
+  speedtest-exporter:
+  - annotations:
+      artifacthub.io/changes: |
+        - Artifact Hub informations
+      artifacthub.io/links: |
+        - name: Speedtest exporter
+          url: https://github.com/danopstech/speedtest_exporter
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 0.0.4
+    created: "2021-05-17T10:22:41.173375299Z"
+    description: A Helm chart for Prometheus Speedtest exporter
+    digest: bc161fd55547e5f4f8b168fbe941fad46909accb95076da9c2e732a1215d63ef
+    home: https://charts.portefaix.xyz
+    keywords:
+    - speedtest
+    - prometheus-exporter
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: speedtest-exporter
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/speedtest-exporter
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/speedtest-exporter-0.1.0/speedtest-exporter-0.1.0.tgz
+    version: 0.1.0
   thanos-mixin:
   - annotations:
       artifacthub.io/changes: |
@@ -1210,4 +1242,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2021-04-29T17:17:04.054322099Z"
+generated: "2021-05-17T10:22:41.1734544Z"
