@@ -1,0 +1,23 @@
+# Values for CI
+#
+
+additionalLabels:
+  prometheus: k8s
+  exporter: speedtest
+
+additionalAnnotations:
+  made-by: portefaix
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 64Mi
+  requests:
+    cpu: 10m
+    memory: 32Mi
+
+prometheus:
+  monitor:
+    enabled: true
+    additionalLabels:
+      release: kube-prometheus-stack

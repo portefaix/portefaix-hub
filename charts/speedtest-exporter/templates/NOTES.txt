@@ -1,0 +1,4 @@
+speedtest-exporter is a Prometheus exporter that generates metrics about the Speedtest API.
+
+The metrics are exported on the HTTP endpoint /metrics on the listening port.
+In your case, {{ template "speedtest-exporter.fullname" . }}.{{ template "speedtest-exporter.namespace" . }}.svc.cluster.local:{{ .Values.service.port }}/metrics

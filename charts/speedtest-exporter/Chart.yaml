@@ -1,0 +1,53 @@
+# Copyright (C) 2021 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: v2
+name: speedtest-exporter
+description: A Helm chart for Prometheus Speedtest exporter
+home: https://charts.portefaix.xyz
+icon: https://raw.githubusercontent.com/thanos-io/thanos/master/docs/img/Thanos-logo_fullmedium.png
+sources:
+  - https://github.com/nlamirault/portefaix-hub/tree/master/charts/speedtest-exporter
+type: application
+keywords:
+  - speedtest
+  - prometheus-exporter
+  - portefaix
+
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+# Versions are expected to follow Semantic Versioning (https://semver.org/)
+version: 0.1.0
+
+# This is the version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application. Versions are not expected to
+# follow Semantic Versioning. They should reflect the version the application is using.
+appVersion: 0.0.4
+
+maintainers:
+  - name: nlamirault
+    email: nicolas.lamirault@gmail.com
+
+# https://artifacthub.io/docs/topics/repositories/
+annotations:
+  artifacthub.io/changes: |
+    - Artifact Hub informations
+  artifacthub.io/links: |
+    - name: Speedtest exporter
+      url: https://github.com/danopstech/speedtest_exporter
+    - name: Portefaix
+      url: https://portefaix.xyz
+  artifacthub.io/maintainers: |
+    - name: nlamirault
+      email: nicolas.lamirault@gmail.com
