@@ -1,6 +1,6 @@
 # speedtest-exporter
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.4](https://img.shields.io/badge/AppVersion-0.0.4-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.4](https://img.shields.io/badge/AppVersion-0.0.4-informational?style=flat-square)
 
 A Helm chart for Prometheus Speedtest exporter
 
@@ -32,12 +32,6 @@ A Helm chart for Prometheus Speedtest exporter
 | imagePullSecrets | list | `[]` |  |
 | nodeSelector | object | `{}` |  |
 | podAnnotations | object | `{}` |  |
-| prometheus.monitor.additionalLabels | object | `{}` |  |
-| prometheus.monitor.enabled | bool | `false` |  |
-| prometheus.monitor.honorLabels | bool | `false` |  |
-| prometheus.monitor.interval | string | `"60m"` |  |
-| prometheus.monitor.namespace | string | `""` |  |
-| prometheus.monitor.scrapeTimeout | string | `"60s"` |  |
 | readOnlyRootFilesystem | bool | `true` |  |
 | replicas | int | `1` |  |
 | resources | object | `{}` |  |
@@ -55,6 +49,7 @@ A Helm chart for Prometheus Speedtest exporter
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.imagePullSecrets | list | `[]` |  |
 | serviceAccount.name | string | `nil` |  |
+| serviceMonitor.enabled | bool | `false` |  |
 | tolerations | list | `[]` |  |
 
 ----------------------------------------------
