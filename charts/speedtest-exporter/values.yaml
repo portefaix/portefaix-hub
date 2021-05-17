@@ -85,6 +85,8 @@ resources: {}
 prometheus:
   monitor:
     enabled: false
+    interval: 60m
+    scrapeTimeout: 60s
     additionalLabels: {}
       # release: kube-prometheus-stack
     namespace: ""

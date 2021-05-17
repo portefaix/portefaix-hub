@@ -58,7 +58,7 @@ spec:
 {{- end }}
         ports:
         - containerPort: 9090
-          name: https
+          name: http
           protocol: TCP
         livenessProbe:
           httpGet:

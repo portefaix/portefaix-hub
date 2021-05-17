@@ -35,7 +35,9 @@ A Helm chart for Prometheus Speedtest exporter
 | prometheus.monitor.additionalLabels | object | `{}` |  |
 | prometheus.monitor.enabled | bool | `false` |  |
 | prometheus.monitor.honorLabels | bool | `false` |  |
+| prometheus.monitor.interval | string | `"60m"` |  |
 | prometheus.monitor.namespace | string | `""` |  |
+| prometheus.monitor.scrapeTimeout | string | `"60s"` |  |
 | readOnlyRootFilesystem | bool | `true` |  |
 | replicas | int | `1` |  |
 | resources | object | `{}` |  |

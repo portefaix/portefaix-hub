@@ -23,13 +23,9 @@ spec:
       app: {{ template "speedtest-exporter.name" . }}
   endpoints:
     - port: http
+      interval: {{ .Values.prometheus.monitor.interval }}
+      scrapeTimeout: {{ .Values.prometheus.monitor.scrapeTimeout }}
       {{- if .Values.prometheus.monitor.honorLabels }}
       honorLabels: true
       {{- end }}
-    {{ if .Values.prometheus.monitor.enabled }}
-    - port: metrics
-      {{- if .Values.prometheus.monitor.honorLabels }}
-      honorLabels: true
-      {{- end }}
-    {{ end }}
 {{- end }}

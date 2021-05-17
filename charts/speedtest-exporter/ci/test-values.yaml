@@ -2,7 +2,6 @@
 #
 
 additionalLabels:
-  prometheus: k8s
   exporter: speedtest
 
 additionalAnnotations:
@@ -19,5 +18,7 @@ resources:
 prometheus:
   monitor:
     enabled: true
+    interval: 15m
+    scrapeTimeout: 60s
     additionalLabels:
       release: kube-prometheus-stack
