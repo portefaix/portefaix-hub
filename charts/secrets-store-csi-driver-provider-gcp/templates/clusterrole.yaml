@@ -1,0 +1,27 @@
+{{- if .Values.rbac.create -}}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+{{- if .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml .Values.additionalAnnotations | indent 4 }}
+{{- end }}
+  labels:
+    app: {{ template "secrets-store-csi-driver-provider-gcp.name" . }}
+{{- include "secrets-store-csi-driver-provider-gcp.labels" . | nindent 4 }}
+  name: {{ template "secrets-store-csi-driver-provider-gcp.fullname" . }}
+  namespace: {{ template "secrets-store-csi-driver-provider-gcp.namespace" . }}
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - serviceaccounts/token
+  verbs:
+  - create
+- apiGroups:
+  - ""
+  resources:
+  - serviceaccounts
+  verbs:
+  - get
+{{- end }}
