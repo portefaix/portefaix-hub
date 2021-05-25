@@ -851,6 +851,41 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/promtail-mixin-0.1.0/promtail-mixin-0.1.0.tgz
     version: 0.1.0
+  secrets-store-csi-driver-provider-gcp:
+  - annotations:
+      artifacthub.io/changes: |
+        - Artifact Hub informations
+      artifacthub.io/links: |
+        - name: secrets-store-csi-driver
+          url: https://github.com/kubernetes-sigs/secrets-store-csi-driver
+        - name: secrets-store-csi-driver-provider-gcp
+          url: https://github.com/GoogleCloudPlatform/secrets-store-csi-driver-provider-gcp
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 1.3.5
+    created: "2021-05-25T11:31:19.068204846Z"
+    description: A Helm chart for Google Secret Manager Provider for Secret Store
+      CSI Driver
+    digest: 53b5211b0ffe299b1ec7da3ea0d6e7a2508c2951e0a7770779f9a078cae4f3b4
+    home: https://charts.portefaix.xyz
+    keywords:
+    - secrets-store-csi-driver-provider-gcp
+    - secrets-store-csi-driver
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: secrets-store-csi-driver-provider-gcp
+    sources:
+    - https://github.com/portefaix/portefaix-hub/tree/master/charts/secrets-store-csi-driver-provider-gcp
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/secrets-store-csi-driver-provider-gcp-0.1.0/secrets-store-csi-driver-provider-gcp-0.1.0.tgz
+    version: 0.1.0
   speedtest-exporter:
   - annotations:
       artifacthub.io/changes: |
@@ -1273,4 +1308,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2021-05-17T11:02:47.470707997Z"
+generated: "2021-05-25T11:31:19.068780286Z"
