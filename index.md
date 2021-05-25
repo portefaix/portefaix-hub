@@ -32,6 +32,7 @@ Welcome to the Portefaix Hub.
 [promtail-mixin](https://artifacthub.io/packages/helm/portefaix-hub/promtail-mixin)|0.3.0|A Helm chart for Promtail Mixin|application|2021-04-27T07:12:06.045402851Z
 [promtail-mixin](https://artifacthub.io/packages/helm/portefaix-hub/promtail-mixin)|0.2.0|A Helm chart for Promtail Mixin|application|2021-03-13T17:53:16.751951566Z
 [promtail-mixin](https://artifacthub.io/packages/helm/portefaix-hub/promtail-mixin)|0.1.0|A Helm chart for Promtail Mixin|application|2021-03-06T17:29:21.283395175Z
+[secrets-store-csi-driver-provider-gcp](https://artifacthub.io/packages/helm/portefaix-hub/secrets-store-csi-driver-provider-gcp)|0.2.0|A Helm chart for Google Secret Manager Provider for Secret Store CSI Driver|application|2021-05-25T12:35:23.361195225Z
 [secrets-store-csi-driver-provider-gcp](https://artifacthub.io/packages/helm/portefaix-hub/secrets-store-csi-driver-provider-gcp)|0.1.0|A Helm chart for Google Secret Manager Provider for Secret Store CSI Driver|application|2021-05-25T11:31:19.068204846Z
 [speedtest-exporter](https://artifacthub.io/packages/helm/portefaix-hub/speedtest-exporter)|0.2.0|A Helm chart for Prometheus Speedtest exporter|application|2021-05-17T11:02:28.717281788Z
 [speedtest-exporter](https://artifacthub.io/packages/helm/portefaix-hub/speedtest-exporter)|0.1.0|A Helm chart for Prometheus Speedtest exporter|application|2021-05-17T10:22:41.173375299Z
