@@ -1,0 +1,16 @@
+# Values for CI
+#
+
+additionalAnnotations:
+  test: github
+
+additionalLabels:
+  copyright: john doe
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 100Mi
+  limits:
+    cpu: 80m
+    memory: 200Mi

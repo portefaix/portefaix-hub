@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+{{- if .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml .Values.additionalAnnotations | indent 4 }}
+{{- end }}
+  labels:
+    app: {{ template "secrets-store-csi-driver-provider-gcp.name" . }}
+{{- include "secrets-store-csi-driver-provider-gcp.labels" . | nindent 4 }}
+  name: {{ template "secrets-store-csi-driver-provider-gcp.fullname" . }}
+  namespace: {{ template "secrets-store-csi-driver-provider-gcp.namespace" . }}
+spec:
+  updateStrategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: {{ template "secrets-store-csi-driver-provider-gcp.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "secrets-store-csi-driver-provider-gcp.name" . }}
+        {{- include "secrets-store-csi-driver-provider-gcp.labels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{ template "secrets-store-csi-driver-provider-gcp.serviceAccountName" . }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+{{- if .Values.resources }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+{{- end }}
+          env:
+            - name: TARGET_DIR
+              value: "/etc/kubernetes/secrets-store-csi-providers"
+          volumeMounts:
+            - mountPath: "/etc/kubernetes/secrets-store-csi-providers"
+              name: providervol
+            - name: mountpoint-dir
+              mountPath: /var/lib/kubelet/pods
+              mountPropagation: HostToContainer
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /live
+              port: 8095
+            initialDelaySeconds: 5
+            timeoutSeconds: 10
+            periodSeconds: 30
+{{- if .Values.affinity }}
+      affinity:
+{{ toYaml .Values.affinity | indent 8 }}
+{{- end }}
+{{- if .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}
+{{- end }}
+{{- if .Values.tolerations }}
+      tolerations:
+{{ toYaml .Values.tolerations | indent 8 }}
+{{- end }}
+      volumes:
+        - name: providervol
+          hostPath:
+              path: /etc/kubernetes/secrets-store-csi-providers
+        - name: mountpoint-dir
+          hostPath:
+            path: /var/lib/kubelet/pods
+            type: DirectoryOrCreate

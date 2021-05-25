@@ -1,0 +1,65 @@
+# Default values for secrets-store-csi-driver-provider-gcp.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- Provide a name to substitute for the full names of resources
+fullnameOverride: ""
+
+# -- Additional annotations to add to metadata
+additionalAnnotations: {}
+
+# -- Additional labels to add to metadata
+additionalLabels: {}
+
+# -- Namespace to deploy the Secret Store CSI Driver
+namespace: kube-system
+
+image:
+  repository: us-docker.pkg.dev/secretmanager-csi/secrets-store-csi-driver-provider-gcp/plugin
+  tag: v0.4.0
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # requests:
+  #   cpu: 50m
+  #   memory: 100Mi
+  # limits:
+  #   cpu: 50m
+  #   memory: 100Mi
+
+rbac:
+  # If true, create & use RBAC resources
+  create: true
+
+serviceAccount:
+  # Specifies whether a ServiceAccount should be created, require rbac true
+  create: true
+  # The name of the ServiceAccount to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+  # Reference to one or more secrets to be used when pulling images
+  # ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  imagePullSecrets: []
+  # ServiceAccount annotations.
+  # Use case: GKE Workload Identity for service accounts
+  # ref: https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity
+  annotations: {}
+
+## Node labels for pod assignment
+## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+nodeSelector:
+  kubernetes.io/os: linux
+
+## Affinity settings for pod assignment
+## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+affinity: {}
+
+## Tolerations for pod assignment
+## Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+tolerations: []
