@@ -49,7 +49,7 @@ app.kubernetes.io/name: {{ template "speedtest-exporter.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 app.kubernetes.io/component: prometheus-exporter
 app.kubernetes.io/managed-by: {{ .Release.Service }}
-app.kubernetes.io/version: "{{ .Chart.Version }}"
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 app.kubernetes.io/part-of: {{ template "speedtest-exporter.name" . }} 
 helm.sh/chart: {{ template "speedtest-exporter.chart" . }}  
 {{- if .Values.additionalLabels }}
