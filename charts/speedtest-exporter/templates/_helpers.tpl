@@ -47,6 +47,7 @@ Create the name of the service account to use
 {{- define "speedtest-exporter.labels" }}
 app.kubernetes.io/name: {{ template "speedtest-exporter.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/component: prometheus-exporter
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 app.kubernetes.io/version: "{{ .Chart.Version }}"
 app.kubernetes.io/part-of: {{ template "speedtest-exporter.name" . }} 
