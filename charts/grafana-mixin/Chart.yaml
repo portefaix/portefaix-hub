@@ -16,7 +16,7 @@ apiVersion: v2
 name: grafana-mixin
 description: A Helm chart for Grafana Mixin
 home: https://charts.portefaix.xyz
-icon:
+icon: https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Grafana_logo.svg/300px-Grafana_logo.svg.png
 sources:
   - https://github.com/nlamirault/portefaix-hub/tree/master/charts/grafana-mixin
 type: application
@@ -28,12 +28,12 @@ keywords:
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.3.1
+version: 0.4.0
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
-appVersion: 7.4.3
+appVersion: 8.0.0
 
 maintainers:
   - name: nlamirault
