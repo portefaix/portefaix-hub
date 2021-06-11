@@ -42,8 +42,7 @@ maintainers:
 # https://artifacthub.io/docs/topics/repositories/
 annotations:
   artifacthub.io/changes: |
-    - Artifact Hub informations
-    - Refactoring grafana rules configuration
+    - Grafana mixin v8.0.0
   artifacthub.io/links: |
     - name: grafana
       url: https://github.com/grafana/grafana
