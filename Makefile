@@ -14,6 +14,10 @@
 
 include hack/commons.mk
 
+CLUSTER = portefaix-hub-local
+KUBE_CONTEXT = kind-portefaix-hub-local
+
+
 # ====================================
 # D E V E L O P M E N T
 # ====================================
@@ -38,13 +42,35 @@ validate: ## Execute git-hooks
 	@pre-commit run -a
 
 .PHONY: mixins
-mixins: guard-CHART ## Install mixins
-	$(VENV)/bin/python3 ./hack/mixins.py $(CHART)
+mixins: guard-CHART guard-LOG ## Install mixins
+	$(VENV)/bin/python3 ./hack/mixins.py $(CHART) --log $(LOG)
 
 # .PHONY: init ## Initialize environment
 # init:
 # 	poetry install
 # 	$(ANSIBLE_VENV)/bin/pre-commit install
+
+
+# ====================================
+# K I N D
+# ====================================
+
+##@ Kind
+
+.PHONY: kind-create
+kind-create: ## Creates a local Kubernetes cluster (ENV=xxx)
+	@echo -e "$(OK_COLOR)[$(APP)] Create Kubernetes cluster ${SERVICE}$(NO_COLOR)"
+	@kind create cluster --name=$(CLUSTER) --config=hack/kind-config.yaml --wait 180s
+
+.PHONY: kind-delete
+kind-delete: ## Delete a local Kubernetes cluster (ENV=xxx)
+	@echo -e "$(OK_COLOR)[$(APP)] Create Kubernetes cluster ${SERVICE}$(NO_COLOR)"
+	@kind delete cluster --name=$(CLUSTER)
+
+.PHONY: kind-kube-credentials
+kind-kube-credentials: ## Credentials for Kind (ENV=xxx)
+	@kubectl config use-context $(KUBE_CONTEXT)
+
 
 # ====================================
 # H E L M
@@ -58,7 +84,11 @@ helm-doc: guard-CHART ## Generate documentation
 
 .PHONY: helm-template
 helm-template: guard-CHART ## Generate manifest
-	@helm template $(CHART)
+	@helm template $(CHART) $(DEBUG)
+
+.PHONY: helm-template-custom
+helm-template-custom: guard-CHART ## Generate manifest
+	@helm template $(CHART) --name-template=test --values $(CHART)/ci/test-values.yaml $(DEBUG)
 
 .PHONY: helm-policy
 helm-policy: guard-CHART guard-POLICY ## Check manifest
@@ -66,7 +96,19 @@ helm-policy: guard-CHART guard-POLICY ## Check manifest
 
 .PHONY: helm-lint
 helm-lint: guard-CHART ## Lint Helm chart
-	@docker run -it --rm --name ct --volume $$(pwd):/data quay.io/helmpack/chart-testing sh -c "cd /data; ct lint --config .github/ct.yaml"
+	helm lint $(CHART) --values $(CHART)/values.yaml $(DEBUG)
+
+.PHONY: helm-lint-custom
+helm-lint-custom: guard-CHART ## Lint Helm chart
+	helm lint $(CHART) --values $(CHART)/ci/test-values.yaml  $(DEBUG)
+
+# .PHONY: helm-lint
+# helm-lint: guard-CHART ## Lint Helm chart
+# 	@docker run -it --rm --name ct --volume $$(pwd):/data quay.io/helmpack/chart-testing sh -c "cd /data; ct lint --config .github/ct.yaml"
+
+.PHONY: helm-install
+helm-install: guard-CHART guard-RELEASE ## Install a Helm chart
+	helm install $(RELEASE) $(CHART)
 
 # ====================================
 # O P A
