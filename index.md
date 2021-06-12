@@ -6,6 +6,7 @@ Welcome to the Portefaix Hub.
 
 |Name|version|description|Type|created|
 |:--|:-:|:--|:--|:--:|:--|
+[grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.4.0|A Helm chart for Grafana Mixin|application|2021-06-12T07:35:00.358076409Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.3.1|A Helm chart for Grafana Mixin|application|2021-04-29T17:16:43.356930135Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.3.0|A Helm chart for Grafana Mixin|application|2021-04-27T10:11:10.373191529Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.2.0|A Helm chart for Grafana Mixin|application|2021-04-27T07:12:04.990763325Z
