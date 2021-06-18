@@ -47,7 +47,7 @@ Common labels
 helm.sh/chart: {{ include "loki-mixin.chart" . }}
 {{ include "loki-mixin.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.Version | quote }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/component: monitoring-mixin
 app.kubernetes.io/part-of: {{ include "loki-mixin.name" . }}

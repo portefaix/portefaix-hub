@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ printf "%s-%s" (include "loki-mixin.fullname" .) "loki-reads" | trunc 63 | trimSuffix "-" }}
+  namespace: {{ include "loki-mixin.namespace" . }}
+  annotations:
+{{ include "loki-mixin.annotations" . | indent 4 }}
+{{- if .Values.additionalAnnotations }}
+{{ toYaml .Values.additionalAnnotations | indent 4 }}
+{{- end }}
+  labels:
+    app: {{ include "loki-mixin.name" . }}
+{{ include "loki-mixin.labels" . | indent 4 }}
+{{- if .Values.additionalLabels }}
+{{ toYaml .Values.additionalLabels | indent 4 }}
+{{- end }}
+    grafana-dashboard: {{ include "loki-mixin.name" . }}-loki-reads
+data:
+  loki-reads.json: |-
+{{ .Files.Get "dashboards/loki-reads.json" | indent 4}}
