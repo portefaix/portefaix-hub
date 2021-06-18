@@ -47,7 +47,7 @@ Common labels
 helm.sh/chart: {{ include "prometheus-mixin.chart" . }}
 {{ include "prometheus-mixin.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.Version | quote }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/component: monitoring-mixin
 app.kubernetes.io/part-of: {{ include "prometheus-mixin.name" . }}
