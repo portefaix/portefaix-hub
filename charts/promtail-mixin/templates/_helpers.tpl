@@ -47,7 +47,7 @@ Common labels
 helm.sh/chart: {{ include "promtail-mixin.chart" . }}
 {{ include "promtail-mixin.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.Version | quote }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/component: monitoring-mixin
 app.kubernetes.io/part-of: {{ include "promtail-mixin.name" . }}
