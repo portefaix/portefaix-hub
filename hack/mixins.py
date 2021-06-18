@@ -54,39 +54,76 @@ def download(url, filename):
         f.write(r.content)
 
 
+def template(f, chart_dst, mixin_header):
+    orig = "%s" % f
+    filename = path.basename(orig)
+
+    dest = "%s/%s" % (chart_dst, filename)
+    if os.path.exists(dest):
+        os.remove(dest)
+    logger.info("Copy %s %s", orig, dest)
+
+    with open(dest, "w") as file:
+        # header = fileinput.input(mixin_header)
+        # file.writelines(header)
+
+        header = open(mixin_header, "rt")
+        for line in header:
+            file.write(line.replace("__name__", filename.replace(".yaml", "")))
+
+        fin = open(orig, "rt")
+        for line in fin:
+            file.write("  %s" % escape(line))
+
+
+def template_configmap(f, chart_dst, mixin_header):
+    orig = "%s" % f
+    filename = path.basename(orig)
+
+    dashboard = "%s/dashboards/%s" % (chart_dst, filename)
+    if os.path.exists(dashboard):
+        os.remove(dashboard)
+    logger.info("Copy %s => %s", orig, dashboard)
+    shutil.copy(orig, dashboard)
+
+    dest = "%s/templates/configmap-%s" % (chart_dst, filename.replace(".json", ".yaml"))
+    if os.path.exists(dest):
+        os.remove(dest)
+    logger.info("Manage %s => %s", orig, dest)
+
+    with open(dest, "w") as file:
+        header = open(mixin_header, "rt")
+        for line in header:
+            file.write(
+                line.replace(
+                    "__name__", filename.replace(".json", "").replace("_", "-")
+                )
+            )
+        file.write("  %s: |-\n" % filename)
+        file.write('{{ .Files.Get "dashboards/%s" | indent 4}}' % filename)
+
+
 def manage_mixin(mixin_directory, mixin):
     logger.info("Manage %s", mixin)
 
-    mixin_header = "%s/%s.tpl" % (os.path.dirname(__file__), mixin)
-    if not os.path.exists(mixin_header):
-        logger.warning("Header not found: %s", mixin_header)
-        return
-
-    chart_dst = "charts/%s/templates" % mixin
+    chart_dst = "charts/%s" % mixin
     if not os.path.exists(chart_dst):
         logger.warning("Mixin chart not found: %s", chart_dst)
         return
 
-    files = glob.glob("%s/%s/prometheus/*.yaml" % (mixin_directory, mixin))
-    for f in files:
-        orig = "%s" % f
-        dest = "%s/%s" % (chart_dst, path.basename(orig))
-        if os.path.exists(dest):
-            os.remove(dest)
-        logger.info("Copy %s %s", orig, dest)
+    prom_header = "%s/%s.tpl" % (os.path.dirname(__file__), mixin)
+    if not os.path.exists(prom_header):
+        logger.warning("Header not found: %s", prom_header)
+        return
+    for f in glob.glob("%s/%s/prometheus/*.yaml" % (mixin_directory, mixin)):
+        template(f, "%s/templates" % chart_dst, prom_header)
 
-        fin = open(orig, "rt")
-        # fout = open(dest, "w")
-        # for line in fin:
-        #     fout.write(escape(line))
-
-        with open(dest, "w") as file:
-            header = fileinput.input(mixin_header)
-            file.writelines(header)
-            # input_lines = fileinput.input(orig)
-            # file.writelines(input_lines)
-            for line in fin:
-                file.write(escape(line))
+    dashboard_header = "%s/%s_dashboard.tpl" % (os.path.dirname(__file__), mixin)
+    if not os.path.exists(dashboard_header):
+        logger.warning("Header not found: %s", dashboard_header)
+        return
+    for f in glob.glob("%s/%s/dashboards/*.json" % (mixin_directory, mixin)):
+        template_configmap(f, chart_dst, dashboard_header)
 
 
 def main(url, filename, mixin_directory, chart):
