@@ -47,7 +47,7 @@ Common labels
 helm.sh/chart: {{ include "grafana-mixin.chart" . }}
 {{ include "grafana-mixin.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.Version | quote }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/component: monitoring-mixin
 app.kubernetes.io/part-of: {{ include "grafana-mixin.name" . }}
