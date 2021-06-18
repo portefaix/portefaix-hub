@@ -175,6 +175,38 @@ entries:
           email: nicolas.lamirault@gmail.com
     apiVersion: v2
     appVersion: 2.0.0
+    created: "2021-06-18T10:41:26.17206873Z"
+    description: A Helm chart for Kube-State-Metrics Mixin
+    digest: 662934a74974f69d6ca6b503e32038802406b8cb70a9c9e52f8ce46ddca49f5b
+    home: https://charts.portefaix.xyz
+    icon: https://bitnami.com/assets/stacks/kube-state-metrics/img/kube-state-metrics-stack-220x234.png
+    keywords:
+    - kube-state-metrics
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: kube-state-metrics-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kube-state-metrics-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/kube-state-metrics-mixin-0.5.0/kube-state-metrics-mixin-0.5.0.tgz
+    version: 0.5.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kube-state-metrics v2.0.0
+      artifacthub.io/links: |
+        - name: Kube-State-Metrics
+          url: https://github.com/kubernetes/kube-state-metrics
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 2.0.0
     created: "2021-06-12T07:50:32.52981482Z"
     description: A Helm chart for Kube-State-Metrics Mixin
     digest: aa13ec0b4f3c46926438f3460f601f68f572174612408bf6cc0cfe095b68a7f5
@@ -1470,4 +1502,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2021-06-18T10:26:37.324784702Z"
+generated: "2021-06-18T10:41:26.172448957Z"
