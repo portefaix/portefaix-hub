@@ -15,7 +15,7 @@ metadata:
 {{- if .Values.additionalLabels }}
 {{ toYaml .Values.additionalLabels | indent 4 }}
 {{- end }}
-    grafana_dashboard: {{ include "grafana-mixin.name" . }}-grafana-overview
+    grafana-dashboard: {{ include "grafana-mixin.name" . }}-grafana-overview
 data:
   grafana-overview.json: |-
 {{ .Files.Get "dashboards/grafana-overview.json" | indent 4}}
