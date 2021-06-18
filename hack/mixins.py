@@ -56,17 +56,24 @@ def download(url, filename):
 
 def template(f, chart_dst, mixin_header):
     orig = "%s" % f
-    dest = "%s/%s" % (chart_dst, path.basename(orig))
+    filename = path.basename(orig)
+
+    dest = "%s/%s" % (chart_dst, filename)
     if os.path.exists(dest):
         os.remove(dest)
     logger.info("Copy %s %s", orig, dest)
 
-    fin = open(orig, "rt")
     with open(dest, "w") as file:
-        header = fileinput.input(mixin_header)
-        file.writelines(header)
+        # header = fileinput.input(mixin_header)
+        # file.writelines(header)
+
+        header = open(mixin_header, "rt")
+        for line in header:
+            file.write(line.replace("__name__", filename.replace(".yaml", "")))
+
+        fin = open(orig, "rt")
         for line in fin:
-            file.write(escape(line))
+            file.write("  %s" % escape(line))
 
 
 def template_configmap(f, chart_dst, mixin_header):
