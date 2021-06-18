@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ printf "%s-%s" (include "promtail-mixin.fullname" .) "promtail" | trunc 63 | trimSuffix "-" }}
+  namespace: {{ include "promtail-mixin.namespace" . }}
+  annotations:
+{{ include "promtail-mixin.annotations" . | indent 4 }}
+{{- if .Values.additionalAnnotations }}
+{{ toYaml .Values.additionalAnnotations | indent 4 }}
+{{- end }}
+  labels:
+    app: {{ include "promtail-mixin.name" . }}
+{{ include "promtail-mixin.labels" . | indent 4 }}
+{{- if .Values.additionalLabels }}
+{{ toYaml .Values.additionalLabels | indent 4 }}
+{{- end }}
+    grafana-dashboard: {{ include "promtail-mixin.name" . }}-promtail
+data:
+  promtail.json: |-
+{{ .Files.Get "dashboards/promtail.json" | indent 4}}
