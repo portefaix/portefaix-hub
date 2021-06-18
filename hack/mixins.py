@@ -64,9 +64,6 @@ def template(f, chart_dst, mixin_header):
     logger.info("Copy %s %s", orig, dest)
 
     with open(dest, "w") as file:
-        # header = fileinput.input(mixin_header)
-        # file.writelines(header)
-
         header = open(mixin_header, "rt")
         for line in header:
             file.write(line.replace("__name__", filename.replace(".yaml", "")))
@@ -113,14 +110,14 @@ def manage_mixin(mixin_directory, mixin):
 
     prom_header = "%s/%s.tpl" % (os.path.dirname(__file__), mixin)
     if not os.path.exists(prom_header):
-        logger.warning("Header not found: %s", prom_header)
+        logger.warning("Header for PrometheusRule not found: %s", prom_header)
         return
     for f in glob.glob("%s/%s/prometheus/*.yaml" % (mixin_directory, mixin)):
         template(f, "%s/templates" % chart_dst, prom_header)
 
     dashboard_header = "%s/%s_dashboard.tpl" % (os.path.dirname(__file__), mixin)
     if not os.path.exists(dashboard_header):
-        logger.warning("Header not found: %s", dashboard_header)
+        logger.warning("Header for dashboards not found: %s", dashboard_header)
         return
     for f in glob.glob("%s/%s/dashboards/*.json" % (mixin_directory, mixin)):
         template_configmap(f, chart_dst, dashboard_header)
@@ -130,7 +127,7 @@ def main(url, filename, mixin_directory, chart):
     # download(url, filename)
     with zipfile.ZipFile(filename, "r") as zf:
         zf.extractall()
-        logger.info("Monitoring mixins")
+        logger.info("Extract monitoring mixins")
         for mixin in os.listdir(path=mixin_directory):
             if mixin == chart:
                 manage_mixin(mixin_directory, mixin)
