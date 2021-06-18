@@ -94,7 +94,11 @@ def template_configmap(f, chart_dst, mixin_header):
     with open(dest, "w") as file:
         header = open(mixin_header, "rt")
         for line in header:
-            file.write(line.replace("__name__", filename.replace(".json", "")))
+            file.write(
+                line.replace(
+                    "__name__", filename.replace(".json", "").replace("_", "-")
+                )
+            )
         file.write("  %s: |-\n" % filename)
         file.write('{{ .Files.Get "dashboards/%s" | indent 4}}' % filename)
 
