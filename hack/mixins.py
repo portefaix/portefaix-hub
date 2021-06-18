@@ -108,14 +108,14 @@ def manage_mixin(mixin_directory, mixin):
         logger.warning("Mixin chart not found: %s", chart_dst)
         return
 
-    prom_header = "%s/%s.tpl" % (os.path.dirname(__file__), mixin)
+    prom_header = "%s/mixins/%s.tpl" % (os.path.dirname(__file__), mixin)
     if not os.path.exists(prom_header):
         logger.warning("Header for PrometheusRule not found: %s", prom_header)
         return
     for f in glob.glob("%s/%s/prometheus/*.yaml" % (mixin_directory, mixin)):
         template(f, "%s/templates" % chart_dst, prom_header)
 
-    dashboard_header = "%s/%s_dashboard.tpl" % (os.path.dirname(__file__), mixin)
+    dashboard_header = "%s/mixins/%s_dashboard.tpl" % (os.path.dirname(__file__), mixin)
     if not os.path.exists(dashboard_header):
         logger.warning("Header for dashboards not found: %s", dashboard_header)
         return

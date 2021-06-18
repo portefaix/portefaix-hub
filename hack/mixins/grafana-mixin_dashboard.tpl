@@ -1,8 +1,8 @@
 ---
-apiVersion: monitoring.coreos.com/v1
-kind: PrometheusRule
+apiVersion: v1
+kind: ConfigMap
 metadata:
-  name: {{ printf "%s-%s" (include "grafana-mixin.fullname" .) "alerts" | trunc 63 | trimSuffix "-" }}
+  name: {{ printf "%s-%s" (include "grafana-mixin.fullname" .) "__name__" | trunc 63 | trimSuffix "-" }}
   namespace: {{ include "grafana-mixin.namespace" . }}
   annotations:
 {{ include "grafana-mixin.annotations" . | indent 4 }}
@@ -15,10 +15,5 @@ metadata:
 {{- if .Values.additionalLabels }}
 {{ toYaml .Values.additionalLabels | indent 4 }}
 {{- end }}
-spec:
-  groups:
-  - name: grafana_rules
-    rules:
-    - expr: |
-        sum by (namespace, job, handler, statuscode) (rate(http_request_total[5m]))
-      record: namespace_job_handler_statuscode:http_request_total:rate5m
+    grafana_dashboard: {{ include "grafana-mixin.name" . }}-__name__
+data:
