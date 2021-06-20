@@ -19,6 +19,7 @@ Welcome to the Portefaix Hub.
 [kube-state-metrics-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kube-state-metrics-mixin)|0.3.0|A Helm chart for Kube-State-Metrics Mixin|application|2021-04-27T10:11:10.479452822Z
 [kube-state-metrics-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kube-state-metrics-mixin)|0.2.0|A Helm chart for Kube-State-Metrics Mixin|application|2021-04-27T07:12:05.171974647Z
 [kube-state-metrics-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kube-state-metrics-mixin)|0.1.0|A Helm chart for Kube-State-Metrics Mixin|application|2021-03-07T06:59:37.616260149Z
+[kubernetes-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kubernetes-mixin)|0.2.0|A Helm chart for Kubernetes Mixin|application|2021-06-20T16:28:44.750736877Z
 [kubernetes-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kubernetes-mixin)|0.1.0|A Helm chart for Kubernetes Mixin|application|2021-06-18T12:19:39.045870933Z
 [loki-mixin](https://artifacthub.io/packages/helm/portefaix-hub/loki-mixin)|0.5.0|A Helm chart for loki Mixin|application|2021-06-18T11:09:13.003094084Z
 [loki-mixin](https://artifacthub.io/packages/helm/portefaix-hub/loki-mixin)|0.4.1|A Helm chart for loki Mixin|application|2021-04-29T17:16:43.73906747Z
