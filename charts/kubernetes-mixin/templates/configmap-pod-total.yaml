@@ -9,13 +9,14 @@ metadata:
 {{- if .Values.additionalAnnotations }}
 {{ toYaml .Values.additionalAnnotations | indent 4 }}
 {{- end }}
+    grafana/folder: {{ .Values.grafana.folder }}
   labels:
     app: {{ include "kubernetes-mixin.name" . }}
 {{ include "kubernetes-mixin.labels" . | indent 4 }}
 {{- if .Values.additionalLabels }}
 {{ toYaml .Values.additionalLabels | indent 4 }}
 {{- end }}
-    grafana-dashboard: {{ include "kubernetes-mixin.name" . }}-pod-total
+    grafana/dashboard: {{ include "kubernetes-mixin.name" . }}-pod-total
 data:
   pod-total.json: |-
 {{ .Files.Get "dashboards/pod-total.json" | indent 4}}

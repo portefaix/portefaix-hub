@@ -9,13 +9,14 @@ metadata:
 {{- if .Values.additionalAnnotations }}
 {{ toYaml .Values.additionalAnnotations | indent 4 }}
 {{- end }}
+    grafana/folder: {{ .Values.grafana.folder }}
   labels:
     app: {{ include "kubernetes-mixin.name" . }}
 {{ include "kubernetes-mixin.labels" . | indent 4 }}
 {{- if .Values.additionalLabels }}
 {{ toYaml .Values.additionalLabels | indent 4 }}
 {{- end }}
-    grafana-dashboard: {{ include "kubernetes-mixin.name" . }}-k8s-resources-cluster
+    grafana/dashboard: {{ include "kubernetes-mixin.name" . }}-k8s-resources-cluster
 data:
   k8s-resources-cluster.json: |-
 {{ .Files.Get "dashboards/k8s-resources-cluster.json" | indent 4}}
