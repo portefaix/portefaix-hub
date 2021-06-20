@@ -435,6 +435,39 @@ entries:
           email: nicolas.lamirault@gmail.com
     apiVersion: v2
     appVersion: 0.8.0
+    created: "2021-06-20T19:49:27.10898265Z"
+    description: A Helm chart for Kubernetes Mixin
+    digest: df3228f960db2606075cb5da384f7115616e79061ad51cd757c0bef454c1c823
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.svg
+    keywords:
+    - kubernetes
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: kubernetes-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kubernetes-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/kubernetes-mixin-0.3.0/kubernetes-mixin-0.3.0.tgz
+    version: 0.3.0
+  - annotations:
+      artifacthub.io/changes: |
+        - Artifact Hub informations
+        - Refactoring Prometheus rules configuration
+      artifacthub.io/links: |
+        - name: kubernetes
+          url: https://kubernetes.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 0.8.0
     created: "2021-06-20T16:28:44.750736877Z"
     description: A Helm chart for Kubernetes Mixin
     digest: 2d20a123dcf930e657e9f203fd9ab9d45a5e893715d2680ead8c90cb40c04730
@@ -1831,4 +1864,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2021-06-20T16:29:01.591613226Z"
+generated: "2021-06-20T19:49:27.11123227Z"
