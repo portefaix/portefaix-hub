@@ -7,6 +7,8 @@ fullnameOverride: ""
 
 # -- Additional labels to add to the Prometheus rules
 additionalLabels: {}
+  # app: kube-prometheus-stack
+  # release: kube-prometheus-stack
 
 # -- Additional annotations to add to the Prometheus rules
 additionalAnnotations: {}

@@ -10,11 +10,7 @@ metadata:
 {{ toYaml .Values.additionalAnnotations | indent 4 }}
 {{- end }}
   labels:
-    app: {{ include "kubernetes-mixin.name" . }}
 {{ include "kubernetes-mixin.labels" . | indent 4 }}
-{{- if .Values.additionalLabels }}
-{{ toYaml .Values.additionalLabels | indent 4 }}
-{{- end }}
 spec:
   groups:
   - name: kube-apiserver.rules

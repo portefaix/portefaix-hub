@@ -11,10 +11,6 @@ metadata:
 {{- end }}
     grafana/folder: {{ .Values.grafana.folder }}
   labels:
-    app: {{ include "__mixin__.name" . }}
 {{ include "__mixin__.labels" . | indent 4 }}
-{{- if .Values.additionalLabels }}
-{{ toYaml .Values.additionalLabels | indent 4 }}
-{{- end }}
     grafana/dashboard: {{ include "__mixin__.name" . }}-__name__
 data:
