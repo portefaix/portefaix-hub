@@ -10,9 +10,5 @@ metadata:
 {{ toYaml .Values.additionalAnnotations | indent 4 }}
 {{- end }}
   labels:
-    app: {{ include "__mixin__.name" . }}
 {{ include "__mixin__.labels" . | indent 4 }}
-{{- if .Values.additionalLabels }}
-{{ toYaml .Values.additionalLabels | indent 4 }}
-{{- end }}
 spec:

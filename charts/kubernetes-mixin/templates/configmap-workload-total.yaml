@@ -11,11 +11,7 @@ metadata:
 {{- end }}
     grafana/folder: {{ .Values.grafana.folder }}
   labels:
-    app: {{ include "kubernetes-mixin.name" . }}
 {{ include "kubernetes-mixin.labels" . | indent 4 }}
-{{- if .Values.additionalLabels }}
-{{ toYaml .Values.additionalLabels | indent 4 }}
-{{- end }}
     grafana/dashboard: {{ include "kubernetes-mixin.name" . }}-workload-total
 data:
   workload-total.json: |-
