@@ -925,7 +925,7 @@
    "style": "dark",
    "tags": [
       "kubernetes-mixin",
-      "portefaix-v0.6.0"
+      "portefaix-v0.7.0"
    ],
    "templating": {
       "list": [
