@@ -9,10 +9,10 @@ metadata:
 {{- if .Values.additionalAnnotations }}
 {{ toYaml .Values.additionalAnnotations | indent 4 }}
 {{- end }}
-    grafana/folder: {{ .Values.grafana.folder }}
+    grafana-folder: {{ .Values.grafana.folder }}
   labels:
 {{ include "kubernetes-mixin.labels" . | indent 4 }}
-    grafana/dashboard: {{ include "kubernetes-mixin.name" . }}-cluster-total
+    grafana-dashboard: {{ include "kubernetes-mixin.name" . }}-cluster-total
 data:
   cluster-total.json: |-
 {{ .Files.Get "dashboards/cluster-total.json" | indent 4}}

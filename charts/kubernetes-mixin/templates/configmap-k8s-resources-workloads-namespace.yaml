@@ -9,10 +9,10 @@ metadata:
 {{- if .Values.additionalAnnotations }}
 {{ toYaml .Values.additionalAnnotations | indent 4 }}
 {{- end }}
-    grafana/folder: {{ .Values.grafana.folder }}
+    grafana-folder: {{ .Values.grafana.folder }}
   labels:
 {{ include "kubernetes-mixin.labels" . | indent 4 }}
-    grafana/dashboard: {{ include "kubernetes-mixin.name" . }}-k8s-resources-workloads-namespace
+    grafana-dashboard: {{ include "kubernetes-mixin.name" . }}-k8s-resources-workloads-namespace
 data:
   k8s-resources-workloads-namespace.json: |-
 {{ .Files.Get "dashboards/k8s-resources-workloads-namespace.json" | indent 4}}
