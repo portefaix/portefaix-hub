@@ -586,6 +586,42 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/kubernetes-mixin-0.1.0/kubernetes-mixin-0.1.0.tgz
     version: 0.1.0
+  linkerd-mixin:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Init chart from Linkerd Edge Mixin
+      artifacthub.io/containsSecurityUpdates: "true"
+      artifacthub.io/links: |
+        - name: linkerd
+          url: https://linkerd.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: edge-21.6.3
+    created: "2021-06-22T20:50:02.183481036Z"
+    description: A Helm chart for Linkerd Edge Mixin
+    digest: cc874081116ba8c38e9656ee16bcfdc876e4696e283d11184e96f6e975b8e765
+    home: https://charts.portefaix.xyz
+    keywords:
+    - linkerd
+    - linkerd-edge
+    - monitoring-mixin
+    - portefaix
+    kubeVersion: '>= 1.14.0-0'
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: linkerd-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/linkerd-edge-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/linkerd-mixin-0.1.0/linkerd-mixin-0.1.0.tgz
+    version: 0.1.0
   loki-mixin:
   - annotations:
       artifacthub.io/changes: |
@@ -1930,4 +1966,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2021-06-21T14:27:27.980382032Z"
+generated: "2021-06-22T20:50:02.183624639Z"
