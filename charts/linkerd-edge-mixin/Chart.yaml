@@ -16,7 +16,7 @@ apiVersion: v2
 name: linkerd-edge-mixin
 description: A Helm chart for Linkerd Edge Mixin
 home: https://charts.portefaix.xyz
-icon:
+icon: https://linkerd.io/images/logo-only-200h.png
 sources:
   - https://github.com/nlamirault/portefaix-hub/tree/master/charts/linkerd-edge-mixin
 kubeVersion: ">= 1.14.0-0"
