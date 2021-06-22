@@ -13,10 +13,10 @@
 # limitations under the License.
 
 apiVersion: v2
-name: linkerd-mixin
+name: linkerd-edge-mixin
 description: A Helm chart for Linkerd Edge Mixin
 home: https://charts.portefaix.xyz
-icon:
+icon: https://linkerd.io/images/logo-only-200h.png
 sources:
   - https://github.com/nlamirault/portefaix-hub/tree/master/charts/linkerd-edge-mixin
 kubeVersion: ">= 1.14.0-0"
@@ -30,7 +30,7 @@ keywords:
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.1.0
+version: 0.2.0
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
