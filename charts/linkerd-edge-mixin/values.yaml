@@ -12,5 +12,5 @@ additionalLabels: {}
 additionalAnnotations: {}
 
 grafana:
-  # Grafana folder in which to store the dashboards
+  # -- Grafana folder in which to store the dashboards
   folder: linkerd

@@ -19,6 +19,7 @@ home: https://charts.portefaix.xyz
 icon:
 sources:
   - https://github.com/nlamirault/portefaix-hub/tree/master/charts/linkerd-edge-mixin
+kubeVersion: ">= 1.14.0-0"
 type: application
 keywords:
   - linkerd
@@ -43,8 +44,9 @@ maintainers:
 # https://artifacthub.io/docs/topics/repositories/
 annotations:
   artifacthub.io/changes: |
-    - Artifact Hub informations
-    - Init chart
+    - kind: added
+      description: Init chart from Linkerd Edge Mixin
+  artifacthub.io/containsSecurityUpdates: "true"
   artifacthub.io/links: |
     - name: linkerd
       url: https://linkerd.io
