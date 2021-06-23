@@ -7,6 +7,7 @@ Welcome to the Portefaix Hub.
 |Name|version|description|Type|created|
 |:--|:-:|:--|:--|:--:|:--|
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.1.0|A Helm chart for Alertmanager Mixin|application|2021-06-18T16:36:49.277772553Z
+[grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.7.0|A Helm chart for Grafana Mixin|application|2021-06-23T16:58:19.263808089Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.6.0|A Helm chart for Grafana Mixin|application|2021-06-23T12:59:13.597631746Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.5.0|A Helm chart for Grafana Mixin|application|2021-06-18T11:06:34.458943813Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.4.0|A Helm chart for Grafana Mixin|application|2021-06-12T07:35:00.358076409Z
