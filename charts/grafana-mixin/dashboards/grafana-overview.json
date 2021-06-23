@@ -425,7 +425,7 @@
       ],
       "schemaVersion": 25,
       "style": "dark",
-      "tags": [ "grafana-mixin" ],
+      "tags": [ ],
       "templating": {
          "list": [
             {
