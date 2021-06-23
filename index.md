@@ -38,6 +38,7 @@ Welcome to the Portefaix Hub.
 [loki-mixin](https://artifacthub.io/packages/helm/portefaix-hub/loki-mixin)|0.3.0|A Helm chart for loki Mixin|application|2021-04-27T07:12:05.407589919Z
 [loki-mixin](https://artifacthub.io/packages/helm/portefaix-hub/loki-mixin)|0.2.0|A Helm chart for loki Mixin|application|2021-03-13T17:53:16.616725283Z
 [loki-mixin](https://artifacthub.io/packages/helm/portefaix-hub/loki-mixin)|0.1.0|A Helm chart for loki Mixin|application|2021-03-06T15:36:52.563562032Z
+[prometheus-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-mixin)|0.6.0|A Helm chart for Prometheus Mixin|application|2021-06-23T13:55:26.563396359Z
 [prometheus-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-mixin)|0.5.0|A Helm chart for Prometheus Mixin|application|2021-06-18T12:29:01.313166343Z
 [prometheus-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-mixin)|0.4.0|A Helm chart for Prometheus Mixin|application|2021-06-18T11:40:02.57230018Z
 [prometheus-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-mixin)|0.3.1|A Helm chart for Prometheus Mixin|application|2021-04-29T17:16:43.913796723Z
