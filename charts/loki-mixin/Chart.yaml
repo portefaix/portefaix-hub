@@ -14,7 +14,7 @@
 
 apiVersion: v2
 name: loki-mixin
-description: A Helm chart for loki Mixin
+description: A Helm chart for Loki Mixin
 home: https://charts.portefaix.xyz
 icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
 sources:
@@ -28,7 +28,7 @@ keywords:
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.5.1
+version: 0.6.0
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
@@ -42,8 +42,8 @@ maintainers:
 # https://artifacthub.io/docs/topics/repositories/
 annotations:
   artifacthub.io/changes: |
-    - Artifact Hub informations
-    - Refactoring Prometheus rules configuration
+    - kind: added
+      description: Loki logo
   artifacthub.io/links: |
     - name: loki
       url: https://grafana.com/oss/loki/
