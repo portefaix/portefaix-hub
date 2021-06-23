@@ -5,7 +5,7 @@ additionalAnnotations:
   test: github
 
 additionalLabels:
-  copyright: john doe
+  copyright: john-doe
 
 resources:
   requests:
