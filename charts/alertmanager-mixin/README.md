@@ -1,8 +1,8 @@
-# prometheus-mixin
+# alertmanager-mixin
 
-![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.27.0](https://img.shields.io/badge/AppVersion-2.27.0-informational?style=flat-square)
+![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.22.0](https://img.shields.io/badge/AppVersion-0.22.0-informational?style=flat-square)
 
-A Helm chart for Prometheus Mixin
+A Helm chart for Alertmanager Mixin
 
 **Homepage:** <https://charts.portefaix.xyz>
 
@@ -14,7 +14,7 @@ A Helm chart for Prometheus Mixin
 
 ## Source Code
 
-* <https://github.com/nlamirault/portefaix-hub/tree/master/charts/prometheus-mixin>
+* <https://github.com/nlamirault/portefaix-hub/tree/master/charts/alertmanager-mixin>
 
 ## Values
 

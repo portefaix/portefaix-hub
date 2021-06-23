@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ printf "%s-%s" (include "kubernetes-mixin.fullname" .) "statefulset" | trunc 63 | trimSuffix "-" }}
+  namespace: {{ include "kubernetes-mixin.namespace" . }}
+  annotations:
+{{ include "kubernetes-mixin.annotations" . | indent 4 }}
+{{- if .Values.additionalAnnotations }}
+{{ toYaml .Values.additionalAnnotations | indent 4 }}
+{{- end }}
+    grafana-folder: {{ .Values.grafana.folder }}
+  labels:
+{{ include "kubernetes-mixin.labels" . | indent 4 }}
+    grafana-dashboard: {{ include "kubernetes-mixin.name" . }}-statefulset
+data:
+  statefulset.json: |-
+{{ .Files.Get "dashboards/statefulset.json" | indent 4}}

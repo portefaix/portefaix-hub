@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ printf "%s-%s" (include "kubernetes-mixin.fullname" .) "k8s-resources-pod" | trunc 63 | trimSuffix "-" }}
+  namespace: {{ include "kubernetes-mixin.namespace" . }}
+  annotations:
+{{ include "kubernetes-mixin.annotations" . | indent 4 }}
+{{- if .Values.additionalAnnotations }}
+{{ toYaml .Values.additionalAnnotations | indent 4 }}
+{{- end }}
+    grafana-folder: {{ .Values.grafana.folder }}
+  labels:
+{{ include "kubernetes-mixin.labels" . | indent 4 }}
+    grafana-dashboard: {{ include "kubernetes-mixin.name" . }}-k8s-resources-pod
+data:
+  k8s-resources-pod.json: |-
+{{ .Files.Get "dashboards/k8s-resources-pod.json" | indent 4}}

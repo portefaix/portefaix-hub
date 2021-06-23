@@ -13,28 +13,27 @@
 # limitations under the License.
 
 apiVersion: v2
-name: promtail-mixin
-description: A Helm chart for Promtail Mixin
+name: alertmanager-mixin
+description: A Helm chart for Alertmanager Mixin
 home: https://charts.portefaix.xyz
-icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+icon: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/242px-Prometheus_software_logo.svg.png
 sources:
-  - https://github.com/nlamirault/portefaix-hub/tree/master/charts/promtail-mixin
+  - https://github.com/nlamirault/portefaix-hub/tree/master/charts/alertmanager-mixin
 type: application
 keywords:
-  - promtail
+  - alertmanager
   - monitoring-mixin
   - portefaix
 
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.7.0
-
+version: 0.1.0
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
-appVersion: 2.2.0
+appVersion: 0.22.0
 
 maintainers:
   - name: nlamirault
@@ -43,11 +42,11 @@ maintainers:
 # https://artifacthub.io/docs/topics/repositories/
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Promtail logo
+    - Artifact Hub informations
+    - Refactoring Prometheus rules configuration
   artifacthub.io/links: |
-    - name: promtail
-      url: https://grafana.com/docs/promtail/latest/clients/promtail/
+    - name: alertmanager
+      url: https://alertmanager.io
     - name: Portefaix
       url: https://portefaix.xyz
   artifacthub.io/maintainers: |

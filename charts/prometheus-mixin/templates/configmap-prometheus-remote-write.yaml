@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ printf "%s-%s" (include "prometheus-mixin.fullname" .) "prometheus-remote-write" | trunc 63 | trimSuffix "-" }}
+  namespace: {{ include "prometheus-mixin.namespace" . }}
+  annotations:
+{{ include "prometheus-mixin.annotations" . | indent 4 }}
+{{- if .Values.additionalAnnotations }}
+{{ toYaml .Values.additionalAnnotations | indent 4 }}
+{{- end }}
+  labels:
+    app: {{ include "prometheus-mixin.name" . }}
+{{ include "prometheus-mixin.labels" . | indent 4 }}
+{{- if .Values.additionalLabels }}
+{{ toYaml .Values.additionalLabels | indent 4 }}
+{{- end }}
+    grafana-dashboard: {{ include "prometheus-mixin.name" . }}-prometheus-remote-write
+data:
+  prometheus-remote-write.json: |-
+{{ .Files.Get "dashboards/prometheus-remote-write.json" | indent 4}}
