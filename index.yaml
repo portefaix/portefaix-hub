@@ -663,6 +663,42 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: Linkerd logo
+      artifacthub.io/containsSecurityUpdates: "true"
+      artifacthub.io/links: |
+        - name: linkerd
+          url: https://linkerd.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: stable-2.10.2
+    created: "2021-06-23T10:21:49.277633099Z"
+    description: A Helm chart for Linkerd Stable Mixin
+    digest: 35f744b190859988a469c0bf9c309c06ee47b189dd76bae8a0e8928ae6a8e0ca
+    home: https://charts.portefaix.xyz
+    icon: https://linkerd.io/images/logo-only-200h.png
+    keywords:
+    - linkerd
+    - linkerd-stable
+    - monitoring-mixin
+    - portefaix
+    kubeVersion: '>= 1.14.0-0'
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: linkerd-stable-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/linkerd-stable-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/linkerd-stable-mixin-0.2.0/linkerd-stable-mixin-0.2.0.tgz
+    version: 0.2.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: Init chart from Linkerd Stable Mixin
       artifacthub.io/containsSecurityUpdates: "true"
       artifacthub.io/links: |
@@ -2039,4 +2075,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2021-06-22T21:10:01.796416205Z"
+generated: "2021-06-23T10:21:49.277973714Z"
