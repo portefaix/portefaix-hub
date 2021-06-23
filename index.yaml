@@ -1928,6 +1928,39 @@ entries:
           email: nicolas.lamirault@gmail.com
     apiVersion: v2
     appVersion: 0.21.0
+    created: "2021-06-23T14:17:45.099333648Z"
+    description: A Helm chart for Thanos Mixin
+    digest: 47ec7ad30a217e5b1849ff59206e8268f2e9bb5b978b733f772069ba8063f2f0
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/thanos-io/thanos/master/docs/img/Thanos-logo_fullmedium.png
+    keywords:
+    - thanos
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: thanos-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/thanos-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/thanos-mixin-0.13.0/thanos-mixin-0.13.0.tgz
+    version: 0.13.0
+  - annotations:
+      artifacthub.io/changes: |
+        - Artifact Hub informations
+        - Refactoring Prometheus rules configuration
+      artifacthub.io/links: |
+        - name: Thanos
+          url: https://thanos.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 0.21.0
     created: "2021-06-18T10:26:19.747771511Z"
     description: A Helm chart for Thanos Mixin
     digest: 8a378893e0e5a5ab5cbadd017ef22bbe7e58eabe098d4b80b4779fa820f84094
@@ -2305,4 +2338,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2021-06-23T14:04:13.410106970Z"
+generated: "2021-06-23T14:17:45.099515455Z"
