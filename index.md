@@ -64,6 +64,7 @@ Welcome to the Portefaix Hub.
 [speedtest-exporter](https://artifacthub.io/packages/helm/portefaix-hub/speedtest-exporter)|0.3.0|A Helm chart for Prometheus Speedtest exporter|application|2021-05-31T13:20:32.887850568Z
 [speedtest-exporter](https://artifacthub.io/packages/helm/portefaix-hub/speedtest-exporter)|0.2.0|A Helm chart for Prometheus Speedtest exporter|application|2021-05-17T11:02:28.717281788Z
 [speedtest-exporter](https://artifacthub.io/packages/helm/portefaix-hub/speedtest-exporter)|0.1.0|A Helm chart for Prometheus Speedtest exporter|application|2021-05-17T10:22:41.173375299Z
+[thanos-mixin](https://artifacthub.io/packages/helm/portefaix-hub/thanos-mixin)|0.13.0|A Helm chart for Thanos Mixin|application|2021-06-23T14:17:45.099333648Z
 [thanos-mixin](https://artifacthub.io/packages/helm/portefaix-hub/thanos-mixin)|0.12.0|A Helm chart for Thanos Mixin|application|2021-06-18T10:26:19.747771511Z
 [thanos-mixin](https://artifacthub.io/packages/helm/portefaix-hub/thanos-mixin)|0.11.1|A Helm chart for Thanos Mixin|application|2021-04-29T17:16:44.440773785Z
 [thanos-mixin](https://artifacthub.io/packages/helm/portefaix-hub/thanos-mixin)|0.11.0|A Helm chart for Thanos Mixin|application|2021-04-27T10:11:11.036592779Z
