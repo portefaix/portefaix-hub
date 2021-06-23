@@ -10,3 +10,7 @@ additionalLabels: {}
 
 # -- Additional annotations to add to the Prometheus rules
 additionalAnnotations: {}
+
+grafana:
+  # Grafana folder in which to store the dashboards
+  folder: monitoring
