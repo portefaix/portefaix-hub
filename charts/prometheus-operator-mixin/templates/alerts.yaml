@@ -10,11 +10,7 @@ metadata:
 {{ toYaml .Values.additionalAnnotations | indent 4 }}
 {{- end }}
   labels:
-    app: {{ include "prometheus-operator-mixin.name" . }}
 {{ include "prometheus-operator-mixin.labels" . | indent 4 }}
-{{- if .Values.additionalLabels }}
-{{ toYaml .Values.additionalLabels | indent 4 }}
-{{- end }}
 spec:
   groups:
   - name: prometheus-operator
