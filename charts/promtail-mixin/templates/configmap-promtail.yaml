@@ -9,12 +9,9 @@ metadata:
 {{- if .Values.additionalAnnotations }}
 {{ toYaml .Values.additionalAnnotations | indent 4 }}
 {{- end }}
+    grafana-folder: {{ .Values.grafana.folder }}
   labels:
-    app: {{ include "promtail-mixin.name" . }}
 {{ include "promtail-mixin.labels" . | indent 4 }}
-{{- if .Values.additionalLabels }}
-{{ toYaml .Values.additionalLabels | indent 4 }}
-{{- end }}
     grafana-dashboard: {{ include "promtail-mixin.name" . }}-promtail
 data:
   promtail.json: |-
