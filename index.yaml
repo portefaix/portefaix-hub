@@ -767,6 +767,39 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: Grafana folder and name
+      artifacthub.io/links: |
+        - name: loki
+          url: https://grafana.com/oss/loki/
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 2.2.0
+    created: "2021-06-23T13:33:21.189605382Z"
+    description: A Helm chart for Loki Mixin
+    digest: c7ae5ec79de305df7ea3a748379cb85b1c165593df11b39808d2106ea7ab21f3
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    keywords:
+    - loki
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: loki-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/loki-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/loki-mixin-0.8.0/loki-mixin-0.8.0.tgz
+    version: 0.8.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: Loki logo
       artifacthub.io/links: |
         - name: loki
@@ -2206,4 +2239,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2021-06-23T13:18:53.829879258Z"
+generated: "2021-06-23T13:33:21.189860085Z"
