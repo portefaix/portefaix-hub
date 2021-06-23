@@ -62,7 +62,7 @@ helm.sh/chart: {{ include "secrets-store-csi-driver-provider-gcp.chart" . }}
 app.kubernetes.io/name: {{ include "secrets-store-csi-driver-provider-gcp.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.Version | quote }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/component: secrets-store-csi-driver
 app.kubernetes.io/part-of: {{ include "secrets-store-csi-driver-provider-gcp.name" . }}
