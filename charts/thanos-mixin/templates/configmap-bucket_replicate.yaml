@@ -9,13 +9,10 @@ metadata:
 {{- if .Values.additionalAnnotations }}
 {{ toYaml .Values.additionalAnnotations | indent 4 }}
 {{- end }}
+    grafana-folder: {{ .Values.grafana.folder }}
   labels:
-    app: {{ include "thanos-mixin.name" . }}
 {{ include "thanos-mixin.labels" . | indent 4 }}
-{{- if .Values.additionalLabels }}
-{{ toYaml .Values.additionalLabels | indent 4 }}
-{{- end }}
-    grafana_dashboard: {{ include "thanos-mixin.name" . }}-bucket-replicate
+    grafana-dashboard: {{ include "thanos-mixin.name" . }}-bucket-replicate
 data:
   bucket_replicate.json: |-
 {{ .Files.Get "dashboards/bucket_replicate.json" | indent 4}}
