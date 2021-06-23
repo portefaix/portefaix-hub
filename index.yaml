@@ -1463,6 +1463,39 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: Add Grafana folder and name
+      artifacthub.io/links: |
+        - name: promtail
+          url: https://grafana.com/docs/promtail/latest/clients/promtail/
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 2.2.0
+    created: "2021-06-23T14:03:53.422560801Z"
+    description: A Helm chart for Promtail Mixin
+    digest: bc723dde22881bca287a7d4b175303eb50a32704538654e9e36d3c50ecd97b33
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    keywords:
+    - promtail
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: promtail-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/promtail-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/promtail-mixin-0.8.0/promtail-mixin-0.8.0.tgz
+    version: 0.8.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: Promtail logo
       artifacthub.io/links: |
         - name: promtail
@@ -2272,4 +2305,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2021-06-23T13:55:41.925109030Z"
+generated: "2021-06-23T14:03:53.422782524Z"
