@@ -9,12 +9,9 @@ metadata:
 {{- if .Values.additionalAnnotations }}
 {{ toYaml .Values.additionalAnnotations | indent 4 }}
 {{- end }}
+    grafana-folder: {{ .Values.grafana.folder }}
   labels:
-    app: {{ include "grafana-mixin.name" . }}
 {{ include "grafana-mixin.labels" . | indent 4 }}
-{{- if .Values.additionalLabels }}
-{{ toYaml .Values.additionalLabels | indent 4 }}
-{{- end }}
     grafana-dashboard: {{ include "grafana-mixin.name" . }}-grafana-overview
 data:
   grafana-overview.json: |-
