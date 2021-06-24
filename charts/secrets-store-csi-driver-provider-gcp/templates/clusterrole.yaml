@@ -7,8 +7,7 @@ metadata:
 {{ toYaml .Values.additionalAnnotations | indent 4 }}
 {{- end }}
   labels:
-    app: {{ template "secrets-store-csi-driver-provider-gcp.name" . }}
-{{- include "secrets-store-csi-driver-provider-gcp.labels" . | nindent 4 }}
+    {{- include "secrets-store-csi-driver-provider-gcp.labels" . | indent 4 }}
   name: {{ template "secrets-store-csi-driver-provider-gcp.fullname" . }}
   namespace: {{ template "secrets-store-csi-driver-provider-gcp.namespace" . }}
 rules:

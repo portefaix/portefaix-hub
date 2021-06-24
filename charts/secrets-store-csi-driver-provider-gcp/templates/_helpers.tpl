@@ -57,14 +57,24 @@ Create the name of the service account to use
 {{/*
 Common labels
 */}}
-{{- define "secrets-store-csi-driver-provider-gcp.labels" -}}
+{{- define "secrets-store-csi-driver-provider-gcp.labels" }}
 helm.sh/chart: {{ include "secrets-store-csi-driver-provider-gcp.chart" . }}
-app.kubernetes.io/name: {{ include "secrets-store-csi-driver-provider-gcp.name" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
-{{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.Version | quote }}
-{{- end }}
 app.kubernetes.io/component: secrets-store-csi-driver
 app.kubernetes.io/part-of: {{ include "secrets-store-csi-driver-provider-gcp.name" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- include "secrets-store-csi-driver-provider-gcp.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+{{- if .Values.additionalLabels }}
+{{ toYaml .Values.additionalLabels }}
+{{- end }}
+{{- end }}
+
+{{/*
+Selector labels
+*/}}
+{{- define "secrets-store-csi-driver-provider-gcp.selectorLabels" }}
+app.kubernetes.io/name: {{ include "secrets-store-csi-driver-provider-gcp.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
