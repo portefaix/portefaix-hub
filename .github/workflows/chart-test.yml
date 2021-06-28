@@ -110,7 +110,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup chart-testing
-        uses: helm/chart-testing-action@v2.0.1
+        uses: helm/chart-testing-action@v2.1.0
         with:
           version: v3.3.0
 
@@ -119,11 +119,12 @@ jobs:
         with:
           node_image: kindest/node:${{ matrix.k8s }}
 
-      - name: Deploy kube-prometheus-stack
+      - name: Install Helm dependencies
         run: |
-          helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-          helm install my-kube-prometheus-stack prometheus-community/kube-prometheus-stack --version 15.2.1
-          kubectl get crd
+          helm repo add kyverno https://kyverno.github.io/kyverno/
+          helm repo update
+          helm upgrade --install --wait kyverno kyverno/kyverno --namespace kyverno --create-namespace
 
       - name: Run chart-testing (install)
-        run: ct install --config .github/ct.yaml
+        run: |
+          ct install --config .github/ct.yaml
