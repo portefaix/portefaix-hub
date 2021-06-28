@@ -110,7 +110,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup chart-testing
-        uses: helm/chart-testing-action@v2.0.1
+        uses: helm/chart-testing-action@v2.1.0
         with:
           version: v3.3.0
 
@@ -120,4 +120,6 @@ jobs:
           node_image: kindest/node:${{ matrix.k8s }}
 
       - name: Run chart-testing (install)
-        run: ct install --config .github/ct.yaml
+        run: |
+          helm install kyverno --namespace kyverno kyverno/kyverno --create-namespace
+          ct install --config .github/ct.yaml
