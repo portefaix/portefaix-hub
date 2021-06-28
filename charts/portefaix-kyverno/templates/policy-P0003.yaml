@@ -15,7 +15,7 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: portefaix-P0003
+  name: portefaix-p0003
   annotations:
     policies.kyverno.io/title: Pod must run without access to the host networking
     policies.kyverno.io/category: Best Practices

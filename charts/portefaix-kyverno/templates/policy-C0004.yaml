@@ -15,7 +15,7 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: portefaix-C0004
+  name: portefaix-c0004
   annotations:
     policies.kyverno.io/title: Container must mount secrets as volumes, not enviroment variables
     policies.kyverno.io/category: BestPractices

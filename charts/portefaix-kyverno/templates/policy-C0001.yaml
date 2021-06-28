@@ -15,7 +15,7 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: portefaix-C0001
+  name: portefaix-c0001
   annotations:
     policies.kyverno.io/title: Container must not use latest image tag
     policies.kyverno.io/category: Best Practices

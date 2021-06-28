@@ -15,7 +15,7 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: portefaix-C0008
+  name: portefaix-c0008
   annotations:
     policies.kyverno.io/title: Container resource constraints must be specified
     policies.kyverno.io/category: BestPractices

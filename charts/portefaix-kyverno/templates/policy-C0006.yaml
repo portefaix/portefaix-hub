@@ -15,7 +15,7 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: portefaix-C0006
+  name: portefaix-c0006
   annotations:
     policies.kyverno.io/title: Container must not allow for privilege escalation
     policies.kyverno.io/category: BestPractices

@@ -15,7 +15,7 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: portefaix-C0005
+  name: portefaix-c0005
   annotations:
     policies.kyverno.io/title: Container must drop all capabilities
     policies.kyverno.io/category: BestPractices

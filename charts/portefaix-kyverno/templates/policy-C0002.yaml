@@ -15,7 +15,7 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: portefaix-C0002
+  name: portefaix-c0002
   annotations:
     policies.kyverno.io/title: Container must set liveness probe
     policies.kyverno.io/category: Best Practices

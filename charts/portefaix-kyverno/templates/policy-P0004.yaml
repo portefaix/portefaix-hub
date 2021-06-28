@@ -15,7 +15,7 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: portefaix-P0004
+  name: portefaix-p0004
   annotations:
     policies.kyverno.io/title: Pod must run as non-root
     policies.kyverno.io/category: Best Practices

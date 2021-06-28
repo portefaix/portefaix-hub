@@ -15,7 +15,7 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: portefaix-M0003
+  name: portefaix-m0003
   annotations:
     policies.kyverno.io/title: Metadata should have portefaix.xyz annotations
     policies.kyverno.io/category: Best Practices

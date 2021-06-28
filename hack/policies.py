@@ -44,6 +44,7 @@ def manage_kyverno_policies(policies_dir, chart):
     dest = "charts/%s/templates" % chart
     policy_header = "%s/policies/policy_kyverno.tpl" % path.dirname(__file__)
     spec = re.compile("^spec:")
+    policy_name = re.compile("^  name:")
     validationFailureAction = re.compile(".*validationFailureAction.*")
     for policy in os.listdir(path=policies_dir):
         # logger.debug("Policy directory: %s", policy)
@@ -67,6 +68,8 @@ def manage_kyverno_policies(policies_dir, chart):
                         file.write(
                             "  validationFailureAction: {{ .Values.validationFailureAction }}\n"
                         )
+                    elif policy_name.match(line):
+                        file.write(line.lower())
                     else:
                         file.write(line)
 

@@ -15,7 +15,7 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: portefaix-C0003
+  name: portefaix-c0003
   annotations:
     policies.kyverno.io/title: Container must set readiness probe
     policies.kyverno.io/category: Best Practices

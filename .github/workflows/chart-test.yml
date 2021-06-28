@@ -119,8 +119,5 @@ jobs:
         with:
           node_image: kindest/node:${{ matrix.k8s }}
 
-      - name: List CRDs
-        run: kubectl get crds
-
       - name: Run chart-testing (install)
         run: ct install --config .github/ct.yaml
