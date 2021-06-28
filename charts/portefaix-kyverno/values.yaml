@@ -6,10 +6,10 @@
 fullnameOverride: ""
 
 # -- Additional labels to add to the Prometheus rules
-customLabels: {}
+# customLabels: {}
 
-# -- Additional annotations to add to the Prometheus rules
-customAnnotations: {}
+# # -- Additional annotations to add to the Prometheus rules
+# customAnnotations: {}
 
 # -- Supported values- `audit`, `enforce`
 # For more info- https://kyverno.io/docs/writing-policies/validate/

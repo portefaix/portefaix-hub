@@ -1,8 +1,8 @@
 # Values for CI
 #
 
-additionalLabels:
+customLabels:
   test: github
 
-additionalAnnotations:
+customAnnotations:
   made-by: portefaix
