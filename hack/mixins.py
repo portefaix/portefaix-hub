@@ -15,7 +15,8 @@
 # limitations under the License.
 
 import argparse
-import fileinput
+
+# import fileinput
 import glob
 import logging
 import os
