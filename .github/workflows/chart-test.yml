@@ -125,5 +125,11 @@ jobs:
           helm install my-kube-prometheus-stack prometheus-community/kube-prometheus-stack --version 15.2.1
           kubectl get crd
 
+      - name: Deploy kyverno
+        run: |
+          helm repo add kyverno https://kyverno.github.io/kyverno/
+          helm install kyverno --namespace kyverno kyverno/kyverno --create-namespace
+          kubectl get crd
+
       - name: Run chart-testing (install)
         run: ct install --config .github/ct.yaml
