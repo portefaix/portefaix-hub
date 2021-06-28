@@ -119,7 +119,12 @@ jobs:
         with:
           node_image: kindest/node:${{ matrix.k8s }}
 
+      - name: Install Helm dependencies
+        run: |
+          helm repo add kyverno https://kyverno.github.io/kyverno/
+          helm repo update
+          helm upgrade --install --wait kyverno kyverno/kyverno --namespace kyverno --create-namespace
+
       - name: Run chart-testing (install)
         run: |
-          helm install kyverno --namespace kyverno kyverno/kyverno --create-namespace
           ct install --config .github/ct.yaml
