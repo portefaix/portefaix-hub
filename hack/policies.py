@@ -28,7 +28,7 @@ import coloredlogs
 import requests
 
 
-POLICIES_VERSION = "0.6.0"
+POLICIES_VERSION = "0.7.0"
 POLICIES_ARCHIVE = "portefaix-policies-v%s.zip" % POLICIES_VERSION
 POLICIES_URL = (
     "https://github.com/portefaix/portefaix-policies/archive/refs/tags/v%s.zip"

@@ -20,6 +20,7 @@ metadata:
     policies.kyverno.io/title: Container resource constraints must be specified
     policies.kyverno.io/category: BestPractices
     policies.kyverno.io/severity: medium
+    policies.kyverno.io/subject: Container
     policies.kyverno.io/description: >-
       It is important to limit resources requested and consumed by each pod.
 {{ include "portefaix-kyverno.annotations" . | indent 4 }}
