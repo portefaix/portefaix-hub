@@ -1141,6 +1141,44 @@ entries:
           email: nicolas.lamirault@gmail.com
     apiVersion: v2
     appVersion: 1.4.1
+    created: "2021-06-29T14:31:18.804960635Z"
+    description: A Helm chart for Kyverno policies for Portefaix
+    digest: 71068b4d88cc0cf88897fbc9594f76390a5bed2542b9255c03de6766593033c6
+    home: https://charts.portefaix.xyz
+    icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
+    keywords:
+    - kyverno
+    - policy agent
+    - validating webhook
+    - admissions controller
+    - policies
+    - portefaix
+    kubeVersion: '>=1.10.0-0'
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: portefaix-kyverno
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/portefaix-kyverno
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/portefaix-kyverno-0.2.0/portefaix-kyverno-0.2.0.tgz
+    version: 0.2.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Init chart
+      artifacthub.io/containsSecurityUpdates: "true"
+      artifacthub.io/links: |
+        - name: kyverno
+          url: https://kyverno.io/
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 1.4.1
     created: "2021-06-28T22:21:05.655053624Z"
     description: A Helm chart for Kyverno policies for Portefaix
     digest: 1c603e019bf3f3de66146e8cacdccb4f823f1fcd3774156f0ca123247fa92bae
@@ -2508,4 +2546,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2021-06-28T22:21:55.163389843Z"
+generated: "2021-06-29T14:31:18.805201948Z"
