@@ -17,12 +17,13 @@ kind: ClusterPolicy
 metadata:
   name: portefaix-m0003
   annotations:
-    policies.kyverno.io/title: Metadata should have portefaix.xyz annotations
+    policies.kyverno.io/title: Metadata should have portefaix.xyz labels
     policies.kyverno.io/category: Best Practices
     policies.kyverno.io/severity: low
+    policies.kyverno.io/subject: Metadata
     policies.kyverno.io/description: >-
-      Metadata should have Portefaix annotations:
-      Annotations are:
+      Metadata should have Portefaix labels:
+      Labels are:
         - portefaix.xyz/version
 {{ include "portefaix-kyverno.annotations" . | indent 4 }}
   labels:
@@ -30,14 +31,14 @@ metadata:
 spec:
   validationFailureAction: {{ .Values.validationFailureAction }}
   rules:
-  - name: check-for-portefaix.xyz-annotations
+  - name: check-for-portefaix.xyz-labels
     match:
       resources:
         kinds:
         - Pod
     validate:
-      message: "portefaix.xyz annotations is required."
+      message: "portefaix.xyz labels is required."
       pattern:
         metadata:
-          annotations:
+          labels:
             portefaix.xyz/version: "?*"

@@ -20,6 +20,7 @@ metadata:
     policies.kyverno.io/title: Metadata should have a8r.io annotations
     policies.kyverno.io/category: Best Practices
     policies.kyverno.io/severity: low
+    policies.kyverno.io/subject: Metadata
     policies.kyverno.io/description: >-
       Metadata should have all the expected a8r.io annotations
       See: https://ambassadorlabs.github.io/k8s-for-humans/

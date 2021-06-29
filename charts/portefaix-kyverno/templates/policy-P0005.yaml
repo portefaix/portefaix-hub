@@ -20,6 +20,7 @@ metadata:
     policies.kyverno.io/title: Pod must run without access to the host PID
     policies.kyverno.io/category: Best Practices
     policies.kyverno.io/severity: high
+    policies.kyverno.io/subject: Pod
     policies.kyverno.io/description: >-
       Sharing the host’s PID namespace allows visibility of processes on
       the host, potentially leaking information such as environment variables

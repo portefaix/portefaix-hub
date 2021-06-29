@@ -20,6 +20,7 @@ metadata:
     policies.kyverno.io/title: Pod must run without access to the host networking
     policies.kyverno.io/category: Best Practices
     policies.kyverno.io/severity: high
+    policies.kyverno.io/subject: Pod
     policies.kyverno.io/description: >-
       Sharing the host’s network namespace permits processes in the pod to
       communicate with processes bound to the host’s loopback adapter

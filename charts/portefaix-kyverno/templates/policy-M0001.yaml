@@ -20,6 +20,7 @@ metadata:
     policies.kyverno.io/title: Metadata must set recommanded Kubernetes labels
     policies.kyverno.io/category: Best Practices
     policies.kyverno.io/severity: low
+    policies.kyverno.io/subject: Metadata
     policies.kyverno.io/description: >-
       Metadata must set recommanded Kubernetes labels
       See: https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels
