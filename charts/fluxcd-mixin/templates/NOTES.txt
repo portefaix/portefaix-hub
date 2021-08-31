@@ -1,0 +1,5 @@
+{{ $.Chart.Name }} has been installed. Check its status by running:
+  kubectl --namespace {{ template "fluxcd-mixin.namespace" . }} get prometheusrules -l "app.kubernetes.io/name=fluxcd-mixin"
+  kubectl -namespace {{ template "fluxcd-mixin.namespace" . }} get configmap -l "app.kubernetes.io/name=fluxcd-mixin"
+
+Visit https://github.com/nlamirault/portefaix-hub/charts/fluxcd-mixin.
