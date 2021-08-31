@@ -1,4 +1,4 @@
 {{ $.Chart.Name }} has been installed. Check its status by running:
-  kubectl --namespace {{ template "kube-state-metrics-mixin.namespace" . }} get prometheusrules
+  kubectl --namespace {{ template "kube-state-metrics-mixin.namespace" . }} get prometheusrules -l "app.kubernetes.io/name={{ include "kube-state-metrics-mixin.name" . }}"
 
 Visit https://github.com/nlamirault/portefaix-hub/charts/kube-state-metrics-mixin.
