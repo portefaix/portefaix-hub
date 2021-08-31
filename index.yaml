@@ -114,6 +114,38 @@ entries:
           email: nicolas.lamirault@gmail.com
     apiVersion: v2
     appVersion: 8.0.0
+    created: "2021-08-31T16:20:00.312256671Z"
+    description: A Helm chart for Grafana Mixin
+    digest: c0b66e0c4251cfea283727cd0438b1200577b16760b2a3acd61a8174196cd6ad
+    home: https://charts.portefaix.xyz
+    icon: https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Grafana_logo.svg/300px-Grafana_logo.svg.png
+    keywords:
+    - grafana
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: grafana-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/grafana-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/grafana-mixin-0.8.0/grafana-mixin-0.8.0.tgz
+    version: 0.8.0
+  - annotations:
+      artifacthub.io/changes: |
+        - Grafana mixin v8.0.0
+      artifacthub.io/links: |
+        - name: grafana
+          url: https://github.com/grafana/grafana
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 8.0.0
     created: "2021-06-23T16:58:19.263808089Z"
     description: A Helm chart for Grafana Mixin
     digest: f56d5b92473463acee9e9d7f7489740250c3886a09c17b926cc5f07c0edcab0e
@@ -2612,4 +2644,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2021-08-31T16:08:17.506413813Z"
+generated: "2021-08-31T16:20:00.312433272Z"
