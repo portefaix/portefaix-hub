@@ -1,5 +1,5 @@
 {{ $.Chart.Name }} has been installed. Check its status by running:
   kubectl --namespace {{ template "promtail-mixin.namespace" . }} get prometheusrules -l "app.kubernetes.io/name={{ include "promtail-mixin.name" . }}"
-  kubectl --namespace {{ template "loki-mixin.namespace" . }} get configmap -l "app.kubernetes.io/name={{ include "promtail-mixin.name" . }}"
+  kubectl --namespace {{ template "promtail-mixin.namespace" . }} get configmap -l "app.kubernetes.io/name={{ include "promtail-mixin.name" . }}"
 
 Visit https://github.com/nlamirault/portefaix-hub/charts/promtail-mixin.
