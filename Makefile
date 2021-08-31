@@ -86,6 +86,10 @@ kind-kube-credentials: ## Credentials for Kind (ENV=xxx)
 helm-doc: guard-CHART ## Generate documentation
 	@cd $(CHART) && helm-docs 
 
+.PHONY: helm-changelog
+helm-changelog: guard-CHART ## Generate documentation
+	@cd $(CHART) && helm-changelog
+
 .PHONY: helm-template
 helm-template: guard-CHART ## Generate manifest
 	@helm template $(CHART) $(DEBUG)
