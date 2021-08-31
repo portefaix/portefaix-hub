@@ -1,21 +1,5 @@
 # Change Log
 
-## 0.16.0 
-
-**Release date:** 2021-08-31
-
-![AppVersion: 0.16.0](https://img.shields.io/static/v1?label=AppVersion&message=0.16.0&color=success&logo=)
-![Helm: v3](https://img.shields.io/static/v1?label=Helm&message=v3&color=informational&logo=helm)
-
-
-* Update: version 
-
-### Default value changes
-
-```diff
-# No changes in this release
-```
-
 ## 0.1.0 
 
 **Release date:** 2021-08-31
@@ -24,37 +8,12 @@
 ![Helm: v3](https://img.shields.io/static/v1?label=Helm&message=v3&color=informational&logo=helm)
 
 
-* Update: monitoring-mixins v0.10.0 
+* Add: init FluxCD mixin chart 
 
 ### Default value changes
 
 ```diff
-diff --git charts/fluxcd-mixin/values.yaml charts/fluxcd-mixin/values.yaml
-index 42d8c24..381c31f 100644
---- charts/fluxcd-mixin/values.yaml
-+++ charts/fluxcd-mixin/values.yaml
-@@ -1,4 +1,4 @@
--# Default values for thanos-mixin.
-+# Default values for fluxcd-mixin.
- # This is a YAML-formatted file.
- # Declare variables to be passed into your templates.
- 
-```
-
-## 0.13.0 
-
-**Release date:** 2021-08-31
-
-![AppVersion: 0.21.0](https://img.shields.io/static/v1?label=AppVersion&message=0.21.0&color=success&logo=)
-![Helm: v3](https://img.shields.io/static/v1?label=Helm&message=v3&color=informational&logo=helm)
-
-
-* Add: FluxCD mixin 
-
-### Default value changes
-
-```diff
-# Default values for thanos-mixin.
+# Default values for fluxcd-mixin.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
