@@ -1,4 +1,5 @@
 {{ $.Chart.Name }} has been installed. Check its status by running:
-  kubectl --namespace {{ template "kubernetes-mixin.namespace" . }} get prometheusrules
+  kubectl --namespace {{ template "kubernetes-mixin.namespace" . }} get prometheusrules -l "app.kubernetes.io/name={{ include "kubernetes-mixin.name" . }}"
+  kubectl --namespace {{ template "kubernetes-mixin.namespace" . }} get configmap -l "app.kubernetes.io/name={{ include "kubernetes-mixin.name" . }}"
 
 Visit https://github.com/nlamirault/portefaix-hub/charts/kubernetes-mixin.
