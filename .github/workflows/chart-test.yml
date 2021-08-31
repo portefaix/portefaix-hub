@@ -123,7 +123,8 @@ jobs:
         run: |
           helm repo add kyverno https://kyverno.github.io/kyverno/
           helm repo update
-          helm upgrade --install --wait kyverno kyverno/kyverno --namespace kyverno --create-namespace
+          helm install my-kyverno-crds kyverno/kyverno-crds --version 2.0.2
+          helm install my-kyverno kyverno/kyverno --namespace kyverno --create-namespace --version 2.0.2
 
       - name: Run chart-testing (install)
         run: |
