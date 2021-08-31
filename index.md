@@ -9,6 +9,7 @@ Welcome to the Portefaix Hub.
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.3.0|A Helm chart for Alertmanager Mixin|application|2021-08-31T15:39:08.103793493Z
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.1.0|A Helm chart for Alertmanager Mixin|application|2021-06-18T16:36:49.277772553Z
 [fluxcd-mixin](https://artifacthub.io/packages/helm/portefaix-hub/fluxcd-mixin)|0.1.0|A Helm chart for FluxCD Mixin|application|2021-08-31T16:08:00.601057289Z
+[grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.8.0|A Helm chart for Grafana Mixin|application|2021-08-31T16:20:00.312256671Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.7.0|A Helm chart for Grafana Mixin|application|2021-06-23T16:58:19.263808089Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.6.0|A Helm chart for Grafana Mixin|application|2021-06-23T12:59:13.597631746Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.5.0|A Helm chart for Grafana Mixin|application|2021-06-18T11:06:34.458943813Z
