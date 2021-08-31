@@ -1,4 +1,4 @@
 {{ $.Chart.Name }} has been installed. Check its status by running:
-  kubectl --namespace {{ template "alertmanager-mixin.namespace" . }} get prometheusrules
+  kubectl --namespace {{ template "alertmanager-mixin.namespace" . }} get prometheusrules -l "app.kubernetes.io/name={{ include "alertmanager-mixin.name" . }}"
 
 Visit https://github.com/nlamirault/portefaix-hub/charts/alertmanager-mixin.
