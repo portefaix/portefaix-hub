@@ -13,27 +13,27 @@
 # limitations under the License.
 
 apiVersion: v2
-name: thanos-mixin
-description: A Helm chart for Thanos Mixin
+name: fluxcd-mixin
+description: A Helm chart for FluxCD Mixin
 home: https://charts.portefaix.xyz
-icon: https://raw.githubusercontent.com/thanos-io/thanos/master/docs/img/Thanos-logo_fullmedium.png
+# icon: https://raw.githubusercontent.com/fluxcd-io/fluxcd/master/docs/img/fluxcd-logo_fullmedium.png
 sources:
-  - https://github.com/nlamirault/portefaix-hub/tree/master/charts/thanos-mixin
+  - https://github.com/nlamirault/portefaix-hub/tree/master/charts/fluxcd-mixin
 type: application
 keywords:
-  - thanos
+  - fluxcd
   - monitoring-mixin
   - portefaix
 
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.13.0
+version: 0.1.0
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
-appVersion: 0.21.0
+appVersion: 0.16.0
 
 maintainers:
   - name: nlamirault
@@ -45,8 +45,8 @@ annotations:
     - Artifact Hub informations
     - Refactoring Prometheus rules configuration
   artifacthub.io/links: |
-    - name: Thanos
-      url: https://thanos.io
+    - name: fluxcd
+      url: https://fluxcd.io
     - name: Portefaix
       url: https://portefaix.xyz
   artifacthub.io/maintainers: |

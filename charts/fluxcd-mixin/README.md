@@ -1,8 +1,8 @@
-# thanos-mixin
+# fluxcd-mixin
 
-![Version: 0.13.0](https://img.shields.io/badge/Version-0.13.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.21.0](https://img.shields.io/badge/AppVersion-0.21.0-informational?style=flat-square)
+![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.16.0](https://img.shields.io/badge/AppVersion-0.16.0-informational?style=flat-square)
 
-A Helm chart for Thanos Mixin
+A Helm chart for FluxCD Mixin
 
 **Homepage:** <https://charts.portefaix.xyz>
 
@@ -14,7 +14,7 @@ A Helm chart for Thanos Mixin
 
 ## Source Code
 
-* <https://github.com/nlamirault/portefaix-hub/tree/master/charts/thanos-mixin>
+* <https://github.com/nlamirault/portefaix-hub/tree/master/charts/fluxcd-mixin>
 
 ## Values
 

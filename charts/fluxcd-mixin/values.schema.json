@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/schema#",
-    "title": "Thanos Mixin Chart JSON Schema",
+    "title": "FluxCD Mixin Chart JSON Schema",
     "type": "object",
     "properties": {
         "fullnameOverride": {
