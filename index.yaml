@@ -15,6 +15,39 @@ entries:
           email: nicolas.lamirault@gmail.com
     apiVersion: v2
     appVersion: 0.22.0
+    created: "2021-08-31T15:39:08.103793493Z"
+    description: A Helm chart for Alertmanager Mixin
+    digest: bb23784f080dc45c7bc6cfd2f7b41adf6af169f6fa93883deca2d6a18f1034c5
+    home: https://charts.portefaix.xyz
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/242px-Prometheus_software_logo.svg.png
+    keywords:
+    - alertmanager
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: alertmanager-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/alertmanager-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/alertmanager-mixin-0.3.0/alertmanager-mixin-0.3.0.tgz
+    version: 0.3.0
+  - annotations:
+      artifacthub.io/changes: |
+        - Artifact Hub informations
+        - Refactoring Prometheus rules configuration
+      artifacthub.io/links: |
+        - name: alertmanager
+          url: https://alertmanager.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 0.22.0
     created: "2021-06-18T16:36:49.277772553Z"
     description: A Helm chart for Alertmanager Mixin
     digest: 5c66f8f305c0cc87c99b839dfe27ea3fe305c1c7b52178361bd57a1e378e167a
@@ -2546,4 +2579,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2021-06-29T14:31:34.070660785Z"
+generated: "2021-08-31T15:39:08.104005893Z"
