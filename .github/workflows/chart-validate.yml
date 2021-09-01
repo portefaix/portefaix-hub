@@ -38,3 +38,18 @@ jobs:
         with:
           path: ./charts
           config: ./.github/config_repos
+
+  kubeconform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: login to Github Packages
+        run: echo "${{ github.token }}" | docker login https://ghcr.io -u ${GITHUB_ACTOR} --password-stdin
+      
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Validate
+        uses: docker://ghcr.io/yannh/kubeconform:master
+        with:
+          entrypoint: '/kubeconform'
+          args: "-summary -output json kubeconfigs/"
