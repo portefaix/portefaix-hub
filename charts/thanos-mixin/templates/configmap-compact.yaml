@@ -5,14 +5,11 @@ metadata:
   name: {{ printf "%s-%s" (include "thanos-mixin.fullname" .) "compact" | trunc 63 | trimSuffix "-" }}
   namespace: {{ include "thanos-mixin.namespace" . }}
   annotations:
-{{ include "thanos-mixin.annotations" . | indent 4 }}
-{{- if .Values.additionalAnnotations }}
-{{ toYaml .Values.additionalAnnotations | indent 4 }}
-{{- end }}
     grafana-folder: {{ .Values.grafana.folder }}
+{{ include "thanos-mixin.annotations" . | indent 4 }}
   labels:
-{{ include "thanos-mixin.labels" . | indent 4 }}
     grafana-dashboard: {{ include "thanos-mixin.name" . }}-compact
+{{ include "thanos-mixin.labels" . | indent 4 }}
 data:
   compact.json: |-
 {{ .Files.Get "dashboards/compact.json" | indent 4}}
