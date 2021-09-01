@@ -7,10 +7,12 @@ fullnameOverride: ""
 
 # -- Additional labels to add to the Prometheus rules
 additionalLabels: {}
+  # app: thanos
 
 # -- Additional annotations to add to the Prometheus rules
 additionalAnnotations: {}
+  # role: monitoring
 
 grafana:
-  # Grafana folder in which to store the dashboards
+  # -- Grafana folder in which to store the dashboards
   folder: monitoring

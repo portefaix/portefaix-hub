@@ -110,9 +110,9 @@ helm-lint: guard-CHART ## Lint Helm chart
 helm-lint-custom: guard-CHART ## Lint Helm chart
 	helm lint $(CHART) --values $(CHART)/ci/test-values.yaml  $(DEBUG)
 
-# .PHONY: helm-lint
-# helm-lint: guard-CHART ## Lint Helm chart
-# 	@docker run -it --rm --name ct --volume $$(pwd):/data quay.io/helmpack/chart-testing sh -c "cd /data; ct lint --config .github/ct.yaml"
+.PHONY: helm-lint-docker
+helm-lint-docker: guard-CHART ## Lint Helm chart
+	@docker run -it --rm --name ct --volume $$(pwd):/data quay.io/helmpack/chart-testing sh -c "cd /data; ct lint --config .github/ct.yaml"
 
 .PHONY: helm-install
 helm-install: guard-CHART guard-RELEASE ## Install a Helm chart

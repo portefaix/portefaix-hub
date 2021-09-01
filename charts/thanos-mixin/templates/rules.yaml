@@ -6,9 +6,6 @@ metadata:
   namespace: {{ include "thanos-mixin.namespace" . }}
   annotations:
 {{ include "thanos-mixin.annotations" . | indent 4 }}
-{{- if .Values.additionalAnnotations }}
-{{ toYaml .Values.additionalAnnotations | indent 4 }}
-{{- end }}
   labels:
 {{ include "thanos-mixin.labels" . | indent 4 }}
 spec:
