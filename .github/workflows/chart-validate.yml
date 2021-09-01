@@ -27,32 +27,6 @@ on:
     #   - "charts/**"
 
 jobs:
-  # kubeval:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
-
-  #     - name: Validate
-  #       uses: desaintmartin/helm-kubeval-action@v1.1.0
-  #       with:
-  #         path: ./charts
-  #         config: ./.github/config_repos
-
-  # kubeconform:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: login to Github Packages
-  #       run: echo "${{ github.token }}" | docker login https://ghcr.io -u ${GITHUB_ACTOR} --password-stdin
-      
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
-
-  #     - name: Validate
-  #       uses: docker://ghcr.io/yannh/kubeconform:master
-  #       with:
-  #         entrypoint: '/kubeconform'
-  #         args: "-summary -verbose -summary -schema-location default ./charts"
 
   kubeconform:
     runs-on: ubuntu-latest
