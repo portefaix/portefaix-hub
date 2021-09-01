@@ -12,14 +12,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: "Project / Run Jobs on PR"
-on: pull_request
+name: Charts / Validate
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "charts/**"
+  pull_request:
+    branches:
+      - master
+    # paths:
+    #   - "charts/**"
 
 jobs:
-  execute:
+
+  kubeconform:
     runs-on: ubuntu-latest
     steps:
-      - uses: jpmcb/prow-github-actions@v1.1.2
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Validate
+        uses: nlamirault/helm-kubeconform-action@v0.1.0
         with:
-          jobs: 'lgtm'
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          charts: ./charts

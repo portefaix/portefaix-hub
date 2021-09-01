@@ -12,14 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: "Project / Run Jobs on PR"
-on: pull_request
-
-jobs:
-  execute:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: jpmcb/prow-github-actions@v1.1.2
-        with:
-          jobs: 'lgtm'
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+# Repository_name=Repository_URL
+prometheus-community=https://prometheus-community.github.io/helm-charts
+bitnami=https://charts.bitnami.com/bitnami
+banzaicloud=https://kubernetes-charts.banzaicloud.com
+kyverno=https://kyverno.github.io/kyverno/
