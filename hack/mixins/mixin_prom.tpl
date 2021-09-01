@@ -6,9 +6,6 @@ metadata:
   namespace: {{ include "__mixin__.namespace" . }}
   annotations:
 {{ include "__mixin__.annotations" . | indent 4 }}
-{{- if .Values.additionalAnnotations }}
-{{ toYaml .Values.additionalAnnotations | indent 4 }}
-{{- end }}
   labels:
 {{ include "__mixin__.labels" . | indent 4 }}
 spec:

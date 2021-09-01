@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ printf "%s-%s" (include "node-exporter-mixin.fullname" .) "node-cluster-rsrc-use" | trunc 63 | trimSuffix "-" }}
+  namespace: {{ include "node-exporter-mixin.namespace" . }}
+  annotations:
+    grafana-folder: {{ .Values.grafana.folder }}
+{{ include "node-exporter-mixin.annotations" . | indent 4 }}
+  labels:
+    grafana-dashboard: {{ include "node-exporter-mixin.name" . }}-node-cluster-rsrc-use
+{{ include "node-exporter-mixin.labels" . | indent 4 }}
+data:
+  node-cluster-rsrc-use.json: |-
+{{ .Files.Get "dashboards/node-cluster-rsrc-use.json" | indent 4}}
