@@ -1,6 +1,6 @@
 # thanos-mixin
 
-![Version: 0.13.0](https://img.shields.io/badge/Version-0.13.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.21.0](https://img.shields.io/badge/AppVersion-0.21.0-informational?style=flat-square)
+![Version: 0.14.0](https://img.shields.io/badge/Version-0.14.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.22.0](https://img.shields.io/badge/AppVersion-0.22.0-informational?style=flat-square)
 
 A Helm chart for Thanos Mixin
 
@@ -20,8 +20,8 @@ A Helm chart for Thanos Mixin
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalAnnotations | object | `{"role":"monitoring"}` | Additional annotations to add to the Prometheus rules |
-| additionalLabels | object | `{"app":"thanos"}` | Additional labels to add to the Prometheus rules |
+| additionalAnnotations | object | `{}` | Additional annotations to add to the Prometheus rules |
+| additionalLabels | object | `{}` | Additional labels to add to the Prometheus rules |
 | fullnameOverride | string | `""` | Provide a name to substitute for the full names of resources |
 | grafana.folder | string | `"monitoring"` | Grafana folder in which to store the dashboards |
 
