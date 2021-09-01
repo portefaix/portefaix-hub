@@ -12,19 +12,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# See https://github.com/helm/chart-testing#configuration
-remote: origin
-target-branch: master
-chart-dirs:
-  - charts
-chart-repos:
-  - stable=https://charts.helm.sh/stable
-  - prometheus-community=https://prometheus-community.github.io/helm-charts
-  - banzaicloud=https://kubernetes-charts.banzaicloud.com
-  - kyverno=https://kyverno.github.io/kyverno/
-helm-extra-args: --timeout 600s
-# excluded-charts:
-  # If not running on GCE, will error: "Failed to get GCE config"
-  # - xxxxxx
-# check-version-increment: false
-debug: true
+name: Charts / Validate
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "charts/**"
+  pull_request:
+    branches:
+      - master
+    # paths:
+    #   - "charts/**"
+
+jobs:
+  kubeval:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Validate
+        uses: desaintmartin/helm-kubeval-action@v1.1.0
+        with:
+          path: ./charts
+          config: ./.github/config_repos
