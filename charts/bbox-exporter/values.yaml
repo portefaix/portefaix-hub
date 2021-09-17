@@ -12,13 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-restartPolicy: Always
-
-image:
-  repository: ghcr.io/nlamirault/bbox_exporter
-  tag: v0.1.0
-  pullPolicy: IfNotPresent
-
+##
+# BBox Exporter configuration
 exporter:
   # -- Bbox URL
   endpoint: https://mabbox.bytel.fr
@@ -33,18 +28,32 @@ exporter:
     # -- Path under which to expose metrics.
     path: /metrics
 
-# -- The name of a secret in the same kubernetes namespace which contain values to be added to the environment
-envFromSecret: "bbox-exporter"
+# -- Docker image
+image:
+  repository: ghcr.io/nlamirault/bbox_exporter
+  tag: v0.2.0
+  pullPolicy: IfNotPresent
 
-nodeSelector: {}
-tolerations: []
-affinity: {}
+# Optionally specify an array of imagePullSecrets.
+# Secrets must be manually created in the namespace.
+# ref: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
+# imagePullSecrets:
+  # - name: myRegistryKeySecretName
 
 # -- Additional labels to add to all resources
 additionalLabels: {}
   # app: bbox-exporter
 
-# config:
+# -- Additional annotations to add to all resources
+additionalAnnotations: {}
+
+# -- The name of a secret in the same kubernetes namespace which contain values to be added to the environment
+envFromSecret: "bbox-exporter"
+
+restartPolicy: Always
+
+# -- Number of instance
+replicas: 1
 
 # -- Additional secret mounts
 # Defines additional mounts with secrets. Secrets must be manually created in the namespace.
@@ -75,6 +84,22 @@ resources: {}
   # requests:
   #   memory: 50Mi
 
+# -- Configure Kubernetes liveness probe.
+# Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
+livenessProbe:
+  enabled: true
+  initialDelaySeconds: 0
+  timeoutSeconds: 1
+
+# -- Configure Kubernetes readiness probe.
+# Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
+readinessProbe:
+  enabled: true
+  initialDelaySeconds: 0
+  timeoutSeconds: 1
+  periodSeconds: 10
+  successThreshold: 1
+
 service:
   annotations: {}
   type: ClusterIP
@@ -97,29 +122,38 @@ ingress:
     #   hosts:
     #     - chart-example.local
 
-podAnnotations: {}
+# podAnnotations: {}
 
-# -- Number of instance
-replicas: 1
+priorityClassName: ""
+
+# -- Affinity for pod assignment
+# Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+affinity: {}
+
+# -- Tolerations for pod assignment
+# Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+tolerations: []
+
+# -- Node labels for pod assignment
+# Ref: https://kubernetes.io/docs/user-guide/node-selection/
+nodeSelector: {}
 
 serviceMonitor:
   # -- Enable this if you're using https://github.com/coreos/prometheus-operator
-  enabled: false
+  enabled: true
   # -- Namespace to deploy the ServiceMonitor
   namespace: monitoring
 
-  # fallback to the prometheus default unless specified
-  # interval: 10s
+  # -- Fallback to the prometheus default unless specified
+  interval: 30s
 
-  ## Defaults to what's used if you follow CoreOS [Prometheus Install Instructions](https://github.com/helm/charts/tree/master/stable/prometheus-operator#tldr)
-  ## [Prometheus Selector Label](https://github.com/helm/charts/tree/master/stable/prometheus-operator#prometheus-operator-1)
-  ## [Kube Prometheus Selector Label](https://github.com/helm/charts/tree/master/stable/prometheus-operator#exporters)
-  selector:
+  # -- Add custom labels to the ServiceMonitor resource
+  additionalLabels: #{}
     prometheus: kube-prometheus
-  # Retain the job and instance labels of the metrics pushed to the snmp-exporter
-  # [Scraping SNMP-exporter](https://github.com/prometheus/snmp_exporter#configure-the-snmp_exporter-as-a-target-to-scrape)
-  honorLabels: true
+  
+  honorLabels: false
 
   # -- Path to scrape metrics
   path: /metrics
+  # -- Timeout for scrape metrics request
   scrapeTimeout: 10s
