@@ -4,6 +4,10 @@ apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: {{ template "prometheus-bbox-exporter.fullname" . }}
   namespace: {{ .Release.Namespace }}
+  {{- if .Values.additionalAnnotations }}
+  annotations:
+  {{ toYaml .Values.additionalAnnotations | indent 4 }}
+  {{- end }}
   labels:
     {{- include "prometheus-bbox-exporter.labels" . | indent 4 }}
 subjects:

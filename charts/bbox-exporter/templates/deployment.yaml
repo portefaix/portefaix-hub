@@ -3,6 +3,10 @@ kind: Deployment
 metadata:
   name: {{ template "prometheus-bbox-exporter.fullname" . }}
   namespace: {{ .Release.Namespace }}
+  {{- if .Values.additionalAnnotations }}
+  annotations:
+  {{ toYaml .Values.additionalAnnotations | indent 4 }}
+  {{- end }}
   labels:
     {{- include "prometheus-bbox-exporter.labels" . | indent 4 }}
 spec:
@@ -45,6 +49,10 @@ spec:
             runAsNonRoot: true
             runAsUser: 1000
             readOnlyRootFilesystem: true
+          {{- with .Values.podSecurityContext }}
+          securityContext:
+            {{- toYaml . | nindent 8 }}
+          {{- end }}
           command:
             - "bbox_exporter"
             {{- with .Values.exporter.log.format }}
@@ -70,13 +78,23 @@ spec:
           resources:
           {{ toYaml .Values.resources | indent 12 }}
           ports:
-            - containerPort: {{ .Values.service.port }}
-              name: http
+          - containerPort: {{ .Values.service.port }}
+            name: http
+          {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
             httpGet:
               path: /health
               port: http
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+          {{- end }}
+          {{- if .Values.readinessProbe.enabled }}
           readinessProbe:
             httpGet:
               path: /health
               port: http
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+            successThreshold: {{ .Values.readinessProbe.successThreshold }}
+            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+          {{- end }}

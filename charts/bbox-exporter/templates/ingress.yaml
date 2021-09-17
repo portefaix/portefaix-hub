@@ -8,8 +8,13 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "prometheus-bbox-exporter.labels" . | indent 4 }}
+  {{- if or .Values.ingress.annotations .Values.additionalAnnotations }}
   annotations:
-{{ toYaml .Values.ingress.annotations | indent 4 }}
+  {{ toYaml .Values.ingress.annotations | indent 4 }}
+  {{- if .Values.additionalAnnotations }}
+  {{ toYaml .Values.additionalAnnotations | indent 4 }}
+  {{- end }}
+  {{- end }}
 spec:
   rules:
     {{- range $host := .Values.ingress.hosts }}
