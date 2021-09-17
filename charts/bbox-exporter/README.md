@@ -43,6 +43,10 @@ Prometheus BBOX Exporter
 | replicas | int | `1` | Number of instance |
 | resources | object | `{}` | Container resources: requests and limits for CPU, Memory |
 | restartPolicy | string | `"Always"` |  |
+| securityContext.enabled | bool | `true` |  |
+| securityContext.readOnlyRootFilesystem | bool | `true` |  |
+| securityContext.runAsNonRoot | bool | `true` |  |
+| securityContext.runAsUser | int | `1000` |  |
 | service.annotations | object | `{}` |  |
 | service.port | int | `9311` |  |
 | service.type | string | `"ClusterIP"` |  |

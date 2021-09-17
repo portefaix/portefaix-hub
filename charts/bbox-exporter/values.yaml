@@ -122,7 +122,7 @@ ingress:
     #   hosts:
     #     - chart-example.local
 
-# podAnnotations: {}
+podAnnotations: {}
 
 priorityClassName: ""
 
@@ -137,6 +137,18 @@ tolerations: []
 # -- Node labels for pod assignment
 # Ref: https://kubernetes.io/docs/user-guide/node-selection/
 nodeSelector: {}
+
+# Configure Kubernetes security context for container
+# Ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+securityContext:
+  enabled: false
+  runAsNonRoot: true
+  runAsUser: 1000
+  readOnlyRootFilesystem: true
+
+# -- Configure Kubernetes security context for pod
+# Ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+podSecurityContext: {}
 
 serviceMonitor:
   # -- Enable this if you're using https://github.com/coreos/prometheus-operator
