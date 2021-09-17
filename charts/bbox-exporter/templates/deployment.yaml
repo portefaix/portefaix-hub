@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "prometheus-bbox-exporter.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "prometheus-bbox-exporter.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      {{- include "prometheus-bbox-exporter.selectorLabels" . | indent 6 }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        {{- include "prometheus-bbox-exporter.labels" . | indent 8 }}
+      annotations:
+{{ toYaml .Values.podAnnotations | indent 8 }}
+    spec:
+    {{- if .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}
+    {{- end }}
+    {{- if .Values.affinity }}
+      affinity:
+{{ toYaml .Values.affinity | indent 8 }}
+    {{- end }}
+    {{- if .Values.tolerations }}
+      tolerations:
+{{ toYaml .Values.tolerations | indent 6 }}
+    {{- end }}
+
+      restartPolicy: {{ .Values.restartPolicy }}
+      serviceAccountName: {{ template "prometheus-bbox-exporter.serviceAccountName" . }}
+      containers:
+        - name: bbox-exporter
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            readOnlyRootFilesystem: true
+          command:
+            - "bbox_exporter"
+            {{- with .Values.exporter.log.format }}
+            - "--log.format={{ . }}"
+            {{- end }}
+            {{- with .Values.exporter.log.level }}
+            - "--log.level={{ . }}"
+            {{- end }}
+            {{- with .Values.exporter.endpoint }}
+            - "--endpoint={{ . }}"
+            {{- end }}
+            {{- with .Values.exporter.web.port }}
+            - "--web.listen-address={{ . }}"
+            {{- end }}
+            {{- with .Values.exporter.web.path }}
+            - "--web.telemetry-path={{ . }}"
+            {{- end }}
+          {{- if .Values.envFromSecret }}
+          envFrom:
+          - secretRef:
+              name: {{ .Values.envFromSecret }}
+          {{- end }}
+          resources:
+          {{ toYaml .Values.resources | indent 12 }}
+          ports:
+            - containerPort: {{ .Values.service.port }}
+              name: http
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
