@@ -1,6 +1,6 @@
 # prometheus-bbox-exporter
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
 
 Prometheus BBOX Exporter
 
@@ -37,13 +37,15 @@ Prometheus BBOX Exporter
 | ingress.tls | list | `[]` |  |
 | livenessProbe | object | `{"enabled":true,"initialDelaySeconds":0,"timeoutSeconds":1}` | Configure Kubernetes liveness probe. Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/ |
 | nodeSelector | object | `{}` | Node labels for pod assignment Ref: https://kubernetes.io/docs/user-guide/node-selection/ |
+| podAnnotations | object | `{}` |  |
+| podSecurityContext | object | `{}` | Configure Kubernetes security context for pod Ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ |
 | priorityClassName | string | `""` |  |
 | rbac.create | bool | `true` | Specifies whether RBAC resources should be created |
 | readinessProbe | object | `{"enabled":true,"initialDelaySeconds":0,"periodSeconds":10,"successThreshold":1,"timeoutSeconds":1}` | Configure Kubernetes readiness probe. Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/ |
 | replicas | int | `1` | Number of instance |
 | resources | object | `{}` | Container resources: requests and limits for CPU, Memory |
 | restartPolicy | string | `"Always"` |  |
-| securityContext.enabled | bool | `true` |  |
+| securityContext.enabled | bool | `false` |  |
 | securityContext.readOnlyRootFilesystem | bool | `true` |  |
 | securityContext.runAsNonRoot | bool | `true` |  |
 | securityContext.runAsUser | int | `1000` |  |
@@ -52,7 +54,7 @@ Prometheus BBOX Exporter
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.create | bool | `true` | Specifies whether a ServiceAccount should be created |
 | serviceAccount.name | string | `nil` |  |
-| serviceMonitor.additionalLabels | object | `{"prometheus":"kube-prometheus"}` | Add custom labels to the ServiceMonitor resource |
+| serviceMonitor.additionalLabels | object | `{}` | Add custom labels to the ServiceMonitor resource |
 | serviceMonitor.enabled | bool | `true` | Enable this if you're using https://github.com/coreos/prometheus-operator |
 | serviceMonitor.honorLabels | bool | `false` |  |
 | serviceMonitor.interval | string | `"30s"` | Fallback to the prometheus default unless specified |
