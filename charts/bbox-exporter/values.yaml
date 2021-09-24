@@ -33,6 +33,8 @@ image:
   repository: ghcr.io/nlamirault/bbox_exporter
   tag: v0.2.0
   pullPolicy: IfNotPresent
+  pullSecrets:
+  # - name: "image-pull-secret"
 
 # Optionally specify an array of imagePullSecrets.
 # Secrets must be manually created in the namespace.
@@ -124,6 +126,8 @@ ingress:
 
 podAnnotations: {}
 
+# -- Leverage a PriorityClass to ensure your pods survive resource shortages
+# ref: https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/
 priorityClassName: ""
 
 # -- Affinity for pod assignment
@@ -140,15 +144,13 @@ nodeSelector: {}
 
 # Configure Kubernetes security context for container
 # Ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
-securityContext:
-  enabled: false
-  runAsNonRoot: true
-  runAsUser: 1000
-  readOnlyRootFilesystem: true
+containerSecurityContext: {}
+  # allowPrivilegeEscalation: false
+  # readOnlyRootFilesystem: true
 
-# -- Configure Kubernetes security context for pod
-# Ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
-podSecurityContext: {}
+securityContext:
+  runAsUser: 65534
+  fsGroup: 65534
 
 serviceMonitor:
   # -- Enable this if you're using https://github.com/coreos/prometheus-operator

@@ -44,6 +44,10 @@ spec:
       {{- end }}
       restartPolicy: {{ .Values.restartPolicy }}
       serviceAccountName: {{ template "prometheus-bbox-exporter.serviceAccountName" . }}
+      {{- if .Values.image.pullSecrets }}
+      imagePullSecrets:
+      {{- toYaml .Values.image.pullSecrets | nindent 8 }}
+      {{- end }}
       containers:
         - name: bbox-exporter
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -94,6 +98,8 @@ spec:
             periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
           {{- end }}
           {{- if .Values.securityContext.enabled }}
+          {{- with .Values.containerSecurityContext }}
           securityContext:
-            runAsNonRoot: {{ .Values.securityContext.runAsNonRoot }}
-          {{- end}}
+          {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- end }}
