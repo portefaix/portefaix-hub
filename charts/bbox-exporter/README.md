@@ -23,6 +23,7 @@ Prometheus BBOX Exporter
 | additionalAnnotations | object | `{}` | Additional annotations to add to all resources |
 | additionalLabels | object | `{}` |  |
 | affinity | object | `{}` | Affinity for pod assignment Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity |
+| containerSecurityContext | object | `{}` |  |
 | envFromSecret | string | `"bbox-exporter"` | The name of a secret in the same kubernetes namespace which contain values to be added to the environment |
 | exporter.endpoint | string | `"https://mabbox.bytel.fr"` | Bbox URL |
 | exporter.log.format | string | `"logfmt"` | Log format. Could be logfmt or json |
@@ -30,7 +31,7 @@ Prometheus BBOX Exporter
 | exporter.web.path | string | `"/metrics"` | Path under which to expose metrics. |
 | exporter.web.port | int | `9311` | HTTP port used |
 | extraSecretMounts | list | `[]` | Additional secret mounts Defines additional mounts with secrets. Secrets must be manually created in the namespace. |
-| image | object | `{"pullPolicy":"IfNotPresent","repository":"ghcr.io/nlamirault/bbox_exporter","tag":"v0.2.0"}` | Docker image |
+| image | object | `{"pullPolicy":"IfNotPresent","pullSecrets":null,"repository":"ghcr.io/nlamirault/bbox_exporter","tag":"v0.2.0"}` | Docker image |
 | ingress.annotations | object | `{}` |  |
 | ingress.enabled | bool | `false` |  |
 | ingress.hosts | list | `[]` |  |
@@ -38,17 +39,14 @@ Prometheus BBOX Exporter
 | livenessProbe | object | `{"enabled":true,"initialDelaySeconds":0,"timeoutSeconds":1}` | Configure Kubernetes liveness probe. Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/ |
 | nodeSelector | object | `{}` | Node labels for pod assignment Ref: https://kubernetes.io/docs/user-guide/node-selection/ |
 | podAnnotations | object | `{}` |  |
-| podSecurityContext | object | `{}` | Configure Kubernetes security context for pod Ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ |
-| priorityClassName | string | `""` |  |
+| priorityClassName | string | `""` | Leverage a PriorityClass to ensure your pods survive resource shortages ref: https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/ |
 | rbac.create | bool | `true` | Specifies whether RBAC resources should be created |
 | readinessProbe | object | `{"enabled":true,"initialDelaySeconds":0,"periodSeconds":10,"successThreshold":1,"timeoutSeconds":1}` | Configure Kubernetes readiness probe. Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/ |
 | replicas | int | `1` | Number of instance |
 | resources | object | `{}` | Container resources: requests and limits for CPU, Memory |
 | restartPolicy | string | `"Always"` |  |
-| securityContext.enabled | bool | `false` |  |
-| securityContext.readOnlyRootFilesystem | bool | `true` |  |
-| securityContext.runAsNonRoot | bool | `true` |  |
-| securityContext.runAsUser | int | `1000` |  |
+| securityContext.fsGroup | int | `65534` |  |
+| securityContext.runAsUser | int | `65534` |  |
 | service.annotations | object | `{}` |  |
 | service.port | int | `9311` |  |
 | service.type | string | `"ClusterIP"` |  |
