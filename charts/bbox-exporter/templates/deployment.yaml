@@ -53,7 +53,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}       
           command:
-            - "bbox_exporter"
+            - "/bbox_exporter"
             {{- with .Values.exporter.log.format }}
             - "--log.format={{ . }}"
             {{- end }}
@@ -64,7 +64,7 @@ spec:
             - "--endpoint={{ . }}"
             {{- end }}
             {{- with .Values.exporter.web.port }}
-            - "--web.listen-address={{ . }}"
+            - "--web.listen-address=:{{ . }}"
             {{- end }}
             {{- with .Values.exporter.web.path }}
             - "--web.telemetry-path={{ . }}"
@@ -72,7 +72,11 @@ spec:
           {{- if .Values.envFromSecret }}
           envFrom:
           - secretRef:
-              name: {{ .Values.envFromSecret }}
+              {{- if .Values.existingSecret.name -}}
+              name: {{ .Values.existingSecret.name }}
+              {{- else }}
+              name: {{ template "prometheus-bbox-exporter.fullname" . }}
+              {{- end }}
           {{- end }}
           resources:
           {{ toYaml .Values.resources | indent 12 }}
