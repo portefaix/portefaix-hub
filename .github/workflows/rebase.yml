@@ -12,19 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: Project / Draft PR Labels
-
+name: Projet / Rebase
 on:
-  pull_request:
-    types: [opened, ready_for_review]
-
+  issue_comment:
+    types: [created]
 jobs:
-  triage:
+  rebase:
+    name: Rebase
+    if: github.event.issue.pull_request != '' && contains(github.event.comment.body, '/rebase')
     runs-on: ubuntu-latest
     steps:
-    - name: label swapping
-      uses: jinmayamashita/ready-for-review@1.0.0
-      with:
-        in-progress-label: 'status/in_progress'
-        ready-for-review-label: 'status/review_needed'
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout the latest code
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0 # otherwise, you will fail to push refs to dest repo
+      - name: Automatic Rebase
+        uses: cirrus-actions/rebase@1.5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
