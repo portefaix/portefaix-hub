@@ -25,13 +25,15 @@ Prometheus BBOX Exporter
 | affinity | object | `{}` | Affinity for pod assignment Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity |
 | containerSecurityContext | object | `{}` |  |
 | envFromSecret | string | `"bbox-exporter"` | The name of a secret in the same kubernetes namespace which contain values to be added to the environment |
-| exporter.endpoint | string | `"https://mabbox.bytel.fr"` | Bbox URL |
+| existingSecret | object | `{"name":""}` | Existing secret which store data for the exporter |
+| exporter.endpoint | string | `"https://mabbox.bytel.fr"` | BBox URL |
 | exporter.log.format | string | `"logfmt"` | Log format. Could be logfmt or json |
 | exporter.log.level | string | `"info"` | Log level |
+| exporter.password | string | `"changethepassword"` | BBox admin password |
 | exporter.web.path | string | `"/metrics"` | Path under which to expose metrics. |
 | exporter.web.port | int | `9311` | HTTP port used |
 | extraSecretMounts | list | `[]` | Additional secret mounts Defines additional mounts with secrets. Secrets must be manually created in the namespace. |
-| image | object | `{"pullPolicy":"IfNotPresent","pullSecrets":null,"repository":"ghcr.io/nlamirault/bbox_exporter","tag":"v0.2.0"}` | Docker image |
+| image | object | `{"pullPolicy":"IfNotPresent","pullSecrets":null,"repository":"ghcr.io/nlamirault/bbox_exporter","tag":"0.4.0"}` | Docker image |
 | ingress.annotations | object | `{}` |  |
 | ingress.enabled | bool | `false` |  |
 | ingress.hosts | list | `[]` |  |

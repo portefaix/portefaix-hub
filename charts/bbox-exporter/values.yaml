@@ -15,8 +15,10 @@
 ##
 # BBox Exporter configuration
 exporter:
-  # -- Bbox URL
+  # -- BBox URL
   endpoint: https://mabbox.bytel.fr
+  # -- BBox admin password
+  password: "changethepassword"
   log:
     # -- Log format. Could be logfmt or json
     format: logfmt
@@ -28,10 +30,14 @@ exporter:
     # -- Path under which to expose metrics.
     path: /metrics
 
+# -- Existing secret which store data for the exporter
+existingSecret:
+  name: ""
+
 # -- Docker image
 image:
   repository: ghcr.io/nlamirault/bbox_exporter
-  tag: v0.2.0
+  tag: 0.4.0
   pullPolicy: IfNotPresent
   pullSecrets:
   # - name: "image-pull-secret"
