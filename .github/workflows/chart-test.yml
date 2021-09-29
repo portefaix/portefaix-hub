@@ -118,6 +118,7 @@ jobs:
         uses: helm/kind-action@v1.2.0
         with:
           node_image: kindest/node:${{ matrix.k8s }}
+          wait: 120s
 
       - name: Install Helm dependencies
         run: |
