@@ -5,7 +5,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ template "prometheus-bbox-exporter.fullname" . }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ template "prometheus-bbox-exporter.namespace" . }}
   labels:
     {{- include "prometheus-bbox-exporter.labels" . | indent 4 }}
   {{- if or .Values.ingress.annotations .Values.additionalAnnotations }}

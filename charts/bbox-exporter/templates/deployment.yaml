@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "prometheus-bbox-exporter.fullname" . }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ template "prometheus-bbox-exporter.namespace" . }}
   {{- if .Values.additionalAnnotations }}
   annotations:
   {{ toYaml .Values.additionalAnnotations | indent 4 }}

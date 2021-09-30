@@ -162,7 +162,7 @@ serviceMonitor:
   # -- Enable this if you're using https://github.com/coreos/prometheus-operator
   enabled: true
   # -- Namespace to deploy the ServiceMonitor
-  namespace: monitoring
+  namespace: ""
 
   # -- Fallback to the prometheus default unless specified
   interval: 30s

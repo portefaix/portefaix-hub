@@ -58,7 +58,7 @@ Prometheus BBOX Exporter
 | serviceMonitor.enabled | bool | `true` | Enable this if you're using https://github.com/coreos/prometheus-operator |
 | serviceMonitor.honorLabels | bool | `false` |  |
 | serviceMonitor.interval | string | `"30s"` | Fallback to the prometheus default unless specified |
-| serviceMonitor.namespace | string | `"monitoring"` | Namespace to deploy the ServiceMonitor |
+| serviceMonitor.namespace | string | `""` | Namespace to deploy the ServiceMonitor |
 | serviceMonitor.path | string | `"/metrics"` | Path to scrape metrics |
 | serviceMonitor.scrapeTimeout | string | `"10s"` | Timeout for scrape metrics request |
 | tolerations | list | `[]` | Tolerations for pod assignment Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ |
