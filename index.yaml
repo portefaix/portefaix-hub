@@ -1434,6 +1434,26 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/portefaix-kyverno-0.1.0/portefaix-kyverno-0.1.0.tgz
     version: 0.1.0
   prometheus-bbox-exporter:
+  - apiVersion: v2
+    appVersion: 0.4.0
+    created: "2021-09-30T12:37:28.234720523Z"
+    description: Prometheus BBOX Exporter
+    digest: 74181d871147e92c0235685eb5d00d5a421f12dc6bbf8fdf3d07d354eab1fd47
+    home: https://github.com/nlamirault/bbox_exporter
+    keywords:
+    - prometheus
+    - bbox
+    - monitoring
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: prometheus-bbox-exporter
+    sources:
+    - https://github.com/nlamirault/bbox_exporter
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/prometheus-bbox-exporter-0.2.0/prometheus-bbox-exporter-0.2.0.tgz
+    version: 0.2.0
   - apiVersion: v1
     appVersion: 0.1.0
     created: "2021-09-17T10:09:36.582612871Z"
@@ -2864,4 +2884,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2021-09-17T10:09:49.496696975Z"
+generated: "2021-09-30T12:37:28.234929523Z"
