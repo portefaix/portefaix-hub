@@ -2,11 +2,14 @@ kind: Service
 apiVersion: v1
 metadata:
   name: {{ template "prometheus-bbox-exporter.fullname" . }}
-  namespace: {{ .Release.Namespace }}
-  {{- if .Values.service.annotations }}
+  namespace: {{ template "prometheus-bbox-exporter.namespace" . }}
+  {{- if or .Values.service.annotations .Values.additionalAnnotations }}
   annotations:
-{{ toYaml .Values.service.annotations | indent 4 }}
-{{- end }}
+  {{ toYaml .Values.service.annotations | indent 4 }}
+  {{- if .Values.additionalAnnotations }}
+  {{ toYaml .Values.additionalAnnotations | indent 4 }}
+  {{- end }}
+  {{- end }}
   labels:
     {{- include "prometheus-bbox-exporter.labels" . | indent 4 }}
 {{- if .Values.service.labels }}

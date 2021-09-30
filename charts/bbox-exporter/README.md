@@ -1,6 +1,6 @@
 # prometheus-bbox-exporter
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![AppVersion: 0.4.0](https://img.shields.io/badge/AppVersion-0.4.0-informational?style=flat-square)
 
 Prometheus BBOX Exporter
 
@@ -10,7 +10,7 @@ Prometheus BBOX Exporter
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| nlamirault | nicolas.lamirault@gmail.com |  |
+| nlamirault | nicolas.lamirault@gmail.com | https://github.com/nlamirault |
 
 ## Source Code
 
@@ -20,40 +20,48 @@ Prometheus BBOX Exporter
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalLabels | object | `{}` | Additional labels to add to all resources |
-| affinity | object | `{}` |  |
+| additionalAnnotations | object | `{}` | Additional annotations to add to all resources |
+| additionalLabels | object | `{}` |  |
+| affinity | object | `{}` | Affinity for pod assignment Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity |
+| containerSecurityContext | object | `{}` |  |
 | envFromSecret | string | `"bbox-exporter"` | The name of a secret in the same kubernetes namespace which contain values to be added to the environment |
-| exporter.endpoint | string | `"https://mabbox.bytel.fr"` | Bbox URL |
+| existingSecret | object | `{"name":""}` | Existing secret which store data for the exporter |
+| exporter.endpoint | string | `"https://mabbox.bytel.fr"` | BBox URL |
 | exporter.log.format | string | `"logfmt"` | Log format. Could be logfmt or json |
 | exporter.log.level | string | `"info"` | Log level |
+| exporter.password | string | `"changethepassword"` | BBox admin password |
 | exporter.web.path | string | `"/metrics"` | Path under which to expose metrics. |
 | exporter.web.port | int | `9311` | HTTP port used |
-| extraSecretMounts | list | `[]` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"ghcr.io/nlamirault/bbox_exporter"` |  |
-| image.tag | string | `"v0.1.0"` |  |
+| extraSecretMounts | list | `[]` | Additional secret mounts Defines additional mounts with secrets. Secrets must be manually created in the namespace. |
+| image | object | `{"pullPolicy":"IfNotPresent","pullSecrets":null,"repository":"ghcr.io/nlamirault/bbox_exporter","tag":"0.4.0"}` | Docker image |
 | ingress.annotations | object | `{}` |  |
 | ingress.enabled | bool | `false` |  |
 | ingress.hosts | list | `[]` |  |
 | ingress.tls | list | `[]` |  |
-| nodeSelector | object | `{}` |  |
+| livenessProbe | object | `{"enabled":true,"initialDelaySeconds":0,"timeoutSeconds":1}` | Configure Kubernetes liveness probe. Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/ |
+| nodeSelector | object | `{}` | Node labels for pod assignment Ref: https://kubernetes.io/docs/user-guide/node-selection/ |
 | podAnnotations | object | `{}` |  |
+| priorityClassName | string | `""` | Leverage a PriorityClass to ensure your pods survive resource shortages ref: https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/ |
 | rbac.create | bool | `true` | Specifies whether RBAC resources should be created |
+| readinessProbe | object | `{"enabled":true,"initialDelaySeconds":0,"periodSeconds":10,"successThreshold":1,"timeoutSeconds":1}` | Configure Kubernetes readiness probe. Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/ |
 | replicas | int | `1` | Number of instance |
 | resources | object | `{}` | Container resources: requests and limits for CPU, Memory |
 | restartPolicy | string | `"Always"` |  |
+| securityContext.fsGroup | int | `65534` |  |
+| securityContext.runAsUser | int | `65534` |  |
 | service.annotations | object | `{}` |  |
 | service.port | int | `9311` |  |
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.create | bool | `true` | Specifies whether a ServiceAccount should be created |
 | serviceAccount.name | string | `nil` |  |
-| serviceMonitor.enabled | bool | `false` | Enable this if you're using https://github.com/coreos/prometheus-operator |
-| serviceMonitor.honorLabels | bool | `true` |  |
-| serviceMonitor.namespace | string | `"monitoring"` | Namespace to deploy the ServiceMonitor |
+| serviceMonitor.additionalLabels | object | `{}` | Add custom labels to the ServiceMonitor resource |
+| serviceMonitor.enabled | bool | `true` | Enable this if you're using https://github.com/coreos/prometheus-operator |
+| serviceMonitor.honorLabels | bool | `false` |  |
+| serviceMonitor.interval | string | `"30s"` | Fallback to the prometheus default unless specified |
+| serviceMonitor.namespace | string | `""` | Namespace to deploy the ServiceMonitor |
 | serviceMonitor.path | string | `"/metrics"` | Path to scrape metrics |
-| serviceMonitor.scrapeTimeout | string | `"10s"` |  |
-| serviceMonitor.selector.prometheus | string | `"kube-prometheus"` |  |
-| tolerations | list | `[]` |  |
+| serviceMonitor.scrapeTimeout | string | `"10s"` | Timeout for scrape metrics request |
+| tolerations | list | `[]` | Tolerations for pod assignment Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ |
 
 ----------------------------------------------
 Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)

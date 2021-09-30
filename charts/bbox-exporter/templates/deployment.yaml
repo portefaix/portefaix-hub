@@ -2,7 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "prometheus-bbox-exporter.fullname" . }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ template "prometheus-bbox-exporter.namespace" . }}
+  {{- if .Values.additionalAnnotations }}
+  annotations:
+  {{ toYaml .Values.additionalAnnotations | indent 4 }}
+  {{- end }}
   labels:
     {{- include "prometheus-bbox-exporter.labels" . | indent 4 }}
 spec:
@@ -20,33 +24,36 @@ spec:
       labels:
         {{- include "prometheus-bbox-exporter.labels" . | indent 8 }}
       annotations:
-{{ toYaml .Values.podAnnotations | indent 8 }}
+      {{ toYaml .Values.podAnnotations | indent 8 }}
     spec:
-    {{- if .Values.nodeSelector }}
+      {{- if .Values.nodeSelector }}
       nodeSelector:
-{{ toYaml .Values.nodeSelector | indent 8 }}
-    {{- end }}
-    {{- if .Values.affinity }}
+      {{ toYaml .Values.nodeSelector | indent 8 }}
+      {{- end }}
+      {{- if .Values.affinity }}
       affinity:
-{{ toYaml .Values.affinity | indent 8 }}
-    {{- end }}
-    {{- if .Values.tolerations }}
+      {{ toYaml .Values.affinity | indent 8 }}
+      {{- end }}
+      {{- if .Values.tolerations }}
       tolerations:
-{{ toYaml .Values.tolerations | indent 6 }}
-    {{- end }}
-
+      {{ toYaml .Values.tolerations | indent 8 }}
+      {{- end }}
+      {{- with .Values.securityContext }}
+      securityContext:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
       restartPolicy: {{ .Values.restartPolicy }}
       serviceAccountName: {{ template "prometheus-bbox-exporter.serviceAccountName" . }}
+      {{- if .Values.image.pullSecrets }}
+      imagePullSecrets:
+      {{- toYaml .Values.image.pullSecrets | nindent 8 }}
+      {{- end }}
       containers:
         - name: bbox-exporter
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          securityContext:
-            runAsNonRoot: true
-            runAsUser: 1000
-            readOnlyRootFilesystem: true
+          imagePullPolicy: {{ .Values.image.pullPolicy }}       
           command:
-            - "bbox_exporter"
+            - "/bbox_exporter"
             {{- with .Values.exporter.log.format }}
             - "--log.format={{ . }}"
             {{- end }}
@@ -57,7 +64,7 @@ spec:
             - "--endpoint={{ . }}"
             {{- end }}
             {{- with .Values.exporter.web.port }}
-            - "--web.listen-address={{ . }}"
+            - "--web.listen-address=:{{ . }}"
             {{- end }}
             {{- with .Values.exporter.web.path }}
             - "--web.telemetry-path={{ . }}"
@@ -65,18 +72,38 @@ spec:
           {{- if .Values.envFromSecret }}
           envFrom:
           - secretRef:
-              name: {{ .Values.envFromSecret }}
+              {{- if .Values.existingSecret.name -}}
+              name: {{ .Values.existingSecret.name }}
+              {{- else }}
+              name: {{ template "prometheus-bbox-exporter.fullname" . }}
+              {{- end }}
           {{- end }}
           resources:
           {{ toYaml .Values.resources | indent 12 }}
           ports:
-            - containerPort: {{ .Values.service.port }}
-              name: http
+          - containerPort: {{ .Values.service.port }}
+            name: http
+          {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
             httpGet:
               path: /health
               port: http
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+          {{- end }}
+          {{- if .Values.readinessProbe.enabled }}
           readinessProbe:
             httpGet:
               path: /health
               port: http
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+            successThreshold: {{ .Values.readinessProbe.successThreshold }}
+            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+          {{- end }}
+          {{- if .Values.securityContext.enabled }}
+          {{- with .Values.containerSecurityContext }}
+          securityContext:
+          {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- end }}
