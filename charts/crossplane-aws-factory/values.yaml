@@ -12,25 +12,81 @@ additionalAnnotations: {}
 crossplane:
   namespace: crossplane-system
   aws:
-    tag: v0.19.0
+    # -- The Crossplane AWS provider version
+    version: v0.19.0
 
 aws:
+  # -- The region you'd like your infrastructure to be created in
   region: eu-west-3
   vpc:
+    # -- The IPv4 network range for the VPC, in CIDR notation
     cidr: 10.1.0.0/16
+    # -- default tags for VPC
+    tags:
+      Service: vpc
   subnets:
-    first:
-      cidr: 10.1.1.0/24
-    second:
-      cidr: 10.1.2.0/24
+    # -- Avaibility zones with "name" and "cidrBlock"
+    az:
+    - name: "a"
+      cidrBlock: 10.1.1.0/24
+      tags:
+        Service: kubernetes
+    - name: "b"
+      cidrBlock: 10.1.2.0/24
+      tags:
+        Service: kubernetes
+    - name: "c"
+      cidrBlock: 10.0.2.0/24
+      tags:
+        Service: kubernetes
+    # -- map public IP on launch
+    mapPublicIPOnLaunch: true
   eks:
+    # -- The desired Kubernetes version for your cluster
     version: 1.21
+    cluster:
+      # -- The metadata to apply to the cluster to assist with categorization and organization
+      tags:
+        Service: kubernetes
+        Role: Cluster
+      # -- The cluster control plane logging configuration for your cluster.
+      logging:
+        - enabled: false
+          types: ["api", "audit", "authenticator", "controllerManager", "scheduler"]
     nodegroups:
       core:
-        desiredSize: 1
-        maxSize: 1
-        minSize: 1
+        # -- The Kubernetes labels to be applied to the nodes in the Core node group when they are created.
+        labels:
+          - kubernetes
+        # -- The metadata to apply to the Core node group to assist with categorization and organization
+        tags:
+          Service: kubernetes
+          Role: Node
+        # -- The instance type to use for the Core managed node group
+        instanceTypes:
+          - t3a.large
+        scalingConfig:
+          # -- The current number of worker nodes that the Core managed node group should maintain
+          desiredSize: 1
+          # -- The maximum number of worker nodes that the Core managed node group can scale out to
+          maxSize: 1
+          # -- The minimum number of worker nodes that the Core managed node group can scale in to
+          minSize: 1
       ops:
-        desiredSize: 0
-        maxSize: 1
-        minSize: 1
+        # -- The Kubernetes labels to be applied to the nodes in the Ops node group when they are created.
+        labels:
+          - kubernetes
+        # -- The metadata to apply to the Ops node group to assist with categorization and organization
+        tags:
+          Service: kubernetes
+          Role: Node
+        # -- The instance type to use for the Ops managed node group
+        instanceTypes:
+          - t3a.large
+        scalingConfig:
+          # -- The current number of worker nodes that the Ops managed node group should maintain
+          desiredSize: 0
+          # -- The maximum number of worker nodes that the Ops managed node group can scale out to
+          maxSize: 1
+          # -- The minimum number of worker nodes that the Ops managed node group can scale in to
+          minSize: 1

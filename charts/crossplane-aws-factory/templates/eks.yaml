@@ -15,24 +15,26 @@ spec:
       endpointPrivateAccess: true
       endpointPublicAccess: true
       subnetIdRefs:
-        - name: {{ include "crossplane-aws-factory.name" . }}-1
-        - name: {{ include "crossplane-aws-factory.name" . }}-2
+        {{- range .Values.aws.subnets.az }}
+        - name: {{ include "crossplane-aws-factory.name" $ }}-{{ .name }}
+        {{- end }}
       securityGroupIdRefs:
         - name: {{ include "crossplane-aws-factory.name" . }}-eks
     logging:
       clusterLogging:
-      - enabled: false
-        types: ["api", "audit", "authenticator", "controllerManager", "scheduler"]
+        {{- toYaml .Values.aws.eks.cluster.logging | nindent 6 }}
     tags:
       Name: {{ include "crossplane-aws-factory.name" . }}
-      Service: kubernetes
       Made-by: crossplane
-    version: "{{ .Values.aws.eks.version }}"
+      {{- range $k, $v := .Values.aws.eks.cluster.tags }}
+      {{ $k }}: {{ $v -}}
+      {{ end }}
+    version: {{ .Values.aws.eks.version | quote  }}
   writeConnectionSecretToRef:
     name: {{ include "crossplane-aws-factory.name" . }}-eks
-    namespace: crossplane-system
+    namespace: {{ .Values.crossplane.namespace }}
   providerConfigRef:
-    name: crossplane-aws
+    name: {{ include "crossplane-aws-factory.name" . }}
 ---
 apiVersion: eks.aws.crossplane.io/v1alpha1
 kind: NodeGroup
@@ -50,12 +52,20 @@ spec:
       - name: {{ include "crossplane-aws-factory.name" . }}-1
     nodeRoleRef:
       name: {{ include "crossplane-aws-factory.name" . }}-node
+    instanceTypes: 
+    {{- toYaml .Values.aws.eks.nodegroups.core.instanceTypes | nindent 4 }}
+    tags:
+      Name: {{ include "crossplane-aws-factory.name" . }}
+      Made-by: crossplane
+      k8s.io/cluster-autoscaler/{{ include "crossplane-aws-factory.name" . }}: owned
+      k8s.io/cluster-autoscaler/enabled: "TRUE"
+      {{- range $k, $v := .Values.aws.eks.nodegroups.core.tags }}
+      {{ $k }}: {{ $v -}}
+      {{ end }}
     scalingConfig:
-      desiredSize: {{ .Values.aws.eks.nodegroups.core.desiredSize }}
-      maxSize: {{ .Values.aws.eks.nodegroups.core.maxSize }}
-      minSize: {{ .Values.aws.eks.nodegroups.core.minSize }} 
+      {{- toYaml .Values.aws.eks.nodegroups.core.scalingConfig | nindent 6 }}
   providerConfigRef:
-    name: crossplane-aws
+    name: {{ include "crossplane-aws-factory.name" . }}
 ---
 apiVersion: eks.aws.crossplane.io/v1alpha1
 kind: NodeGroup
@@ -73,9 +83,17 @@ spec:
       - name: {{ include "crossplane-aws-factory.name" . }}-1
     nodeRoleRef:
       name: {{ include "crossplane-aws-factory.name" . }}-node
+    labels:
+
+    tags:
+      Name: {{ include "crossplane-aws-factory.name" . }}
+      Made-by: crossplane
+      k8s.io/cluster-autoscaler/{{ include "crossplane-aws-factory.name" . }}: owned
+      k8s.io/cluster-autoscaler/enabled: "TRUE"
+      {{- range $k, $v := .Values.aws.eks.nodegroups.ops.tags }}
+      {{ $k }}: {{ $v -}}
+      {{ end }}
     scalingConfig:
-      desiredSize: {{ .Values.aws.eks.nodegroups.ops.desiredSize }}
-      maxSize: {{ .Values.aws.eks.nodegroups.ops.maxSize }}
-      minSize: {{ .Values.aws.eks.nodegroups.ops.minSize }}
+      {{- toYaml .Values.aws.eks.nodegroups.ops.scalingConfig | nindent 6 }}
   providerConfigRef:
-    name: crossplane-aws
+    name: {{ include "crossplane-aws-factory.name" . }}

@@ -7,6 +7,6 @@ metadata:
   labels:
     {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
 spec:
-  package: crossplane/provider-aws:{{ .Values.crossplane.aws.tag }}
+  package: crossplane/provider-aws:{{ .Values.crossplane.aws.version }}
   controllerConfigRef:
     name: {{ include "crossplane-aws-factory.name" . }}

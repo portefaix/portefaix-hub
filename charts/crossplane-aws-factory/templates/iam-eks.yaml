@@ -8,6 +8,7 @@ metadata:
     {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
 spec:
   forProvider:
+    description: "IAM ROLE EKS for {{ include "crossplane-aws-factory.fullname" . }} cluster"
     assumeRolePolicyDocument: |
       {
         "Version": "2012-10-17",
@@ -35,8 +36,9 @@ spec:
         value: kubernetes
       - key: Made-by
         value: crossplane
+  deletionPolicy: Delete
   providerConfigRef:
-    name: crossplane-aws
+    name: {{ include "crossplane-aws-factory.name" . }}
 ---
 apiVersion: identity.aws.crossplane.io/v1beta1
 kind: IAMRole
@@ -47,6 +49,7 @@ metadata:
     {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
 spec:
   forProvider:
+    description: "IAM ROLE NodeGroup for {{ include "crossplane-aws-factory.fullname" . }} cluster"
     assumeRolePolicyDocument: |
       {
         "Version": "2012-10-17",
@@ -71,8 +74,9 @@ spec:
         value: kubernetes
       - key: Made-by
         value: crossplane
+  deletionPolicy: Delete
   providerConfigRef:
-    name: crossplane-aws
+    name: {{ include "crossplane-aws-factory.name" . }}
 ---
 apiVersion: identity.aws.crossplane.io/v1beta1
 kind: IAMRolePolicyAttachment
@@ -86,12 +90,8 @@ spec:
     policyArn: arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
     roleNameRef:
       name: {{ include "crossplane-aws-factory.name" . }}-eks-cluster
-    # roleNameSelector:
-    #   matchControllerRef: true
-    #   matchLabels:
-    #     role: controlplane
   providerConfigRef:
-    name: crossplane-aws
+    name: {{ include "crossplane-aws-factory.name" . }}
 ---
 apiVersion: identity.aws.crossplane.io/v1beta1
 kind: IAMRolePolicyAttachment
@@ -105,12 +105,8 @@ spec:
     policyArn: arn:aws:iam::aws:policy/AmazonEKSServicePolicy
     roleNameRef:
       name: {{ include "crossplane-aws-factory.name" . }}-eks-cluster
-    # roleNameSelector:
-    #   matchControllerRef: true
-    #   matchLabels:
-    #     role: controlplane
   providerConfigRef:
-    name: crossplane-aws
+    name: {{ include "crossplane-aws-factory.name" . }}
 ---
 apiVersion: identity.aws.crossplane.io/v1beta1
 kind: IAMRolePolicyAttachment
@@ -124,12 +120,8 @@ spec:
     policyArn: arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
     roleNameRef:
       name: {{ include "crossplane-aws-factory.name" . }}-node
-    # roleNameSelector:
-    #   matchControllerRef: true
-    #   matchLabels:
-    #     role: nodegroup
   providerConfigRef:
-    name: crossplane-aws
+    name: {{ include "crossplane-aws-factory.name" . }}
 ---
 apiVersion: identity.aws.crossplane.io/v1beta1
 kind: IAMRolePolicyAttachment
@@ -143,12 +135,8 @@ spec:
     policyArn: arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
     roleNameRef:
       name: {{ include "crossplane-aws-factory.name" . }}-node
-    # roleNameSelector:
-    #   matchControllerRef: true
-    #   matchLabels:
-    #     role: nodegroup
   providerConfigRef:
-    name: crossplane-aws
+    name: {{ include "crossplane-aws-factory.name" . }}
 ---
 apiVersion: identity.aws.crossplane.io/v1beta1
 kind: IAMRolePolicyAttachment
@@ -162,9 +150,5 @@ spec:
     policyArn: arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
     roleNameRef:
       name: {{ include "crossplane-aws-factory.name" . }}-node
-    # roleNameSelector:
-    #   matchControllerRef: true
-    #   matchLabels:
-    #     role: nodegroup
   providerConfigRef:
-    name: crossplane-aws
+    name: {{ include "crossplane-aws-factory.name" . }}

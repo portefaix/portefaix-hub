@@ -14,8 +14,6 @@ spec:
     tags:
       - key: Name
         value: {{ include "crossplane-aws-factory.name" . }}-ssh
-      - key: Service
-        value: krm
       - key: Made-by
         value: crossplane
     groupName: {{ include "crossplane-aws-factory.name" . }}-ssh
@@ -27,7 +25,7 @@ spec:
         ipRanges:
           - cidrIp: 0.0.0.0/0
   providerConfigRef:
-    name: crossplane-aws
+    name: {{ include "crossplane-aws-factory.name" . }}
 ---
 apiVersion: ec2.aws.crossplane.io/v1beta1
 kind: SecurityGroup
@@ -44,8 +42,6 @@ spec:
     tags:
       - key: Name
         value: {{ include "crossplane-aws-factory.name" . }}-eks
-      - key: Service
-        value: krm
       - key: Made-by
         value: crossplane
     groupName: {{ include "crossplane-aws-factory.name" . }}-eks
@@ -57,4 +53,4 @@ spec:
         ipRanges:
           - cidrIp: 10.0.0.0/8
   providerConfigRef:
-    name: crossplane-aws
+    name: {{ include "crossplane-aws-factory.name" . }}

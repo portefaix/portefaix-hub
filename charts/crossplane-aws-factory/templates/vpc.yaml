@@ -11,14 +11,16 @@ spec:
     region: {{ .Values.aws.region }}
     tags:
       - key: Name
-        value: portefaix-krm-aws
-      - key: Service
-        value: krm
+        value: {{ include "crossplane-aws-factory.name" . }}
       - key: Made-by
         value: crossplane
+      {{- range $k, $v := .Values.aws.vpc.tags }}
+      - key: {{ $k }}
+        value: {{ $v -}}
+      {{ end }}
     cidrBlock: {{ .Values.aws.vpc.cidr }}
     enableDnsSupport: true
     enableDnsHostNames: true
     instanceTenancy: default
   providerConfigRef:
-    name: crossplane-aws
+    name: {{ include "crossplane-aws-factory.name" . }}

@@ -1,50 +1,35 @@
+{{- $baseName := include "crossplane-aws-factory.name" $ }}
+{{- $region := .Values.region }}
+{{- $namespace := include "crossplane-aws-factory.namespace" . }}
+{{ range .Values.aws.subnets.az }}
+{{- $subnetName := printf "%s-%s" $baseName .name -}}
 ---
 apiVersion: ec2.aws.crossplane.io/v1beta1
 kind: Subnet
 metadata:
-  name: {{ include "crossplane-aws-factory.name" . }}-1
-  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  name: {{ $subnetName }}
+  namespace: {{ $namespace }}
   labels:
-    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+    {{- include "crossplane-aws-factory.labels" $ | nindent 4 }}
 spec:
   forProvider:
-    region: {{ .Values.aws.region }}
+    region: {{ $region }}
     tags:
       - key: Name
-        value: {{ include "crossplane-aws-factory.name" . }}-1
-      - key: Service
-        value: krm
+        value: {{ $subnetName }}
       - key: Made-by
         value: crossplane
-    availabilityZone: {{ .Values.aws.region }}b
-    cidrBlock: {{ .Values.aws.subnets.first.cidr }}
+      - key: kubernetes.io/cluster/{{ include "crossplane-aws-factory.name" $ }}
+        value: shared
+      {{- range $k, $v := .tags }}
+      - key: {{ $k }}
+        value: {{ $v -}}
+      {{ end }}
+    availabilityZone: {{ $region }}{{ .name }}
+    cidrBlock: {{ .cidrBlock }}
     vpcIdRef:
-      name: {{ include "crossplane-aws-factory.name" . }}
+      name: {{ include "crossplane-aws-factory.name" $ }}
     mapPublicIPOnLaunch: true
   providerConfigRef:
-    name: crossplane-aws
----
-apiVersion: ec2.aws.crossplane.io/v1beta1
-kind: Subnet
-metadata:
-  name: {{ include "crossplane-aws-factory.name" . }}-2
-  namespace: {{ template "crossplane-aws-factory.namespace" . }}
-  labels:
-    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
-spec:
-  forProvider:
-    region: {{ .Values.aws.region }}
-    tags:
-      - key: Name
-        value: {{ include "crossplane-aws-factory.name" . }}-2
-      - key: Service
-        value: krm
-      - key: Made-by
-        value: crossplane
-    availabilityZone: {{ .Values.aws.region }}c
-    cidrBlock: {{ .Values.aws.subnets.second.cidr }}
-    vpcIdRef:
-      name: {{ include "crossplane-aws-factory.name" . }}
-    mapPublicIPOnLaunch: true
-  providerConfigRef:
-    name: crossplane-aws
+    name: {{ include "crossplane-aws-factory.name" $ }}
+{{ end }}

@@ -18,18 +18,27 @@ An AWS Factory using Crossplane
 |-----|------|---------|-------------|
 | additionalAnnotations | object | `{}` | Additional annotations to add to all resources |
 | additionalLabels | object | `{}` | Additional labels to add to all resources |
-| aws.eks.nodegroups.core.desiredSize | int | `1` |  |
-| aws.eks.nodegroups.core.maxSize | int | `1` |  |
-| aws.eks.nodegroups.core.minSize | int | `1` |  |
-| aws.eks.nodegroups.ops.desiredSize | int | `0` |  |
-| aws.eks.nodegroups.ops.maxSize | int | `1` |  |
-| aws.eks.nodegroups.ops.minSize | int | `1` |  |
-| aws.eks.version | float | `1.21` |  |
-| aws.region | string | `"eu-west-3"` |  |
-| aws.subnets.first.cidr | string | `"10.1.1.0/24"` |  |
-| aws.subnets.second.cidr | string | `"10.1.2.0/24"` |  |
-| aws.vpc.cidr | string | `"10.1.0.0/16"` |  |
-| crossplane.aws.tag | string | `"v0.19.0"` |  |
+| aws.eks.cluster.logging | list | `[{"enabled":false,"types":["api","audit","authenticator","controllerManager","scheduler"]}]` | The cluster control plane logging configuration for your cluster. |
+| aws.eks.cluster.tags | object | `{"Role":"Cluster","Service":"kubernetes"}` | The metadata to apply to the cluster to assist with categorization and organization |
+| aws.eks.nodegroups.core.instanceTypes | list | `["t3a.large"]` | The instance type to use for the Core managed node group |
+| aws.eks.nodegroups.core.labels | list | `["kubernetes"]` | The Kubernetes labels to be applied to the nodes in the Core node group when they are created. |
+| aws.eks.nodegroups.core.scalingConfig.desiredSize | int | `1` | The current number of worker nodes that the Core managed node group should maintain |
+| aws.eks.nodegroups.core.scalingConfig.maxSize | int | `1` | The maximum number of worker nodes that the Core managed node group can scale out to |
+| aws.eks.nodegroups.core.scalingConfig.minSize | int | `1` | The minimum number of worker nodes that the Core managed node group can scale in to |
+| aws.eks.nodegroups.core.tags | object | `{"Role":"Node","Service":"kubernetes"}` | The metadata to apply to the Core node group to assist with categorization and organization |
+| aws.eks.nodegroups.ops.instanceTypes | list | `["t3a.large"]` | The instance type to use for the Ops managed node group |
+| aws.eks.nodegroups.ops.labels | list | `["kubernetes"]` | The Kubernetes labels to be applied to the nodes in the Ops node group when they are created. |
+| aws.eks.nodegroups.ops.scalingConfig.desiredSize | int | `0` | The current number of worker nodes that the Ops managed node group should maintain |
+| aws.eks.nodegroups.ops.scalingConfig.maxSize | int | `1` | The maximum number of worker nodes that the Ops managed node group can scale out to |
+| aws.eks.nodegroups.ops.scalingConfig.minSize | int | `1` | The minimum number of worker nodes that the Ops managed node group can scale in to |
+| aws.eks.nodegroups.ops.tags | object | `{"Role":"Node","Service":"kubernetes"}` | The metadata to apply to the Ops node group to assist with categorization and organization |
+| aws.eks.version | float | `1.21` | The desired Kubernetes version for your cluster |
+| aws.region | string | `"eu-west-3"` | The region you'd like your infrastructure to be created in |
+| aws.subnets.az | list | `[{"cidrBlock":"10.1.1.0/24","name":"a","tags":{"Service":"kubernetes"}},{"cidrBlock":"10.1.2.0/24","name":"b","tags":{"Service":"kubernetes"}},{"cidrBlock":"10.0.2.0/24","name":"c","tags":{"Service":"kubernetes"}}]` | Avaibility zones with "name" and "cidrBlock" |
+| aws.subnets.mapPublicIPOnLaunch | bool | `true` | map public IP on launch |
+| aws.vpc.cidr | string | `"10.1.0.0/16"` | The IPv4 network range for the VPC, in CIDR notation |
+| aws.vpc.tags | object | `{"Service":"vpc"}` | default tags for VPC |
+| crossplane.aws.version | string | `"v0.19.0"` | The Crossplane AWS provider version |
 | crossplane.namespace | string | `"crossplane-system"` |  |
 
 ----------------------------------------------
