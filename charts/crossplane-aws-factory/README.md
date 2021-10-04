@@ -19,15 +19,18 @@ An AWS Factory using Crossplane
 | additionalAnnotations | object | `{}` | Additional annotations to add to all resources |
 | additionalLabels | object | `{}` | Additional labels to add to all resources |
 | aws.eks.cluster.logging | list | `[{"enabled":false,"types":["api","audit","authenticator","controllerManager","scheduler"]}]` | The cluster control plane logging configuration for your cluster. |
+| aws.eks.cluster.publicAccessCidrs | list | `["0.0.0.0/0"]` | The CIDR blocks that are allowed access to your cluster's public Kubernetes API server endpoint |
 | aws.eks.cluster.tags | object | `{"Role":"Cluster","Service":"kubernetes"}` | The metadata to apply to the cluster to assist with categorization and organization |
+| aws.eks.nodegroups.core.diskSize | int | `20` | The root device disk size (in GiB) for the Core managed node group instances |
 | aws.eks.nodegroups.core.instanceTypes | list | `["t3a.large"]` | The instance type to use for the Core managed node group |
-| aws.eks.nodegroups.core.labels | list | `["kubernetes"]` | The Kubernetes labels to be applied to the nodes in the Core node group when they are created. |
+| aws.eks.nodegroups.core.labels | list | `["kubernetes","node","core"]` | The Kubernetes labels to be applied to the nodes in the Core node group when they are created. |
 | aws.eks.nodegroups.core.scalingConfig.desiredSize | int | `1` | The current number of worker nodes that the Core managed node group should maintain |
 | aws.eks.nodegroups.core.scalingConfig.maxSize | int | `1` | The maximum number of worker nodes that the Core managed node group can scale out to |
 | aws.eks.nodegroups.core.scalingConfig.minSize | int | `1` | The minimum number of worker nodes that the Core managed node group can scale in to |
 | aws.eks.nodegroups.core.tags | object | `{"Role":"Node","Service":"kubernetes"}` | The metadata to apply to the Core node group to assist with categorization and organization |
+| aws.eks.nodegroups.ops.diskSize | int | `20` | The root device disk size (in GiB) for the Ops managed node group instances |
 | aws.eks.nodegroups.ops.instanceTypes | list | `["t3a.large"]` | The instance type to use for the Ops managed node group |
-| aws.eks.nodegroups.ops.labels | list | `["kubernetes"]` | The Kubernetes labels to be applied to the nodes in the Ops node group when they are created. |
+| aws.eks.nodegroups.ops.labels | list | `["kubernetes","node","ops"]` | The Kubernetes labels to be applied to the nodes in the Ops node group when they are created. |
 | aws.eks.nodegroups.ops.scalingConfig.desiredSize | int | `0` | The current number of worker nodes that the Ops managed node group should maintain |
 | aws.eks.nodegroups.ops.scalingConfig.maxSize | int | `1` | The maximum number of worker nodes that the Ops managed node group can scale out to |
 | aws.eks.nodegroups.ops.scalingConfig.minSize | int | `1` | The minimum number of worker nodes that the Ops managed node group can scale in to |

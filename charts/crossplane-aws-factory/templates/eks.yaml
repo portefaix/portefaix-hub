@@ -18,6 +18,10 @@ spec:
     resourcesVpcConfig:
       endpointPrivateAccess: true
       endpointPublicAccess: true
+      publicAccessCidrs :
+        {{- range .Values.aws.eks.cluster.publicAccessCidrs }}
+        - {{ . | quote }}
+        {{- end }}
       subnetIdRefs:
         {{- range .Values.aws.subnets.az }}
         - name: {{ include "crossplane-aws-factory.name" $ }}-{{ .name }}
@@ -60,8 +64,13 @@ spec:
       - name: {{ include "crossplane-aws-factory.name" . }}-1
     nodeRoleRef:
       name: {{ include "crossplane-aws-factory.name" . }}-node
+    diskSize: {{ .Values.aws.eks.nodegroups.core.diskSize }}
     instanceTypes: 
     {{- toYaml .Values.aws.eks.nodegroups.core.instanceTypes | nindent 4 }}
+    labels:
+      {{- range .Values.aws.eks.nodegroups.core.labels }}
+      - {{ . | quote }}
+      {{- end }} 
     tags:
       Name: {{ include "crossplane-aws-factory.name" . }}
       Made-by: crossplane
@@ -95,8 +104,13 @@ spec:
       - name: {{ include "crossplane-aws-factory.name" . }}-1
     nodeRoleRef:
       name: {{ include "crossplane-aws-factory.name" . }}-node
+    diskSize: {{ .Values.aws.eks.nodegroups.ops.diskSize }}
+    instanceTypes: 
+    {{- toYaml .Values.aws.eks.nodegroups.ops.instanceTypes | nindent 4 }}
     labels:
-
+      {{- range .Values.aws.eks.nodegroups.ops.labels }}
+      - {{ . | quote }}
+      {{- end }} 
     tags:
       Name: {{ include "crossplane-aws-factory.name" . }}
       Made-by: crossplane

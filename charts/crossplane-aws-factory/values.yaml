@@ -54,11 +54,16 @@ aws:
       logging:
         - enabled: false
           types: ["api", "audit", "authenticator", "controllerManager", "scheduler"]
+      # -- The CIDR blocks that are allowed access to your cluster's public Kubernetes API server endpoint
+      publicAccessCidrs:
+        - "0.0.0.0/0"
     nodegroups:
       core:
         # -- The Kubernetes labels to be applied to the nodes in the Core node group when they are created.
         labels:
           - kubernetes
+          - node
+          - core
         # -- The metadata to apply to the Core node group to assist with categorization and organization
         tags:
           Service: kubernetes
@@ -66,6 +71,8 @@ aws:
         # -- The instance type to use for the Core managed node group
         instanceTypes:
           - t3a.large
+        # -- The root device disk size (in GiB) for the Core managed node group instances
+        diskSize: 20
         scalingConfig:
           # -- The current number of worker nodes that the Core managed node group should maintain
           desiredSize: 1
@@ -77,6 +84,8 @@ aws:
         # -- The Kubernetes labels to be applied to the nodes in the Ops node group when they are created.
         labels:
           - kubernetes
+          - node
+          - ops
         # -- The metadata to apply to the Ops node group to assist with categorization and organization
         tags:
           Service: kubernetes
@@ -84,6 +93,8 @@ aws:
         # -- The instance type to use for the Ops managed node group
         instanceTypes:
           - t3a.large
+        # -- The root device disk size (in GiB) for the Ops managed node group instances
+        diskSize: 20
         scalingConfig:
           # -- The current number of worker nodes that the Ops managed node group should maintain
           desiredSize: 0
