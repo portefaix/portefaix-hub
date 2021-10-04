@@ -6,6 +6,10 @@ metadata:
   namespace: {{ template "crossplane-aws-factory.namespace" . }}
   labels:
     {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
 spec:
   forProvider:
     region: {{ .Values.aws.region }}
@@ -43,6 +47,10 @@ metadata:
   namespace: {{ template "crossplane-aws-factory.namespace" . }}
   labels:
     {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
 spec:
   forProvider:
     region: {{ .Values.aws.region }}
@@ -74,6 +82,10 @@ metadata:
   namespace: {{ template "crossplane-aws-factory.namespace" . }}
   labels:
     {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
 spec:
   forProvider:
     region: {{ .Values.aws.region }}

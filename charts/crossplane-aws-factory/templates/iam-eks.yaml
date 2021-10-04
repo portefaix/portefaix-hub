@@ -6,6 +6,10 @@ metadata:
   namespace: {{ template "crossplane-aws-factory.namespace" . }}
   labels:
     {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
 spec:
   forProvider:
     description: "IAM ROLE EKS for {{ include "crossplane-aws-factory.fullname" . }} cluster"
@@ -47,6 +51,10 @@ metadata:
   namespace: {{ template "crossplane-aws-factory.namespace" . }}
   labels:
     {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
 spec:
   forProvider:
     description: "IAM ROLE NodeGroup for {{ include "crossplane-aws-factory.fullname" . }} cluster"
@@ -85,6 +93,10 @@ metadata:
   namespace: {{ template "crossplane-aws-factory.namespace" . }}
   labels:
     {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
 spec:
   forProvider:
     policyArn: arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
@@ -100,6 +112,10 @@ metadata:
   namespace: {{ template "crossplane-aws-factory.namespace" . }}
   labels:
     {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
 spec:
   forProvider:
     policyArn: arn:aws:iam::aws:policy/AmazonEKSServicePolicy
@@ -115,6 +131,10 @@ metadata:
   namespace: {{ template "crossplane-aws-factory.namespace" . }}
   labels:
     {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
 spec:
   forProvider:
     policyArn: arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
@@ -130,6 +150,10 @@ metadata:
   namespace: {{ template "crossplane-aws-factory.namespace" . }}
   labels:
     {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
 spec:
   forProvider:
     policyArn: arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
@@ -145,6 +169,10 @@ metadata:
   namespace: {{ template "crossplane-aws-factory.namespace" . }}
   labels:
     {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
 spec:
   forProvider:
     policyArn: arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly

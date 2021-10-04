@@ -4,10 +4,11 @@
 
 # -- Additional labels to add to all resources
 additionalLabels: {}
-  # app: bbox-exporter
+  # app: crossplane
 
 # -- Additional annotations to add to all resources
 additionalAnnotations: {}
+  # monitoring: portefaix
 
 crossplane:
   namespace: crossplane-system
