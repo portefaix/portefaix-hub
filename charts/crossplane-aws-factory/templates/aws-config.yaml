@@ -1,0 +1,15 @@
+---
+apiVersion: aws.crossplane.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      namespace: {{ .Values.crossplane.namespace }}
+      name: {{ include "crossplane-aws-factory.name" . }}-credentials
+      key: credentials

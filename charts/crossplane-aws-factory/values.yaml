@@ -1,0 +1,36 @@
+# Default values for crossplane-aws-factory.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- Additional labels to add to all resources
+additionalLabels: {}
+  # app: bbox-exporter
+
+# -- Additional annotations to add to all resources
+additionalAnnotations: {}
+
+crossplane:
+  namespace: crossplane-system
+  aws:
+    tag: v0.19.0
+
+aws:
+  region: eu-west-3
+  vpc:
+    cidr: 10.1.0.0/16
+  subnets:
+    first:
+      cidr: 10.1.1.0/24
+    second:
+      cidr: 10.1.2.0/24
+  eks:
+    version: 1.21
+    nodegroups:
+      core:
+        desiredSize: 1
+        maxSize: 1
+        minSize: 1
+      ops:
+        desiredSize: 0
+        maxSize: 1
+        minSize: 1

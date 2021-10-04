@@ -1,0 +1,81 @@
+---
+apiVersion: eks.aws.crossplane.io/v1beta1
+kind: Cluster
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+spec:
+  forProvider:
+    region: {{ .Values.aws.region }}
+    roleArnRef:
+      name: {{ include "crossplane-aws-factory.name" . }}-eks-cluster
+    resourcesVpcConfig:
+      endpointPrivateAccess: true
+      endpointPublicAccess: true
+      subnetIdRefs:
+        - name: {{ include "crossplane-aws-factory.name" . }}-1
+        - name: {{ include "crossplane-aws-factory.name" . }}-2
+      securityGroupIdRefs:
+        - name: {{ include "crossplane-aws-factory.name" . }}-eks
+    logging:
+      clusterLogging:
+      - enabled: false
+        types: ["api", "audit", "authenticator", "controllerManager", "scheduler"]
+    tags:
+      Name: {{ include "crossplane-aws-factory.name" . }}
+      Service: kubernetes
+      Made-by: crossplane
+    version: "{{ .Values.aws.eks.version }}"
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-aws-factory.name" . }}-eks
+    namespace: crossplane-system
+  providerConfigRef:
+    name: crossplane-aws
+---
+apiVersion: eks.aws.crossplane.io/v1alpha1
+kind: NodeGroup
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}-core
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+spec:
+  forProvider:
+    region: {{ .Values.aws.region }}
+    clusterNameRef:
+      name: {{ include "crossplane-aws-factory.name" . }}
+    subnetRefs:
+      - name: {{ include "crossplane-aws-factory.name" . }}-1
+    nodeRoleRef:
+      name: {{ include "crossplane-aws-factory.name" . }}-node
+    scalingConfig:
+      desiredSize: {{ .Values.aws.eks.nodegroups.core.desiredSize }}
+      maxSize: {{ .Values.aws.eks.nodegroups.core.maxSize }}
+      minSize: {{ .Values.aws.eks.nodegroups.core.minSize }} 
+  providerConfigRef:
+    name: crossplane-aws
+---
+apiVersion: eks.aws.crossplane.io/v1alpha1
+kind: NodeGroup
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}-ops
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+spec:
+  forProvider:
+    region: {{ .Values.aws.region }}
+    clusterNameRef:
+      name: {{ include "crossplane-aws-factory.name" . }}
+    subnetRefs:
+      - name: {{ include "crossplane-aws-factory.name" . }}-1
+    nodeRoleRef:
+      name: {{ include "crossplane-aws-factory.name" . }}-node
+    scalingConfig:
+      desiredSize: {{ .Values.aws.eks.nodegroups.ops.desiredSize }}
+      maxSize: {{ .Values.aws.eks.nodegroups.ops.maxSize }}
+      minSize: {{ .Values.aws.eks.nodegroups.ops.minSize }}
+  providerConfigRef:
+    name: crossplane-aws

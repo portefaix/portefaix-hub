@@ -1,0 +1,60 @@
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: SecurityGroup
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}-ssh
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+spec:
+  forProvider:
+    region: {{ .Values.aws.region }}
+    vpcIdRef:
+      name: {{ include "crossplane-aws-factory.name" . }}
+    tags:
+      - key: Name
+        value: {{ include "crossplane-aws-factory.name" . }}-ssh
+      - key: Service
+        value: krm
+      - key: Made-by
+        value: crossplane
+    groupName: {{ include "crossplane-aws-factory.name" . }}-ssh
+    description: SSH Connexions
+    ingress:
+      - fromPort: 22
+        toPort: 22
+        ipProtocol: tcp
+        ipRanges:
+          - cidrIp: 0.0.0.0/0
+  providerConfigRef:
+    name: crossplane-aws
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: SecurityGroup
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}-eks
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+spec:
+  forProvider:
+    region: {{ .Values.aws.region }}
+    vpcIdRef:
+      name: {{ include "crossplane-aws-factory.name" . }}
+    tags:
+      - key: Name
+        value: {{ include "crossplane-aws-factory.name" . }}-eks
+      - key: Service
+        value: krm
+      - key: Made-by
+        value: crossplane
+    groupName: {{ include "crossplane-aws-factory.name" . }}-eks
+    description: Cluster communication with worker nodes
+    ingress:
+      - fromPort: 80
+        toPort: 80
+        ipProtocol: tcp
+        ipRanges:
+          - cidrIp: 10.0.0.0/8
+  providerConfigRef:
+    name: crossplane-aws

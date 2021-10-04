@@ -1,0 +1,12 @@
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+spec:
+  package: crossplane/provider-aws:{{ .Values.crossplane.aws.tag }}
+  controllerConfigRef:
+    name: {{ include "crossplane-aws-factory.name" . }}

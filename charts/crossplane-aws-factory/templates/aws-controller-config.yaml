@@ -1,0 +1,15 @@
+---
+apiVersion: pkg.crossplane.io/v1alpha1
+kind: ControllerConfig
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+spec:
+  podSecurityContext:
+    fsGroup: 2000
+  # https://github.com/crossplane/crossplane/blob/master/docs/reference/troubleshoot.md
+  args:
+    - --debug
+  # replicas: 0

@@ -1,0 +1,50 @@
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Subnet
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}-1
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+spec:
+  forProvider:
+    region: {{ .Values.aws.region }}
+    tags:
+      - key: Name
+        value: {{ include "crossplane-aws-factory.name" . }}-1
+      - key: Service
+        value: krm
+      - key: Made-by
+        value: crossplane
+    availabilityZone: {{ .Values.aws.region }}b
+    cidrBlock: {{ .Values.aws.subnets.first.cidr }}
+    vpcIdRef:
+      name: {{ include "crossplane-aws-factory.name" . }}
+    mapPublicIPOnLaunch: true
+  providerConfigRef:
+    name: crossplane-aws
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Subnet
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}-2
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+spec:
+  forProvider:
+    region: {{ .Values.aws.region }}
+    tags:
+      - key: Name
+        value: {{ include "crossplane-aws-factory.name" . }}-2
+      - key: Service
+        value: krm
+      - key: Made-by
+        value: crossplane
+    availabilityZone: {{ .Values.aws.region }}c
+    cidrBlock: {{ .Values.aws.subnets.second.cidr }}
+    vpcIdRef:
+      name: {{ include "crossplane-aws-factory.name" . }}
+    mapPublicIPOnLaunch: true
+  providerConfigRef:
+    name: crossplane-aws
