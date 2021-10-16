@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+{{- if .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml .Values.additionalAnnotations | indent 4 }}
+{{- end }}
+  labels:
+    {{- include "secrets-store-csi-driver-provider-aws.labels" . | indent 4 }}
+  name: {{ template "secrets-store-csi-driver-provider-aws.fullname" . }}
+  namespace: {{ template "secrets-store-csi-driver-provider-aws.namespace" . }}
+spec:
+  updateStrategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      {{- include "secrets-store-csi-driver-provider-aws.selectorLabels" . | indent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "secrets-store-csi-driver-provider-aws.labels" . | indent 8 }}
+    spec:
+      serviceAccountName: {{ template "secrets-store-csi-driver-provider-aws.serviceAccountName" . }}
+      hostNetwork: true
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+{{- if .Values.resources }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+{{- end }}
+          args:
+              - --provider-volume=/etc/kubernetes/secrets-store-csi-providers
+          volumeMounts:
+            - mountPath: "/etc/kubernetes/secrets-store-csi-providers"
+              name: providervol
+            - name: mountpoint-dir
+              mountPath: /var/lib/kubelet/pods
+              mountPropagation: HostToContainer
+{{- if .Values.affinity }}
+      affinity:
+{{ toYaml .Values.affinity | indent 8 }}
+{{- end }}
+{{- if .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}
+{{- end }}
+{{- if .Values.tolerations }}
+      tolerations:
+{{ toYaml .Values.tolerations | indent 8 }}
+{{- end }}
+      volumes:
+        - name: providervol
+          hostPath:
+              path: /etc/kubernetes/secrets-store-csi-providers
+        - name: mountpoint-dir
+          hostPath:
+            path: /var/lib/kubelet/pods
+            type: DirectoryOrCreate
