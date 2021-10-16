@@ -2229,6 +2229,41 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/promtail-mixin-0.1.0/promtail-mixin-0.1.0.tgz
     version: 0.1.0
+  secrets-store-csi-driver-provider-aws:
+  - annotations:
+      artifacthub.io/changes: |
+        - Artifact Hub informations
+      artifacthub.io/links: |
+        - name: secrets-store-csi-driver
+          url: https://github.com/kubernetes-sigs/secrets-store-csi-driver
+        - name: secrets-store-csi-driver-provider-aws
+          url: https://github.com/aws/secrets-store-csi-driver-provider-aws
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 0.0.0
+    created: "2021-10-16T13:30:30.708581848Z"
+    description: A Helm chart for AWS Secret Manager Provider for Secret Store CSI
+      Driver
+    digest: de778628432eeb2973a6cc02157c7be23e08e5b7c5b1dd5888443c5f2cbe406c
+    home: https://charts.portefaix.xyz
+    keywords:
+    - secrets-store-csi-driver-provider-aws
+    - secrets-store-csi-driver
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: secrets-store-csi-driver-provider-aws
+    sources:
+    - https://github.com/portefaix/portefaix-hub/tree/master/charts/secrets-store-csi-driver-provider-aws
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/secrets-store-csi-driver-provider-aws-0.1.0/secrets-store-csi-driver-provider-aws-0.1.0.tgz
+    version: 0.1.0
   secrets-store-csi-driver-provider-gcp:
   - annotations:
       artifacthub.io/changes: |
@@ -2884,4 +2919,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2021-09-30T12:37:43.363641504Z"
+generated: "2021-10-16T13:30:30.70885065Z"
