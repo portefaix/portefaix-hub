@@ -1,0 +1,4 @@
+{{ $.Chart.Name }} has been installed. Check its status by running:
+  kubectl --namespace {{ template "secrets-store-csi-driver-provider-aws.namespace" . }} get ds
+
+Visit https://github.com/portefaix/portefaix-hub/charts/secrets-store-csi-driver-provider-aws.
