@@ -1,6 +1,6 @@
 # secrets-store-csi-driver-provider-aws
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.0](https://img.shields.io/badge/AppVersion-0.0.0-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.r2](https://img.shields.io/badge/AppVersion-1.0.r2-informational?style=flat-square)
 
 A Helm chart for AWS Secret Manager Provider for Secret Store CSI Driver
 
@@ -31,7 +31,7 @@ A Helm chart for AWS Secret Manager Provider for Secret Store CSI Driver
 | namespace | string | `"kube-system"` | Namespace to deploy the Secret Store CSI Driver |
 | nodeSelector | object | `{"kubernetes.io/os":"linux"}` | Node labels for pod assignment |
 | rbac.create | bool | `true` | If true, create & use RBAC resources |
-| resources | object | `{}` | Container resources (requests and limits for cpu and memory) |
+| resources | object | `{"limits":{"cpu":"50m","memory":"100Mi"},"requests":{"cpu":"50m","memory":"100Mi"}}` | Container resources (requests and limits for cpu and memory) |
 | serviceAccount.annotations | object | `{}` | ServiceAccount annotations. |
 | serviceAccount.create | bool | `true` | Specifies whether a ServiceAccount should be created, require rbac true |
 | serviceAccount.imagePullSecrets | list | `[]` |  |
