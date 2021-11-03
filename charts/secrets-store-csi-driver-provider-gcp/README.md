@@ -1,6 +1,6 @@
 # secrets-store-csi-driver-provider-gcp
 
-![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.3.5](https://img.shields.io/badge/AppVersion-1.3.5-informational?style=flat-square)
+![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 A Helm chart for Google Secret Manager Provider for Secret Store CSI Driver
 
@@ -26,7 +26,7 @@ A Helm chart for Google Secret Manager Provider for Secret Store CSI Driver
 | fullnameOverride | string | `""` | Provide a name to substitute for the full names of resources |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"us-docker.pkg.dev/secretmanager-csi/secrets-store-csi-driver-provider-gcp/plugin"` |  |
-| image.tag | string | `"v0.4.0"` |  |
+| image.tag | string | `"v1.0.0"` |  |
 | imagePullSecrets | list | `[]` |  |
 | namespace | string | `"kube-system"` | Namespace to deploy the Secret Store CSI Driver |
 | nodeSelector | object | `{"kubernetes.io/os":"linux"}` | Node labels for pod assignment |
