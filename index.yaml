@@ -2306,6 +2306,45 @@ entries:
   secrets-store-csi-driver-provider-gcp:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Bump secrets-store-csi-driver-provider-gcp to v1.0.0
+      artifacthub.io/containsSecurityUpdates: "true"
+      artifacthub.io/images: |
+        - name: secrets-store-csi-driver-provider-gcp
+          image: us-docker.pkg.dev/secretmanager-csi/secrets-store-csi-driver-provider-gcp/plugin:v1.0.0
+      artifacthub.io/links: |
+        - name: secrets-store-csi-driver
+          url: https://github.com/kubernetes-sigs/secrets-store-csi-driver
+        - name: secrets-store-csi-driver-provider-gcp
+          url: https://github.com/GoogleCloudPlatform/secrets-store-csi-driver-provider-gcp
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2021-11-03T17:20:49.293058542Z"
+    description: A Helm chart for Google Secret Manager Provider for Secret Store
+      CSI Driver
+    digest: 9167617f67d708d77064ee52528970a6ccdffc0627dbdc26db0a2aa2588639df
+    home: https://charts.portefaix.xyz
+    keywords:
+    - secrets-store-csi-driver-provider-gcp
+    - secrets-store-csi-driver
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: secrets-store-csi-driver-provider-gcp
+    sources:
+    - https://github.com/portefaix/portefaix-hub/tree/master/charts/secrets-store-csi-driver-provider-gcp
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/secrets-store-csi-driver-provider-gcp-0.4.0/secrets-store-csi-driver-provider-gcp-0.4.0.tgz
+    version: 0.4.0
+  - annotations:
+      artifacthub.io/changes: |
         - Artifact Hub informations
       artifacthub.io/links: |
         - name: secrets-store-csi-driver
@@ -2958,4 +2997,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2021-11-03T17:10:53.145417763Z"
+generated: "2021-11-03T17:20:49.293256679Z"
