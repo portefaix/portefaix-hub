@@ -2233,6 +2233,45 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Do not set default resources
+      artifacthub.io/containsSecurityUpdates: "true"
+      artifacthub.io/images: |
+        - name: secrets-store-csi-driver-provider-aws
+          image: public.ecr.aws/aws-secrets-manager/secrets-store-csi-driver-provider-aws:1.0.r2-2021.08.13.20.34-linux-amd64
+      artifacthub.io/links: |
+        - name: secrets-store-csi-driver
+          url: https://github.com/kubernetes-sigs/secrets-store-csi-driver
+        - name: secrets-store-csi-driver-provider-aws
+          url: https://github.com/aws/secrets-store-csi-driver-provider-aws
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 1.0.r2
+    created: "2021-11-03T17:26:41.547806401Z"
+    description: A Helm chart for AWS Secret Manager Provider for Secret Store CSI
+      Driver
+    digest: db4ea481ce173a72bfc7c7d4c3bec52fb941a6aa4c47a08902eb14da28310270
+    home: https://charts.portefaix.xyz
+    keywords:
+    - secrets-store-csi-driver-provider-aws
+    - secrets-store-csi-driver
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: secrets-store-csi-driver-provider-aws
+    sources:
+    - https://github.com/portefaix/portefaix-hub/tree/master/charts/secrets-store-csi-driver-provider-aws
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/secrets-store-csi-driver-provider-aws-0.3.0/secrets-store-csi-driver-provider-aws-0.3.0.tgz
+    version: 0.3.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Set default resources (requests and limits)
       artifacthub.io/containsSecurityUpdates: "true"
       artifacthub.io/images: |
@@ -2997,4 +3036,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2021-11-03T17:21:15.393610479Z"
+generated: "2021-11-03T17:26:41.548025902Z"
