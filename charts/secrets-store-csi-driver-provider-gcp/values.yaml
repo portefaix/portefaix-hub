@@ -18,7 +18,7 @@ namespace: kube-system
 
 image:
   repository: us-docker.pkg.dev/secretmanager-csi/secrets-store-csi-driver-provider-gcp/plugin
-  tag: v0.4.0
+  tag: v1.0.0
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
