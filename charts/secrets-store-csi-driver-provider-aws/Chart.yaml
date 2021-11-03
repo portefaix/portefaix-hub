@@ -42,7 +42,12 @@ maintainers:
 # https://artifacthub.io/docs/topics/repositories/
 annotations:
   artifacthub.io/changes: |
-    - Artifact Hub informations
+    - kind: changed
+      description: Set default resources (requests and limits)
+  artifacthub.io/containsSecurityUpdates: "true"
+  artifacthub.io/images: |
+    - name: secrets-store-csi-driver-provider-aws
+      image: public.ecr.aws/aws-secrets-manager/secrets-store-csi-driver-provider-aws:1.0.r2-2021.08.13.20.34-linux-amd64
   artifacthub.io/links: |
     - name: secrets-store-csi-driver
       url: https://github.com/kubernetes-sigs/secrets-store-csi-driver
