@@ -74,6 +74,7 @@ Welcome to the Portefaix Hub.
 [promtail-mixin](https://artifacthub.io/packages/helm/portefaix-hub/promtail-mixin)|0.3.0|A Helm chart for Promtail Mixin|application|2021-04-27T07:12:06.045402851Z
 [promtail-mixin](https://artifacthub.io/packages/helm/portefaix-hub/promtail-mixin)|0.2.0|A Helm chart for Promtail Mixin|application|2021-03-13T17:53:16.751951566Z
 [promtail-mixin](https://artifacthub.io/packages/helm/portefaix-hub/promtail-mixin)|0.1.0|A Helm chart for Promtail Mixin|application|2021-03-06T17:29:21.283395175Z
+[secrets-store-csi-driver-provider-aws](https://artifacthub.io/packages/helm/portefaix-hub/secrets-store-csi-driver-provider-aws)|0.2.0|A Helm chart for AWS Secret Manager Provider for Secret Store CSI Driver|application|2021-11-03T17:10:37.832567583Z
 [secrets-store-csi-driver-provider-aws](https://artifacthub.io/packages/helm/portefaix-hub/secrets-store-csi-driver-provider-aws)|0.1.0|A Helm chart for AWS Secret Manager Provider for Secret Store CSI Driver|application|2021-10-16T13:30:30.708581848Z
 [secrets-store-csi-driver-provider-gcp](https://artifacthub.io/packages/helm/portefaix-hub/secrets-store-csi-driver-provider-gcp)|0.3.0|A Helm chart for Google Secret Manager Provider for Secret Store CSI Driver|application|2021-06-24T13:11:42.309033683Z
 [secrets-store-csi-driver-provider-gcp](https://artifacthub.io/packages/helm/portefaix-hub/secrets-store-csi-driver-provider-gcp)|0.2.0|A Helm chart for Google Secret Manager Provider for Secret Store CSI Driver|application|2021-05-25T12:35:23.361195225Z
