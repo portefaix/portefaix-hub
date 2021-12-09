@@ -53,6 +53,9 @@ app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 app.kubernetes.io/component: crossplane-factory
 app.kubernetes.io/part-of: {{ include "crossplane-aws-factory.name" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- if .Values.additionalLabels }}
+{{ toYaml .Values.additionalLabels }}
+{{- end }}
 {{- end }}
 
 {{/*

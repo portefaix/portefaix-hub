@@ -4,7 +4,7 @@
 
 # -- Additional labels to add to all resources
 additionalLabels: {}
-  # app: crossplane
+  # app: crossplane-aws-factory
 
 # -- Additional annotations to add to all resources
 additionalAnnotations: {}
