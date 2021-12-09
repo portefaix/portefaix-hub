@@ -1,0 +1,125 @@
+---
+apiVersion: eks.aws.crossplane.io/v1beta1
+kind: Cluster
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    region: {{ .Values.aws.region }}
+    roleArnRef:
+      name: {{ include "crossplane-aws-factory.name" . }}-eks-cluster
+    resourcesVpcConfig:
+      endpointPrivateAccess: true
+      endpointPublicAccess: true
+      publicAccessCidrs :
+        {{- range .Values.aws.eks.cluster.publicAccessCidrs }}
+        - {{ . | quote }}
+        {{- end }}
+      subnetIdRefs:
+        {{- range .Values.aws.subnets.az }}
+        - name: {{ include "crossplane-aws-factory.name" $ }}-{{ .name }}
+        {{- end }}
+      securityGroupIdRefs:
+        - name: {{ include "crossplane-aws-factory.name" . }}-eks
+    logging:
+      clusterLogging:
+        {{- toYaml .Values.aws.eks.cluster.logging | nindent 6 }}
+    tags:
+      Name: {{ include "crossplane-aws-factory.name" . }}
+      Made-by: crossplane
+      {{- range $k, $v := .Values.aws.eks.cluster.tags }}
+      {{ $k }}: {{ $v -}}
+      {{ end }}
+    version: {{ .Values.aws.eks.version | quote  }}
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-aws-factory.name" . }}-eks
+    namespace: {{ .Values.crossplane.namespace }}
+  providerConfigRef:
+    name: {{ include "crossplane-aws-factory.name" . }}
+---
+apiVersion: eks.aws.crossplane.io/v1alpha1
+kind: NodeGroup
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}-core
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    region: {{ .Values.aws.region }}
+    clusterNameRef:
+      name: {{ include "crossplane-aws-factory.name" . }}
+    subnetRefs:
+      - name: {{ include "crossplane-aws-factory.name" . }}-1
+    nodeRoleRef:
+      name: {{ include "crossplane-aws-factory.name" . }}-node
+    diskSize: {{ .Values.aws.eks.nodegroups.core.diskSize }}
+    instanceTypes: 
+    {{- toYaml .Values.aws.eks.nodegroups.core.instanceTypes | nindent 4 }}
+    labels:
+      {{- range .Values.aws.eks.nodegroups.core.labels }}
+      - {{ . | quote }}
+      {{- end }} 
+    tags:
+      Name: {{ include "crossplane-aws-factory.name" . }}
+      Made-by: crossplane
+      k8s.io/cluster-autoscaler/{{ include "crossplane-aws-factory.name" . }}: owned
+      k8s.io/cluster-autoscaler/enabled: "TRUE"
+      {{- range $k, $v := .Values.aws.eks.nodegroups.core.tags }}
+      {{ $k }}: {{ $v -}}
+      {{ end }}
+    scalingConfig:
+      {{- toYaml .Values.aws.eks.nodegroups.core.scalingConfig | nindent 6 }}
+  providerConfigRef:
+    name: {{ include "crossplane-aws-factory.name" . }}
+---
+apiVersion: eks.aws.crossplane.io/v1alpha1
+kind: NodeGroup
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}-ops
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    region: {{ .Values.aws.region }}
+    clusterNameRef:
+      name: {{ include "crossplane-aws-factory.name" . }}
+    subnetRefs:
+      - name: {{ include "crossplane-aws-factory.name" . }}-1
+    nodeRoleRef:
+      name: {{ include "crossplane-aws-factory.name" . }}-node
+    diskSize: {{ .Values.aws.eks.nodegroups.ops.diskSize }}
+    instanceTypes: 
+    {{- toYaml .Values.aws.eks.nodegroups.ops.instanceTypes | nindent 4 }}
+    labels:
+      {{- range .Values.aws.eks.nodegroups.ops.labels }}
+      - {{ . | quote }}
+      {{- end }} 
+    tags:
+      Name: {{ include "crossplane-aws-factory.name" . }}
+      Made-by: crossplane
+      k8s.io/cluster-autoscaler/{{ include "crossplane-aws-factory.name" . }}: owned
+      k8s.io/cluster-autoscaler/enabled: "TRUE"
+      {{- range $k, $v := .Values.aws.eks.nodegroups.ops.tags }}
+      {{ $k }}: {{ $v -}}
+      {{ end }}
+    scalingConfig:
+      {{- toYaml .Values.aws.eks.nodegroups.ops.scalingConfig | nindent 6 }}
+  providerConfigRef:
+    name: {{ include "crossplane-aws-factory.name" . }}

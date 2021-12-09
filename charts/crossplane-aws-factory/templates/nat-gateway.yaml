@@ -1,0 +1,63 @@
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Address
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}-nat-gw
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    region: {{ .Values.aws.region }}
+    domain: "vpc"
+    tags:
+      - key: Name
+        value: portefaix-krm
+      - key: Made-by
+        value: crossplane
+      {{- range $k, $v := .Values.aws.natgateway.tags }}
+      - key: {{ $k }}
+        value: {{ $v -}}
+      {{ end }}
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-aws-factory.name" . }}-address-nat-gw
+    namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  providerConfigRef:
+    name: crossplane-aws
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: NATGateway
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    region: {{ .Values.aws.region }}
+    allocationIdRef:
+      name: {{ include "crossplane-aws-factory.name" . }}-nat-gw
+    subnetIdRef:
+      name: {{ include "crossplane-aws-factory.name" . }}-b
+    tags:
+      - key: Name
+        value: portefaix-krm
+      - key: Made-by
+        value: crossplane
+      {{- range $k, $v := .Values.aws.natgateway.tags }}
+      - key: {{ $k }}
+        value: {{ $v -}}
+      {{ end }}
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-aws-factory.name" . }}-nat-gw
+    namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  providerConfigRef:
+    name: crossplane-aws

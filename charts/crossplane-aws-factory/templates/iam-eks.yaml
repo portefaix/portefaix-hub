@@ -1,0 +1,182 @@
+---
+apiVersion: identity.aws.crossplane.io/v1beta1
+kind: IAMRole
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}-cluster
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    description: "IAM ROLE EKS for {{ include "crossplane-aws-factory.fullname" . }} cluster"
+    assumeRolePolicyDocument: |
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Principal": {
+                    "Service": [
+                        "ec2.amazonaws.com",
+                        "eks.amazonaws.com",
+                        "eks-fargate-pods.amazonaws.com",
+                        "lambda.amazonaws.com"
+                    ]
+                },
+                "Action": [
+                    "sts:AssumeRole"
+                ]
+            }
+        ]
+      }
+    tags:
+      - key: Name
+        value: portefaix-krm-aws-eks-cluster
+      - key: Service
+        value: kubernetes
+      - key: Made-by
+        value: crossplane
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: {{ include "crossplane-aws-factory.name" . }}
+---
+apiVersion: identity.aws.crossplane.io/v1beta1
+kind: IAMRole
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}-eks-node
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    description: "IAM ROLE NodeGroup for {{ include "crossplane-aws-factory.fullname" . }} cluster"
+    assumeRolePolicyDocument: |
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Principal": {
+                    "Service": [
+                        "ec2.amazonaws.com"
+                    ]
+                },
+                "Action": [
+                    "sts:AssumeRole"
+                ]
+            }
+        ]
+      }
+    tags:
+      - key: Name
+        value: {{ include "crossplane-aws-factory.name" . }}-eks-node
+      - key: Service
+        value: kubernetes
+      - key: Made-by
+        value: crossplane
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: {{ include "crossplane-aws-factory.name" . }}
+---
+apiVersion: identity.aws.crossplane.io/v1beta1
+kind: IAMRolePolicyAttachment
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}-controlplane
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    policyArn: arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+    roleNameRef:
+      name: {{ include "crossplane-aws-factory.name" . }}-eks-cluster
+  providerConfigRef:
+    name: {{ include "crossplane-aws-factory.name" . }}
+---
+apiVersion: identity.aws.crossplane.io/v1beta1
+kind: IAMRolePolicyAttachment
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}-service
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    policyArn: arn:aws:iam::aws:policy/AmazonEKSServicePolicy
+    roleNameRef:
+      name: {{ include "crossplane-aws-factory.name" . }}-eks-cluster
+  providerConfigRef:
+    name: {{ include "crossplane-aws-factory.name" . }}
+---
+apiVersion: identity.aws.crossplane.io/v1beta1
+kind: IAMRolePolicyAttachment
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}-worker
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    policyArn: arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+    roleNameRef:
+      name: {{ include "crossplane-aws-factory.name" . }}-node
+  providerConfigRef:
+    name: {{ include "crossplane-aws-factory.name" . }}
+---
+apiVersion: identity.aws.crossplane.io/v1beta1
+kind: IAMRolePolicyAttachment
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}-cni
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    policyArn: arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+    roleNameRef:
+      name: {{ include "crossplane-aws-factory.name" . }}-node
+  providerConfigRef:
+    name: {{ include "crossplane-aws-factory.name" . }}
+---
+apiVersion: identity.aws.crossplane.io/v1beta1
+kind: IAMRolePolicyAttachment
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}-registry
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    policyArn: arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+    roleNameRef:
+      name: {{ include "crossplane-aws-factory.name" . }}-node
+  providerConfigRef:
+    name: {{ include "crossplane-aws-factory.name" . }}

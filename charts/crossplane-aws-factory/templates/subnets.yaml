@@ -1,0 +1,42 @@
+{{- $baseName := include "crossplane-aws-factory.name" $ }}
+{{- $region := .Values.region }}
+{{- $namespace := include "crossplane-aws-factory.namespace" . }}
+{{ range .Values.aws.subnets.az }}
+{{- $subnetName := printf "%s-%s" $baseName .name -}}
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Subnet
+metadata:
+  name: {{ $subnetName }}
+  namespace: {{ $namespace }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" $ | nindent 4 }}
+{{- with $.Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    region: {{ $region }}
+    tags:
+      - key: Name
+        value: {{ $subnetName }}
+      - key: Made-by
+        value: crossplane
+      - key: kubernetes.io/cluster/{{ include "crossplane-aws-factory.name" $ }}
+        value: shared
+      {{- range $k, $v := .tags }}
+      - key: {{ $k }}
+        value: {{ $v -}}
+      {{ end }}
+    availabilityZone: {{ $region }}{{ .name }}
+    cidrBlock: {{ .cidrBlock }}
+    vpcIdRef:
+      name: {{ include "crossplane-aws-factory.name" $ }}
+    mapPublicIPOnLaunch: true
+  writeConnectionSecretToRef:
+    name: {{ $subnetName }}
+    namespace: {{ $namespace }}
+  providerConfigRef:
+    name: {{ include "crossplane-aws-factory.name" $ }}
+{{ end }}

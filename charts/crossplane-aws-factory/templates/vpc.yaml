@@ -1,0 +1,30 @@
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: VPC
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    region: {{ .Values.aws.region }}
+    tags:
+      - key: Name
+        value: {{ include "crossplane-aws-factory.name" . }}
+      - key: Made-by
+        value: crossplane
+      {{- range $k, $v := .Values.aws.vpc.tags }}
+      - key: {{ $k }}
+        value: {{ $v -}}
+      {{ end }}
+    cidrBlock: {{ .Values.aws.vpc.cidr }}
+    enableDnsSupport: true
+    enableDnsHostNames: true
+    instanceTenancy: default
+  providerConfigRef:
+    name: {{ include "crossplane-aws-factory.name" . }}
