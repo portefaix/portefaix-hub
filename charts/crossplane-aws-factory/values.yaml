@@ -42,6 +42,15 @@ aws:
         Service: kubernetes
     # -- map public IP on launch
     mapPublicIPOnLaunch: true
+  natgateway:
+    tags:
+      Service: nat-gateway
+  internetgateway:
+    tags:
+      Service: internet-gateway
+  routetable:
+    tags:
+      Service: route-table
   eks:
     # -- The desired Kubernetes version for your cluster
     version: 1.21

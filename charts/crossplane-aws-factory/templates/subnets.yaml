@@ -34,6 +34,9 @@ spec:
     vpcIdRef:
       name: {{ include "crossplane-aws-factory.name" $ }}
     mapPublicIPOnLaunch: true
+  writeConnectionSecretToRef:
+    name: {{ $subnetName }}
+    namespace: {{ $namespace }}
   providerConfigRef:
     name: {{ include "crossplane-aws-factory.name" $ }}
 {{ end }}

@@ -36,7 +36,10 @@ An AWS Factory using Crossplane
 | aws.eks.nodegroups.ops.scalingConfig.minSize | int | `1` | The minimum number of worker nodes that the Ops managed node group can scale in to |
 | aws.eks.nodegroups.ops.tags | object | `{"Role":"Node","Service":"kubernetes"}` | The metadata to apply to the Ops node group to assist with categorization and organization |
 | aws.eks.version | float | `1.21` | The desired Kubernetes version for your cluster |
+| aws.internetgateway.tags.Service | string | `"internet-gateway"` |  |
+| aws.natgateway.tags.Service | string | `"nat-gateway"` |  |
 | aws.region | string | `"eu-west-3"` | The region you'd like your infrastructure to be created in |
+| aws.routetable.tags.Service | string | `"route-table"` |  |
 | aws.subnets.az | list | `[{"cidrBlock":"10.1.1.0/24","name":"a","tags":{"Service":"kubernetes"}},{"cidrBlock":"10.1.2.0/24","name":"b","tags":{"Service":"kubernetes"}},{"cidrBlock":"10.0.2.0/24","name":"c","tags":{"Service":"kubernetes"}}]` | Avaibility zones with "name" and "cidrBlock" |
 | aws.subnets.mapPublicIPOnLaunch | bool | `true` | map public IP on launch |
 | aws.vpc.cidr | string | `"10.1.0.0/16"` | The IPv4 network range for the VPC, in CIDR notation |

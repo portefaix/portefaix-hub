@@ -1,0 +1,62 @@
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: InternetGateway
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    region: {{ .Values.aws.region }}
+    vpcIdRef:
+      name: {{ include "crossplane-aws-factory.name" . }}
+    tags:
+      - key: Name
+        value: portefaix-krm
+      - key: Made-by
+        value: crossplane
+      {{- range $k, $v := .Values.aws.internetgateway.tags }}
+      - key: {{ $k }}
+        value: {{ $v -}}
+      {{ end }}
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-aws-factory.name" . }}-igw
+    namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  providerConfigRef:
+    name: crossplane-aws
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: RouteTable
+metadata:
+  name: {{ include "crossplane-aws-factory.name" . }}
+spec:
+  forProvider:
+    region: {{ .Values.aws.region }}
+    routes:
+      - destinationCidrBlock: 0.0.0.0/0
+        gatewayIdRef:
+          name: {{ include "crossplane-aws-factory.name" . }}
+    associations:
+      - subnetIdRef:
+          name: {{ include "crossplane-aws-factory.name" . }}-a
+    vpcIdRef:
+      name: {{ include "crossplane-aws-factory.name" . }}
+    tags:
+      - key: Name
+        value: portefaix-krm
+      - key: Made-by
+        value: crossplane
+      {{- range $k, $v := .Values.aws.routetable.tags }}
+      - key: {{ $k }}
+        value: {{ $v -}}
+      {{ end }}
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-aws-factory.name" . }}-route-table
+    namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  providerConfigRef:
+    name: crossplane-aws
