@@ -3,6 +3,13 @@ apiVersion: ec2.aws.crossplane.io/v1beta1
 kind: Address
 metadata:
   name: {{ include "crossplane-aws-factory.name" . }}-nat-gw
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
 spec:
   forProvider:
     region: {{ .Values.aws.region }}
@@ -26,6 +33,13 @@ apiVersion: ec2.aws.crossplane.io/v1beta1
 kind: NATGateway
 metadata:
   name: {{ include "crossplane-aws-factory.name" . }}
+  namespace: {{ template "crossplane-aws-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
 spec:
   forProvider:
     region: {{ .Values.aws.region }}

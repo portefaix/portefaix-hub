@@ -1,6 +1,6 @@
 # crossplane-aws-factory
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.4.0](https://img.shields.io/badge/AppVersion-1.4.0-informational?style=flat-square)
+![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.0](https://img.shields.io/badge/AppVersion-1.5.0-informational?style=flat-square)
 
 An AWS Factory using Crossplane
 
@@ -17,7 +17,7 @@ An AWS Factory using Crossplane
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | additionalAnnotations | object | `{}` | Additional annotations to add to all resources |
-| additionalLabels | object | `{}` | Additional labels to add to all resources |
+| additionalLabels | object | `{"crossplane.io/provider":"aws-v0.19.0","crossplane.io/version":"v0.15.0"}` | Additional labels to add to all resources |
 | aws.eks.cluster.logging | list | `[{"enabled":false,"types":["api","audit","authenticator","controllerManager","scheduler"]}]` | The cluster control plane logging configuration for your cluster. |
 | aws.eks.cluster.publicAccessCidrs | list | `["0.0.0.0/0"]` | The CIDR blocks that are allowed access to your cluster's public Kubernetes API server endpoint |
 | aws.eks.cluster.tags | object | `{"Role":"Cluster","Service":"kubernetes"}` | The metadata to apply to the cluster to assist with categorization and organization |
