@@ -8,6 +8,8 @@ Welcome to the Portefaix Hub.
 |:--|:-:|:--|:--|:--:|:--|
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.3.0|A Helm chart for Alertmanager Mixin|application|2021-08-31T15:39:08.103793493Z
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.1.0|A Helm chart for Alertmanager Mixin|application|2021-06-18T16:36:49.277772553Z
+[crossplane-aws-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-aws-factory)|0.1.1|An AWS Factory using Crossplane|application|2021-12-10T11:49:36.977591774Z
+[crossplane-gcp-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-gcp-factory)|0.1.0|A Google Cloud Factory using Crossplane|application|2021-12-10T11:49:37.101949861Z
 [fluxcd-mixin](https://artifacthub.io/packages/helm/portefaix-hub/fluxcd-mixin)|0.1.0|A Helm chart for FluxCD Mixin|application|2021-08-31T16:08:00.601057289Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.8.0|A Helm chart for Grafana Mixin|application|2021-08-31T16:20:00.312256671Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.7.0|A Helm chart for Grafana Mixin|application|2021-06-23T16:58:19.263808089Z
@@ -74,6 +76,7 @@ Welcome to the Portefaix Hub.
 [promtail-mixin](https://artifacthub.io/packages/helm/portefaix-hub/promtail-mixin)|0.3.0|A Helm chart for Promtail Mixin|application|2021-04-27T07:12:06.045402851Z
 [promtail-mixin](https://artifacthub.io/packages/helm/portefaix-hub/promtail-mixin)|0.2.0|A Helm chart for Promtail Mixin|application|2021-03-13T17:53:16.751951566Z
 [promtail-mixin](https://artifacthub.io/packages/helm/portefaix-hub/promtail-mixin)|0.1.0|A Helm chart for Promtail Mixin|application|2021-03-06T17:29:21.283395175Z
+[secrets-store-csi-driver-provider-aws](https://artifacthub.io/packages/helm/portefaix-hub/secrets-store-csi-driver-provider-aws)|0.3.1|A Helm chart for AWS Secret Manager Provider for Secret Store CSI Driver|application|2021-12-10T11:49:37.226325947Z
 [secrets-store-csi-driver-provider-aws](https://artifacthub.io/packages/helm/portefaix-hub/secrets-store-csi-driver-provider-aws)|0.3.0|A Helm chart for AWS Secret Manager Provider for Secret Store CSI Driver|application|2021-11-03T17:26:41.547806401Z
 [secrets-store-csi-driver-provider-aws](https://artifacthub.io/packages/helm/portefaix-hub/secrets-store-csi-driver-provider-aws)|0.2.0|A Helm chart for AWS Secret Manager Provider for Secret Store CSI Driver|application|2021-11-03T17:10:37.832567583Z
 [secrets-store-csi-driver-provider-aws](https://artifacthub.io/packages/helm/portefaix-hub/secrets-store-csi-driver-provider-aws)|0.1.0|A Helm chart for AWS Secret Manager Provider for Secret Store CSI Driver|application|2021-10-16T13:30:30.708581848Z
