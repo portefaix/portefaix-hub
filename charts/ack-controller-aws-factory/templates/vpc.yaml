@@ -1,0 +1,27 @@
+---
+apiVersion: ec2.services.k8s.aws/v1alpha1
+kind: VPC
+metadata:
+  name: {{ include "ack-controller-aws-factory.name" . }}
+  namespace: {{ template "ack-controller-aws-factory.namespace" . }}
+  labels:
+    {{- include "ack-controller-aws-factory.labels" . | nindent 4 }}
+  annotations:
+    services.k8s.aws/region: {{ .Values.aws.region }}
+    {{- with .Values.additionalAnnotations }}
+    {{ toYaml . | indent 4 }}
+    {{- end }}
+spec:
+  cidrBlock: {{ .Values.aws.vpc.cidr }}
+  amazonProvidedIPv6CIDRBlock: boolean
+  tagSpecifications:
+  - resourceType: vpc
+    tags:
+    - key: Name
+      value: {{ include "ack-controller-aws-factory.name" . }}
+    - key: Made-by
+      value: aws-controller-kubernetes
+    {{- range $k, $v := .Values.aws.vpc.tags }}
+    - key: {{ $k }}
+      value: {{ $v -}}
+    {{ end }}

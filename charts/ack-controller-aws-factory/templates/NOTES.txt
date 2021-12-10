@@ -1,0 +1,4 @@
+{{ $.Chart.Name }} has been installed. Check its status by running:
+  kubectl --namespace {{ template "ack-controller-aws-factory.namespace" . }} get all -l "app.kubernetes.io/name={{ include "ack-controller-aws-factory.name" . }}"
+
+Visit https://github.com/nlamirault/portefaix-hub/charts/ack-controller-aws-factory.
