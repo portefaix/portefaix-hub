@@ -18,8 +18,8 @@ A Google Cloud Factory using Crossplane
 |-----|------|---------|-------------|
 | additionalAnnotations | object | `{}` | Additional annotations to add to all resources |
 | additionalLabels | object | `{"crossplane.io/provider":"gcp-v0.19.0","crossplane.io/version":"v0.15.0"}` | Additional labels to add to all resources |
-| crossplane.gcp.version | string | `"v0.19.0"` | The Crossplane AWS provider version |
-| crossplane.namespace | string | `"crossplane-system"` |  |
+| crossplane.gcp.version | string | `"v0.19.0"` | The Crossplane GCP provider version |
+| crossplane.namespace | string | `"crossplane-system"` | Namespace which contains the Crossplane controller |
 | gcp.buckets[0].location | string | `"EU"` |  |
 | gcp.buckets[0].name | string | `"charts"` |  |
 | gcp.buckets[0].service | string | `"Helm"` |  |

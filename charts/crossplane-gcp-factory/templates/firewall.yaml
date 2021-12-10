@@ -17,10 +17,10 @@ metadata:
 {{- end }}
 spec:
   forProvider:
-    description: Made by Crossplane"
-    {{- if .allowedd }}
+    description: "Firewall rule {{ .name }}. Made by Crossplane"
+    {{- with .allowed }}
     allowed:
-    {{ toYaml .allowed }}
+    {{- toYaml . | nindent 4 }}
     {{- end }}
     sourceRanges: {{ .sourceRanges }}
     networkRef:

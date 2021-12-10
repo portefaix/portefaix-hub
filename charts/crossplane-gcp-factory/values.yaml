@@ -12,9 +12,10 @@ additionalAnnotations: {}
   # monitoring: portefaix
 
 crossplane:
+  # -- Namespace which contains the Crossplane controller
   namespace: crossplane-system
   gcp:
-    # -- The Crossplane AWS provider version
+    # -- The Crossplane GCP provider version
     version: v0.19.0
 
 gcp:
@@ -142,10 +143,10 @@ gcp:
       dataDiskSizeGb: 20
 
   firewall:
-  - name: http-https
-    allowed: 
-      - IPProtocol: tcp
-        ports:
-          - "80"
-          - "443"
-    sourceRanges: ["0.0.0.0/0"]
+    - name: http-https
+      allowed: 
+        - IPProtocol: tcp
+          ports:
+            - "80"
+            - "443"
+      sourceRanges: ["0.0.0.0/0"]
