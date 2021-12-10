@@ -114,6 +114,38 @@ entries:
           email: nicolas.lamirault@gmail.com
     apiVersion: v2
     appVersion: 1.5.0
+    created: "2021-12-10T14:23:04.795849864Z"
+    description: A Google Cloud Factory using Crossplane
+    digest: e724e536f025bcec2f339542c07d3561a0f3b1d58bb703e3a6d34edad8876076
+    home: https://github.com/portefaix/portefaix-hub/charts/crossplane-gcp-factory
+    icon: https://crossplane.io/images/favicon_192x192.png
+    keywords:
+    - crossplane
+    - cloud
+    - infrastructure
+    - gcp
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: crossplane-gcp-factory
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/crossplane-gcp-factory-0.2.0/crossplane-gcp-factory-0.2.0.tgz
+    version: 0.2.0
+  - annotations:
+      artifacthub.io/changes: |
+        - Google Cloud Factory deployment
+      artifacthub.io/links: |
+        - name: crossplane
+          url: https://crossplane.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 1.5.0
     created: "2021-12-10T11:49:37.101949861Z"
     description: A Google Cloud Factory using Crossplane
     digest: 672813c252a49a92a81c7af734164e61884d57ccb59a6293e1590f50a51e9051
@@ -3141,4 +3173,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2021-12-10T11:49:50.487956429Z"
+generated: "2021-12-10T14:23:04.796180164Z"
