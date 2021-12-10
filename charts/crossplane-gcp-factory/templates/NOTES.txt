@@ -1,0 +1,4 @@
+{{ $.Chart.Name }} has been installed. Check its status by running:
+  kubectl --namespace {{ template "crossplane-gcp-factory.namespace" . }} get cluster -l "app.kubernetes.io/name={{ include "crossplane-gcp-factory.name" . }}"
+
+Visit https://github.com/nlamirault/portefaix-hub/charts/crossplane-gcp-factory.

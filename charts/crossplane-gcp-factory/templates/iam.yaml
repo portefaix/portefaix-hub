@@ -1,0 +1,56 @@
+{{- $baseName := include "crossplane-gcp-factory.name" $ }}
+{{- $project_id := .Values.gcp.project_id }}
+{{- $namespace := include "crossplane-gcp-factory.namespace" . }}
+{{ range .Values.gcp.service_accounts }}
+{{- $saName := printf "%s-%s" $baseName .name -}}
+---
+apiVersion: iam.gcp.crossplane.io/v1alpha1
+kind: ServiceAccount
+metadata:
+  name: {{ $saName }}
+  namespace: {{ $namespace }}
+  labels:
+    {{- include "crossplane-gcp-factory.labels" $ | nindent 4 }}
+{{- with $.Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  properties:
+  forProvider:
+    displayName: "{{ $saName }}-{{ $namespace }}"
+    description: "Made by Crossplane"
+  deletionPolicy: Delete
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-gcp-factory.name" $ }}
+    namespace: {{ $namespace }}
+  providerConfigRef:
+    name: {{ include "crossplane-gcp-factory.name" $ }}
+
+---
+apiVersion: iam.gcp.crossplane.io/v1alpha1
+kind: ServiceAccountPolicy
+metadata:
+  name: {{ $saName }}
+  namespace: {{ $namespace }}
+  labels:
+    {{- include "crossplane-gcp-factory.labels" $ | nindent 4 }}
+{{- with $.Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    serviceAccountRef:
+      name: {{ $saName }}
+    policy:
+      bindings:
+        - role: roles/iam.workloadIdentityUser
+          members:
+            - serviceAccount:{{ $project_id }}.svc.id.goog[{{ .namespace }}/{{ $saName }}]
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-gcp-factory.name" $ }}
+    namespace: {{ $namespace }}
+  providerConfigRef:
+    name: {{ include "crossplane-gcp-factory.name" $ }}
+{{ end }}

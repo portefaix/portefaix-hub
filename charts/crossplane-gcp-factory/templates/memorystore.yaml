@@ -1,0 +1,39 @@
+{{- $baseName := include "crossplane-gcp-factory.name" $ }}
+{{- $namespace := include "crossplane-gcp-factory.namespace" . }}
+{{ range .Values.gcp.cloudsql }}
+{{- $memName := printf "%s-%s" $baseName .name -}}
+---
+apiVersion: cache.gcp.crossplane.io/v1beta1
+kind: CloudMemorystoreInstance
+metadata:
+  name: {{ $memName }}
+  namespace: {{ $namespace }}
+  labels:
+    {{- include "crossplane-gcp-factory.labels" $ | nindent 4 }}
+{{- with $.Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    displayName: {{ include "crossplane-gcp-factory.name" $ }}-{{ .name }}
+    tier: {{ .tier }}
+    region: {{ .region }}
+    authorizedNetwork: {{ include "crossplane-gcp-factory.name" $ }}
+    memorySizeGb: {{ .memorySizeGb }}
+    {{- if .connectMode }}
+    connectMode: {{ .connectMode }}
+    {{- end }}
+    {{- if .redisVersion }}
+    redisVersion: {{ .redisVersion }}
+    {{- end }}
+    labels:
+      Service: MemoryStore
+      Made-By: Crossplane
+  deletionPolicy: Delete
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-gcp-factory.name" $ }}-memorystore-{{ .name }}
+    namespace: {{ $namespace }}
+  providerConfigRef:
+    name: {{ include "crossplane-gcp-factory.name" $ }}
+{{ end }}

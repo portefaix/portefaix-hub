@@ -1,0 +1,152 @@
+# Default values for crossplane-aws-factory.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- Additional labels to add to all resources
+additionalLabels:
+  crossplane.io/version: v0.15.0
+  crossplane.io/provider: gcp-v0.19.0
+
+# -- Additional annotations to add to all resources
+additionalAnnotations: {}
+  # monitoring: portefaix
+
+crossplane:
+  # -- Namespace which contains the Crossplane controller
+  namespace: crossplane-system
+  gcp:
+    # -- The Crossplane GCP provider version
+    version: v0.19.0
+
+gcp:
+  # -- The Google Cloud project ID
+  project_id: crossplane-gcp-test
+  # -- The Google Cloud region
+  region: europe-west1
+
+  # network:
+
+  subnetwork:
+    ipCidrRange: 10.11.0.0/20
+    secondaryIpRanges:
+      pods: 10.50.32.0/20
+      services: 10.50.16.0/20
+
+  gke:
+    location: europe-west1-c
+    releaseChannel: REGULAR
+    addonsConfig:
+      cloudRunConfig:
+        disabled: true
+        loadBalancerType: LOAD_BALANCER_TYPE_UNSPECIFIED
+      configConnectorConfig:
+        enabled: false
+      dnsCacheConfig:
+        enabled: true
+      gcePersistentDiskCsiDriverConfig:
+        enabled: true
+      horizontalPodAutoscaling:
+        disabled: true
+      httpLoadBalancing:
+        disabled: true
+      kubernetesDashboard:
+        disabled: true
+      networkPolicyConfig:
+        disabled: false
+    autopilot: false
+    binaryAuthorization: false
+    confidentialNodes: false
+    networkConfig:
+      enableIntraNodeVisibility: true
+      datapathProvider: "ADVANCED_DATAPATH"
+    # networkPolicy:
+    #   enabled: true
+    #   provider: CALICO
+    # maintenancePolicy:
+    #   window:
+    #     dailyMaintenanceWindow:
+    nodes:
+      - name: core
+        management:
+          autoRepair: true
+          autoUpgrade: true
+        initialNodeCount: 2
+        autoscaling:
+          enabled: true
+          maxNodeCount: 4
+          minNodeCount: 2
+        machineType: n1-standard-1
+        diskSizeGb: 120
+        diskType: pd-ssd
+        imageType: cos_containerd
+        sandboxConfig:
+          type: gvisor
+        locations:
+          - europe-west1-c
+      - name: ops
+        management:
+          autoRepair: true
+          autoUpgrade: true
+        initialNodeCount: 0
+        autoscaling:
+          enabled: true
+          maxNodeCount: 1
+          minNodeCount: 0
+        machineType: n1-standard-1
+        diskSizeGb: 120
+        diskType: pd-ssd
+        imageType: cos_containerd
+        locations:
+          - europe-west1-c
+
+  service_accounts:
+    # Ex: observability stack:
+    - name: prometheus
+      namespace: monitoring
+    - name: thanos
+      namespace: monitoring
+    - name: grafana
+      namespace: monitoring
+    - name: loki
+      namespace: logging
+    - name: tempo
+      namespace: tracing
+
+  buckets:
+    - name: charts
+      location: EU
+      storageClass: REGIONAL
+      service: Helm
+    - name: thanos
+      location: EU
+      storageClass: REGIONAL
+      service: Thanos
+  buckets_policies:
+    - name: thanos
+      admins:
+        - thanos
+        - prometheus
+
+  memorystore:
+    - name: core
+      region: europe-west1
+      tier: STANDARD_HA
+      memorySizeGb: 1
+      # connectMode: DIRECT_PEERING
+      # redisVersion: REDIS_4_0
+
+  cloudsql:
+    - name: core
+      region: europe-west1
+      databaseVersion: POSTGRES_11
+      tier: db-custom-1-3840
+      dataDiskSizeGb: 20
+
+  firewall:
+    - name: http-https
+      allowed:
+        - IPProtocol: tcp
+          ports:
+            - "80"
+            - "443"
+      sourceRanges: ["0.0.0.0/0"]

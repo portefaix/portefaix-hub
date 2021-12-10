@@ -1,0 +1,20 @@
+---
+apiVersion: gcp.crossplane.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: {{ include "crossplane-gcp-factory.name" . }}
+  namespace: {{ template "crossplane-gcp-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-gcp-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  projectID: {{ .Values.gcp.project_id }}
+  credentials:
+    source: Secret
+    secretRef:
+      namespace: {{ .Values.crossplane.namespace }}
+      name: {{ include "crossplane-gcp-factory.name" . }}-credentials
+      key: credentials

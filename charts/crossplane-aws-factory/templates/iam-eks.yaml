@@ -41,6 +41,9 @@ spec:
       - key: Made-by
         value: crossplane
   deletionPolicy: Delete
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-aws-factory.name" . }}-iam-role-cluster
+    namespace: {{ .Values.crossplane.namespace }}
   providerConfigRef:
     name: {{ include "crossplane-aws-factory.name" . }}
 ---
@@ -83,6 +86,9 @@ spec:
       - key: Made-by
         value: crossplane
   deletionPolicy: Delete
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-aws-factory.name" . }}-iam-role-eks-node
+    namespace: {{ .Values.crossplane.namespace }}
   providerConfigRef:
     name: {{ include "crossplane-aws-factory.name" . }}
 ---
@@ -102,6 +108,9 @@ spec:
     policyArn: arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
     roleNameRef:
       name: {{ include "crossplane-aws-factory.name" . }}-eks-cluster
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-aws-factory.name" . }}-iam-role-eks-cluster
+    namespace: {{ .Values.crossplane.namespace }}
   providerConfigRef:
     name: {{ include "crossplane-aws-factory.name" . }}
 ---
@@ -121,6 +130,9 @@ spec:
     policyArn: arn:aws:iam::aws:policy/AmazonEKSServicePolicy
     roleNameRef:
       name: {{ include "crossplane-aws-factory.name" . }}-eks-cluster
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-aws-factory.name" . }}-iam-role-service
+    namespace: {{ .Values.crossplane.namespace }}
   providerConfigRef:
     name: {{ include "crossplane-aws-factory.name" . }}
 ---
@@ -140,6 +152,9 @@ spec:
     policyArn: arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
     roleNameRef:
       name: {{ include "crossplane-aws-factory.name" . }}-node
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-aws-factory.name" . }}-iam-role-worker
+    namespace: {{ .Values.crossplane.namespace }}
   providerConfigRef:
     name: {{ include "crossplane-aws-factory.name" . }}
 ---
@@ -159,6 +174,9 @@ spec:
     policyArn: arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
     roleNameRef:
       name: {{ include "crossplane-aws-factory.name" . }}-node
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-aws-factory.name" . }}-iam-role-cni
+    namespace: {{ .Values.crossplane.namespace }}
   providerConfigRef:
     name: {{ include "crossplane-aws-factory.name" . }}
 ---
@@ -178,5 +196,8 @@ spec:
     policyArn: arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
     roleNameRef:
       name: {{ include "crossplane-aws-factory.name" . }}-node
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-aws-factory.name" . }}-iam-role-registry
+    namespace: {{ .Values.crossplane.namespace }}
   providerConfigRef:
     name: {{ include "crossplane-aws-factory.name" . }}

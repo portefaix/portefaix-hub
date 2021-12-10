@@ -1,0 +1,31 @@
+{{- $baseName := include "crossplane-gcp-factory.name" $ }}
+{{- $namespace := include "crossplane-gcp-factory.namespace" . }}
+{{ range .Values.gcp.cloudsql }}
+{{- $sqlName := printf "%s-%s" $baseName .name -}}
+---
+apiVersion: database.gcp.crossplane.io/v1beta1
+kind: CloudSQLInstance
+metadata:
+  name: {{ $sqlName }}
+  namespace: {{ $namespace }}
+  labels:
+    {{- include "crossplane-gcp-factory.labels" $ | nindent 4 }}
+{{- with $.Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    databaseVersion: {{ .databaseVersion }}
+    masterInstanceName: {{ include "crossplane-gcp-factory.name" $ }}-{{ .name }}
+    region: {{ .region }}
+    settings:
+      tier: {{ .tier }}
+      dataDiskSizeGb: {{ .dataDiskSizeGb }}
+  deletionPolicy: Delete
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-gcp-factory.name" $ }}-cloudsql-{{ .name }}
+    namespace: {{ $namespace }}
+  providerConfigRef:
+    name: {{ include "crossplane-gcp-factory.name" $ }}
+{{ end }}

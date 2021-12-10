@@ -26,5 +26,8 @@ spec:
     enableDnsSupport: true
     enableDnsHostNames: true
     instanceTenancy: default
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-aws-factory.name" . }}-vpc
+    namespace: {{ .Values.crossplane.namespace }}
   providerConfigRef:
     name: {{ include "crossplane-aws-factory.name" . }}

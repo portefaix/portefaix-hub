@@ -13,18 +13,18 @@
 # limitations under the License.
 
 apiVersion: v2
-name: crossplane-aws-factory
-description: An AWS Factory using Crossplane
-home: https://github.com/portefaix/portefaix-hub/charts/crossplane-aws-factory
+name: crossplane-gcp-factory
+description: A Google Cloud Factory using Crossplane
+home: https://github.com/portefaix/portefaix-hub/charts/crossplane-gcp-factory
 icon: https://crossplane.io/images/favicon_192x192.png
 type: application
-version: 0.1.1
+version: 0.1.0
 appVersion: "1.5.0"
 keywords:
   - crossplane
   - cloud
   - infrastructure
-  - aws
+  - gcp
 maintainers:
   - name: nlamirault
     email: nicolas.lamirault@gmail.com
@@ -32,9 +32,9 @@ maintainers:
 # https://artifacthub.io/docs/topics/repositories/
 annotations:
   artifacthub.io/changes: |
-    - AWS Factory deployment
+    - Google Cloud Factory deployment
   artifacthub.io/links: |
-    - name: kubernetes
+    - name: crossplane
       url: https://crossplane.io
     - name: Portefaix
       url: https://portefaix.xyz

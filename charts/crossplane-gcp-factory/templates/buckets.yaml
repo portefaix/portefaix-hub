@@ -1,0 +1,62 @@
+{{- $baseName := include "crossplane-gcp-factory.name" $ }}
+{{- $namespace := include "crossplane-gcp-factory.namespace" . }}
+{{ range .Values.gcp.buckets }}
+{{- $bucketName := printf "%s-%s" $baseName .name -}}
+---
+apiVersion: storage.gcp.crossplane.io/v1alpha3
+kind: Bucket
+metadata:
+  name: {{ $bucketName }}
+  namespace: {{ $namespace }}
+  labels:
+    {{- include "crossplane-gcp-factory.labels" $ | nindent 4 }}
+{{- with $.Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  location: {{ .location }}
+  storageClass: {{ .storageClass }}
+  labels:
+    Service: {{ .service }}
+    Made-By: Crossplane
+  deletionPolicy: Delete
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-gcp-factory.name" $ }}-bucket-{{ .name }}
+    namespace: {{ $namespace }}
+  providerConfigRef:
+    name: {{ include "crossplane-gcp-factory.name" $ }}
+{{ end }}
+
+
+{{- $baseName := include "crossplane-gcp-factory.name" $ }}
+{{- $namespace := include "crossplane-gcp-factory.namespace" . }}
+{{ range .Values.gcp.buckets_policies }}
+{{- $bucketName := printf "%s-%s" $baseName .name -}}
+---
+apiVersion: storage.gcp.crossplane.io/v1alpha1
+kind: BucketPolicyMember
+metadata:
+  name: {{ $bucketName }}
+  namespace: {{ $namespace }}
+  labels:
+    {{- include "crossplane-gcp-factory.labels" $ | nindent 4 }}
+{{- with $.Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    bucketRef:
+      name: {{ $bucketName }}
+    serviceAccountMemberRef:
+      {{- range .admins }}
+      - name: {{ include "crossplane-gcp-factory.name" $ }}-{{ . }}
+      {{- end }}
+    role: roles/storage.objectAdmin
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-gcp-factory.name" $ }}-bucketpolicy-{{ .name }}
+    namespace: {{ $namespace }}
+  providerConfigRef:
+    name: {{ include "crossplane-gcp-factory.name" $ }}
+{{ end }}

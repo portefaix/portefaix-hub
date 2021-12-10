@@ -1,0 +1,33 @@
+{{- $baseName := include "crossplane-gcp-factory.name" $ }}
+{{- $project_id := .Values.gcp.project_id }}
+{{- $namespace := include "crossplane-gcp-factory.namespace" . }}
+{{ range .Values.gcp.firewall }}
+{{- $fwName := printf "%s-%s" $baseName .name -}}
+---
+apiVersion: compute.gcp.crossplane.io/v1alpha1
+kind: Firewall
+metadata:
+  name: {{ $fwName }}
+  namespace: {{ $namespace }}
+  labels:
+    {{- include "crossplane-gcp-factory.labels" $ | nindent 4 }}
+{{- with $.Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    description: "Firewall rule {{ .name }}. Made by Crossplane"
+    {{- with .allowed }}
+    allowed:
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+    sourceRanges: {{ .sourceRanges }}
+    networkRef:
+      name: {{ include "crossplane-gcp-factory.name" $ }}
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-gcp-factory.name" $ }}
+    namespace: {{ $namespace }}
+  providerConfigRef:
+    name: {{ include "crossplane-gcp-factory.name" $ }}
+{{ end}}
