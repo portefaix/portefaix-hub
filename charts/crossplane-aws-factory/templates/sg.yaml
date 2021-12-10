@@ -28,6 +28,9 @@ spec:
         ipProtocol: tcp
         ipRanges:
           - cidrIp: 0.0.0.0/0
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-aws-factory.name" . }}-sg-ssh
+    namespace: {{ .Values.crossplane.namespace }}
   providerConfigRef:
     name: {{ include "crossplane-aws-factory.name" . }}
 ---
@@ -60,5 +63,8 @@ spec:
         ipProtocol: tcp
         ipRanges:
           - cidrIp: 10.0.0.0/8
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-aws-factory.name" . }}-sg-eks
+    namespace: {{ .Values.crossplane.namespace }}
   providerConfigRef:
     name: {{ include "crossplane-aws-factory.name" . }}

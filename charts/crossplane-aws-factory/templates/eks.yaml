@@ -81,6 +81,9 @@ spec:
       {{ end }}
     scalingConfig:
       {{- toYaml .Values.aws.eks.nodegroups.core.scalingConfig | nindent 6 }}
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-aws-factory.name" . }}-nodegroup-core
+    namespace: {{ .Values.crossplane.namespace }}
   providerConfigRef:
     name: {{ include "crossplane-aws-factory.name" . }}
 ---
@@ -121,5 +124,8 @@ spec:
       {{ end }}
     scalingConfig:
       {{- toYaml .Values.aws.eks.nodegroups.ops.scalingConfig | nindent 6 }}
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-aws-factory.name" . }}-nodegroup-ops
+    namespace: {{ .Values.crossplane.namespace }}
   providerConfigRef:
     name: {{ include "crossplane-aws-factory.name" . }}
