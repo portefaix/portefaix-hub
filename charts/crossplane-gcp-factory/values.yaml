@@ -144,7 +144,7 @@ gcp:
 
   firewall:
     - name: http-https
-      allowed: 
+      allowed:
         - IPProtocol: tcp
           ports:
             - "80"
