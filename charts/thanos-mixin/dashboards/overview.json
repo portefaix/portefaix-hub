@@ -737,7 +737,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "sum by (job, grpc_method, grpc_code) (rate(grpc_server_handled_total{grpc_type=\"unary\"}[$interval]))",
+                     "expr": "sum by (job, grpc_method, grpc_code) (rate(grpc_server_handled_total{grpc_type=\"unary\",job=~\".*thanos-store.*\"}[$interval]))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{job}} {{grpc_method}} {{grpc_code}}",
@@ -823,7 +823,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "sum by (job) (rate(grpc_server_handled_total{grpc_code=~\"Unknown|ResourceExhausted|Internal|Unavailable|DataLoss\",grpc_type=\"unary\"}[$interval])) / sum by (job) (rate(grpc_server_handled_total{grpc_type=\"unary\"}[$interval]))",
+                     "expr": "sum by (job) (rate(grpc_server_handled_total{grpc_code=~\"Unknown|ResourceExhausted|Internal|Unavailable|DataLoss\",grpc_type=\"unary\"}[$interval])) / sum by (job) (rate(grpc_server_handled_total{grpc_type=\"unary\",job=~\".*thanos-store.*\"}[$interval]))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "error",
@@ -907,7 +907,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "histogram_quantile(0.99, sum by (job, le) (rate(grpc_server_handling_seconds_bucket{grpc_type=\"unary\"}[$interval])))",
+                     "expr": "histogram_quantile(0.99, sum by (job, le) (rate(grpc_server_handling_seconds_bucket{grpc_type=\"unary\",job=~\".*thanos-store.*\"}[$interval])))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{job}} P99",
@@ -1094,7 +1094,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "sum by (job, grpc_method, grpc_code) (rate(grpc_server_handled_total{grpc_type=\"unary\"}[$interval]))",
+                     "expr": "sum by (job, grpc_method, grpc_code) (rate(grpc_server_handled_total{grpc_type=\"unary\",job=~\".*thanos-sidecar.*\"}[$interval]))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{job}} {{grpc_method}} {{grpc_code}}",
@@ -1180,7 +1180,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "sum by (job) (rate(grpc_server_handled_total{grpc_code=~\"Unknown|ResourceExhausted|Internal|Unavailable|DataLoss\",grpc_type=\"unary\"}[$interval])) / sum by (job) (rate(grpc_server_handled_total{grpc_type=\"unary\"}[$interval]))",
+                     "expr": "sum by (job) (rate(grpc_server_handled_total{grpc_code=~\"Unknown|ResourceExhausted|Internal|Unavailable|DataLoss\",grpc_type=\"unary\"}[$interval])) / sum by (job) (rate(grpc_server_handled_total{grpc_type=\"unary\",job=~\".*thanos-sidecar.*\"}[$interval]))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "error",
@@ -1264,7 +1264,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "histogram_quantile(0.99, sum by (job, le) (rate(grpc_server_handling_seconds_bucket{grpc_type=\"unary\"}[$interval])))",
+                     "expr": "histogram_quantile(0.99, sum by (job, le) (rate(grpc_server_handling_seconds_bucket{grpc_type=\"unary\",job=~\".*thanos-sidecar.*\"}[$interval])))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{job}} P99",

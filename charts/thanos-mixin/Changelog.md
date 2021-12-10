@@ -1,5 +1,14 @@
 # Change Log
 
+## 0.14.1
+
+**Release date:** 2021-12-10
+
+![AppVersion: 0.22.0](https://img.shields.io/static/v1?label=AppVersion&message=0.22.0&color=success&logo=)
+![Helm: v3](https://img.shields.io/static/v1?label=Helm&message=v3&color=informational&logo=helm)
+
+* Fix sidecar and store graphs in overview dashboard to only match related timeseries
+
 ## 0.14.0 
 
 **Release date:** 2021-09-01
