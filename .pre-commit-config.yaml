@@ -1,4 +1,14 @@
 repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.0.1
+  hooks:
+    - id: trailing-whitespace
+    - id: end-of-file-fixer
+    - id: check-yaml
+      args:
+      - '--allow-multiple-documents'
+      exclude: mkdocs.yml
+    - id: check-added-large-files
 - repo: local
   hooks:
     - id: ct-lint
@@ -11,7 +21,7 @@ repos:
       args:
       - lint
     # - id: check-yaml
-    #   name: "Check YAML files"        
+    #   name: "Check YAML files"
     # - id: end-of-file-fixer
     # -   id: trailing-whitespace
 - repo: https://github.com/norwoodj/helm-docs
