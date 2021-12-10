@@ -1,6 +1,6 @@
 # crossplane-gcp-factory
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.0](https://img.shields.io/badge/AppVersion-1.5.0-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.0](https://img.shields.io/badge/AppVersion-1.5.0-informational?style=flat-square)
 
 A Google Cloud Factory using Crossplane
 
@@ -87,6 +87,12 @@ A Google Cloud Factory using Crossplane
 | gcp.memorystore[0].region | string | `"europe-west1"` |  |
 | gcp.memorystore[0].tier | string | `"STANDARD_HA"` |  |
 | gcp.project_id | string | `"crossplane-gcp-test"` | The Google Cloud project ID |
+| gcp.pubsub.subscriptions[0].ackDeadlineSeconds | int | `25` |  |
+| gcp.pubsub.subscriptions[0].name | string | `"gke-updates"` |  |
+| gcp.pubsub.subscriptions[0].service | string | `"Kubernetes"` |  |
+| gcp.pubsub.subscriptions[0].topic | string | `"gke"` |  |
+| gcp.pubsub.topics[0].name | string | `"gke"` |  |
+| gcp.pubsub.topics[0].service | string | `"Kubernetes"` |  |
 | gcp.region | string | `"europe-west1"` | The Google Cloud region |
 | gcp.service_accounts[0].name | string | `"prometheus"` |  |
 | gcp.service_accounts[0].namespace | string | `"monitoring"` |  |

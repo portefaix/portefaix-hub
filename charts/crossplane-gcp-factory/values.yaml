@@ -150,3 +150,13 @@ gcp:
             - "80"
             - "443"
       sourceRanges: ["0.0.0.0/0"]
+
+  pubsub:
+    topics:
+      - name: gke
+        service: Kubernetes
+    subscriptions:
+      - name: gke-updates
+        service: Kubernetes
+        topic: gke
+        ackDeadlineSeconds: 25

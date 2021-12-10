@@ -1,23 +1,61 @@
+{{- $baseName := include "crossplane-gcp-factory.name" $ }}
+{{- $namespace := include "crossplane-gcp-factory.namespace" . }}
+{{ range .Values.gcp.pubsub.topics }}
+{{- $topicName := printf "%s-%s" $baseName .name -}}
 ---
 apiVersion: pubsub.gcp.crossplane.io/v1alpha1
 kind: Topic
 metadata:
-  name: {{ include "crossplane-gcp-factory.name" . }}-gke-updates
-  namespace: {{ template "crossplane-gcp-factory.namespace" . }}
+  name: {{ $topicName }}
+  namespace: {{ $namespace }}
   labels:
-    {{- include "crossplane-gcp-factory.labels" . | nindent 4 }}
-{{- with .Values.additionalAnnotations }}
+    {{- include "crossplane-gcp-factory.labels" $ | nindent 4 }}
+{{- with $.Values.additionalAnnotations }}
   annotations:
 {{ toYaml . | indent 4 }}
 {{- end }}
 spec:
   forProvider:
     labels:
-      Service: kubernetes
       Made-By: Crossplane
+      Service: {{ .service }}
   deletionPolicy: Delete
   writeConnectionSecretToRef:
-    name: {{ include "crossplane-gcp-factory.name" . }}-gke-updates
-    namespace: {{ .Values.crossplane.namespace }}
+    name: {{ include "crossplane-gcp-factory.name" $ }}-pubsub-topics-{{ .name }}
+    namespace: {{ $namespace }}
   providerConfigRef:
-    name: {{ include "crossplane-gcp-factory.name" . }}
+    name: {{ include "crossplane-gcp-factory.name" $ }}
+{{ end }}
+
+{{- $baseName := include "crossplane-gcp-factory.name" $ }}
+{{- $namespace := include "crossplane-gcp-factory.namespace" . }}
+{{ range .Values.gcp.pubsub.subscriptions }}
+{{- $subName := printf "%s-%s" $baseName .name -}}
+---
+apiVersion: pubsub.gcp.crossplane.io/v1alpha1
+kind: Subscription
+metadata:
+  name: {{ $subName }}
+  namespace: {{ $namespace }}
+  labels:
+    {{- include "crossplane-gcp-factory.labels" $ | nindent 4 }}
+{{- with $.Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    labels:
+      Made-By: Crossplane
+      Service: {{ .service }}
+    topic: {{ .topic }}
+    ackDeadlineSeconds: {{ .ackDeadlineSeconds }}
+    expirationPolicy:
+      ttl: "864000s"
+  deletionPolicy: Delete
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-gcp-factory.name" $ }}-pubsub-subscriptions-{{ .name }}
+    namespace: {{ $namespace }}s
+  providerConfigRef:
+    name: {{ include "crossplane-gcp-factory.name" $ }}
+{{ end }}
