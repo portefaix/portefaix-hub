@@ -9,6 +9,7 @@ Welcome to the Portefaix Hub.
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.3.0|A Helm chart for Alertmanager Mixin|application|2021-08-31T15:39:08.103793493Z
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.1.0|A Helm chart for Alertmanager Mixin|application|2021-06-18T16:36:49.277772553Z
 [crossplane-aws-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-aws-factory)|0.1.1|An AWS Factory using Crossplane|application|2021-12-10T11:49:36.977591774Z
+[crossplane-gcp-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-gcp-factory)|0.2.0|A Google Cloud Factory using Crossplane|application|2021-12-10T14:23:04.795849864Z
 [crossplane-gcp-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-gcp-factory)|0.1.0|A Google Cloud Factory using Crossplane|application|2021-12-10T11:49:37.101949861Z
 [fluxcd-mixin](https://artifacthub.io/packages/helm/portefaix-hub/fluxcd-mixin)|0.1.0|A Helm chart for FluxCD Mixin|application|2021-08-31T16:08:00.601057289Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.8.0|A Helm chart for Grafana Mixin|application|2021-08-31T16:20:00.312256671Z
