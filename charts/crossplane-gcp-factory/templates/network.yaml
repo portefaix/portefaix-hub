@@ -1,0 +1,23 @@
+---
+apiVersion: compute.gcp.crossplane.io/v1beta1
+kind: Network
+metadata:
+  name: {{ include "crossplane-gcp-factory.name" . }}
+  namespace: {{ template "crossplane-gcp-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-gcp-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    description: "{{ include "crossplane-gcp-factory.name" . }}. Made by Crossplane"
+    autoCreateSubnetworks: false
+    routingConfig:
+      routingMode: GLOBAL
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-gcp-factory.name" . }}-network
+    namespace: {{ .Values.crossplane.namespace }}
+  providerConfigRef:
+    name: {{ include "crossplane-gcp-factory.name" . }}

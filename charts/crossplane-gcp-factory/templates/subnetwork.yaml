@@ -1,0 +1,30 @@
+---
+apiVersion: compute.gcp.crossplane.io/v1beta1
+kind: Subnetwork
+metadata:
+  name: {{ include "crossplane-gcp-factory.name" . }}
+  namespace: {{ template "crossplane-gcp-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-gcp-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    description: "{{ include "crossplane-gcp-factory.name" . }}. Made by Crossplane"
+    region: {{ .Values.gcp.region }}
+    ipCidrRange: {{ .Values.gcp.subnetwork.ipCidrRange }}
+    privateIpGoogleAccess: true
+    secondaryIpRanges:
+      {{- range $key, $val := .Values.gcp.subnetwork.secondaryIpRanges }}
+      - rangeName: {{ $key }}
+        ipCidrRange: {{ $val -}}
+      {{ end }}
+    networkRef:
+      name: {{ include "crossplane-gcp-factory.name" . }}
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-gcp-factory.name" . }}-subnetwork
+    namespace: {{ .Values.crossplane.namespace }}
+  providerConfigRef:
+    name: {{ include "crossplane-gcp-factory.name" . }}

@@ -1,0 +1,124 @@
+---
+apiVersion: container.gcp.crossplane.io/v1beta2
+kind: Cluster
+metadata:
+  name: {{ include "crossplane-gcp-factory.name" . }}
+  namespace: {{ template "crossplane-gcp-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-gcp-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    location: {{ .Values.gcp.gke.location }}
+    masterAuth:
+      # setting this master auth user name enables basic auth so that a client (e.g.,
+      # provider-helm), can connect with the generated kubeconfig from the connection secret
+      # username: admin
+    networkConfig:
+      enableIntraNodeVisibility: true
+    loggingService: logging.googleapis.com/kubernetes
+    monitoringService: monitoring.googleapis.com/kubernetes
+    {{- with .Values.gcp.gke.addonsConfig }}
+    addonsConfig:
+    {{- toYaml . | nindent 6 }}
+    {{- end }}
+    autopilot:
+      enabled: {{ .Values.gcp.gke.autopilot }}
+    binaryAuthorization:
+      enabled: {{ .Values.gcp.gke.binaryAuthorization }}
+    confidentialNodes:
+      enabled: {{ .Values.gcp.gke.confidentialNodes }}
+    # defaultMaxPodsConstraint:
+    #    maxPodsPerNode: 110
+    {{- with .Values.gcp.gke.maintenancePolicy }}
+    addonsConfig:
+    {{- toYaml . | nindent 6 }}
+    {{- end }}
+    legacyAbac:
+      enabled: false
+    networkRef:
+      name: {{ include "crossplane-gcp-factory.name" . }}
+    subnetworkRef:
+      name: {{ include "crossplane-gcp-factory.name" . }}
+    {{- with .Values.gcp.gke.networkConfig }}
+    networkConfig:
+    {{- toYaml . | nindent 6 }}
+    {{- end }}
+    releaseChannel:
+      channel: {{ .Values.gcp.gke.releaseChannel }}
+    # resourceLabels:
+    #   service: kubernetes
+    #   role: cluster
+    #   made-by: crossplane
+    workloadIdentityConfig:
+      workloadPool: {{ .Values.gcp.project_id }}.svc.id.goog
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-gcp-factory.name" . }}-gke
+    namespace: {{ .Values.crossplane.namespace }}
+  providerConfigRef:
+    name: {{ include "crossplane-gcp-factory.name" . }}
+
+{{- $baseName := include "crossplane-gcp-factory.name" $ }}
+{{- $namespace := include "crossplane-gcp-factory.namespace" . }}
+{{ range .Values.gcp.gke.nodes }}
+{{- $nodeName := printf "%s-%s" $baseName .name -}}
+---
+apiVersion: container.gcp.crossplane.io/v1beta1
+kind: NodePool
+metadata:
+  name: {{ $nodeName }}
+  namespace: {{ $namespace }}
+  labels:
+    {{- include "crossplane-gcp-factory.labels" $ | nindent 4 }}
+{{- with $.Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    {{- if .autoscaling.enabled }}
+    autoscaling:
+      autoprovisioned: false
+      enabled: {{ .autoscaling.enabled }}
+      maxNodeCount: {{ .autoscaling.maxNodeCount }}
+      minNodeCount: {{ .autoscaling.minNodeCount }}
+    {{- end }}
+    clusterRef:
+      name: {{ include "crossplane-gcp-factory.name" $ }}
+    config:
+      machineType: {{ .machineType }}
+      {{- with .sandboxConfig }}
+      {{- toYaml . | nindent 6 }}
+      {{- end }}
+      diskSizeGb: {{ .diskSizeGb }}
+      diskType: {{ .diskType }}
+      imageType: {{ .imageType }}
+      # labels:
+      #   service: kubernetes
+      #   role: node
+      #   made-by: crossplane
+      tags:
+        - kubernetes
+        - nodes
+      oauthScopes:
+      - "https://www.googleapis.com/auth/devstorage.read_only"
+      - "https://www.googleapis.com/auth/logging.write"
+      - "https://www.googleapis.com/auth/monitoring"
+      - "https://www.googleapis.com/auth/servicecontrol"
+      - "https://www.googleapis.com/auth/service.management.readonly"
+      - "https://www.googleapis.com/auth/trace.append"
+    initialNodeCount: 2
+    locations:
+      {{ toYaml .locations }}
+    management:
+      autoRepair: true
+      autoUpgrade: true
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-gcp-factory.name" $ }}-nodepool-{{ .name }}
+    namespace: {{ $namespace }}
+  providerConfigRef:
+    name: {{ include "crossplane-gcp-factory.name" $ }}
+{{ end }}

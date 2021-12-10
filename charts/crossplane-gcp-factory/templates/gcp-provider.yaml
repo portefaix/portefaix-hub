@@ -1,0 +1,16 @@
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: {{ include "crossplane-gcp-factory.name" . }}
+  namespace: {{ template "crossplane-gcp-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-gcp-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  package: crossplane/provider-gcp:{{ .Values.crossplane.gcp.version }}
+  controllerConfigRef:
+    name: {{ include "crossplane-gcp-factory.name" . }}

@@ -1,0 +1,23 @@
+---
+apiVersion: pubsub.gcp.crossplane.io/v1alpha1
+kind: Topic
+metadata:
+  name: {{ include "crossplane-gcp-factory.name" . }}-gke-updates
+  namespace: {{ template "crossplane-gcp-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-gcp-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    labels:
+      Service: kubernetes
+      Made-By: Crossplane
+  deletionPolicy: Delete
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-gcp-factory.name" . }}-gke-updates
+    namespace: {{ .Values.crossplane.namespace }}
+  providerConfigRef:
+    name: {{ include "crossplane-gcp-factory.name" . }}
