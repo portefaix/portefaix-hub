@@ -67,6 +67,72 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/alertmanager-mixin-0.1.0/alertmanager-mixin-0.1.0.tgz
     version: 0.1.0
+  crossplane-aws-factory:
+  - annotations:
+      artifacthub.io/changes: |
+        - AWS Factory deployment
+      artifacthub.io/links: |
+        - name: kubernetes
+          url: https://crossplane.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 1.5.0
+    created: "2021-12-10T11:49:36.977591774Z"
+    description: An AWS Factory using Crossplane
+    digest: 8f5b1542c73fa9837fb963d8b2b71f310dccf33a00bbbce791733da615bbc4e8
+    home: https://github.com/portefaix/portefaix-hub/charts/crossplane-aws-factory
+    icon: https://crossplane.io/images/favicon_192x192.png
+    keywords:
+    - crossplane
+    - cloud
+    - infrastructure
+    - aws
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: crossplane-aws-factory
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/crossplane-aws-factory-0.1.1/crossplane-aws-factory-0.1.1.tgz
+    version: 0.1.1
+  crossplane-gcp-factory:
+  - annotations:
+      artifacthub.io/changes: |
+        - Google Cloud Factory deployment
+      artifacthub.io/links: |
+        - name: crossplane
+          url: https://crossplane.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 1.5.0
+    created: "2021-12-10T11:49:37.101949861Z"
+    description: A Google Cloud Factory using Crossplane
+    digest: 672813c252a49a92a81c7af734164e61884d57ccb59a6293e1590f50a51e9051
+    home: https://github.com/portefaix/portefaix-hub/charts/crossplane-gcp-factory
+    icon: https://crossplane.io/images/favicon_192x192.png
+    keywords:
+    - crossplane
+    - cloud
+    - infrastructure
+    - gcp
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: crossplane-gcp-factory
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/crossplane-gcp-factory-0.1.0/crossplane-gcp-factory-0.1.0.tgz
+    version: 0.1.0
   fluxcd-mixin:
   - annotations:
       artifacthub.io/changes: |
@@ -2250,6 +2316,45 @@ entries:
           email: nicolas.lamirault@gmail.com
     apiVersion: v2
     appVersion: 1.0.r2
+    created: "2021-12-10T11:49:37.226325947Z"
+    description: A Helm chart for AWS Secret Manager Provider for Secret Store CSI
+      Driver
+    digest: 4d1ed7da8fa77edff4fcd9702161762040069fdd50ace471ad5fe405fa657c17
+    home: https://charts.portefaix.xyz
+    keywords:
+    - secrets-store-csi-driver-provider-aws
+    - secrets-store-csi-driver
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: secrets-store-csi-driver-provider-aws
+    sources:
+    - https://github.com/portefaix/portefaix-hub/tree/master/charts/secrets-store-csi-driver-provider-aws
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/secrets-store-csi-driver-provider-aws-0.3.1/secrets-store-csi-driver-provider-aws-0.3.1.tgz
+    version: 0.3.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: Do not set default resources
+      artifacthub.io/containsSecurityUpdates: "true"
+      artifacthub.io/images: |
+        - name: secrets-store-csi-driver-provider-aws
+          image: public.ecr.aws/aws-secrets-manager/secrets-store-csi-driver-provider-aws:1.0.r2-2021.08.13.20.34-linux-amd64
+      artifacthub.io/links: |
+        - name: secrets-store-csi-driver
+          url: https://github.com/kubernetes-sigs/secrets-store-csi-driver
+        - name: secrets-store-csi-driver-provider-aws
+          url: https://github.com/aws/secrets-store-csi-driver-provider-aws
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 1.0.r2
     created: "2021-11-03T17:26:41.547806401Z"
     description: A Helm chart for AWS Secret Manager Provider for Secret Store CSI
       Driver
@@ -3036,4 +3141,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2021-11-03T17:26:58.940282049Z"
+generated: "2021-12-10T11:49:37.226714747Z"
