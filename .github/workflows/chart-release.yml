@@ -48,6 +48,20 @@ jobs:
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
+      - name: Login to GitHub Container Registry
+        run: |
+          helm registry login --username ${GITHUB_ACTOR} --password ${{ secrets.GITHUB_TOKEN }} ghcr.io
+        env:
+          HELM_EXPERIMENTAL_OCI: 1
+
+      - name: Publish OCI Charts
+        run: |
+          for chart in `find .cr-release-packages -name '*.tgz' -print`; do
+            helm push ${chart} oci://ghcr.io/${GITHUB_REPOSITORY}
+          done
+        env:
+          HELM_EXPERIMENTAL_OCI: 1
+
   # Update the generated timestamp in the index.yaml
   # needed until https://github.com/helm/chart-releaser/issues/90
   # or helm/chart-releaser-action supports this
@@ -90,14 +104,14 @@ jobs:
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-      
+
       - name: Use Node.js 14.x
         uses: actions/setup-node@v2
         with:
           node-version: 14.x
 
       - run: npx js-yaml index.yaml | npx hbs-cli .github/templates/index.hbs -i - -e md
-      
+
       - name: Commit and push website
         run: |
           git add index.md
