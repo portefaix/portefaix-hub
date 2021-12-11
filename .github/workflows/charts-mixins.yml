@@ -26,61 +26,61 @@ on:
         default: info
 
 jobs:
-  update_labels:
+  update:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
       uses: actions/checkout@v2
 
     - name: Alertmanager Mixin
-      id: update
+      id: alertmanager-mixin
       run: |
         make mixins CHART=alertmanager-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
     - name: Prometheus Operator Mixin
-      id: update
+      id: prometheus-operator-mixin
       run: |
         make mixins CHART=prometheus-operator-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
     - name: Prometheus Mixin
-      id: update
+      id: prometheus-mixin
       run: |
         make mixins CHART=prometheus-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
     - name: Linkerd Stable Mixin
-      id: update
+      id: linkerd-stable-mixin
       run: |
         make mixins CHART=linkerd-stable-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
     - name: Linkerd Edge Mixin
-      id: update
+      id: linkerd-edge-mixin
       run: |
         make mixins CHART=linkerd-edge-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
     - name: FluxCD Mixin
-      id: update
+      id: fluxcd-mixin
       run: |
         make mixins CHART=fluxcd-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
     - name: Grafana Mixin
-      id: update
+      id: grafana-mixin
       run: |
         make mixins CHART=grafana-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
     - name: KubeStateMetrics Mixin
-      id: update
+      id: kube-state-metrics-mixin
       run: |
         make mixins CHART=kube-state-metrics-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
     - name: Kubernetes Mixin
-      id: update
+      id: kubernetes-mixin
       run: |
         make mixins CHART=kubernetes-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
     - name: Loki Mixin
-      id: update
+      id: loki-mixin
       run: |
         make mixins CHART=loki-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
     - name: Promtail Mixin
-      id: update
+      id: promtail-mixin
       run: |
         make mixins CHART=promtail-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
     - name: NodeExporter Mixin
-      id: update
+      id: node-exporter-mixin
       run: |
         make mixins CHART=node-exporter-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
     - name: Thanos Mixin
-      id: update
+      id: thanos-mixin
       run: |
         make mixins CHART=thanos-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
