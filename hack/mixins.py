@@ -80,6 +80,7 @@ def template_configmap(f, mixin, chart_dst, mixin_header):
     filename = path.basename(orig)
 
     dashboard = "%s/dashboards/%s" % (chart_dst, filename)
+    pathlib.Path("%s/dashboards" % chart_dst).mkdir(parents=True, exist_ok=True)
     if os.path.exists(dashboard):
         os.remove(dashboard)
     logger.info("Copy %s => %s", orig, dashboard)
