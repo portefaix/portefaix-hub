@@ -56,52 +56,52 @@ jobs:
     - name: Alertmanager Mixin
       id: alertmanager-mixin
       run: |
-        ./hack/mixins.py alertmanager-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
+        poetry run ./hack/mixins.py alertmanager-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
     - name: Prometheus Operator Mixin
       id: prometheus-operator-mixin
       run: |
-        ./hack/mixins.py prometheus-operator-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
+        poetry run ./hack/mixins.py prometheus-operator-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
     - name: Prometheus Mixin
       id: prometheus-mixin
       run: |
-        ./hack/mixins.py prometheus-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
+        poetry run ./hack/mixins.py prometheus-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
     - name: Linkerd Stable Mixin
       id: linkerd-stable-mixin
       run: |
-        ./hack/mixins.py linkerd-stable-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
+        poetry run ./hack/mixins.py linkerd-stable-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
     - name: Linkerd Edge Mixin
       id: linkerd-edge-mixin
       run: |
-        ./hack/mixins.py linkerd-edge-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
+        poetry run ./hack/mixins.py linkerd-edge-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
     - name: FluxCD Mixin
       id: fluxcd-mixin
       run: |
-        ./hack/mixins.py fluxcd-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
+        poetry run ./hack/mixins.py fluxcd-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
     - name: Grafana Mixin
       id: grafana-mixin
       run: |
-        ./hack/mixins.py grafana-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
+        poetry run ./hack/mixins.py grafana-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
     - name: KubeStateMetrics Mixin
       id: kube-state-metrics-mixin
       run: |
-        ./hack/mixins.py kube-state-metrics-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
+        poetry run ./hack/mixins.py kube-state-metrics-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
     - name: Kubernetes Mixin
       id: kubernetes-mixin
       run: |
-        ./hack/mixins.py kubernetes-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
+        poetry run ./hack/mixins.py kubernetes-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
     - name: Loki Mixin
       id: loki-mixin
       run: |
-        ./hack/mixins.py loki-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
+        poetry run ./hack/mixins.py loki-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
     - name: Promtail Mixin
       id: promtail-mixin
       run: |
-        ./hack/mixins.py promtail-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
+        poetry run ./hack/mixins.py promtail-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
     - name: NodeExporter Mixin
       id: node-exporter-mixin
       run: |
-        ./hack/mixins.py node-exporter-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
+        poetry run ./hack/mixins.py node-exporter-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
     - name: Thanos Mixin
       id: thanos-mixin
       run: |
-        ./hack/mixins.py thanos-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
+        poetry run ./hack/mixins.py thanos-mixin ${{ github.event.inputs.version }} --log ${{ github.event.inputs.loglevel }}
