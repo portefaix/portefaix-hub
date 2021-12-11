@@ -40,14 +40,14 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - uses: actions/setup-python@v2
+    - uses: actions/setup-python@v2.3.1
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: ${{ github.event.inputs.python-version }}
 
     - name: Run image
       uses: abatilo/actions-poetry@v2.1.4
       with:
-        poetry-version: ${{ matrix.poetry-version }}
+        poetry-version: ${{ github.event.inputs.poetry-version }}
 
     - name: View poetry --help
       run: poetry --help
