@@ -28,12 +28,12 @@ keywords:
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.8.0
+version: 0.9.0
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
-appVersion: 8.0.0
+appVersion: 8.3.1
 
 maintainers:
   - name: nlamirault
@@ -41,13 +41,17 @@ maintainers:
 
 # https://artifacthub.io/docs/topics/repositories/
 annotations:
-  artifacthub.io/changes: |
-    - Grafana mixin v8.0.0
+  artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: grafana
       url: https://github.com/grafana/grafana
     - name: Portefaix
       url: https://portefaix.xyz
+    - name: Monitoring mixins
+      url: https://github.com/nlamirault/monitoring-mixins
   artifacthub.io/maintainers: |
     - name: nlamirault
       email: nicolas.lamirault@gmail.com
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Bump to Grafana v8.3.1

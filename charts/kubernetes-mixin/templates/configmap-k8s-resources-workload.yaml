@@ -5,14 +5,11 @@ metadata:
   name: {{ printf "%s-%s" (include "kubernetes-mixin.fullname" .) "k8s-resources-workload" | trunc 63 | trimSuffix "-" }}
   namespace: {{ include "kubernetes-mixin.namespace" . }}
   annotations:
-{{ include "kubernetes-mixin.annotations" . | indent 4 }}
-{{- if .Values.additionalAnnotations }}
-{{ toYaml .Values.additionalAnnotations | indent 4 }}
-{{- end }}
     grafana-folder: {{ .Values.grafana.folder }}
+{{ include "kubernetes-mixin.annotations" . | indent 4 }}
   labels:
-{{ include "kubernetes-mixin.labels" . | indent 4 }}
     grafana-dashboard: {{ include "kubernetes-mixin.name" . }}-k8s-resources-workload
+{{ include "kubernetes-mixin.labels" . | indent 4 }}
 data:
   k8s-resources-workload.json: |-
 {{ .Files.Get "dashboards/k8s-resources-workload.json" | indent 4}}

@@ -5,14 +5,11 @@ metadata:
   name: {{ printf "%s-%s" (include "prometheus-mixin.fullname" .) "prometheus" | trunc 63 | trimSuffix "-" }}
   namespace: {{ include "prometheus-mixin.namespace" . }}
   annotations:
-{{ include "prometheus-mixin.annotations" . | indent 4 }}
-{{- if .Values.additionalAnnotations }}
-{{ toYaml .Values.additionalAnnotations | indent 4 }}
-{{- end }}
     grafana-folder: {{ .Values.grafana.folder }}
+{{ include "prometheus-mixin.annotations" . | indent 4 }}
   labels:
-{{ include "prometheus-mixin.labels" . | indent 4 }}
     grafana-dashboard: {{ include "prometheus-mixin.name" . }}-prometheus
+{{ include "prometheus-mixin.labels" . | indent 4 }}
 data:
   prometheus.json: |-
 {{ .Files.Get "dashboards/prometheus.json" | indent 4}}

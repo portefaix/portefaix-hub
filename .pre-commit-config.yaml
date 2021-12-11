@@ -14,10 +14,10 @@ repos:
     - id: ct-lint
       name: "Chart Test: Lint"
       language: docker_image
-      pass_filenames: false
+      # pass_filenames: false
       types: ['file']
       files: '^charts/.*(\.ya?ml|\.tpl|\.helmignore|NOTES.txt)'
-      entry: -u 0 quay.io/helmpack/chart-testing:v3.0.0 ct
+      entry: -u 0 quay.io/helmpack/chart-testing:v3.4.0 ct
       args:
       - lint
     # - id: check-yaml

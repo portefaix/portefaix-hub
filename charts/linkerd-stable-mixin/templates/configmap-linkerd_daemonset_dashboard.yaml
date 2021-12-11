@@ -5,14 +5,11 @@ metadata:
   name: {{ printf "%s-%s" (include "linkerd-stable-mixin.fullname" .) "linkerd-daemonset-dashboard" | trunc 63 | trimSuffix "-" }}
   namespace: {{ include "linkerd-stable-mixin.namespace" . }}
   annotations:
-{{ include "linkerd-stable-mixin.annotations" . | indent 4 }}
-{{- if .Values.additionalAnnotations }}
-{{ toYaml .Values.additionalAnnotations | indent 4 }}
-{{- end }}
     grafana-folder: {{ .Values.grafana.folder }}
+{{ include "linkerd-stable-mixin.annotations" . | indent 4 }}
   labels:
-{{ include "linkerd-stable-mixin.labels" . | indent 4 }}
     grafana-dashboard: {{ include "linkerd-stable-mixin.name" . }}-linkerd-daemonset-dashboard
+{{ include "linkerd-stable-mixin.labels" . | indent 4 }}
 data:
   linkerd_daemonset_dashboard.json: |-
 {{ .Files.Get "dashboards/linkerd_daemonset_dashboard.json" | indent 4}}
