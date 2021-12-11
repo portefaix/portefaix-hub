@@ -21,18 +21,15 @@ import glob
 import logging
 import os
 from os import path
+import pathlib
 import shutil
 import zipfile
 
 import coloredlogs
 import requests
 
-MIXINS_VERSION = "v0.8.0"
-MIXIN_ARCHIVE = "monitoring-mixins-%s.zip" % MIXINS_VERSION
-MIXIN_URL = (
-    "https://github.com/nlamirault/monitoring-mixins/releases/download/%s/%s"
-    % (MIXINS_VERSION, MIXIN_ARCHIVE)
-)
+MIXIN_ARCHIVE = "monitoring-mixins-%s.zip"
+MIXIN_URL = "https://github.com/nlamirault/monitoring-mixins/releases/download/%s/%s"
 MIXIN_DIRECTORY = "monitoring-mixins"
 
 
@@ -129,23 +126,29 @@ def manage_mixin(mixin_directory, mixin):
 
 
 def main(url, filename, mixin_directory, chart):
-    # download(url, filename)
+    download(url, filename)
     with zipfile.ZipFile(filename, "r") as zf:
-        zf.extractall()
+        extract_directory = pathlib.Path(filename).stem
+        logger.info("Extract into: %s", extract_directory)
+        pathlib.Path(extract_directory).mkdir(parents=True, exist_ok=True)
+        zf.extractall(path=extract_directory)
         logger.info("Extract monitoring mixins")
         for mixin in os.listdir(path=mixin_directory):
             if mixin == chart:
                 manage_mixin(mixin_directory, mixin)
             else:
                 logger.debug("Not mixin: %s", mixin)
-        # os.remove(filename)
-        # shutil.rmtree(mixin_directory)
+        os.remove(filename)
+        shutil.rmtree(mixin_directory)
+        shutil.rmtree(extract_directory)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(prefix_chars="-")
     parser.add_argument("chart", type=str, help="Chart to update")
+    parser.add_argument("mixins", type=str, help="Version of monitoring mixins")
     parser.add_argument("--log", type=str, default="info", help="Log level")
     args = parser.parse_args()
     coloredlogs.install(level=args.log)
-    main(MIXIN_URL, MIXIN_ARCHIVE, MIXIN_DIRECTORY, args.chart)
+    archive = MIXIN_ARCHIVE % args.mixins
+    main(MIXIN_URL % (args.mixins, archive), archive, MIXIN_DIRECTORY, args.chart)

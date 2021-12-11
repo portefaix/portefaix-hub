@@ -42,8 +42,8 @@ validate: ## Execute git-hooks
 	@pre-commit run -a
 
 .PHONY: mixins
-mixins: guard-CHART guard-LOG ## Install mixins
-	$(VENV)/bin/python3 ./hack/mixins.py $(CHART) --log $(LOG)
+mixins: guard-CHART guard-MIXINS guard-LOG ## Install mixins
+	$(VENV)/bin/python3 ./hack/mixins.py $(CHART) $(MIXINS) --log $(LOG)
 
 .PHONY: policies
 policies: guard-CHART guard-LOG ## Install mixins
@@ -84,7 +84,7 @@ kind-kube-credentials: ## Credentials for Kind (ENV=xxx)
 
 .PHONY: helm-doc
 helm-doc: guard-CHART ## Generate documentation
-	@cd $(CHART) && helm-docs 
+	@cd $(CHART) && helm-docs
 
 .PHONY: helm-changelog
 helm-changelog: guard-CHART ## Generate documentation
@@ -129,7 +129,7 @@ opa-deps: ## Setup OPA dependencies
 	@echo -e "$(OK_COLOR)[$(APP)] Install OPA policy $(POLICY)$(NO_COLOR)"
 	@conftest pull --policy addons/policies/deprek8ion github.com/swade1987/deprek8ion//policies
 	@conftest pull --policy addons/policies/portefaix github.com/portefaix/portefaix-policies?ref=v0.4.0//opa
-	
+
 .PHONY: opa-install
 opa-install: guard-NAME guard-URL ## Install OPA policies
 	@echo -e "$(OK_COLOR)[$(APP)] Install OPA policy $(POLICY)$(NO_COLOR)"

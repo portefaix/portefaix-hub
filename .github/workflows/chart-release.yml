@@ -58,6 +58,7 @@ jobs:
         run: |
           for chart in `find .cr-release-packages -name '*.tgz' -print`; do
             helm push ${chart} oci://ghcr.io/${GITHUB_REPOSITORY}
+            # echo -n "${{ secrets.COSIGN_PRIVATE_KEY_PASSWORD }}" | cosign sign -key <(echo -n "${{ secrets.COSIGN_PRIVATE_KEY }}") ghcr.io/${GITHUB_REPOSITORY}/${chart}
           done
         env:
           HELM_EXPERIMENTAL_OCI: 1

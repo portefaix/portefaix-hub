@@ -1,0 +1,86 @@
+# Copyright (C) 2021 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: Project / Update charts mixins
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Monitoring Mixins version"
+        required: true
+      loglevel:
+        description: "Log level"
+        required: true
+        default: info
+
+jobs:
+  update_labels:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Alertmanager Mixin
+      id: update
+      run: |
+        make mixins CHART=alertmanager-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
+    - name: Prometheus Operator Mixin
+      id: update
+      run: |
+        make mixins CHART=prometheus-operator-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
+    - name: Prometheus Mixin
+      id: update
+      run: |
+        make mixins CHART=prometheus-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
+    - name: Linkerd Stable Mixin
+      id: update
+      run: |
+        make mixins CHART=linkerd-stable-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
+    - name: Linkerd Edge Mixin
+      id: update
+      run: |
+        make mixins CHART=linkerd-edge-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
+    - name: FluxCD Mixin
+      id: update
+      run: |
+        make mixins CHART=fluxcd-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
+    - name: Grafana Mixin
+      id: update
+      run: |
+        make mixins CHART=grafana-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
+    - name: KubeStateMetrics Mixin
+      id: update
+      run: |
+        make mixins CHART=kube-state-metrics-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
+    - name: Kubernetes Mixin
+      id: update
+      run: |
+        make mixins CHART=kubernetes-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
+    - name: Loki Mixin
+      id: update
+      run: |
+        make mixins CHART=loki-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
+    - name: Promtail Mixin
+      id: update
+      run: |
+        make mixins CHART=promtail-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
+    - name: NodeExporter Mixin
+      id: update
+      run: |
+        make mixins CHART=node-exporter-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
+    - name: Thanos Mixin
+      id: update
+      run: |
+        make mixins CHART=thanos-mixin MIXINS=${{ github.event.inputs.version }} LOG=${{ github.event.inputs.loglevel }}
