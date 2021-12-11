@@ -30,7 +30,7 @@ import requests
 
 MIXIN_ARCHIVE = "monitoring-mixins-%s.zip"
 MIXIN_URL = "https://github.com/nlamirault/monitoring-mixins/releases/download/%s/%s"
-MIXIN_DIRECTORY = "monitoring-mixins"
+# MIXIN_DIRECTORY = "monitoring-mixins"
 
 
 logger = logging.getLogger(__name__)
@@ -125,7 +125,7 @@ def manage_mixin(mixin_directory, mixin):
         template_configmap(f, mixin, chart_dst, dashboard_header)
 
 
-def main(url, filename, mixin_directory, chart):
+def main(url, filename, chart):
     download(url, filename)
     with zipfile.ZipFile(filename, "r") as zf:
         extract_directory = pathlib.Path(filename).stem
@@ -133,13 +133,14 @@ def main(url, filename, mixin_directory, chart):
         pathlib.Path(extract_directory).mkdir(parents=True, exist_ok=True)
         zf.extractall(path=extract_directory)
         logger.info("Extract monitoring mixins")
-        for mixin in os.listdir(path=mixin_directory):
+        # pathlib.Path(mixin_directory).mkdir(parents=True, exist_ok=True)
+        for mixin in os.listdir(path=extract_directory):
             if mixin == chart:
-                manage_mixin(mixin_directory, mixin)
+                manage_mixin(extract_directory, mixin)
             else:
                 logger.debug("Not mixin: %s", mixin)
         os.remove(filename)
-        shutil.rmtree(mixin_directory)
+        # shutil.rmtree(mixin_directory)
         shutil.rmtree(extract_directory)
 
 
@@ -151,4 +152,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     coloredlogs.install(level=args.log)
     archive = MIXIN_ARCHIVE % args.mixins
-    main(MIXIN_URL % (args.mixins, archive), archive, MIXIN_DIRECTORY, args.chart)
+    main(MIXIN_URL % (args.mixins, archive), archive, args.chart)
