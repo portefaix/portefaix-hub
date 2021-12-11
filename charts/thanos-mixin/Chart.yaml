@@ -28,12 +28,12 @@ keywords:
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.14.2
+version: 0.15.0
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
-appVersion: 0.22.0
+appVersion: 0.23.1
 
 maintainers:
   - name: nlamirault
@@ -41,14 +41,17 @@ maintainers:
 
 # https://artifacthub.io/docs/topics/repositories/
 annotations:
-  artifacthub.io/changes: |
-    - Artifact Hub informations
-    - Refactoring Prometheus rules configuration
+  artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: Thanos
       url: https://thanos.io
     - name: Portefaix
       url: https://portefaix.xyz
+    - name: Monitoring mixins
+      url: https://github.com/nlamirault/monitoring-mixins
   artifacthub.io/maintainers: |
     - name: nlamirault
       email: nicolas.lamirault@gmail.com
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Bump to Thanos v0.23.1
