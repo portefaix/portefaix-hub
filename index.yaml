@@ -70,6 +70,46 @@ entries:
   crossplane-aws-factory:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Crossplane AWS provider v0.21.2
+        - kind: added
+          description: Artifact Hub annotations for changelog
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Crossplane
+          url: https://crossplane.io
+        - name: Crossplane AWS provider
+          url: https://github.com/crossplane/provider-aws
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/recommendations: |
+        - url: https://artifacthub.io/packages/helm/crossplane/crossplane
+    apiVersion: v2
+    appVersion: 0.15.1
+    created: "2021-12-11T09:42:03.692025488Z"
+    description: An AWS Factory using Crossplane
+    digest: 8942ec21457d1f1f54f2483c725a5af6d8f033cb30b333a39848c29ac8c550c1
+    home: https://github.com/portefaix/portefaix-hub/charts/crossplane-aws-factory
+    icon: https://crossplane.io/images/favicon_192x192.png
+    keywords:
+    - crossplane
+    - cloud
+    - infrastructure
+    - aws
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: crossplane-aws-factory
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/crossplane-aws-factory-0.2.0/crossplane-aws-factory-0.2.0.tgz
+    version: 0.2.0
+  - annotations:
+      artifacthub.io/changes: |
         - AWS Factory deployment
       artifacthub.io/links: |
         - name: kubernetes
@@ -2730,6 +2770,39 @@ entries:
           email: nicolas.lamirault@gmail.com
     apiVersion: v2
     appVersion: 0.22.0
+    created: "2021-12-11T09:42:03.870543832Z"
+    description: A Helm chart for Thanos Mixin
+    digest: 07208f0561b143a1da318636e0dd7a648011e5eec4bfa512b099603d7afaa14a
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/thanos-io/thanos/master/docs/img/Thanos-logo_fullmedium.png
+    keywords:
+    - thanos
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: thanos-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/thanos-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/thanos-mixin-0.14.2/thanos-mixin-0.14.2.tgz
+    version: 0.14.2
+  - annotations:
+      artifacthub.io/changes: |
+        - Artifact Hub informations
+        - Refactoring Prometheus rules configuration
+      artifacthub.io/links: |
+        - name: Thanos
+          url: https://thanos.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+    apiVersion: v2
+    appVersion: 0.22.0
     created: "2021-12-11T09:19:02.412724396Z"
     description: A Helm chart for Thanos Mixin
     digest: b99b00341ea4ec55c95071cb74132d98f1fdea2d352b44245264f47de128ce42
@@ -3206,4 +3279,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2021-12-11T09:19:02.413404891Z"
+generated: "2021-12-11T09:42:03.870819836Z"
