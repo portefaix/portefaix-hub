@@ -5,14 +5,11 @@ metadata:
   name: {{ printf "%s-%s" (include "loki-mixin.fullname" .) "loki-writes" | trunc 63 | trimSuffix "-" }}
   namespace: {{ include "loki-mixin.namespace" . }}
   annotations:
-{{ include "loki-mixin.annotations" . | indent 4 }}
-{{- if .Values.additionalAnnotations }}
-{{ toYaml .Values.additionalAnnotations | indent 4 }}
-{{- end }}
     grafana-folder: {{ .Values.grafana.folder }}
+{{ include "loki-mixin.annotations" . | indent 4 }}
   labels:
-{{ include "loki-mixin.labels" . | indent 4 }}
     grafana-dashboard: {{ include "loki-mixin.name" . }}-loki-writes
+{{ include "loki-mixin.labels" . | indent 4 }}
 data:
   loki-writes.json: |-
 {{ .Files.Get "dashboards/loki-writes.json" | indent 4}}

@@ -6,9 +6,6 @@ metadata:
   namespace: {{ include "kubernetes-mixin.namespace" . }}
   annotations:
 {{ include "kubernetes-mixin.annotations" . | indent 4 }}
-{{- if .Values.additionalAnnotations }}
-{{ toYaml .Values.additionalAnnotations | indent 4 }}
-{{- end }}
   labels:
 {{ include "kubernetes-mixin.labels" . | indent 4 }}
 spec:

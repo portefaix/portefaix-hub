@@ -6,9 +6,6 @@ metadata:
   namespace: {{ include "grafana-mixin.namespace" . }}
   annotations:
 {{ include "grafana-mixin.annotations" . | indent 4 }}
-{{- if .Values.additionalAnnotations }}
-{{ toYaml .Values.additionalAnnotations | indent 4 }}
-{{- end }}
   labels:
 {{ include "grafana-mixin.labels" . | indent 4 }}
 spec:
@@ -16,5 +13,5 @@ spec:
   - name: grafana_rules
     rules:
     - expr: |
-        sum by (namespace, job, handler, statuscode) (rate(http_request_total[5m]))
-      record: namespace_job_handler_statuscode:http_request_total:rate5m
+        sum by (namespace, job, handler, status_code) (rate(grafana_http_request_duration_seconds_count[5m]))
+      record: namespace_job_handler_statuscode:grafana_http_request_duration_seconds_count:rate5m
