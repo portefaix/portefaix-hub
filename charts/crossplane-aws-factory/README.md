@@ -1,6 +1,6 @@
 # crossplane-aws-factory
 
-![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.0](https://img.shields.io/badge/AppVersion-1.5.0-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.15.1](https://img.shields.io/badge/AppVersion-0.15.1-informational?style=flat-square)
 
 An AWS Factory using Crossplane
 
@@ -17,7 +17,7 @@ An AWS Factory using Crossplane
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | additionalAnnotations | object | `{}` | Additional annotations to add to all resources |
-| additionalLabels | object | `{"crossplane.io/provider":"aws-v0.19.0","crossplane.io/version":"v0.15.0"}` | Additional labels to add to all resources |
+| additionalLabels | object | `{"crossplane.io/provider":"aws-v0.21.2","crossplane.io/version":"v0.15.1"}` | Additional labels to add to all resources |
 | aws.eks.cluster.logging | list | `[{"enabled":false,"types":["api","audit","authenticator","controllerManager","scheduler"]}]` | The cluster control plane logging configuration for your cluster. |
 | aws.eks.cluster.publicAccessCidrs | list | `["0.0.0.0/0"]` | The CIDR blocks that are allowed access to your cluster's public Kubernetes API server endpoint |
 | aws.eks.cluster.tags | object | `{"Role":"Cluster","Service":"kubernetes"}` | The metadata to apply to the cluster to assist with categorization and organization |
@@ -44,7 +44,7 @@ An AWS Factory using Crossplane
 | aws.subnets.mapPublicIPOnLaunch | bool | `true` | map public IP on launch |
 | aws.vpc.cidr | string | `"10.1.0.0/16"` | The IPv4 network range for the VPC, in CIDR notation |
 | aws.vpc.tags | object | `{"Service":"vpc"}` | default tags for VPC |
-| crossplane.aws.version | string | `"v0.19.0"` | The Crossplane AWS provider version |
+| crossplane.aws.version | string | `"v0.21.2"` | The Crossplane AWS provider version |
 | crossplane.namespace | string | `"crossplane-system"` |  |
 
 ----------------------------------------------

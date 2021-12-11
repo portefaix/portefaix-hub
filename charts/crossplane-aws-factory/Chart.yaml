@@ -18,8 +18,8 @@ description: An AWS Factory using Crossplane
 home: https://github.com/portefaix/portefaix-hub/charts/crossplane-aws-factory
 icon: https://crossplane.io/images/favicon_192x192.png
 type: application
-version: 0.1.1
-appVersion: "1.5.0"
+version: 0.2.0
+appVersion: "0.15.1"
 keywords:
   - crossplane
   - cloud
@@ -31,13 +31,21 @@ maintainers:
     url: https://github.com/nlamirault
 # https://artifacthub.io/docs/topics/repositories/
 annotations:
-  artifacthub.io/changes: |
-    - AWS Factory deployment
+  artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
-    - name: kubernetes
+    - name: Crossplane
       url: https://crossplane.io
+    - name: Crossplane AWS provider
+      url: https://github.com/crossplane/provider-aws
     - name: Portefaix
       url: https://portefaix.xyz
+  artifacthub.io/recommendations: |
+    - url: https://artifacthub.io/packages/helm/crossplane/crossplane
   artifacthub.io/maintainers: |
     - name: nlamirault
       email: nicolas.lamirault@gmail.com
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Crossplane AWS provider v0.21.2
+    - kind: added
+      description: Artifact Hub annotations for changelog
