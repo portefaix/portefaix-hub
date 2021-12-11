@@ -8,6 +8,7 @@ Welcome to the Portefaix Hub.
 |:--|:-:|:--|:--|:--:|:--|
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.3.0|A Helm chart for Alertmanager Mixin|application|2021-08-31T15:39:08.103793493Z
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.1.0|A Helm chart for Alertmanager Mixin|application|2021-06-18T16:36:49.277772553Z
+[crossplane-aws-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-aws-factory)|0.2.0|An AWS Factory using Crossplane|application|2021-12-11T09:42:03.692025488Z
 [crossplane-aws-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-aws-factory)|0.1.1|An AWS Factory using Crossplane|application|2021-12-10T11:49:36.977591774Z
 [crossplane-gcp-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-gcp-factory)|0.2.0|A Google Cloud Factory using Crossplane|application|2021-12-10T14:23:04.795849864Z
 [crossplane-gcp-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-gcp-factory)|0.1.0|A Google Cloud Factory using Crossplane|application|2021-12-10T11:49:37.101949861Z
@@ -88,6 +89,8 @@ Welcome to the Portefaix Hub.
 [speedtest-exporter](https://artifacthub.io/packages/helm/portefaix-hub/speedtest-exporter)|0.3.0|A Helm chart for Prometheus Speedtest exporter|application|2021-05-31T13:20:32.887850568Z
 [speedtest-exporter](https://artifacthub.io/packages/helm/portefaix-hub/speedtest-exporter)|0.2.0|A Helm chart for Prometheus Speedtest exporter|application|2021-05-17T11:02:28.717281788Z
 [speedtest-exporter](https://artifacthub.io/packages/helm/portefaix-hub/speedtest-exporter)|0.1.0|A Helm chart for Prometheus Speedtest exporter|application|2021-05-17T10:22:41.173375299Z
+[thanos-mixin](https://artifacthub.io/packages/helm/portefaix-hub/thanos-mixin)|0.14.2|A Helm chart for Thanos Mixin|application|2021-12-11T09:42:03.870543832Z
+[thanos-mixin](https://artifacthub.io/packages/helm/portefaix-hub/thanos-mixin)|0.14.1|A Helm chart for Thanos Mixin|application|2021-12-11T09:19:02.412724396Z
 [thanos-mixin](https://artifacthub.io/packages/helm/portefaix-hub/thanos-mixin)|0.14.0|A Helm chart for Thanos Mixin|application|2021-09-01T06:54:00.838933152Z
 [thanos-mixin](https://artifacthub.io/packages/helm/portefaix-hub/thanos-mixin)|0.13.0|A Helm chart for Thanos Mixin|application|2021-06-23T14:17:45.099333648Z
 [thanos-mixin](https://artifacthub.io/packages/helm/portefaix-hub/thanos-mixin)|0.12.0|A Helm chart for Thanos Mixin|application|2021-06-18T10:26:19.747771511Z
