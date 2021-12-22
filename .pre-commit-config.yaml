@@ -7,7 +7,9 @@ repos:
     - id: check-yaml
       args:
       - '--allow-multiple-documents'
-      exclude: mkdocs.yml
+      exclude: >
+        mkdocs.yml
+        charts
     - id: check-added-large-files
 - repo: local
   hooks:
