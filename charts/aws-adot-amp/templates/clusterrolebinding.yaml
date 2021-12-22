@@ -1,0 +1,18 @@
+{{- if .Values.rbac.create -}}
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ template "aws-adot-amp.fullname" . }}
+  namespace: {{ template "aws-adot-amp.namespace" . }}
+  labels:
+    {{- include "aws-adot-amp.labels" . | indent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ template "aws-adot-amp.fullname" . }}
+subjects:
+- kind: ServiceAccount
+  name: {{ template "aws-adot-amp.serviceAccountName" . }}
+  namespace: {{ template "aws-adot-amp.namespace" . }}
+{{- end }}

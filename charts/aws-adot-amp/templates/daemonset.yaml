@@ -1,0 +1,61 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{ template "aws-adot-amp.fullname" . }}
+  namespace: {{ template "aws-adot-amp.namespace" . }}
+  labels:
+    {{- include "aws-adot-amp.labels" . | indent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "aws-adot-amp.selectorLabels" . | indent 6 }}
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        {{- include "aws-adot-amp.labels" . | indent 8 }}
+    spec:
+      serviceAccountName: {{ template "aws-adot-amp.serviceAccountName" . }}
+      containers:
+      - command:
+          - "/awscollector"
+          - "--config=/conf/adot-collector-config.yaml"
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        name: {{ .Chart.Name }}
+        {{- if .Values.resources }}
+        resources:
+        {{ toYaml .Values.resources | indent 12 }}
+        {{- end }}
+        ports:
+        - containerPort: 8888  # Default endpoint for querying metrics.
+        volumeMounts:
+        - name: adot-collector-config-vol
+          mountPath: /conf
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 13133 # Health Check extension default port.
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 13133 # Health Check extension default port.
+        {{- if .Values.affinity }}
+      affinity:
+      {{ toYaml .Values.affinity | indent 8 }}
+      {{- end }}
+      {{- if .Values.nodeSelector }}
+      nodeSelector:
+      {{ toYaml .Values.nodeSelector | indent 8 }}
+      {{- end }}
+      {{- if .Values.tolerations }}
+      tolerations:
+      {{ toYaml .Values.tolerations | indent 8 }}
+      {{- end }}
+      volumes:
+        - configMap:
+            name: adot-collector-conf
+            items:
+              - key: adot-collector-config
+                path: adot-collector-config.yaml
+          name: adot-collector-config-vol

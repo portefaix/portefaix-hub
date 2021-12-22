@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "aws-adot-amp.fullname" . }}
+  namespace: {{ template "aws-adot-amp.namespace" . }}
+  labels:
+    {{- include "aws-adot-amp.labels" . | indent 4 }}
+spec:
+  {{- if .Values.service.externalIPs }}
+  externalIPs:
+  {{ toYaml .Values.service.externalIPs | indent 4 }}
+  {{- end }}
+  ports:
+  - name: metrics # Default endpoint for querying metrics.
+    port: {{ .Values.service.port }}
+  selector:
+    {{- include "aws-adot-amp.selectorLabels" . | indent 4 }}
+  type: {{ .Values.service.type }}

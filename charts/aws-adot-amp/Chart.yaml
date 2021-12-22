@@ -1,0 +1,47 @@
+# Copyright (C) 2021 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: v2
+name: aws-adot-amp
+description: A Helm chart for AWS Distro for Telemetry and AWS Managed service for Prometheus
+type: application
+version: 0.1.0
+appVersion: 0.1.0
+keywords:
+  - aws
+  - aws-distro-for-opentelemtry
+  - opentelemetry
+  - prometheus
+  - portefaix
+
+maintainers:
+  - name: nlamirault
+    email: nicolas.lamirault@gmail.com
+
+# https://artifacthub.io/docs/topics/repositories/
+annotations:
+  artifacthub.io/license: Apache-2.0
+  artifacthub.io/links: |
+    - name: Portefaix
+      url: https://portefaix.xyz
+    - name: AWS Distro for OpenTelemetry
+      url: https://aws.amazon.com/en/otel
+    - name: AWS Managed Service for Prometheus
+      url: https://aws.amazon.com/en/prometheus/
+  artifacthub.io/maintainers: |
+    - name: nlamirault
+      email: nicolas.lamirault@gmail.com
+  artifacthub.io/changes: |
+    - kind: added
+      description: Adot with AMP.
