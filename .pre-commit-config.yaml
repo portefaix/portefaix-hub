@@ -11,10 +11,10 @@ repos:
     #     mkdocs.yml
     #     charts
     - id: check-added-large-files
-- repo: https://github.com/gruntwork-io/pre-commit
-  rev: v0.1.17
-  hooks:
-    - id: helmlint
+# - repo: https://github.com/gruntwork-io/pre-commit
+#   rev: v0.1.17
+#   hooks:
+#     - id: helmlint
 - repo: local
   hooks:
     - id: ct-lint
