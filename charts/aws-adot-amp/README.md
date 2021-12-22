@@ -17,6 +17,30 @@ A Helm chart for AWS Distro for Telemetry and AWS Managed service for Prometheus
 | additionalAnnotations | object | `{}` | Additional annotations to add to all resources |
 | additionalLabels | object | `{}` | Additional labels to add to all resources |
 | affinity | object | `{}` |  |
+| config.exporters.awsprometheusremotewrite.aws_auth.region | string | `"<YOUR_REGION>"` |  |
+| config.exporters.awsprometheusremotewrite.aws_auth.service | string | `"aps"` |  |
+| config.exporters.awsprometheusremotewrite.endpoint | string | `"<YOUR_ENDPOINT>"` |  |
+| config.exporters.awsprometheusremotewrite.namespace | string | `"adot"` |  |
+| config.exporters.logging.loglevel | string | `"debug"` |  |
+| config.extensions.health_check | string | `nil` |  |
+| config.extensions.pprof.endpoint | string | `":1888"` |  |
+| config.extensions.zpages.endpoint | string | `":55679"` |  |
+| config.receivers.prometheus.config.global.scrape_interval | string | `"15s"` |  |
+| config.receivers.prometheus.config.global.scrape_timeout | string | `"10s"` |  |
+| config.receivers.prometheus.config.scrape_configs[0].bearer_token_file | string | `"/var/run/secrets/kubernetes.io/serviceaccount/token"` |  |
+| config.receivers.prometheus.config.scrape_configs[0].job_name | string | `"kubernetes-service-endpoints"` |  |
+| config.receivers.prometheus.config.scrape_configs[0].kubernetes_sd_configs[0].role | string | `"endpoints"` |  |
+| config.receivers.prometheus.config.scrape_configs[0].relabel_configs[0].action | string | `"keep"` |  |
+| config.receivers.prometheus.config.scrape_configs[0].relabel_configs[0].regex | bool | `true` |  |
+| config.receivers.prometheus.config.scrape_configs[0].relabel_configs[0].source_labels[0] | string | `"__meta_kubernetes_service_annotation_scrape"` |  |
+| config.receivers.prometheus.config.scrape_configs[0].tls_config.ca_file | string | `"/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"` |  |
+| config.receivers.prometheus.config.scrape_configs[0].tls_config.insecure_skip_verify | bool | `true` |  |
+| config.service.extensions[0] | string | `"pprof"` |  |
+| config.service.extensions[1] | string | `"zpages"` |  |
+| config.service.extensions[2] | string | `"health_check"` |  |
+| config.service.pipelines.metrics.exporters[0] | string | `"logging"` |  |
+| config.service.pipelines.metrics.exporters[1] | string | `"awsprometheusremotewrite"` |  |
+| config.service.pipelines.metrics.receivers[0] | string | `"prometheus"` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"public.ecr.aws/aws-observability/aws-otel-collector"` |  |
