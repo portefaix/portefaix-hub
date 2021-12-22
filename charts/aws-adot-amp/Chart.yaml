@@ -17,7 +17,7 @@ name: aws-adot-amp
 description: A Helm chart for AWS Distro for Telemetry and AWS Managed service for Prometheus
 type: application
 version: 0.1.0
-appVersion: 0.1.0
+appVersion: 0.15.1
 keywords:
   - aws
   - aws-distro-for-opentelemtry
