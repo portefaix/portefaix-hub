@@ -15,7 +15,7 @@ replicas: 1
 
 image:
   repository: danopstech/speedtest_exporter
-  tag: v0.0.4
+  tag: v0.0.5
   pullPolicy: IfNotPresent
   pullSecret: ""
 
