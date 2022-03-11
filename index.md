@@ -6,6 +6,7 @@ Welcome to the Portefaix Hub.
 
 |Name|version|description|Type|created|
 |:--|:-:|:--|:--|:--:|:--|
+[alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.5.0|A Helm chart for Alertmanager Mixin|application|2022-03-11T09:46:06.634714189Z
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.4.0|A Helm chart for Alertmanager Mixin|application|2021-12-11T18:00:42.114716054Z
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.3.0|A Helm chart for Alertmanager Mixin|application|2021-08-31T15:39:08.103793493Z
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.1.0|A Helm chart for Alertmanager Mixin|application|2021-06-18T16:36:49.277772553Z
@@ -62,6 +63,7 @@ Welcome to the Portefaix Hub.
 [node-exporter-mixin](https://artifacthub.io/packages/helm/portefaix-hub/node-exporter-mixin)|0.1.0|A Helm chart for Alertmanager Mixin|application|2021-09-01T06:09:12.375337814Z
 [portefaix-kyverno](https://artifacthub.io/packages/helm/portefaix-hub/portefaix-kyverno)|0.2.0|A Helm chart for Kyverno policies for Portefaix|application|2021-06-29T14:31:18.804960635Z
 [portefaix-kyverno](https://artifacthub.io/packages/helm/portefaix-hub/portefaix-kyverno)|0.1.0|A Helm chart for Kyverno policies for Portefaix|application|2021-06-28T22:21:05.655053624Z
+[prometheus-bbox-exporter](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-bbox-exporter)|0.3.0|Prometheus BBOX Exporter||2022-03-11T10:03:43.946440597Z
 [prometheus-bbox-exporter](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-bbox-exporter)|0.2.0|Prometheus BBOX Exporter||2021-09-30T12:37:28.234720523Z
 [prometheus-bbox-exporter](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-bbox-exporter)|0.1.0|Prometheus BBOX Exporter||2021-09-17T10:09:36.582612871Z
 [prometheus-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-mixin)|0.7.0|A Helm chart for Prometheus Mixin|application|2021-12-11T18:00:43.857795451Z
