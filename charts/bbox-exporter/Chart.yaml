@@ -15,7 +15,7 @@
 apiVersion: v2
 description: Prometheus BBOX Exporter
 name: prometheus-bbox-exporter
-version: 0.2.0
+version: 0.3.0
 appVersion: 0.4.0
 home: https://github.com/nlamirault/bbox_exporter
 sources:
@@ -24,7 +24,27 @@ keywords:
   - prometheus
   - bbox
   - monitoring
+
 maintainers:
   - name: nlamirault
     email: nicolas.lamirault@gmail.com
     url: https://github.com/nlamirault
+
+# https://artifacthub.io/docs/topics/repositories/
+annotations:
+  artifacthub.io/license: Apache-2.0
+  artifacthub.io/links: |
+    - name: Bbox exporter
+      url: https://github.com/nlamirault/bbox_exporter
+  artifacthub.io/maintainers: |
+    - name: nlamirault
+      email: nicolas.lamirault@gmail.com
+  artifacthub.io/signKey: |
+    fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+    url: https://keybase.io/nlamirault/pgp_keys.asc
+  artifacthub.io/changes: |
+    - kind: added
+      description: Sigstore support
+      links:
+        - name: Github Issue
+          url: https://github.com/portefaix/portefaix-hub/pull/129
