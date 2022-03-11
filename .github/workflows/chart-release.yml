@@ -72,7 +72,7 @@ jobs:
       # Optional step if GPG signing is used
       - name: Prepare GPG key
         run: |
-          gpg_dir=.cr-gpg
+          gpg_dir="/home/runner/.gnupg"
           mkdir "$gpg_dir"
           keyring="$gpg_dir/secring.gpg"
           base64 -d <<< "$GPG_KEYRING_BASE64" > "$keyring"
