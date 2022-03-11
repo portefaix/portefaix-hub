@@ -28,7 +28,7 @@ keywords:
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.3.1
+version: 0.4.0
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
@@ -41,10 +41,7 @@ maintainers:
 
 # https://artifacthub.io/docs/topics/repositories/
 annotations:
-  artifacthub.io/changes: |
-    - kind: changed
-      description: Do not set default resources
-  artifacthub.io/containsSecurityUpdates: "true"
+  artifacthub.io/license: Apache-2.0
   artifacthub.io/images: |
     - name: secrets-store-csi-driver-provider-aws
       image: public.ecr.aws/aws-secrets-manager/secrets-store-csi-driver-provider-aws:1.0.r2-2021.08.13.20.34-linux-amd64
@@ -58,3 +55,14 @@ annotations:
   artifacthub.io/maintainers: |
     - name: nlamirault
       email: nicolas.lamirault@gmail.com
+  artifacthub.io/signKey: |
+    fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+    url: https://keybase.io/nlamirault/pgp_keys.asc
+  artifacthub.io/changes: |
+    - kind: added
+      description: Sigstore support
+      links:
+        - name: Github Issue
+          url: https://github.com/portefaix/portefaix-hub/pull/129
+
+
