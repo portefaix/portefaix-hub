@@ -39,6 +39,7 @@ Welcome to the Portefaix Hub.
 [kube-state-metrics-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kube-state-metrics-mixin)|0.3.0|A Helm chart for Kube-State-Metrics Mixin|application|2021-04-27T10:11:10.479452822Z
 [kube-state-metrics-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kube-state-metrics-mixin)|0.2.0|A Helm chart for Kube-State-Metrics Mixin|application|2021-04-27T07:12:05.171974647Z
 [kube-state-metrics-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kube-state-metrics-mixin)|0.1.0|A Helm chart for Kube-State-Metrics Mixin|application|2021-03-07T06:59:37.616260149Z
+[kubernetes-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kubernetes-mixin)|0.8.0|A Helm chart for Kubernetes Mixin|application|2022-03-11T13:29:29.877970749Z
 [kubernetes-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kubernetes-mixin)|0.7.0|A Helm chart for Kubernetes Mixin|application|2021-12-11T18:00:42.866141752Z
 [kubernetes-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kubernetes-mixin)|0.6.0|A Helm chart for Kubernetes Mixin|application|2021-08-31T16:46:33.946866574Z
 [kubernetes-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kubernetes-mixin)|0.5.0|A Helm chart for Kubernetes Mixin|application|2021-06-21T14:27:10.169279854Z
@@ -46,11 +47,9 @@ Welcome to the Portefaix Hub.
 [kubernetes-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kubernetes-mixin)|0.3.0|A Helm chart for Kubernetes Mixin|application|2021-06-20T19:49:27.10898265Z
 [kubernetes-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kubernetes-mixin)|0.2.0|A Helm chart for Kubernetes Mixin|application|2021-06-20T16:28:44.750736877Z
 [kubernetes-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kubernetes-mixin)|0.1.0|A Helm chart for Kubernetes Mixin|application|2021-06-18T12:19:39.045870933Z
-[linkerd-edge-mixin](https://artifacthub.io/packages/helm/portefaix-hub/linkerd-edge-mixin)|0.4.0|A Helm chart for Linkerd Edge Mixin|application|2022-03-11T13:28:41.150099546Z
 [linkerd-edge-mixin](https://artifacthub.io/packages/helm/portefaix-hub/linkerd-edge-mixin)|0.3.0|A Helm chart for Linkerd Edge Mixin|application|2021-12-11T18:00:43.082325313Z
 [linkerd-edge-mixin](https://artifacthub.io/packages/helm/portefaix-hub/linkerd-edge-mixin)|0.2.0|A Helm chart for Linkerd Edge Mixin|application|2021-06-22T21:09:46.422512503Z
 [linkerd-mixin](https://artifacthub.io/packages/helm/portefaix-hub/linkerd-mixin)|0.1.0|A Helm chart for Linkerd Edge Mixin|application|2021-06-22T20:50:02.183481036Z
-[linkerd-stable-mixin](https://artifacthub.io/packages/helm/portefaix-hub/linkerd-stable-mixin)|0.4.0|A Helm chart for Linkerd Stable Mixin|application|2022-03-11T13:28:41.295606732Z
 [linkerd-stable-mixin](https://artifacthub.io/packages/helm/portefaix-hub/linkerd-stable-mixin)|0.3.0|A Helm chart for Linkerd Stable Mixin|application|2021-12-11T18:00:43.289317535Z
 [linkerd-stable-mixin](https://artifacthub.io/packages/helm/portefaix-hub/linkerd-stable-mixin)|0.2.0|A Helm chart for Linkerd Stable Mixin|application|2021-06-23T10:21:49.277633099Z
 [linkerd-stable-mixin](https://artifacthub.io/packages/helm/portefaix-hub/linkerd-stable-mixin)|0.1.0|A Helm chart for Linkerd Stable Mixin|application|2021-06-22T20:58:56.885331947Z
