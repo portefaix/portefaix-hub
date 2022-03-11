@@ -477,6 +477,48 @@ entries:
     version: 0.1.0
   grafana-mixin:
   - annotations:
+      artifacthub.io/changes: |-
+        - kind: added
+          description: Sigstore support
+          links:
+            - name: Github Issue
+              url: https://github.com/portefaix/portefaix-hub/pull/129
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: grafana
+          url: https://github.com/grafana/grafana
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 8.3.1
+    created: "2022-03-11T13:13:07.98181007Z"
+    description: A Helm chart for Grafana Mixin
+    digest: 38d8b87f4a87367dd53cba8e58101b3b9ca96da2cb6544d54f22c65f0a31cee3
+    home: https://charts.portefaix.xyz
+    icon: https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Grafana_logo.svg/300px-Grafana_logo.svg.png
+    keywords:
+    - grafana
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: grafana-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/grafana-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/grafana-mixin-0.10.0/grafana-mixin-0.10.0.tgz
+    version: 0.10.0
+  - annotations:
       artifacthub.io/changes: |
         - kind: changed
           description: Bump to Grafana v8.3.1
@@ -3947,4 +3989,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-03-11T13:11:46.974510144Z"
+generated: "2022-03-11T13:13:07.982079272Z"
