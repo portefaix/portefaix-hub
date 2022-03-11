@@ -844,6 +844,48 @@ entries:
     version: 0.1.0
   kube-state-metrics-mixin:
   - annotations:
+      artifacthub.io/changes: |-
+        - kind: added
+          description: Sigstore support
+          links:
+            - name: Github Issue
+              url: https://github.com/portefaix/portefaix-hub/pull/129
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Kube-State-Metrics
+          url: https://github.com/kubernetes/kube-state-metrics
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.2.4
+    created: "2022-03-11T13:28:11.661439255Z"
+    description: A Helm chart for Kube-State-Metrics Mixin
+    digest: 4e31cecd11ba1a4e5488fcf4e788fc72813c10b54a690bc4e661e3bed9cdcf02
+    home: https://charts.portefaix.xyz
+    icon: https://bitnami.com/assets/stacks/kube-state-metrics/img/kube-state-metrics-stack-220x234.png
+    keywords:
+    - kube-state-metrics
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: kube-state-metrics-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kube-state-metrics-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/kube-state-metrics-mixin-0.9.0/kube-state-metrics-mixin-0.9.0.tgz
+    version: 0.9.0
+  - annotations:
       artifacthub.io/changes: |
         - kind: changed
           description: Bump to KubeStateMetrics v2.2.4
@@ -3989,4 +4031,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-03-11T13:13:23.999708086Z"
+generated: "2022-03-11T13:28:11.661792355Z"
