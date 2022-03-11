@@ -56,18 +56,33 @@ jobs:
       #     gpg --export > /home/runner/.gnupg/pubring.gpg
       #     gpg --export-secret-keys > /home/runner/.gnupg/secring.gpg
 
-      - name: Import GPG key
-        id: import_gpg
-        uses: crazy-max/ghaction-import-gpg@v4
-        with:
-          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-          passphrase: ${{ secrets.GPG_PASSPHRASE }}
+      # - name: Import GPG key
+      #   id: import_gpg
+      #   uses: crazy-max/ghaction-import-gpg@v4
+      #   with:
+      #     gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+      #     passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
-      - name: Configure GPG keys
+      # - name: Configure GPG keys
+      #   run: |
+      #     gpg -K
+      #     echo ${{ secrets.GPG_PASSPHRASE }} | gpg --armor --batch --passphrase-fd 0 --pinentry-mode=loopback --export ${{ secrets.GPG_KEY_NAME }} > /home/runner/.gnupg/pubring.gpg
+      #     echo ${{ secrets.GPG_PASSPHRASE }} | gpg --armor --batch --passphrase-fd 0 --pinentry-mode=loopback --export-secret-key ${{ secrets.GPG_KEY_NAME }} > /home/runner/.gnupg/secring.gpg
+
+      # Optional step if GPG signing is used
+      - name: Prepare GPG key
         run: |
-          gpg -K
-          echo ${{ secrets.GPG_PASSPHRASE }} | gpg --armor --batch --passphrase-fd 0 --pinentry-mode=loopback --export ${{ secrets.GPG_KEY_NAME }} > /home/runner/.gnupg/pubring.gpg
-          echo ${{ secrets.GPG_PASSPHRASE }} | gpg --armor --batch --passphrase-fd 0 --pinentry-mode=loopback --export-secret-key ${{ secrets.GPG_KEY_NAME }} > /home/runner/.gnupg/secring.gpg
+          gpg_dir=.cr-gpg
+          mkdir "$gpg_dir"
+          keyring="$gpg_dir/secring.gpg"
+          base64 -d <<< "$GPG_KEYRING_BASE64" > "$keyring"
+          passphrase_file="$gpg_dir/passphrase"
+          echo "$GPG_PASSPHRASE" > "$passphrase_file"
+          echo "CR_PASSPHRASE_FILE=$passphrase_file" >> "$GITHUB_ENV"
+          echo "CR_KEYRING=$keyring" >> "$GITHUB_ENV"
+        env:
+          GPG_KEYRING_BASE64: "${{ secrets.GPG_KEYRING_BASE64 }}"
+          GPG_PASSPHRASE: "${{ secrets.GPG_PASSPHRASE }}"
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.3.0
@@ -77,7 +92,6 @@ jobs:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           CR_SIGN: "true"
           CR_KEY: "${{ secrets.GPG_KEY_NAME }}"
-          CR_KEYRING: "/home/runner/.gnupg/secring.gpg"
 
       - name: Upload Helm Charts to Rekor
         run: |
