@@ -2157,6 +2157,50 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: Sigstore support
+          links:
+            - name: Github Issue
+              url: https://github.com/portefaix/portefaix-hub/pull/129
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: kyverno
+          url: https://kyverno.io/
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.4.1
+    created: "2022-03-11T13:59:45.032974418Z"
+    description: A Helm chart for Kyverno policies for Portefaix
+    digest: d30ea33f4bd8ead0d31f618c9196cef901bca6cb13f74ccece7838c897916e0e
+    home: https://charts.portefaix.xyz
+    icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
+    keywords:
+    - kyverno
+    - policy agent
+    - validating webhook
+    - admissions controller
+    - policies
+    - portefaix
+    kubeVersion: '>=1.10.0-0'
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: portefaix-kyverno
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/portefaix-kyverno
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/portefaix-kyverno-0.3.0/portefaix-kyverno-0.3.0.tgz
+    version: 0.3.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: Init chart
       artifacthub.io/containsSecurityUpdates: "true"
       artifacthub.io/links: |
@@ -3589,45 +3633,6 @@ entries:
   speedtest-exporter:
   - annotations:
       artifacthub.io/changes: |
-        - kind: added
-          description: Sigstore support
-          links:
-            - name: Github Issue
-              url: https://github.com/portefaix/portefaix-hub/pull/129
-      artifacthub.io/license: Apache-2.0
-      artifacthub.io/links: |
-        - name: Speedtest exporter
-          url: https://github.com/danopstech/speedtest_exporter
-        - name: Portefaix
-          url: https://portefaix.xyz
-      artifacthub.io/maintainers: |
-        - name: nlamirault
-          email: nicolas.lamirault@gmail.com
-      artifacthub.io/signKey: |
-        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
-        url: https://keybase.io/nlamirault/pgp_keys.asc
-    apiVersion: v2
-    appVersion: 0.0.4
-    created: "2022-03-11T13:59:26.295440416Z"
-    description: A Helm chart for Prometheus Speedtest exporter
-    digest: 87e0b24587b14efa054aa5174aa35a666e026a8b0495e293921138fcae2491fe
-    home: https://charts.portefaix.xyz
-    keywords:
-    - speedtest
-    - prometheus-exporter
-    - portefaix
-    maintainers:
-    - email: nicolas.lamirault@gmail.com
-      name: nlamirault
-    name: speedtest-exporter
-    sources:
-    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/speedtest-exporter
-    type: application
-    urls:
-    - https://github.com/portefaix/portefaix-hub/releases/download/speedtest-exporter-0.4.0/speedtest-exporter-0.4.0.tgz
-    version: 0.4.0
-  - annotations:
-      artifacthub.io/changes: |
         - Artifact Hub informations
       artifacthub.io/links: |
         - name: Speedtest exporter
@@ -4279,4 +4284,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-03-11T13:59:26.296487009Z"
+generated: "2022-03-11T13:59:45.033813314Z"
