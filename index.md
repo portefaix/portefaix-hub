@@ -68,7 +68,6 @@ Welcome to the Portefaix Hub.
 [node-exporter-mixin](https://artifacthub.io/packages/helm/portefaix-hub/node-exporter-mixin)|0.3.0|A Helm chart for Alertmanager Mixin|application|2022-03-11T13:34:24.65831197Z
 [node-exporter-mixin](https://artifacthub.io/packages/helm/portefaix-hub/node-exporter-mixin)|0.2.0|A Helm chart for Alertmanager Mixin|application|2021-12-11T18:00:43.672360585Z
 [node-exporter-mixin](https://artifacthub.io/packages/helm/portefaix-hub/node-exporter-mixin)|0.1.0|A Helm chart for Alertmanager Mixin|application|2021-09-01T06:09:12.375337814Z
-[portefaix-kyverno](https://artifacthub.io/packages/helm/portefaix-hub/portefaix-kyverno)|0.3.0|A Helm chart for Kyverno policies for Portefaix|application|2022-03-11T13:59:45.032974418Z
 [portefaix-kyverno](https://artifacthub.io/packages/helm/portefaix-hub/portefaix-kyverno)|0.2.0|A Helm chart for Kyverno policies for Portefaix|application|2021-06-29T14:31:18.804960635Z
 [portefaix-kyverno](https://artifacthub.io/packages/helm/portefaix-hub/portefaix-kyverno)|0.1.0|A Helm chart for Kyverno policies for Portefaix|application|2021-06-28T22:21:05.655053624Z
 [prometheus-bbox-exporter](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-bbox-exporter)|0.3.0|Prometheus BBOX Exporter||2022-03-11T10:03:43.946440597Z
@@ -103,10 +102,12 @@ Welcome to the Portefaix Hub.
 [promtail-mixin](https://artifacthub.io/packages/helm/portefaix-hub/promtail-mixin)|0.3.0|A Helm chart for Promtail Mixin|application|2021-04-27T07:12:06.045402851Z
 [promtail-mixin](https://artifacthub.io/packages/helm/portefaix-hub/promtail-mixin)|0.2.0|A Helm chart for Promtail Mixin|application|2021-03-13T17:53:16.751951566Z
 [promtail-mixin](https://artifacthub.io/packages/helm/portefaix-hub/promtail-mixin)|0.1.0|A Helm chart for Promtail Mixin|application|2021-03-06T17:29:21.283395175Z
+[secrets-store-csi-driver-provider-aws](https://artifacthub.io/packages/helm/portefaix-hub/secrets-store-csi-driver-provider-aws)|0.4.0|A Helm chart for AWS Secret Manager Provider for Secret Store CSI Driver|application|2022-03-11T14:00:38.440622365Z
 [secrets-store-csi-driver-provider-aws](https://artifacthub.io/packages/helm/portefaix-hub/secrets-store-csi-driver-provider-aws)|0.3.1|A Helm chart for AWS Secret Manager Provider for Secret Store CSI Driver|application|2021-12-10T11:49:37.226325947Z
 [secrets-store-csi-driver-provider-aws](https://artifacthub.io/packages/helm/portefaix-hub/secrets-store-csi-driver-provider-aws)|0.3.0|A Helm chart for AWS Secret Manager Provider for Secret Store CSI Driver|application|2021-11-03T17:26:41.547806401Z
 [secrets-store-csi-driver-provider-aws](https://artifacthub.io/packages/helm/portefaix-hub/secrets-store-csi-driver-provider-aws)|0.2.0|A Helm chart for AWS Secret Manager Provider for Secret Store CSI Driver|application|2021-11-03T17:10:37.832567583Z
 [secrets-store-csi-driver-provider-aws](https://artifacthub.io/packages/helm/portefaix-hub/secrets-store-csi-driver-provider-aws)|0.1.0|A Helm chart for AWS Secret Manager Provider for Secret Store CSI Driver|application|2021-10-16T13:30:30.708581848Z
+[secrets-store-csi-driver-provider-gcp](https://artifacthub.io/packages/helm/portefaix-hub/secrets-store-csi-driver-provider-gcp)|0.5.0|A Helm chart for Google Secret Manager Provider for Secret Store CSI Driver|application|2022-03-11T14:00:38.665188698Z
 [secrets-store-csi-driver-provider-gcp](https://artifacthub.io/packages/helm/portefaix-hub/secrets-store-csi-driver-provider-gcp)|0.4.0|A Helm chart for Google Secret Manager Provider for Secret Store CSI Driver|application|2021-11-03T17:20:49.293058542Z
 [secrets-store-csi-driver-provider-gcp](https://artifacthub.io/packages/helm/portefaix-hub/secrets-store-csi-driver-provider-gcp)|0.3.0|A Helm chart for Google Secret Manager Provider for Secret Store CSI Driver|application|2021-06-24T13:11:42.309033683Z
 [secrets-store-csi-driver-provider-gcp](https://artifacthub.io/packages/helm/portefaix-hub/secrets-store-csi-driver-provider-gcp)|0.2.0|A Helm chart for Google Secret Manager Provider for Secret Store CSI Driver|application|2021-05-25T12:35:23.361195225Z
