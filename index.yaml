@@ -2157,50 +2157,6 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
-          description: Sigstore support
-          links:
-            - name: Github Issue
-              url: https://github.com/portefaix/portefaix-hub/pull/129
-      artifacthub.io/license: Apache-2.0
-      artifacthub.io/links: |
-        - name: kyverno
-          url: https://kyverno.io/
-        - name: Portefaix
-          url: https://portefaix.xyz
-      artifacthub.io/maintainers: |
-        - name: nlamirault
-          email: nicolas.lamirault@gmail.com
-      artifacthub.io/signKey: |
-        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
-        url: https://keybase.io/nlamirault/pgp_keys.asc
-    apiVersion: v2
-    appVersion: 1.4.1
-    created: "2022-03-11T13:59:45.032974418Z"
-    description: A Helm chart for Kyverno policies for Portefaix
-    digest: d30ea33f4bd8ead0d31f618c9196cef901bca6cb13f74ccece7838c897916e0e
-    home: https://charts.portefaix.xyz
-    icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
-    keywords:
-    - kyverno
-    - policy agent
-    - validating webhook
-    - admissions controller
-    - policies
-    - portefaix
-    kubeVersion: '>=1.10.0-0'
-    maintainers:
-    - email: nicolas.lamirault@gmail.com
-      name: nlamirault
-    name: portefaix-kyverno
-    sources:
-    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/portefaix-kyverno
-    type: application
-    urls:
-    - https://github.com/portefaix/portefaix-hub/releases/download/portefaix-kyverno-0.3.0/portefaix-kyverno-0.3.0.tgz
-    version: 0.3.0
-  - annotations:
-      artifacthub.io/changes: |
-        - kind: added
           description: Init chart
       artifacthub.io/containsSecurityUpdates: "true"
       artifacthub.io/links: |
@@ -3339,6 +3295,51 @@ entries:
   secrets-store-csi-driver-provider-aws:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: Sigstore support
+          links:
+            - name: Github Issue
+              url: https://github.com/portefaix/portefaix-hub/pull/129
+      artifacthub.io/images: |
+        - name: secrets-store-csi-driver-provider-aws
+          image: public.ecr.aws/aws-secrets-manager/secrets-store-csi-driver-provider-aws:1.0.r2-2021.08.13.20.34-linux-amd64
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: secrets-store-csi-driver
+          url: https://github.com/kubernetes-sigs/secrets-store-csi-driver
+        - name: secrets-store-csi-driver-provider-aws
+          url: https://github.com/aws/secrets-store-csi-driver-provider-aws
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.0.r2
+    created: "2022-03-11T14:00:38.440622365Z"
+    description: A Helm chart for AWS Secret Manager Provider for Secret Store CSI
+      Driver
+    digest: e488c8661d3ed16c1acd999318d0dd67fa979f40caf451e6d1c614f729fa3b16
+    home: https://charts.portefaix.xyz
+    keywords:
+    - secrets-store-csi-driver-provider-aws
+    - secrets-store-csi-driver
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: secrets-store-csi-driver-provider-aws
+    sources:
+    - https://github.com/portefaix/portefaix-hub/tree/master/charts/secrets-store-csi-driver-provider-aws
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/secrets-store-csi-driver-provider-aws-0.4.0/secrets-store-csi-driver-provider-aws-0.4.0.tgz
+    version: 0.4.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Do not set default resources
       artifacthub.io/containsSecurityUpdates: "true"
@@ -3489,6 +3490,51 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/secrets-store-csi-driver-provider-aws-0.1.0/secrets-store-csi-driver-provider-aws-0.1.0.tgz
     version: 0.1.0
   secrets-store-csi-driver-provider-gcp:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Sigstore support
+          links:
+            - name: Github Issue
+              url: https://github.com/portefaix/portefaix-hub/pull/129
+      artifacthub.io/images: |
+        - name: secrets-store-csi-driver-provider-gcp
+          image: us-docker.pkg.dev/secretmanager-csi/secrets-store-csi-driver-provider-gcp/plugin:v1.0.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: secrets-store-csi-driver
+          url: https://github.com/kubernetes-sigs/secrets-store-csi-driver
+        - name: secrets-store-csi-driver-provider-gcp
+          url: https://github.com/GoogleCloudPlatform/secrets-store-csi-driver-provider-gcp
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-03-11T14:00:38.665188698Z"
+    description: A Helm chart for Google Secret Manager Provider for Secret Store
+      CSI Driver
+    digest: c55fc336a2181a5e0828c81289adafb55e95914affa62a38b20d8e35e3d80c5e
+    home: https://charts.portefaix.xyz
+    keywords:
+    - secrets-store-csi-driver-provider-gcp
+    - secrets-store-csi-driver
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: secrets-store-csi-driver-provider-gcp
+    sources:
+    - https://github.com/portefaix/portefaix-hub/tree/master/charts/secrets-store-csi-driver-provider-gcp
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/secrets-store-csi-driver-provider-gcp-0.5.0/secrets-store-csi-driver-provider-gcp-0.5.0.tgz
+    version: 0.5.0
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
@@ -4284,4 +4330,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-03-11T14:00:03.902189651Z"
+generated: "2022-03-11T14:00:38.665597703Z"
