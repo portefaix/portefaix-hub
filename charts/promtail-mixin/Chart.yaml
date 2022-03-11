@@ -28,7 +28,7 @@ keywords:
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.9.1
+version: 0.10.0
 
 
 # This is the version number of the application being deployed. This version number should be
@@ -42,9 +42,7 @@ maintainers:
 
 # https://artifacthub.io/docs/topics/repositories/
 annotations:
-  artifacthub.io/changes: |
-    - kind: added
-      description: Add Grafana folder and name
+  artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: promtail
       url: https://grafana.com/docs/promtail/latest/clients/promtail/
@@ -53,3 +51,13 @@ annotations:
   artifacthub.io/maintainers: |
     - name: nlamirault
       email: nicolas.lamirault@gmail.com
+  artifacthub.io/signKey: |
+    fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+    url: https://keybase.io/nlamirault/pgp_keys.asc
+  artifacthub.io/changes: |
+    - kind: added
+      description: Sigstore support
+      links:
+        - name: Github Issue
+          url: https://github.com/portefaix/portefaix-hub/pull/129
+
