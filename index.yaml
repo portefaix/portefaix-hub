@@ -373,6 +373,45 @@ entries:
     version: 0.1.0
   fluxcd-mixin:
   - annotations:
+      artifacthub.io/changes: |-
+        - kind: added
+          description: Sigstore support
+          links:
+            - name: Github Issue
+              url: https://github.com/portefaix/portefaix-hub/pull/129
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: fluxcd
+          url: https://fluxcd.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.16.0
+    created: "2022-03-11T13:11:26.672149989Z"
+    description: A Helm chart for FluxCD Mixin
+    digest: d9be5370eabf31a8342e47117cd892bfb91c30457e8073409602e5511b7b304a
+    home: https://charts.portefaix.xyz
+    keywords:
+    - fluxcd
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: fluxcd-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/fluxcd-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/fluxcd-mixin-0.3.0/fluxcd-mixin-0.3.0.tgz
+    version: 0.3.0
+  - annotations:
       artifacthub.io/changes: |
         - Artifact Hub informations
         - Refactoring Prometheus rules configuration
@@ -3908,4 +3947,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-03-11T13:10:02.435876310Z"
+generated: "2022-03-11T13:11:26.672667695Z"
