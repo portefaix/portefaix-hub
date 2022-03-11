@@ -26,7 +26,7 @@ on:
     # paths:
     #   - "charts/**"
 
-      
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -63,8 +63,11 @@ jobs:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
-      - name: List GPG keys
-        run: gpg -K
+      - name: Configure GPG keys
+        run: |
+          gpg -K
+          echo ${{ secrets.GPG_PASSPHRASE }} | gpg --armor --batch --passphrase-fd 0 --pinentry-mode=loopback --export ${{ secrets.GPG_KEY_NAME }} > /home/runner/.gnupg/pubring.gpg
+          echo ${{ secrets.GPG_PASSPHRASE }} | gpg --armor --batch --passphrase-fd 0 --pinentry-mode=loopback --export-secret-key ${{ secrets.GPG_KEY_NAME }} > /home/runner/.gnupg/secring.gpg
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.3.0
