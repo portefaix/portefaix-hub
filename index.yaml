@@ -147,6 +147,50 @@ entries:
     version: 0.1.0
   crossplane-aws-factory:
   - annotations:
+      artifacthub.io/changes: |-
+        - kind: added
+          description: Sigstore support
+          links:
+            - name: Github Issue
+              url: https://github.com/portefaix/portefaix-hub/pull/129
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Crossplane
+          url: https://crossplane.io
+        - name: Crossplane AWS provider
+          url: https://github.com/crossplane/provider-aws
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/recommendations: |
+        - url: https://artifacthub.io/packages/helm/crossplane/crossplane
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.15.1
+    created: "2022-03-11T13:07:33.76762875Z"
+    description: An AWS Factory using Crossplane
+    digest: 44b61c57bd22d30ee6a3dac377a2b44696518bb71a6c4f52abdb60998d0ca237
+    home: https://github.com/portefaix/portefaix-hub/charts/crossplane-aws-factory
+    icon: https://crossplane.io/images/favicon_192x192.png
+    keywords:
+    - crossplane
+    - cloud
+    - infrastructure
+    - aws
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: crossplane-aws-factory
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/crossplane-aws-factory-0.3.0/crossplane-aws-factory-0.3.0.tgz
+    version: 0.3.0
+  - annotations:
       artifacthub.io/changes: |
         - kind: changed
           description: Crossplane AWS provider v0.21.2
@@ -3820,4 +3864,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-03-11T10:04:03.755974650Z"
+generated: "2022-03-11T13:07:33.768080659Z"
