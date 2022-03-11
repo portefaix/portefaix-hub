@@ -16,6 +16,7 @@ Welcome to the Portefaix Hub.
 [crossplane-gcp-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-gcp-factory)|0.3.0|A Google Cloud Factory using Crossplane|application|2022-03-11T13:09:45.696391082Z
 [crossplane-gcp-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-gcp-factory)|0.2.0|A Google Cloud Factory using Crossplane|application|2021-12-10T14:23:04.795849864Z
 [crossplane-gcp-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-gcp-factory)|0.1.0|A Google Cloud Factory using Crossplane|application|2021-12-10T11:49:37.101949861Z
+[fluxcd-mixin](https://artifacthub.io/packages/helm/portefaix-hub/fluxcd-mixin)|0.3.0|A Helm chart for FluxCD Mixin|application|2022-03-11T13:11:26.672149989Z
 [fluxcd-mixin](https://artifacthub.io/packages/helm/portefaix-hub/fluxcd-mixin)|0.2.0|A Helm chart for FluxCD Mixin|application|2021-12-11T18:00:42.307658669Z
 [fluxcd-mixin](https://artifacthub.io/packages/helm/portefaix-hub/fluxcd-mixin)|0.1.0|A Helm chart for FluxCD Mixin|application|2021-08-31T16:08:00.601057289Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.9.0|A Helm chart for Grafana Mixin|application|2021-12-11T18:00:42.491417546Z
