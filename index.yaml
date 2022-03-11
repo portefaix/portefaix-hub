@@ -3,6 +3,48 @@ entries:
   alertmanager-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: Sigstore support
+          links:
+            - name: Github Issue
+              url: https://github.com/portefaix/portefaix-hub/pull/129
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: alertmanager
+          url: https://prometheus.io/docs/alerting/latest/alertmanager/
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.23.0
+    created: "2022-03-11T09:46:06.634714189Z"
+    description: A Helm chart for Alertmanager Mixin
+    digest: e24358a474af4487ea5dc208cd1406d58c59cf219b3314af5db07ce6b4d0cc8d
+    home: https://charts.portefaix.xyz
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/242px-Prometheus_software_logo.svg.png
+    keywords:
+    - alertmanager
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: alertmanager-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/alertmanager-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/alertmanager-mixin-0.5.0/alertmanager-mixin-0.5.0.tgz
+    version: 0.5.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Bump to Alertmanager v0.23.0
       artifacthub.io/license: Apache-2.0
@@ -3741,4 +3783,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-03-11T07:52:01.019063913Z"
+generated: "2022-03-11T09:46:06.635004501Z"
