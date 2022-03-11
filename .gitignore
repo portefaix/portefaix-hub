@@ -4,6 +4,8 @@
 ### Helm ###
 # Chart dependencies
 **/charts/*.tgz
+/charts/**/charts/
+**/*test-values.y*ml
 
 ### vscode ###
 .vscode/*
@@ -16,6 +18,5 @@
 # OPA
 addons/policies/deprek8ion/
 addons/policies/portefaix/
-
 
 # End of https://www.toptal.com/developers/gitignore/api/helm,vscode
