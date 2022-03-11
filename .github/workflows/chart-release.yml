@@ -20,8 +20,13 @@ on:
       - master
     paths:
       - "charts/**"
-# on: pull_request
+  # pull_request:
+  #   branches:
+  #     - master
+    # paths:
+    #   - "charts/**"
 
+      
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -41,12 +46,41 @@ jobs:
         with:
           version: v3.7.1
 
+      - name: Install sigstore Helm plugin
+        run: |
+          helm plugin install https://github.com/sigstore/helm-sigstore
+
+      # - name: Install GPG Keys
+      #   run: |
+      #     cat <(echo -e "${{ secrets.GPG_PRIVATE_KEY }}") | gpg --import --batch
+      #     gpg --export > /home/runner/.gnupg/pubring.gpg
+      #     gpg --export-secret-keys > /home/runner/.gnupg/secring.gpg
+
+      - name: Import GPG key
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@v4
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.GPG_PASSPHRASE }}
+
+      - name: List GPG keys
+        run: gpg -K
+
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.3.0
         with:
           charts_repo_url: https://charts.portefaix.xyz
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CR_SIGN: "true"
+          CR_KEY: "${{ secrets.GPG_KEY_NAME }}"
+          CR_KEYRING: "/home/runner/.gnupg/secring.gpg"
+
+      - name: Upload Helm Charts to Rekor
+        run: |
+          for chart in `find .cr-release-packages -name '*.tgz' -print`; do
+            helm sigstore upload --keyring=/home/runner/.gnupg/secring.gpg ${chart}
+          done
 
       - name: Login to GitHub Container Registry
         run: |
@@ -58,7 +92,6 @@ jobs:
         run: |
           for chart in `find .cr-release-packages -name '*.tgz' -print`; do
             helm push ${chart} oci://ghcr.io/${GITHUB_REPOSITORY}
-            # echo -n "${{ secrets.COSIGN_PRIVATE_KEY_PASSWORD }}" | cosign sign -key <(echo -n "${{ secrets.COSIGN_PRIVATE_KEY }}") ghcr.io/${GITHUB_REPOSITORY}/${chart}
           done
         env:
           HELM_EXPERIMENTAL_OCI: 1
