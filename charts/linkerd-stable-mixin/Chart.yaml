@@ -30,7 +30,7 @@ keywords:
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.3.0
+version: 0.4.0
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
@@ -43,10 +43,7 @@ maintainers:
 
 # https://artifacthub.io/docs/topics/repositories/
 annotations:
-  artifacthub.io/changes: |
-    - kind: added
-      description: Linkerd logo
-  artifacthub.io/containsSecurityUpdates: "true"
+  artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: linkerd
       url: https://linkerd.io
@@ -55,3 +52,13 @@ annotations:
   artifacthub.io/maintainers: |
     - name: nlamirault
       email: nicolas.lamirault@gmail.com
+  artifacthub.io/signKey: |
+    fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+    url: https://keybase.io/nlamirault/pgp_keys.asc
+  artifacthub.io/changes: |
+    - kind: added
+      description: Sigstore support
+      links:
+        - name: Github Issue
+          url: https://github.com/portefaix/portefaix-hub/pull/129
+
