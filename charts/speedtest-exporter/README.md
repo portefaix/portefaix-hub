@@ -28,7 +28,7 @@ A Helm chart for Prometheus Speedtest exporter
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.pullSecret | string | `""` |  |
 | image.repository | string | `"danopstech/speedtest_exporter"` |  |
-| image.tag | string | `"v0.0.4"` |  |
+| image.tag | string | `"v0.0.5"` |  |
 | imagePullSecrets | list | `[]` |  |
 | nodeSelector | object | `{}` |  |
 | podAnnotations | object | `{}` |  |
