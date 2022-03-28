@@ -5,9 +5,12 @@ metadata:
   name: {{ printf "%s-%s" (include "linkerd-stable-mixin.fullname" .) "alerts" | trunc 63 | trimSuffix "-" }}
   namespace: {{ include "linkerd-stable-mixin.namespace" . }}
   annotations:
-{{ include "linkerd-stable-mixin.annotations" . | indent 4 }}
+    {{- include "linkerd-stable-mixin.annotations" . | indent 4 }}
   labels:
-{{ include "linkerd-stable-mixin.labels" . | indent 4 }}
+    {{- include "linkerd-stable-mixin.labels" . | indent 4 }}
+    {{- if .Values.monitor.additionalLabels }}
+    {{- toYaml .Values.monitor.additionalLabels | nindent 4 }}
+    {{- end }}
 spec:
   groups:
   - name: linkerd
