@@ -5,7 +5,7 @@ metadata:
   name: {{ printf "%s-%s" (include "__mixin__.fullname" .) "__name__" | trunc 63 | trimSuffix "-" }}
   namespace: {{ include "__mixin__.namespace" . }}
   annotations:
-{{ include "__mixin__.annotations" . | indent 4 }}
+    {{- include "__mixin__.annotations" . | indent 4 }}
   labels:
-{{ include "__mixin__.labels" . | indent 4 }}
+    {{- include "__mixin__.labels" . | indent 4 }}
 spec:

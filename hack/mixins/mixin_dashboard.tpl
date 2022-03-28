@@ -6,8 +6,8 @@ metadata:
   namespace: {{ include "__mixin__.namespace" . }}
   annotations:
     grafana-folder: {{ .Values.grafana.folder }}
-{{ include "__mixin__.annotations" . | indent 4 }}
+    {{- include "__mixin__.annotations" . | indent 4 }}
   labels:
     grafana-dashboard: {{ include "__mixin__.name" . }}-__name__
-{{ include "__mixin__.labels" . | indent 4 }}
+    {{- include "__mixin__.labels" . | indent 4 }}
 data:
