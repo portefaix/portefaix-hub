@@ -6,10 +6,10 @@ metadata:
   namespace: {{ include "kubernetes-mixin.namespace" . }}
   annotations:
     grafana-folder: {{ .Values.grafana.folder }}
-{{ include "kubernetes-mixin.annotations" . | indent 4 }}
+    {{- include "kubernetes-mixin.annotations" . | indent 4 }}
   labels:
     grafana-dashboard: {{ include "kubernetes-mixin.name" . }}-namespace-by-workload
-{{ include "kubernetes-mixin.labels" . | indent 4 }}
+    {{- include "kubernetes-mixin.labels" . | indent 4 }}
 data:
   namespace-by-workload.json: |-
 {{ .Files.Get "dashboards/namespace-by-workload.json" | indent 4}}

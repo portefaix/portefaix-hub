@@ -43,7 +43,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{/*
 Common labels
 */}}
-{{- define "kubernetes-mixin.labels" -}}
+{{- define "kubernetes-mixin.labels" }}
 helm.sh/chart: {{ include "kubernetes-mixin.chart" . }}
 {{ include "kubernetes-mixin.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
@@ -59,9 +59,9 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 
 {{/* See: https://ambassadorlabs.github.io/k8s-for-humans/ */}}
 {{/*
-Common annotations 
+Common annotations
 */}}
-{{- define "kubernetes-mixin.annotations" -}}
+{{- define "kubernetes-mixin.annotations" }}
 a8r.io/description: Monitoring Mixin for kubernetes
 a8r.io/owner: portefaix
 a8r.io/bugs: https://github.com/portefaix/portefaix-hub/issues

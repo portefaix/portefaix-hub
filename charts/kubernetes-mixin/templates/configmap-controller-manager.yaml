@@ -6,10 +6,10 @@ metadata:
   namespace: {{ include "kubernetes-mixin.namespace" . }}
   annotations:
     grafana-folder: {{ .Values.grafana.folder }}
-{{ include "kubernetes-mixin.annotations" . | indent 4 }}
+    {{- include "kubernetes-mixin.annotations" . | indent 4 }}
   labels:
     grafana-dashboard: {{ include "kubernetes-mixin.name" . }}-controller-manager
-{{ include "kubernetes-mixin.labels" . | indent 4 }}
+    {{- include "kubernetes-mixin.labels" . | indent 4 }}
 data:
   controller-manager.json: |-
 {{ .Files.Get "dashboards/controller-manager.json" | indent 4}}
