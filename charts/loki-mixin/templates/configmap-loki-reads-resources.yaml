@@ -6,10 +6,10 @@ metadata:
   namespace: {{ include "loki-mixin.namespace" . }}
   annotations:
     grafana-folder: {{ .Values.grafana.folder }}
-{{ include "loki-mixin.annotations" . | indent 4 }}
+    {{- include "loki-mixin.annotations" . | indent 4 }}
   labels:
     grafana-dashboard: {{ include "loki-mixin.name" . }}-loki-reads-resources
-{{ include "loki-mixin.labels" . | indent 4 }}
+    {{- include "loki-mixin.labels" . | indent 4 }}
 data:
   loki-reads-resources.json: |-
 {{ .Files.Get "dashboards/loki-reads-resources.json" | indent 4}}
