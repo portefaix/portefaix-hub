@@ -8,4 +8,7 @@ metadata:
     {{- include "__mixin__.annotations" . | indent 4 }}
   labels:
     {{- include "__mixin__.labels" . | indent 4 }}
+    {{- if .Values.monitor.additionalLabels }}
+    {{- toYaml .Values.monitor.additionalLabels | nindent 4 }}
+    {{- end }}
 spec:

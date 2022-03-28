@@ -5,9 +5,12 @@ metadata:
   name: {{ printf "%s-%s" (include "prometheus-mixin.fullname" .) "alerts" | trunc 63 | trimSuffix "-" }}
   namespace: {{ include "prometheus-mixin.namespace" . }}
   annotations:
-{{ include "prometheus-mixin.annotations" . | indent 4 }}
+    {{- include "prometheus-mixin.annotations" . | indent 4 }}
   labels:
-{{ include "prometheus-mixin.labels" . | indent 4 }}
+    {{- include "prometheus-mixin.labels" . | indent 4 }}
+    {{- if .Values.monitor.additionalLabels }}
+    {{- toYaml .Values.monitor.additionalLabels | nindent 4 }}
+    {{- end }}
 spec:
   groups:
   - name: prometheus

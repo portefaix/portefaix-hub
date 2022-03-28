@@ -6,10 +6,10 @@ metadata:
   namespace: {{ include "prometheus-mixin.namespace" . }}
   annotations:
     grafana-folder: {{ .Values.grafana.folder }}
-{{ include "prometheus-mixin.annotations" . | indent 4 }}
+    {{- include "prometheus-mixin.annotations" . | indent 4 }}
   labels:
     grafana-dashboard: {{ include "prometheus-mixin.name" . }}-prometheus
-{{ include "prometheus-mixin.labels" . | indent 4 }}
+    {{- include "prometheus-mixin.labels" . | indent 4 }}
 data:
   prometheus.json: |-
 {{ .Files.Get "dashboards/prometheus.json" | indent 4}}
