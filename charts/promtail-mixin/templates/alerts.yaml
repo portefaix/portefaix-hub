@@ -5,9 +5,12 @@ metadata:
   name: {{ printf "%s-%s" (include "promtail-mixin.fullname" .) "alerts" | trunc 63 | trimSuffix "-" }}
   namespace: {{ include "promtail-mixin.namespace" . }}
   annotations:
-{{ include "promtail-mixin.annotations" . | indent 4 }}
+    {{- include "promtail-mixin.annotations" . | indent 4 }}
   labels:
-{{ include "promtail-mixin.labels" . | indent 4 }}
+    {{- include "promtail-mixin.labels" . | indent 4 }}
+    {{- if .Values.monitor.additionalLabels }}
+    {{- toYaml .Values.monitor.additionalLabels | nindent 4 }}
+    {{- end }}
 spec:
   groups:
   - name: promtail_alerts
@@ -36,10 +39,10 @@ spec:
     - alert: PromtailFileLagging
       annotations:
         message: |
-          {{`{{`}} $labels.instance {{`}}`}} {{`{{`}} $labels.job {{`}}`}} {{`{{`}} $labels.path {{`}}`}} has been lagging by more than 1MB for more than 15m.
+          {{`{{`}} $labels.instance {{`}}`}} {{`{{`}} $labels.job {{`}}`}} {{`{{`}} $labels.path {{`}}`}} has been lagging by more than 10 seconds for more than 15m.
       expr: |
-        abs(promtail_file_bytes_total - promtail_read_bytes_total) > 1e6
-      for: 15m
+        promtail_stream_lag_seconds > 10
+      for: 5m
       labels:
         severity: warning
     - alert: PromtailFileMissing
