@@ -8,6 +8,9 @@ metadata:
     {{- include "kubernetes-mixin.annotations" . | indent 4 }}
   labels:
     {{- include "kubernetes-mixin.labels" . | indent 4 }}
+    {{- if .Values.monitor.additionalLabels }}
+    {{- toYaml .Values.monitor.additionalLabels | nindent 4 }}
+    {{- end }}
 spec:
   groups:
   - name: kubernetes-apps
