@@ -5,9 +5,12 @@ metadata:
   name: {{ printf "%s-%s" (include "fluxcd-mixin.fullname" .) "alerts" | trunc 63 | trimSuffix "-" }}
   namespace: {{ include "fluxcd-mixin.namespace" . }}
   annotations:
-{{ include "fluxcd-mixin.annotations" . | indent 4 }}
+    {{- include "fluxcd-mixin.annotations" . | indent 4 }}
   labels:
-{{ include "fluxcd-mixin.labels" . | indent 4 }}
+    {{- include "fluxcd-mixin.labels" . | indent 4 }}
+    {{- if .Values.monitor.additionalLabels }}
+    {{- toYaml .Values.monitor.additionalLabels | nindent 4 }}
+    {{- end }}
 spec:
   groups:
   - name: fluxcd
