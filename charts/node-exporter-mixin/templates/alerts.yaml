@@ -5,9 +5,12 @@ metadata:
   name: {{ printf "%s-%s" (include "node-exporter-mixin.fullname" .) "alerts" | trunc 63 | trimSuffix "-" }}
   namespace: {{ include "node-exporter-mixin.namespace" . }}
   annotations:
-{{ include "node-exporter-mixin.annotations" . | indent 4 }}
+    {{- include "node-exporter-mixin.annotations" . | indent 4 }}
   labels:
-{{ include "node-exporter-mixin.labels" . | indent 4 }}
+    {{- include "node-exporter-mixin.labels" . | indent 4 }}
+    {{- if .Values.monitor.additionalLabels }}
+    {{- toYaml .Values.monitor.additionalLabels | nindent 4 }}
+    {{- end }}
 spec:
   groups:
   - name: node-exporter

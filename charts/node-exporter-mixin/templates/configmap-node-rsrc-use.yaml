@@ -6,10 +6,10 @@ metadata:
   namespace: {{ include "node-exporter-mixin.namespace" . }}
   annotations:
     grafana-folder: {{ .Values.grafana.folder }}
-{{ include "node-exporter-mixin.annotations" . | indent 4 }}
+    {{- include "node-exporter-mixin.annotations" . | indent 4 }}
   labels:
     grafana-dashboard: {{ include "node-exporter-mixin.name" . }}-node-rsrc-use
-{{ include "node-exporter-mixin.labels" . | indent 4 }}
+    {{- include "node-exporter-mixin.labels" . | indent 4 }}
 data:
   node-rsrc-use.json: |-
 {{ .Files.Get "dashboards/node-rsrc-use.json" | indent 4}}
