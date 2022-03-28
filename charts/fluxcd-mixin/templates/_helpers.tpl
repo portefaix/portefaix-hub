@@ -43,7 +43,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{/*
 Common labels
 */}}
-{{- define "fluxcd-mixin.labels" -}}
+{{- define "fluxcd-mixin.labels" }}
 helm.sh/chart: {{ include "fluxcd-mixin.chart" . }}
 {{ include "fluxcd-mixin.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
@@ -58,7 +58,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Common annotations 
 */}}
-{{- define "fluxcd-mixin.annotations" -}}
+{{- define "fluxcd-mixin.annotations" }}
 a8r.io/description: Monitoring Mixin for FluxCD
 a8r.io/owner: portefaix
 a8r.io/bugs: https://github.com/portefaix/portefaix-hub/issues
