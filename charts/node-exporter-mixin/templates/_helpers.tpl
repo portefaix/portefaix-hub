@@ -43,7 +43,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{/*
 Common labels
 */}}
-{{- define "node-exporter-mixin.labels" -}}
+{{- define "node-exporter-mixin.labels" }}
 helm.sh/chart: {{ include "node-exporter-mixin.chart" . }}
 {{ include "node-exporter-mixin.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
@@ -61,7 +61,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Common annotations 
 */}}
-{{- define "node-exporter-mixin.annotations" -}}
+{{- define "node-exporter-mixin.annotations" }}
 a8r.io/description: Monitoring Mixin for node-exporter
 a8r.io/owner: portefaix
 a8r.io/bugs: https://github.com/portefaix/portefaix-hub/issues
