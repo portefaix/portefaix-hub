@@ -885,6 +885,45 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Bump to monitoring-mixins v0.16.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Kube-State-Metrics
+          url: https://github.com/kubernetes/kube-state-metrics
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.2.4
+    created: "2022-03-29T14:11:56.405130313Z"
+    description: A Helm chart for Kube-State-Metrics Mixin
+    digest: 6d6d744f42475cf3301eb1a310a047e206d69a873733e960be5d684967fad066
+    home: https://charts.portefaix.xyz
+    icon: https://bitnami.com/assets/stacks/kube-state-metrics/img/kube-state-metrics-stack-220x234.png
+    keywords:
+    - kube-state-metrics
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: kube-state-metrics-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kube-state-metrics-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/kube-state-metrics-mixin-0.10.0/kube-state-metrics-mixin-0.10.0.tgz
+    version: 0.10.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Bump to KubeStateMetrics v2.2.4
       artifacthub.io/license: Apache-2.0
       artifacthub.io/links: |
@@ -4369,4 +4408,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-03-29T13:52:54.184410880Z"
+generated: "2022-03-29T14:11:56.405421214Z"
