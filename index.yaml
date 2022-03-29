@@ -477,6 +477,45 @@ entries:
     version: 0.1.0
   grafana-mixin:
   - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: Bump to monitoring-mixins v0.16.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: grafana
+          url: https://github.com/grafana/grafana
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 8.3.1
+    created: "2022-03-29T10:56:50.923858222Z"
+    description: A Helm chart for Grafana Mixin
+    digest: 080b4828b075e475df61204c685e303837cb8326d23126394c69735a1495d90c
+    home: https://charts.portefaix.xyz
+    icon: https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Grafana_logo.svg/300px-Grafana_logo.svg.png
+    keywords:
+    - grafana
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: grafana-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/grafana-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/grafana-mixin-0.11.0/grafana-mixin-0.11.0.tgz
+    version: 0.11.0
+  - annotations:
       artifacthub.io/changes: |-
         - kind: added
           description: Sigstore support
@@ -1413,45 +1452,6 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/kubernetes-mixin-0.1.0/kubernetes-mixin-0.1.0.tgz
     version: 0.1.0
   linkerd-edge-mixin:
-  - annotations:
-      artifacthub.io/changes: |
-        - kind: changed
-          description: Bump to monitoring-mixins v0.16.0
-      artifacthub.io/license: Apache-2.0
-      artifacthub.io/links: |
-        - name: linkerd
-          url: https://linkerd.io
-        - name: Portefaix
-          url: https://portefaix.xyz
-      artifacthub.io/maintainers: |
-        - name: nlamirault
-          email: nicolas.lamirault@gmail.com
-      artifacthub.io/signKey: |
-        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
-        url: https://keybase.io/nlamirault/pgp_keys.asc
-    apiVersion: v2
-    appVersion: edge-21.6.3
-    created: "2022-03-29T10:39:57.388333382Z"
-    description: A Helm chart for Linkerd Edge Mixin
-    digest: 67ff056e48a5cc415eb8044177c74e3e52489b24c648b668c7ec162bc3500d7b
-    home: https://charts.portefaix.xyz
-    icon: https://linkerd.io/images/logo-only-200h.png
-    keywords:
-    - linkerd
-    - linkerd-edge
-    - monitoring-mixin
-    - portefaix
-    kubeVersion: '>= 1.14.0-0'
-    maintainers:
-    - email: nicolas.lamirault@gmail.com
-      name: nlamirault
-    name: linkerd-edge-mixin
-    sources:
-    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/linkerd-edge-mixin
-    type: application
-    urls:
-    - https://github.com/portefaix/portefaix-hub/releases/download/linkerd-edge-mixin-0.5.0/linkerd-edge-mixin-0.5.0.tgz
-    version: 0.5.0
   - annotations:
       artifacthub.io/changes: |
         - kind: added
@@ -4369,4 +4369,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-03-29T10:44:14.251203110Z"
+generated: "2022-03-29T10:56:50.924182624Z"
