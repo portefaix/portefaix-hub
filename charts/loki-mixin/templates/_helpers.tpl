@@ -35,7 +35,7 @@ Create chart name and version as used by the chart label.
 {{/*
 Selector labels
 */}}
-{{- define "loki-mixin.selectorLabels" -}}
+{{- define "loki-mixin.selectorLabels" }}
 app.kubernetes.io/name: {{ include "loki-mixin.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
@@ -43,7 +43,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{/*
 Common labels
 */}}
-{{- define "loki-mixin.labels" -}}
+{{- define "loki-mixin.labels" }}
 helm.sh/chart: {{ include "loki-mixin.chart" . }}
 {{ include "loki-mixin.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
@@ -58,7 +58,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Common annotations 
 */}}
-{{- define "loki-mixin.annotations" -}}
+{{- define "loki-mixin.annotations" }}
 a8r.io/description: Monitoring Mixin for Loki
 a8r.io/owner: portefaix
 a8r.io/bugs: https://github.com/portefaix/portefaix-hub/issues
