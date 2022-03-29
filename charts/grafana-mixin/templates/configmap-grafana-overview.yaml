@@ -6,10 +6,10 @@ metadata:
   namespace: {{ include "grafana-mixin.namespace" . }}
   annotations:
     grafana-folder: {{ .Values.grafana.folder }}
-{{ include "grafana-mixin.annotations" . | indent 4 }}
+    {{- include "grafana-mixin.annotations" . | indent 4 }}
   labels:
     grafana-dashboard: {{ include "grafana-mixin.name" . }}-grafana-overview
-{{ include "grafana-mixin.labels" . | indent 4 }}
+    {{- include "grafana-mixin.labels" . | indent 4 }}
 data:
   grafana-overview.json: |-
 {{ .Files.Get "dashboards/grafana-overview.json" | indent 4}}
