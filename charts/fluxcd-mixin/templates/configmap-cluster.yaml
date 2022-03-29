@@ -6,10 +6,10 @@ metadata:
   namespace: {{ include "fluxcd-mixin.namespace" . }}
   annotations:
     grafana-folder: {{ .Values.grafana.folder }}
-{{ include "fluxcd-mixin.annotations" . | indent 4 }}
+    {{- include "fluxcd-mixin.annotations" . | indent 4 }}
   labels:
     grafana-dashboard: {{ include "fluxcd-mixin.name" . }}-cluster
-{{ include "fluxcd-mixin.labels" . | indent 4 }}
+    {{- include "fluxcd-mixin.labels" . | indent 4 }}
 data:
   cluster.json: |-
 {{ .Files.Get "dashboards/cluster.json" | indent 4}}
