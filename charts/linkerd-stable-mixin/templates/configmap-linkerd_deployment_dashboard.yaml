@@ -6,10 +6,10 @@ metadata:
   namespace: {{ include "linkerd-stable-mixin.namespace" . }}
   annotations:
     grafana-folder: {{ .Values.grafana.folder }}
-{{ include "linkerd-stable-mixin.annotations" . | indent 4 }}
+    {{- include "linkerd-stable-mixin.annotations" . | indent 4 }}
   labels:
     grafana-dashboard: {{ include "linkerd-stable-mixin.name" . }}-linkerd-deployment-dashboard
-{{ include "linkerd-stable-mixin.labels" . | indent 4 }}
+    {{- include "linkerd-stable-mixin.labels" . | indent 4 }}
 data:
   linkerd_deployment_dashboard.json: |-
 {{ .Files.Get "dashboards/linkerd_deployment_dashboard.json" | indent 4}}
