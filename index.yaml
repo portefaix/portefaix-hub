@@ -1710,6 +1710,45 @@ entries:
   loki-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Bump to monitoring-mixins-v0.16.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: loki
+          url: https://grafana.com/oss/loki/
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.4.1
+    created: "2022-03-29T14:28:18.148464477Z"
+    description: A Helm chart for Loki Mixin
+    digest: ee663d5983a91168a0f5b1027e70b0d706b483023a2c1770db61a5f818e4b61e
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    keywords:
+    - loki
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: loki-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/loki-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/loki-mixin-0.12.0/loki-mixin-0.12.0.tgz
+    version: 0.12.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Sigstore support
           links:
@@ -4408,4 +4447,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-03-29T14:13:22.497188524Z"
+generated: "2022-03-29T14:28:18.148826115Z"
