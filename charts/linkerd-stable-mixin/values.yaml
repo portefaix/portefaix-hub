@@ -5,12 +5,17 @@
 # -- Provide a name to substitute for the full names of resources
 fullnameOverride: ""
 
-# -- Additional labels to add to the Prometheus rules
+# -- Additional labels to add to all resources
 additionalLabels: {}
 
-# -- Additional annotations to add to the Prometheus rules
+# -- Additional annotations to add to all resources
 additionalAnnotations: {}
 
+monitor:
+  # -- Additional labels to add to resources managed by the Prometheus Operator
+  additionalLabels: {}
+    # release: kube-prometheus-stack
+    
 grafana:
   # -- Grafana folder in which to store the dashboards
   folder: linkerd

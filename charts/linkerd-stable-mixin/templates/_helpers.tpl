@@ -43,7 +43,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{/*
 Common labels
 */}}
-{{- define "linkerd-stable-mixin.labels" -}}
+{{- define "linkerd-stable-mixin.labels" }}
 helm.sh/chart: {{ include "linkerd-stable-mixin.chart" . }}
 {{ include "linkerd-stable-mixin.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
@@ -58,7 +58,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Common annotations 
 */}}
-{{- define "linkerd-stable-mixin.annotations" -}}
+{{- define "linkerd-stable-mixin.annotations" }}
 a8r.io/description: Monitoring Mixin for linkerd
 a8r.io/owner: portefaix
 a8r.io/bugs: https://github.com/portefaix/portefaix-hub/issues
