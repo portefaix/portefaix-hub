@@ -210,9 +210,9 @@ entries:
         url: https://keybase.io/nlamirault/pgp_keys.asc
     apiVersion: v2
     appVersion: 0.15.1
-    created: "2022-03-29T16:51:44.47056436Z"
+    created: "2022-03-29T16:53:17.789684191Z"
     description: An AWS Factory using Crossplane
-    digest: 01ead7cbadbd5f35736a4a5f09be98f0f04a21de026ec02a82cfcbdf7d203357
+    digest: 06a28abfe6cd7a7c739a6699559f12fcaa19cb27553e037ec973bb9d9e02dae1
     home: https://github.com/portefaix/portefaix-hub/charts/crossplane-aws-factory
     icon: https://crossplane.io/images/favicon_192x192.png
     keywords:
@@ -3192,9 +3192,9 @@ entries:
         url: https://keybase.io/nlamirault/pgp_keys.asc
     apiVersion: v2
     appVersion: 2.3.0
-    created: "2022-03-29T16:51:44.58385651Z"
+    created: "2022-03-29T16:53:18.003827964Z"
     description: A Helm chart for Promtail Mixin
-    digest: a5edac711a269ae9f3765dc164eda0916d999dffaa21ffd71005a83640ab632b
+    digest: 6afc000c1578523614ca4bbf7c8c3e6a6542842323aa20c71aff6c20ce2d5f59
     home: https://charts.portefaix.xyz
     icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
     keywords:
@@ -3994,6 +3994,42 @@ entries:
   speedtest-exporter:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Refactorng Kubernetes labels
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Speedtest exporter
+          url: https://github.com/danopstech/speedtest_exporter
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.0.4
+    created: "2022-03-29T16:53:18.210144399Z"
+    description: A Helm chart for Prometheus Speedtest exporter
+    digest: 0967afdd7820bc87c954cea5381da6b60e0cef75d20002a9341824f1e21a8235
+    home: https://charts.portefaix.xyz
+    keywords:
+    - speedtest
+    - prometheus-exporter
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: speedtest-exporter
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/speedtest-exporter
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/speedtest-exporter-0.5.0/speedtest-exporter-0.5.0.tgz
+    version: 0.5.0
+  - annotations:
+      artifacthub.io/changes: |
         - Artifact Hub informations
       artifacthub.io/links: |
         - name: Speedtest exporter
@@ -4645,4 +4681,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-03-29T16:52:03.077346173Z"
+generated: "2022-03-29T16:53:18.210491296Z"
