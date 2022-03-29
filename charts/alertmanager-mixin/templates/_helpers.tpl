@@ -43,7 +43,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{/*
 Common labels
 */}}
-{{- define "alertmanager-mixin.labels" -}}
+{{- define "alertmanager-mixin.labels" }}
 helm.sh/chart: {{ include "alertmanager-mixin.chart" . }}
 {{ include "alertmanager-mixin.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
@@ -58,7 +58,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Common annotations 
 */}}
-{{- define "alertmanager-mixin.annotations" -}}
+{{- define "alertmanager-mixin.annotations" }}
 a8r.io/description: Monitoring Mixin for alertmanager
 a8r.io/owner: portefaix
 a8r.io/bugs: https://github.com/portefaix/portefaix-hub/issues

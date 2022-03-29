@@ -6,10 +6,10 @@ metadata:
   namespace: {{ include "alertmanager-mixin.namespace" . }}
   annotations:
     grafana-folder: {{ .Values.grafana.folder }}
-{{ include "alertmanager-mixin.annotations" . | indent 4 }}
+    {{- include "alertmanager-mixin.annotations" . | indent 4 }}
   labels:
     grafana-dashboard: {{ include "alertmanager-mixin.name" . }}-alertmanager-overview
-{{ include "alertmanager-mixin.labels" . | indent 4 }}
+    {{- include "alertmanager-mixin.labels" . | indent 4 }}
 data:
   alertmanager-overview.json: |-
 {{ .Files.Get "dashboards/alertmanager-overview.json" | indent 4}}
