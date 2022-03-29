@@ -35,7 +35,7 @@ Create chart name and version as used by the chart label.
 {{/*
 Selector labels
 */}}
-{{- define "prometheus-operator-mixin.selectorLabels" -}}
+{{- define "prometheus-operator-mixin.selectorLabels" }}
 app.kubernetes.io/name: {{ include "prometheus-operator-mixin.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
@@ -43,7 +43,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{/*
 Common labels
 */}}
-{{- define "prometheus-operator-mixin.labels" -}}
+{{- define "prometheus-operator-mixin.labels" }}
 helm.sh/chart: {{ include "prometheus-operator-mixin.chart" . }}
 {{ include "prometheus-operator-mixin.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
@@ -58,7 +58,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Common annotations 
 */}}
-{{- define "prometheus-operator-mixin.annotations" -}}
+{{- define "prometheus-operator-mixin.annotations" }}
 a8r.io/description: Monitoring Mixin for Prometheus Operator
 a8r.io/owner: portefaix
 a8r.io/bugs: https://github.com/portefaix/portefaix-hub/issues
