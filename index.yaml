@@ -1415,6 +1415,45 @@ entries:
   linkerd-edge-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Bump to monitoring-mixins v0.16.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: linkerd
+          url: https://linkerd.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: edge-21.6.3
+    created: "2022-03-29T10:39:57.388333382Z"
+    description: A Helm chart for Linkerd Edge Mixin
+    digest: 67ff056e48a5cc415eb8044177c74e3e52489b24c648b668c7ec162bc3500d7b
+    home: https://charts.portefaix.xyz
+    icon: https://linkerd.io/images/logo-only-200h.png
+    keywords:
+    - linkerd
+    - linkerd-edge
+    - monitoring-mixin
+    - portefaix
+    kubeVersion: '>= 1.14.0-0'
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: linkerd-edge-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/linkerd-edge-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/linkerd-edge-mixin-0.5.0/linkerd-edge-mixin-0.5.0.tgz
+    version: 0.5.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Init chart from Linkerd Edge Mixin
       artifacthub.io/containsSecurityUpdates: "true"
@@ -2917,46 +2956,6 @@ entries:
         url: https://keybase.io/nlamirault/pgp_keys.asc
     apiVersion: v2
     appVersion: 2.3.0
-    created: "2022-03-29T10:39:39.827616195Z"
-    description: A Helm chart for Promtail Mixin
-    digest: 41ce3453eb73486fc7af313f8767cc49e81497317658ca49580b48be5b270a9d
-    home: https://charts.portefaix.xyz
-    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
-    keywords:
-    - promtail
-    - monitoring-mixin
-    - portefaix
-    maintainers:
-    - email: nicolas.lamirault@gmail.com
-      name: nlamirault
-    name: promtail-mixin
-    sources:
-    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/promtail-mixin
-    type: application
-    urls:
-    - https://github.com/portefaix/portefaix-hub/releases/download/promtail-mixin-0.11.0/promtail-mixin-0.11.0.tgz
-    version: 0.11.0
-  - annotations:
-      artifacthub.io/changes: |
-        - kind: added
-          description: Sigstore support
-          links:
-            - name: Github Issue
-              url: https://github.com/portefaix/portefaix-hub/pull/129
-      artifacthub.io/license: Apache-2.0
-      artifacthub.io/links: |
-        - name: promtail
-          url: https://grafana.com/docs/promtail/latest/clients/promtail/
-        - name: Portefaix
-          url: https://portefaix.xyz
-      artifacthub.io/maintainers: |
-        - name: nlamirault
-          email: nicolas.lamirault@gmail.com
-      artifacthub.io/signKey: |
-        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
-        url: https://keybase.io/nlamirault/pgp_keys.asc
-    apiVersion: v2
-    appVersion: 2.3.0
     created: "2022-03-11T13:32:14.153885106Z"
     description: A Helm chart for Promtail Mixin
     digest: 7a1544a3216498170bf44a24cc9093b7d49bbc63f7cba910f0a5dcdca07efc85
@@ -4370,4 +4369,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-03-29T10:39:39.828047796Z"
+generated: "2022-03-29T10:39:57.389038286Z"
