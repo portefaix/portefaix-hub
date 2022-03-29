@@ -4,10 +4,9 @@ repos:
   hooks:
     - id: trailing-whitespace
     - id: end-of-file-fixer
-    # - id: check-yaml
-    #   args:
-    #   - '--allow-multiple-documents'
-    #   exclude: mkdocs.yml
+    - id: check-yaml
+      args: [--allow-multiple-documents]
+      exclude: ^charts/.*/templates/
     - id: check-added-large-files
 - repo: local
   hooks:
@@ -20,10 +19,6 @@ repos:
       entry: -u 0 quay.io/helmpack/chart-testing:v3.4.0 ct
       args:
       - lint
-    # - id: check-yaml
-    #   name: "Check YAML files"
-    # - id: end-of-file-fixer
-    # -   id: trailing-whitespace
 - repo: https://github.com/norwoodj/helm-docs
   rev: v1.5.0
   hooks:
