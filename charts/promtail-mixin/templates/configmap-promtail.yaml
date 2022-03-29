@@ -6,10 +6,10 @@ metadata:
   namespace: {{ include "promtail-mixin.namespace" . }}
   annotations:
     grafana-folder: {{ .Values.grafana.folder }}
-{{ include "promtail-mixin.annotations" . | indent 4 }}
+    {{- include "promtail-mixin.annotations" . | indent 4 }}
   labels:
     grafana-dashboard: {{ include "promtail-mixin.name" . }}-promtail
-{{ include "promtail-mixin.labels" . | indent 4 }}
+    {{- include "promtail-mixin.labels" . | indent 4 }}
 data:
   promtail.json: |-
 {{ .Files.Get "dashboards/promtail.json" | indent 4}}
