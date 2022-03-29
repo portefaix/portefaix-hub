@@ -210,6 +210,50 @@ entries:
         url: https://keybase.io/nlamirault/pgp_keys.asc
     apiVersion: v2
     appVersion: 0.15.1
+    created: "2022-03-29T16:51:44.47056436Z"
+    description: An AWS Factory using Crossplane
+    digest: 01ead7cbadbd5f35736a4a5f09be98f0f04a21de026ec02a82cfcbdf7d203357
+    home: https://github.com/portefaix/portefaix-hub/charts/crossplane-aws-factory
+    icon: https://crossplane.io/images/favicon_192x192.png
+    keywords:
+    - crossplane
+    - cloud
+    - infrastructure
+    - aws
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: crossplane-aws-factory
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/crossplane-aws-factory-0.4.0/crossplane-aws-factory-0.4.0.tgz
+    version: 0.4.0
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: added
+          description: Sigstore support
+          links:
+            - name: Github Issue
+              url: https://github.com/portefaix/portefaix-hub/pull/129
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Crossplane
+          url: https://crossplane.io
+        - name: Crossplane AWS provider
+          url: https://github.com/crossplane/provider-aws
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/recommendations: |
+        - url: https://artifacthub.io/packages/helm/crossplane/crossplane
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.15.1
     created: "2022-03-11T13:07:33.76762875Z"
     description: An AWS Factory using Crossplane
     digest: 44b61c57bd22d30ee6a3dac377a2b44696518bb71a6c4f52abdb60998d0ca237
@@ -3148,6 +3192,46 @@ entries:
         url: https://keybase.io/nlamirault/pgp_keys.asc
     apiVersion: v2
     appVersion: 2.3.0
+    created: "2022-03-29T16:51:44.58385651Z"
+    description: A Helm chart for Promtail Mixin
+    digest: a5edac711a269ae9f3765dc164eda0916d999dffaa21ffd71005a83640ab632b
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    keywords:
+    - promtail
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: promtail-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/promtail-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/promtail-mixin-0.11.0/promtail-mixin-0.11.0.tgz
+    version: 0.11.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Sigstore support
+          links:
+            - name: Github Issue
+              url: https://github.com/portefaix/portefaix-hub/pull/129
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: promtail
+          url: https://grafana.com/docs/promtail/latest/clients/promtail/
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.3.0
     created: "2022-03-11T13:32:14.153885106Z"
     description: A Helm chart for Promtail Mixin
     digest: 7a1544a3216498170bf44a24cc9093b7d49bbc63f7cba910f0a5dcdca07efc85
@@ -4561,4 +4645,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-03-29T15:34:00.240968775Z"
+generated: "2022-03-29T16:51:44.584495915Z"
