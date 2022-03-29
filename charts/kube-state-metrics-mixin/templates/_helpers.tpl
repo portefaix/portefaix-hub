@@ -43,7 +43,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{/*
 Common labels
 */}}
-{{- define "kube-state-metrics-mixin.labels" -}}
+{{- define "kube-state-metrics-mixin.labels" }}
 helm.sh/chart: {{ include "kube-state-metrics-mixin.chart" . }}
 {{ include "kube-state-metrics-mixin.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
@@ -58,7 +58,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Common annotations 
 */}}
-{{- define "kube-state-metrics-mixin.annotations" -}}
+{{- define "kube-state-metrics-mixin.annotations" }}
 a8r.io/description: Monitoring Mixin for kube-state-metrics
 a8r.io/owner: portefaix
 a8r.io/bugs: https://github.com/portefaix/portefaix-hub/issues

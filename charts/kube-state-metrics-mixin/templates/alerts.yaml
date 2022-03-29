@@ -5,9 +5,12 @@ metadata:
   name: {{ printf "%s-%s" (include "kube-state-metrics-mixin.fullname" .) "alerts" | trunc 63 | trimSuffix "-" }}
   namespace: {{ include "kube-state-metrics-mixin.namespace" . }}
   annotations:
-{{ include "kube-state-metrics-mixin.annotations" . | indent 4 }}
+    {{- include "kube-state-metrics-mixin.annotations" . | indent 4 }}
   labels:
-{{ include "kube-state-metrics-mixin.labels" . | indent 4 }}
+    {{- include "kube-state-metrics-mixin.labels" . | indent 4 }}
+    {{- if .Values.monitor.additionalLabels }}
+    {{- toYaml .Values.monitor.additionalLabels | nindent 4 }}
+    {{- end }}
 spec:
   groups:
   - name: kube-state-metrics
