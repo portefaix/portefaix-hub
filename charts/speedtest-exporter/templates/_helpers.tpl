@@ -45,16 +45,23 @@ Create the name of the service account to use
 
 {{/* Generate basic labels */}}
 {{- define "speedtest-exporter.labels" }}
-app.kubernetes.io/name: {{ template "speedtest-exporter.name" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
+helm.sh/chart: {{ template "speedtest-exporter.chart" . }}
+{{- include "speedtest-exporter.selectorLabels" . }}
 app.kubernetes.io/component: prometheus-exporter
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-app.kubernetes.io/part-of: {{ template "speedtest-exporter.name" . }} 
-helm.sh/chart: {{ template "speedtest-exporter.chart" . }}  
+app.kubernetes.io/part-of: {{ template "speedtest-exporter.name" . }}
 {{- if .Values.additionalLabels }}
 {{ toYaml .Values.additionalLabels }}
 {{- end }}
+{{- end }}
+
+{{/*
+Selector labels
+*/}}
+{{- define "speedtest-exporter.selectorLabels" }}
+app.kubernetes.io/name: {{ include "speedtest-exporter.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*

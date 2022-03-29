@@ -7,6 +7,7 @@ fullnameOverride: ""
 
 # -- Additional labels to add to the Prometheus rules
 additionalLabels: {}
+  # app: speedtest-exporter
 
 # -- Additional annotations to add to the Prometheus rules
 additionalAnnotations: {}

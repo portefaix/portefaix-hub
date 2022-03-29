@@ -10,7 +10,6 @@ metadata:
 {{- end }}
 {{- end }}
   labels:
-    app: {{ template "speedtest-exporter.name" . }}
 {{- include "speedtest-exporter.labels" . | indent 4 }}
 {{- if .Values.serviceMonitor.additionalLabels }}
 {{ toYaml .Values.serviceMonitor.additionalLabels | indent 4 }}
@@ -20,7 +19,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: {{ template "speedtest-exporter.name" . }}
+      {{- include "speedtest-exporter.selectorLabels" . | indent 6 }}
   endpoints:
     - port: http
       interval: {{ .Values.serviceMonitor.interval }}
