@@ -58,4 +58,3 @@ annotations:
   artifacthub.io/changes: |
     - kind: changed
       description: Bump to monitoring-mixins-v0.16.0
-
