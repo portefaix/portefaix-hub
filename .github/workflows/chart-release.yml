@@ -84,6 +84,18 @@ jobs:
           GPG_KEYRING_BASE64: "${{ secrets.GPG_KEYRING_BASE64 }}"
           GPG_PASSPHRASE: "${{ secrets.GPG_PASSPHRASE }}"
 
+      - name: Build release changelog
+        id: github_release
+        uses: mikepenz/release-changelog-builder-action@v2.9.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          configuration: '.github/changelog-config.json'
+          outputFile: ${{ runner.temp }}/CHANGELOG.md
+
+      - name: Inspect changelog
+        run: cat ${{ runner.temp }}/CHANGELOG.md
+
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.3.0
         with:
@@ -92,6 +104,9 @@ jobs:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           CR_SIGN: "true"
           CR_KEY: "${{ secrets.GPG_KEY_NAME }}"
+          CR_RELEASE_NOTES_FILE: ${{ runner.temp }}/CHANGELOG.md
+          # If we didn't bump the chart version then we can skip the release
+          CR_SKIP_EXISTING: true
 
       - name: Upload Helm Charts to Rekor
         run: |
