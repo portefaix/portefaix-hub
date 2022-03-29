@@ -31,6 +31,7 @@ Welcome to the Portefaix Hub.
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.3.0|A Helm chart for Grafana Mixin|application|2021-04-27T10:11:10.373191529Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.2.0|A Helm chart for Grafana Mixin|application|2021-04-27T07:12:04.990763325Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.1.0|A Helm chart for Grafana Mixin|application|2021-03-07T07:42:15.632202053Z
+[kube-state-metrics-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kube-state-metrics-mixin)|0.10.0|A Helm chart for Kube-State-Metrics Mixin|application|2022-03-29T14:11:56.405130313Z
 [kube-state-metrics-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kube-state-metrics-mixin)|0.8.0|A Helm chart for Kube-State-Metrics Mixin|application|2021-12-11T18:00:42.672271542Z
 [kube-state-metrics-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kube-state-metrics-mixin)|0.7.0|A Helm chart for Kube-State-Metrics Mixin|application|2021-08-31T16:33:46.045393379Z
 [kube-state-metrics-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kube-state-metrics-mixin)|0.6.0|A Helm chart for Kube-State-Metrics Mixin|application|2021-06-23T16:43:16.368792958Z
