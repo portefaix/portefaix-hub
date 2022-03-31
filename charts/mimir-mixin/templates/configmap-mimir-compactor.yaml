@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ printf "%s-%s" (include "mimir-mixin.fullname" .) "mimir-compactor" | trunc 63 | trimSuffix "-" }}
+  namespace: {{ include "mimir-mixin.namespace" . }}
+  annotations:
+    grafana-folder: {{ .Values.grafana.folder }}
+    {{- include "mimir-mixin.annotations" . | indent 4 }}
+  labels:
+    grafana-dashboard: {{ include "mimir-mixin.name" . }}-mimir-compactor
+    {{- include "mimir-mixin.labels" . | indent 4 }}
+data:
+  mimir-compactor.json: |-
+{{ .Files.Get "dashboards/mimir-compactor.json" | indent 4}}
