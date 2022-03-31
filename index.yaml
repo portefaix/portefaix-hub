@@ -2274,6 +2274,46 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/loki-mixin-0.1.0/loki-mixin-0.1.0.tgz
     version: 0.1.0
+  mimir-mixin:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Mimir dashbards and alerting
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: mimir
+          url: https://grafana.com/oss/mimir
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.0.0
+    created: "2022-03-31T06:52:02.982911042Z"
+    description: A Helm chart for Grafana Mimir mixin
+    digest: 3d3ee3a540f1c76ec7aba89c4c90ca29a49019d672ff76952bf7327a37f169fe
+    home: https://charts.portefaix.xyz
+    icon: https://grafana.com/static/img/logos/logo-mimir.svg
+    keywords:
+    - kubernetes
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: mimir-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kubernetes-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/mimir-mixin-0.1.0/mimir-mixin-0.1.0.tgz
+    version: 0.1.0
   node-exporter-mixin:
   - annotations:
       artifacthub.io/changes: |
@@ -4681,4 +4721,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-03-29T16:53:43.884008077Z"
+generated: "2022-03-31T06:52:02.983445445Z"
