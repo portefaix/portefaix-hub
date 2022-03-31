@@ -14,7 +14,7 @@
 
 apiVersion: v2
 name: mimir-mixin
-description: A Helm chart for Mimir Mixin
+description: A Helm chart for Grafana Mimir mixin
 type: application
 home: https://charts.portefaix.xyz
 icon: https://grafana.com/static/img/logos/logo-mimir.svg
