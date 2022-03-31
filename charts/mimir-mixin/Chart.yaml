@@ -20,7 +20,6 @@ home: https://charts.portefaix.xyz
 icon: https://grafana.com/static/img/logos/logo-mimir.svg
 sources:
   - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kubernetes-mixin
-type: application
 keywords:
   - kubernetes
   - monitoring-mixin
