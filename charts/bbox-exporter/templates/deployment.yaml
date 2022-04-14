@@ -79,7 +79,7 @@ spec:
               {{- end }}
           {{- end }}
           resources:
-          {{ toYaml .Values.resources | indent 12 }}
+          {{ toYaml .Values.resources | nindent 12 }}
           ports:
           - containerPort: {{ .Values.service.port }}
             name: http
