@@ -2508,6 +2508,40 @@ entries:
     version: 0.1.0
   prometheus-bbox-exporter:
   - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
+          description: Resources indentation
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Bbox exporter
+          url: https://github.com/nlamirault/bbox_exporter
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.4.0
+    created: "2022-04-14T15:49:57.068928951Z"
+    description: Prometheus BBOX Exporter
+    digest: 58bca5bd5085bf7ff33abd682652f37db5f121c2ec855a8f0e346066130260e9
+    home: https://github.com/nlamirault/bbox_exporter
+    keywords:
+    - prometheus
+    - bbox
+    - monitoring
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: prometheus-bbox-exporter
+    sources:
+    - https://github.com/nlamirault/bbox_exporter
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/prometheus-bbox-exporter-0.3.1/prometheus-bbox-exporter-0.3.1.tgz
+    version: 0.3.1
+  - annotations:
       artifacthub.io/changes: |-
         - kind: added
           description: Sigstore support
@@ -4721,4 +4755,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-03-31T06:52:21.081551835Z"
+generated: "2022-04-14T15:49:57.069259255Z"
