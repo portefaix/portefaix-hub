@@ -69,15 +69,9 @@ spec:
             {{- with .Values.exporter.web.path }}
             - "--web.telemetry-path={{ . }}"
             {{- end }}
-          {{- if .Values.envFromSecret }}
           envFrom:
           - secretRef:
-              {{- if .Values.existingSecret.name -}}
-              name: {{ .Values.existingSecret.name }}
-              {{- else }}
-              name: {{ template "prometheus-bbox-exporter.fullname" . }}
-              {{- end }}
-          {{- end }}
+              name: {{ .Values.secret.name }}
           resources:
           {{ toYaml .Values.resources | nindent 12 }}
           ports:
