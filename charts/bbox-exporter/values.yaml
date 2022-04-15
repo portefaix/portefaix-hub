@@ -31,8 +31,9 @@ exporter:
     path: /metrics
 
 # -- Existing secret which store data for the exporter
-existingSecret:
-  name: ""
+secret:
+  create: true
+  name: bbox-exporter
 
 # -- Docker image
 image:
@@ -54,9 +55,6 @@ additionalLabels: {}
 
 # -- Additional annotations to add to all resources
 additionalAnnotations: {}
-
-# -- The name of a secret in the same kubernetes namespace which contain values to be added to the environment
-envFromSecret: "bbox-exporter"
 
 restartPolicy: Always
 
