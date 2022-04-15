@@ -1,6 +1,6 @@
 # prometheus-bbox-exporter
 
-![Version: 0.3.1](https://img.shields.io/badge/Version-0.3.1-informational?style=flat-square) ![AppVersion: 0.4.0](https://img.shields.io/badge/AppVersion-0.4.0-informational?style=flat-square)
+![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![AppVersion: 0.4.0](https://img.shields.io/badge/AppVersion-0.4.0-informational?style=flat-square)
 
 Prometheus BBOX Exporter
 
@@ -24,8 +24,6 @@ Prometheus BBOX Exporter
 | additionalLabels | object | `{}` | Additional labels to add to all resources |
 | affinity | object | `{}` | Affinity for pod assignment Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity |
 | containerSecurityContext | object | `{}` |  |
-| envFromSecret | string | `"bbox-exporter"` | The name of a secret in the same kubernetes namespace which contain values to be added to the environment |
-| existingSecret | object | `{"name":""}` | Existing secret which store data for the exporter |
 | exporter.endpoint | string | `"https://mabbox.bytel.fr"` | BBox URL |
 | exporter.log.format | string | `"logfmt"` | Log format. Could be logfmt or json |
 | exporter.log.level | string | `"info"` | Log level |
@@ -47,6 +45,7 @@ Prometheus BBOX Exporter
 | replicas | int | `1` | Number of instance |
 | resources | object | `{}` | Container resources: requests and limits for CPU, Memory |
 | restartPolicy | string | `"Always"` |  |
+| secret | object | `{"create":true,"name":"bbox-exporter"}` | Existing secret which store data for the exporter |
 | securityContext.fsGroup | int | `65534` |  |
 | securityContext.runAsUser | int | `65534` |  |
 | service.annotations | object | `{}` |  |
