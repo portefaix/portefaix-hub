@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ printf "%s-%s" (include "osm-mixin.fullname" .) "osm-pod-to-service" | trunc 63 | trimSuffix "-" }}
+  namespace: {{ include "osm-mixin.namespace" . }}
+  annotations:
+    grafana-folder: {{ .Values.grafana.folder }}
+    {{- include "osm-mixin.annotations" . | indent 4 }}
+  labels:
+    grafana-dashboard: {{ include "osm-mixin.name" . }}-osm-pod-to-service
+    {{- include "osm-mixin.labels" . | indent 4 }}
+data:
+  osm-pod-to-service.json: |-
+{{ .Files.Get "dashboards/osm-pod-to-service.json" | indent 4}}

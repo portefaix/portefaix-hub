@@ -1,0 +1,17 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ printf "%s-%s" (include "osm-mixin.fullname" .) "alerts" | trunc 63 | trimSuffix "-" }}
+  namespace: {{ include "osm-mixin.namespace" . }}
+  annotations:
+    {{- include "osm-mixin.annotations" . | indent 4 }}
+  labels:
+    {{- include "osm-mixin.labels" . | indent 4 }}
+    {{- if .Values.monitor.additionalLabels }}
+    {{- toYaml .Values.monitor.additionalLabels | nindent 4 }}
+    {{- end }}
+spec:
+  groups:
+  - name: osm
+    rules: []
