@@ -1,0 +1,22 @@
+# Default values for osm-mixin.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- Provide a name to substitute for the full names of resources
+fullnameOverride: ""
+
+# -- Additional labels to add to all resources
+additionalLabels: {}
+  # app: osm-mixin
+
+# -- Additional annotations to add to all resources
+additionalAnnotations: {}
+
+monitor:
+  # -- Additional labels to add to resources managed by the Prometheus Operator
+  additionalLabels: {}
+    # release: kube-prometheus-stack
+
+grafana:
+  # -- Grafana folder in which to store the dashboards
+  folder: service-mesh
