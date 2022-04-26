@@ -2429,6 +2429,47 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/node-exporter-mixin-0.1.0/node-exporter-mixin-0.1.0.tgz
     version: 0.1.0
+  osm-mixin:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Grafana dashboards for OpenServiceMesh
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: osm
+          url: https://openservicemesh.io/
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.1.0
+    created: "2022-04-26T09:25:09.016321922Z"
+    description: A Helm chart for Open Service Mesh mixin
+    digest: d3df44cbb325acd09ef14687dc024e7f965959e9d4968b6b144c99494311910b
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/openservicemesh/osm/main/community/logos/icon/icon.svg
+    keywords:
+    - openservicemesh
+    - service-mesh
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: osm-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/osm-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/osm-mixin-0.1.0/osm-mixin-0.1.0.tgz
+    version: 0.1.0
   portefaix-kyverno:
   - annotations:
       artifacthub.io/changes: |
@@ -4789,4 +4830,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-04-15T13:03:44.431292835Z"
+generated: "2022-04-26T09:25:09.016695523Z"
