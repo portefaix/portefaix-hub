@@ -18,5 +18,5 @@ monitor:
     # release: kube-prometheus-stack
 
 grafana:
-  # Grafana folder in which to store the dashboards
+  # -- Grafana folder in which to store the dashboards
   folder: service-mesh

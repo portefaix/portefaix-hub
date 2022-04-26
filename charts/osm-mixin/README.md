@@ -23,7 +23,7 @@ A Helm chart for Open Service Mesh mixin
 | additionalAnnotations | object | `{}` | Additional annotations to add to all resources |
 | additionalLabels | object | `{}` | Additional labels to add to all resources |
 | fullnameOverride | string | `""` | Provide a name to substitute for the full names of resources |
-| grafana.folder | string | `"service-mesh"` |  |
+| grafana.folder | string | `"service-mesh"` | Grafana folder in which to store the dashboards |
 | monitor.additionalLabels | object | `{}` | Additional labels to add to resources managed by the Prometheus Operator |
 
 ----------------------------------------------
