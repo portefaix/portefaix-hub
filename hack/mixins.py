@@ -28,9 +28,10 @@ import zipfile
 import coloredlogs
 import requests
 
-MIXIN_ARCHIVE = "monitoring-mixins-%s.zip"
-MIXIN_URL = "https://github.com/nlamirault/monitoring-mixins/releases/download/%s/%s"
-# MIXIN_DIRECTORY = "monitoring-mixins"
+#datasource=github-tags depName=nlamirault/monitoring-mixins
+mixins_version = "v0.19.0"
+MIXIN_ARCHIVE = "monitoring-mixins-%s.zip" % mixins_version
+MIXIN_URL = "https://github.com/nlamirault/monitoring-mixins/releases/download/%s/%s" % (mixins_version, MIXIN_ARCHIVE)
 
 
 logger = logging.getLogger(__name__)
@@ -146,9 +147,10 @@ def main(url, filename, chart):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(prefix_chars="-")
     parser.add_argument("chart", type=str, help="Chart to update")
-    parser.add_argument("mixins", type=str, help="Version of monitoring mixins")
+    # parser.add_argument("mixins", type=str, help="Version of monitoring mixins")
     parser.add_argument("--log", type=str, default="info", help="Log level")
     args = parser.parse_args()
     coloredlogs.install(level=args.log)
-    archive = MIXIN_ARCHIVE % args.mixins
-    main(MIXIN_URL % (args.mixins, archive), archive, args.chart)
+    # archive = MIXIN_ARCHIVE % args.mixins
+    # main(MIXIN_URL % (args.mixins, archive), archive, args.chart)
+    main(MIXIN_URL, MIXIN_ARCHIVE, args.chart)

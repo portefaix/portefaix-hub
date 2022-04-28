@@ -42,8 +42,8 @@ validate: ## Execute git-hooks
 	@pre-commit run -a
 
 .PHONY: mixins
-mixins: guard-CHART guard-MIXINS guard-LOG ## Install mixins
-	$(VENV)/bin/python3 ./hack/mixins.py $(CHART) $(MIXINS) --log $(LOG)
+mixins: guard-CHART guard-LOG ## Install mixins
+	$(VENV)/bin/python3 ./hack/mixins.py $(CHART) --log $(LOG)
 
 .PHONY: policies
 policies: guard-CHART guard-LOG ## Install mixins
