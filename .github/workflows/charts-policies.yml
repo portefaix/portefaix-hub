@@ -56,7 +56,7 @@ jobs:
     - name: Retrieve version
       id: version
       run: |
-        cat ./hack/policies.py
+        grep 'policies_version = ' ./hack/policies.py
         version=$(grep 'policies_version = ' ./hack/policies.py | awk -F'"' '{ print $2 }')
         echo "::set-output name=POLICIES_VERSION::$version
 
