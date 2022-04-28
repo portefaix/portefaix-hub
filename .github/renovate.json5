@@ -16,6 +16,14 @@
   "assignees": ["@nlamirault"],
   "reviewersFromCodeOwners": true,
   // "labels": ["kind/renovate", "lifecycle/active", "status/review_needed"],
+  "regexManagers": [
+    {
+      "fileMatch": [".py$"],
+      "matchStrings": [
+        "datasource=(?<datasource>.*)\\sdepName=(?<depName>.*)\\n.*version:\\s(?<currentValue>.*)"
+      ]
+    }
+  ],
   "packageRules": [
     // Labels for Docker
     {
@@ -64,6 +72,22 @@
       "datasources": ["action"],
       "updateTypes": ["patch"],
       "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/github", "dependency/github", "priority/low", "size/xs"]
+    },
+    // Labels for Github Tags
+    {
+      "datasources": ["github-tags"],
+      "updateTypes": ["major"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "dependency/github", "priority/high", "size/xs"]
+    },
+    {
+      "datasources": ["github-tags"],
+      "updateTypes": ["minor"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "dependency/github", "priority/medium", "size/xs"]
+    },
+    {
+      "datasources": ["github-tags"],
+      "updateTypes": ["patch"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "dependency/github", "priority/low", "size/xs"]
     },
     // Enable auto-merge docker
     // {
