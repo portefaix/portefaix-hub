@@ -116,6 +116,12 @@ jobs:
       run: |
         poetry install
 
+    - name: Retrieve version
+      id: version
+      run: |
+        version=$(grep 'mixins_version = ' ./hack/mixins.py | awk -F'"' '{ print $2 }')
+        echo "::set-output name=MIXINS_VERSION::$version"
+
     - name: Prometheus Operator Mixin
       id: prometheus-operator-mixin
       run: |
@@ -172,6 +178,12 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install
+
+    - name: Retrieve version
+      id: version
+      run: |
+        version=$(grep 'mixins_version = ' ./hack/mixins.py | awk -F'"' '{ print $2 }')
+        echo "::set-output name=MIXINS_VERSION::$version"
 
     - name: Prometheus Mixin
       id: prometheus-mixin
@@ -231,6 +243,12 @@ jobs:
       run: |
         poetry install
 
+    - name: Retrieve version
+      id: version
+      run: |
+        version=$(grep 'mixins_version = ' ./hack/mixins.py | awk -F'"' '{ print $2 }')
+        echo "::set-output name=MIXINS_VERSION::$version"
+
     - name: Linkerd Stable Mixin
       id: linkerd-stable-mixin
       run: |
@@ -289,6 +307,12 @@ jobs:
       run: |
         poetry install
 
+    - name: Retrieve version
+      id: version
+      run: |
+        version=$(grep 'mixins_version = ' ./hack/mixins.py | awk -F'"' '{ print $2 }')
+        echo "::set-output name=MIXINS_VERSION::$version"
+
     - name: Linkerd Edge Mixin
       id: linkerd-edge-mixin
       run: |
@@ -345,6 +369,12 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install
+
+    - name: Retrieve version
+      id: version
+      run: |
+        version=$(grep 'mixins_version = ' ./hack/mixins.py | awk -F'"' '{ print $2 }')
+        echo "::set-output name=MIXINS_VERSION::$version"
 
     - name: FluxCD Mixin
       id: fluxcd-mixin
@@ -403,6 +433,12 @@ jobs:
       run: |
         poetry install
 
+    - name: Retrieve version
+      id: version
+      run: |
+        version=$(grep 'mixins_version = ' ./hack/mixins.py | awk -F'"' '{ print $2 }')
+        echo "::set-output name=MIXINS_VERSION::$version"
+
     - name: Grafana Mixin
       id: grafana-mixin
       run: |
@@ -459,6 +495,12 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install
+
+    - name: Retrieve version
+      id: version
+      run: |
+        version=$(grep 'mixins_version = ' ./hack/mixins.py | awk -F'"' '{ print $2 }')
+        echo "::set-output name=MIXINS_VERSION::$version"
 
     - name: Kube-State-Metrics Mixin
       id: kube-state-metrics-mixin
@@ -517,6 +559,12 @@ jobs:
       run: |
         poetry install
 
+    - name: Retrieve version
+      id: version
+      run: |
+        version=$(grep 'mixins_version = ' ./hack/mixins.py | awk -F'"' '{ print $2 }')
+        echo "::set-output name=MIXINS_VERSION::$version"
+
     - name: kubernetes Mixin
       id: kubernetes-mixin
       run: |
@@ -573,6 +621,12 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install
+
+    - name: Retrieve version
+      id: version
+      run: |
+        version=$(grep 'mixins_version = ' ./hack/mixins.py | awk -F'"' '{ print $2 }')
+        echo "::set-output name=MIXINS_VERSION::$version"
 
     - name: node-exporter Mixin
       id: node-exporter-mixin
@@ -631,6 +685,12 @@ jobs:
       run: |
         poetry install
 
+    - name: Retrieve version
+      id: version
+      run: |
+        version=$(grep 'mixins_version = ' ./hack/mixins.py | awk -F'"' '{ print $2 }')
+        echo "::set-output name=MIXINS_VERSION::$version"
+
     - name: loki Mixin
       id: loki-mixin
       run: |
@@ -687,6 +747,12 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install
+
+    - name: Retrieve version
+      id: version
+      run: |
+        version=$(grep 'mixins_version = ' ./hack/mixins.py | awk -F'"' '{ print $2 }')
+        echo "::set-output name=MIXINS_VERSION::$version"
 
     - name: promtail Mixin
       id: promtail-mixin
