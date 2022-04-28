@@ -56,7 +56,7 @@ jobs:
     - name: Retrieve version
       id: version
       run: |
-        version=$(grep 'mixins_version = ' hack/mixins.py | awk -F'"' '{ print $2 }')
+        version=$(grep 'mixins_version = ' ./hack/mixins.py | awk -F'"' '{ print $2 }')
         echo "::set-output name=MIXINS_VERSION::$version
 
     - name: Alertmanager Mixin
