@@ -1,0 +1,63 @@
+# Copyright (C) 2021 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+        args:
+        - '--allow-multiple-documents'
+        exclude: mkdocs.yml
+    -   id: check-added-large-files
+-   repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.1.10
+    hooks:
+    # Cf: https://github.com/kyverno/kyverno/issues/1845
+    # -   id: insert-license
+    #     files: \.yaml
+    #     args:
+    #     - --license-filepath
+    #     - hack/config/licence.txt
+    -   id: insert-license
+        files: \.rego
+        args:
+        - --license-filepath
+        - hack/config/licence.txt
+- repo: https://github.com/anderseknert/pre-commit-opa
+  rev: v1.4.1
+  hooks:
+  - id: opa-fmt
+  - id: opa-check
+    args: ['opa']
+  - id: opa-test
+    args: ['opa']
+#   - id: conftest-test
+#     args: ['--policy', 'opa']
+  - id: conftest-verify
+    args: ['--data', 'opa/lib', '--policy', 'opa']
+- repo: https://github.com/kyverno/pre-commit-hook
+  rev: v1.0.0
+  hooks:
+  - id: kyverno-validate
+    name: Kyverno validate
+    args: [./kyverno]
+    verbose: true
+  - id: kyverno-test
+    name: Kyverno test
+    args: ["./kyverno"]

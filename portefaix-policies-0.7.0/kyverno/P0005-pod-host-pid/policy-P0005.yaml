@@ -1,0 +1,40 @@
+# Copyright (C) 2021 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: portefaix-P0005
+  annotations:
+    policies.kyverno.io/title: Pod must run without access to the host PID
+    policies.kyverno.io/category: Best Practices
+    policies.kyverno.io/severity: high
+    policies.kyverno.io/subject: Pod
+    policies.kyverno.io/description: >-
+      Sharing the host’s PID namespace allows visibility of processes on
+      the host, potentially leaking information such as environment variables
+      and configuration
+spec:
+  validationFailureAction: audit
+  rules:
+    - name: validate-host-PID
+      match:
+        resources:
+          kinds:
+            - Pod
+      validate:
+        message: "Pod must run without access to the host PID"
+        pattern:
+          spec:
+            =(hostPID): "false"

@@ -1,0 +1,41 @@
+# Copyright (C) 2021 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+version: 0.4.0
+name: portefaix-rego-policies
+displayName: Rego policies for Portefaix
+description: Rego policies collection from Portefaix
+license: Apache-2.0
+homeURL: https://github.com/portefaix/portefaix-policies
+createdAt: 2021-06-11T18:00:00Z
+keywords:
+  - kubernetes
+  - policies
+  - opa
+  - gatekeeper
+  - conftest
+links:
+  - name: source
+    url: https://github.com/portefaix/portefaix-policies/tree/master/opa
+readme: |
+  # rego-policies
+  [Rego](https://www.openpolicyagent.org/docs/latest/policy-language/) policies collection.
+
+  ## Policies
+  For a full list of policies, see the auto-generated [POLICIES.md](https://github.com/portefaix/portefaix-policies/tree/master/opa-policies.md)
+
+  The naming of the policies follows the Gatekeeper format, as described [here.](https://github.com/plexsystems/konstraint#how-template-and-constraint-naming-works)
+maintainers:
+  - name: Nicolas Lamirault
+    email: nicolas.lamirault@gmail.com

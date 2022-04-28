@@ -1,0 +1,34 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod-ok
+  labels:
+    app: myapp
+spec:
+  containers:
+  - name: goproxy
+    image: k8s.gcr.io/goproxy:0.1
+    ports:
+    - containerPort: 8080
+    livenessProbe:
+      tcpSocket:
+        port: 8080
+      periodSeconds: 10
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod-ko
+  labels:
+    app: myapp
+spec:
+  containers:
+  - name: goproxy
+    image: k8s.gcr.io/goproxy:0.1
+    ports:
+    - containerPort: 8080
+    readinessProbe:
+      tcpSocket:
+        port: 8080
+      periodSeconds: 10

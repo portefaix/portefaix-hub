@@ -1,0 +1,24 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod-ok
+  labels:
+    app.kubernetes.io/name: "kyverno-policies"
+    app.kubernetes.io/instance: "kyverno-policies"
+    app.kubernetes.io/component: "kyverno"
+    app.kubernetes.io/part-of: "kyverno-policies"
+    app.kubernetes.io/managed-by: "kubectl"
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.12
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod-ko
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.12

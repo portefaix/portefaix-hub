@@ -1,0 +1,56 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod-ok
+  labels:
+    app: myapp
+spec:
+  containers:
+  - name: goproxy
+    image: k8s.gcr.io/goproxy:0.1
+    ports:
+    - containerPort: 8080
+    readinessProbe:
+      tcpSocket:
+        port: 8080
+      periodSeconds: 10
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod-ko
+  labels:
+    app: myapp
+spec:
+  containers:
+  - name: goproxy
+    image: k8s.gcr.io/goproxy:0.1
+    ports:
+    - containerPort: 8080
+    livenessProbe:
+      tcpSocket:
+        port: 8080
+      periodSeconds: 10
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod-ko-2
+  labels:
+    app: myapp
+spec:
+  containers:
+  - name: nginx-ingress-controller
+    image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.28.0
+    ports:
+    - containerPort: 8080
+    readinessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /healthz
+        port: 10254
+        scheme: HTTP
+      periodSeconds: 10
+      # successThreshold: 1
+      # timeoutSeconds: 10

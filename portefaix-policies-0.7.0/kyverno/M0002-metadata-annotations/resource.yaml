@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod-ok
+  annotations:
+    a8r.io/description: "Kyverno policies"
+    a8r.io/owner: "Portefaix"
+    a8r.io/bugs: "https://github.com/portefaix/portefaix-policies/issues"
+    a8r.io/documentation: "https://github.com/portefaix/portefaix-policies"
+    a8r.io/repository: "https://github.com/portefaix/portefaix-policies"
+    a8r.io/support: "https://github.com/portefaix/portefaix-policies/issues"
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.12
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod-ko
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.12
