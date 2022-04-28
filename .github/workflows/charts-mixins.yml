@@ -54,9 +54,10 @@ jobs:
         poetry install
 
     - name: Retrieve version
-      run: |
-        echo "::set-output name=MIXINS_VERSION::$(grep 'mixins_version = ' hack/mixins.py | awk -F'"' '{ print $2 }')
       id: version
+      run: |
+        version=$(grep 'mixins_version = ' hack/mixins.py | awk -F'"' '{ print $2 }')
+        echo "::set-output name=MIXINS_VERSION::$version
 
     - name: Alertmanager Mixin
       id: alertmanager-mixin

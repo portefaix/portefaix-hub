@@ -54,9 +54,10 @@ jobs:
         poetry install
 
     - name: Retrieve version
-      run: |
-        echo "::set-output name=POLICIES_VERSION::$(grep 'policies_version = ' hack/policies.py | awk -F'"' '{ print $2 }')
       id: version
+      run: |
+        version=$(grep 'policies_version = ' hack/policies.py | awk -F'"' '{ print $2 }')
+        echo "::set-output name=POLICIES_VERSION::$version
 
     - name: Kyverno policies
       id: kyverno-policies
