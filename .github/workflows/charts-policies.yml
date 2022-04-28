@@ -55,7 +55,7 @@ jobs:
 
     - name: Retrieve version
       run: |
-        echo "::set-output name=POLICIES_VERSION::$(grep "policies_version = " hack/policies.py | awk -F'"' '{ print $2 }')
+        echo "::set-output name=POLICIES_VERSION::$(grep 'policies_version = ' hack/policies.py | awk -F'"' '{ print $2 }')
       id: version
 
     - name: Kyverno policies
