@@ -21,7 +21,7 @@ import os
 from os import path
 import re
 
-# import shutil
+import shutil
 import zipfile
 
 import coloredlogs
@@ -87,8 +87,8 @@ def main(url, filename, directory, chart):
         logger.info("Extract policies")
         zf.extractall()
         manage_kyverno_policies("%s/kyverno" % directory, chart)
-        # os.remove(filename)
-        # shutil.rmtree(mixin_directory)
+        os.remove(filename)
+        shutil.rmtree(directory)
 
 
 if __name__ == "__main__":
