@@ -2474,6 +2474,50 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: Sigstore support
+          links:
+            - name: Github Issue
+              url: https://github.com/portefaix/portefaix-hub/pull/129
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: kyverno
+          url: https://kyverno.io/
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.4.1
+    created: "2022-05-03T07:19:23.303209229Z"
+    description: A Helm chart for Kyverno policies for Portefaix
+    digest: 972414d96e47fcfca20863eba5fa78dfd47c35c648727c27da6438f49dee51a1
+    home: https://charts.portefaix.xyz
+    icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
+    keywords:
+    - kyverno
+    - policy agent
+    - validating webhook
+    - admissions controller
+    - policies
+    - portefaix
+    kubeVersion: '>=1.10.0-0'
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: portefaix-kyverno
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/portefaix-kyverno
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/portefaix-kyverno-0.3.0/portefaix-kyverno-0.3.0.tgz
+    version: 0.3.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: Init chart
       artifacthub.io/containsSecurityUpdates: "true"
       artifacthub.io/links: |
@@ -4830,4 +4874,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-04-26T09:25:30.392386697Z"
+generated: "2022-05-03T07:19:23.303532231Z"
