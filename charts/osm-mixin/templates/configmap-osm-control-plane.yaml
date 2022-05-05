@@ -12,4 +12,4 @@ metadata:
     {{- include "osm-mixin.labels" . | indent 4 }}
 data:
   osm-control-plane.json: |-
-{{ .Files.Get "dashboards/osm-control-plane.json" | indent 4}}
+{{ .Files.Get "dashboards/osm-control-plane.json" | replace "${DS_PROMETHEUS}" "Prometheus" | indent 4}}

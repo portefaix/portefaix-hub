@@ -18,6 +18,7 @@ import argparse
 
 # import fileinput
 import glob
+import json
 import logging
 import os
 from os import path
@@ -75,6 +76,14 @@ def template(f, mixin, chart_dst, mixin_header):
         for line in fin:
             file.write("  %s" % escape(line))
 
+def update_dashboards_tags(orig, dashboard, new_tags):
+    with open(orig, 'r') as fh:
+        json_data = json.load(fh)
+        json_data["tags"] = json_data["tags"] + new_tags
+        logger.info(json_data["tags"])
+        with open(dashboard, 'w') as fh:
+            json.dump(json_data, fh, indent=4)
+
 
 def template_configmap(f, mixin, chart_dst, mixin_header):
     orig = "%s" % f
@@ -84,8 +93,31 @@ def template_configmap(f, mixin, chart_dst, mixin_header):
     pathlib.Path("%s/dashboards" % chart_dst).mkdir(parents=True, exist_ok=True)
     if os.path.exists(dashboard):
         os.remove(dashboard)
-    logger.info("Copy %s => %s", orig, dashboard)
-    shutil.copy(orig, dashboard)
+    if mixin == "alertmanager-mixin":
+        update_dashboards_tags(orig, dashboard, ["portefaix"])
+    elif mixin == "fluxcd-mixin":
+        update_dashboards_tags(orig, dashboard, ["fluxcd", "fluxcd-mixin", "gitops", "portefaix"])
+    elif mixin == "grafana-mixin":
+        update_dashboards_tags(orig, dashboard, ["grafana", "grafana-mixin", "portefaix"])
+    elif mixin == "linkerd-edge-mixin":
+        update_dashboards_tags(orig, dashboard, ["linkerd", "linkerd-edge-mixin", "service-mesh", "portefaix"])
+    elif mixin == "linkerd-stable-mixin":
+        update_dashboards_tags(orig, dashboard, ["linkerd", "linkerd-stable-mixin", "service-mesh", "portefaix"])
+    elif mixin == "loki-mixin":
+        update_dashboards_tags(orig, dashboard, ["portefaix"])
+    elif mixin == "mimir-mixin":
+        update_dashboards_tags(orig, dashboard, ["portefaix"])
+    elif mixin == "osm-mixin":
+        update_dashboards_tags(orig, dashboard, ["osm", "osm-mixin", "service-mesh", "portefaix"])
+    elif mixin == "prometheus-mixin":
+        update_dashboards_tags(orig, dashboard, ["portefaix"])
+    elif mixin == "promtail-mixin":
+        update_dashboards_tags(orig, dashboard, ["portefaix"])
+    elif mixin == "thanos-mixin":
+        update_dashboards_tags(orig, dashboard, ["portefaix"])
+    else:
+        logger.info("Copy %s => %s", orig, dashboard)
+        shutil.copy(orig, dashboard)
 
     dest = "%s/templates/configmap-%s" % (chart_dst, filename.replace(".json", ".yaml"))
     if os.path.exists(dest):
@@ -101,7 +133,10 @@ def template_configmap(f, mixin, chart_dst, mixin_header):
                 .replace("_", "-")
             )
         file.write("  %s: |-\n" % filename)
-        file.write('{{ .Files.Get "dashboards/%s" | indent 4}}' % filename)
+        if mixin == "osm-mixin":
+            file.write('{{ .Files.Get "dashboards/%s" | replace "${DS_PROMETHEUS}" "Prometheus" | indent 4}}' % filename)
+        else:
+            file.write('{{ .Files.Get "dashboards/%s" | indent 4}}' % filename)
 
 
 def manage_mixin(mixin_directory, mixin):
