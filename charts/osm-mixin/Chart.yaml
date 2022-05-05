@@ -25,7 +25,7 @@ keywords:
   - service-mesh
   - monitoring-mixin
   - portefaix
-version: 0.1.0
+version: 0.2.0
 appVersion: 1.1.0
 
 maintainers:
@@ -50,4 +50,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: added
-      description: Grafana dashboards for OpenServiceMesh
+      description: Tags for OpenServiceMesh Grafana dashboards
