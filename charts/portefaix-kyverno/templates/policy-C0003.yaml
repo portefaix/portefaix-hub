@@ -18,8 +18,8 @@ metadata:
   name: portefaix-c0003
   annotations:
     policies.kyverno.io/title: Container must set readiness probe
-    policies.kyverno.io/category: Best Practices
-    policies.kyverno.io/severity: medium
+    policies.kyverno.io/category: Portefaix
+    policies.kyverno.io/severity: high
     policies.kyverno.io/subject: Container
     policies.kyverno.io/description: >-
       Readiness probe need to be configured to correctly manage a pods

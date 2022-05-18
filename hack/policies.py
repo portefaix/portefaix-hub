@@ -28,7 +28,7 @@ import coloredlogs
 import requests
 
 #datasource=github-tags depName=portefaix/portefaix-policies
-policies_version = "v0.8.0"
+policies_version = "v0.9.0"
 policies_archive = "portefaix-policies-%s.zip" % policies_version
 policies_url = (
     "https://github.com/portefaix/portefaix-policies/archive/refs/tags/%s.zip"
