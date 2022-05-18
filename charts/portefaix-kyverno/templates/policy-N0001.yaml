@@ -18,7 +18,7 @@ metadata:
   name: portefaix-n0001
   annotations:
     policies.kyverno.io/title: Disallow Default Namespace
-    policies.kyverno.io/category: Best Practices
+    policies.kyverno.io/category: Portefaix
     policies.kyverno.io/severity: medium
     policies.kyverno.io/subject: Namespace
     policies.kyverno.io/description: >-

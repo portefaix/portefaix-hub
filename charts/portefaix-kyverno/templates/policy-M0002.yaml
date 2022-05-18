@@ -18,7 +18,7 @@ metadata:
   name: portefaix-m0002
   annotations:
     policies.kyverno.io/title: Metadata should have a8r.io annotations
-    policies.kyverno.io/category: Best Practices
+    policies.kyverno.io/category: Portefaix
     policies.kyverno.io/severity: low
     policies.kyverno.io/subject: Metadata
     policies.kyverno.io/description: >-

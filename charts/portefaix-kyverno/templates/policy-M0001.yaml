@@ -18,7 +18,7 @@ metadata:
   name: portefaix-m0001
   annotations:
     policies.kyverno.io/title: Metadata must set recommanded Kubernetes labels
-    policies.kyverno.io/category: Best Practices
+    policies.kyverno.io/category: Portefaix
     policies.kyverno.io/severity: low
     policies.kyverno.io/subject: Metadata
     policies.kyverno.io/description: >-
@@ -42,6 +42,7 @@ spec:
           labels:
             app.kubernetes.io/name: "?*"
             app.kubernetes.io/instance: "?*"
+            app.kubernetes.io/version: "?*"
             app.kubernetes.io/component: "?*"
             app.kubernetes.io/part-of: "?*"
             app.kubernetes.io/managed-by: "?*"

@@ -18,7 +18,7 @@ metadata:
   name: portefaix-c0001
   annotations:
     policies.kyverno.io/title: Container must not use latest image tag
-    policies.kyverno.io/category: Best Practices
+    policies.kyverno.io/category: Portefaix
     policies.kyverno.io/severity: medium
     policies.kyverno.io/subject: Container
     policies.kyverno.io/description: >-
