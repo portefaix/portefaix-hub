@@ -184,6 +184,47 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/alertmanager-mixin-0.1.0/alertmanager-mixin-0.1.0.tgz
     version: 0.1.0
+  coredns-mixin:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Use monitoring-mixins v0.19.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: coredns
+          url: https://coredns.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-05-19T16:52:34.147871327Z"
+    description: A Helm chart for CoreDNS Mixin
+    digest: 2a5d7260dbe8bb1989bed0a176ad68310822a9f3b011f31a46ce73edcc0a904e
+    home: https://charts.portefaix.xyz
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/242px-Prometheus_software_logo.svg.png
+    keywords:
+    - coredns
+    - prometheus
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: coredns-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/coredns-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/coredns-mixin-0.1.0/coredns-mixin-0.1.0.tgz
+    version: 0.1.0
   crossplane-aws-factory:
   - annotations:
       artifacthub.io/changes: |-
@@ -4915,4 +4956,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-05-18T15:14:52.675114720Z"
+generated: "2022-05-19T16:52:34.148282631Z"
