@@ -30,7 +30,7 @@ import coloredlogs
 import requests
 
 #datasource=github-tags depName=nlamirault/monitoring-mixins
-mixins_version = "v0.19.0"
+mixins_version = "v0.21.0"
 mixin_archive = "monitoring-mixins-%s.zip" % mixins_version
 mixin_url = "https://github.com/nlamirault/monitoring-mixins/releases/download/%s/%s" % (mixins_version, mixin_archive)
 
