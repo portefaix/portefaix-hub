@@ -20,11 +20,17 @@ on:
       - master
     paths:
       - "charts/**"
+      - "charts/**/*.yaml"
+      - "charts/**/templates/*.yaml"
+      - "charts/**/dashboards/*.json"
   pull_request:
     branches:
       - master
     paths:
       - "charts/**"
+      - "charts/**/*.yaml"
+      - "charts/**/templates/*.yaml"
+      - "charts/**/dashboards/*.json"
 
 jobs:
   # Reference https://github.com/marketplace/actions/helm-chart-testing
@@ -50,7 +56,7 @@ jobs:
           if [[ -n "$changed" ]]; then
             echo "::set-output name=changed::true"
           fi
-          
+
       - name: Run chart-testing (lint)
         run: ct lint --config .github/ct.yaml
 
