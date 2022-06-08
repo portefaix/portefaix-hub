@@ -40,7 +40,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - uses: actions/setup-python@v3.1.2
+    - uses: actions/setup-python@v4.0.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
