@@ -20,11 +20,17 @@ on:
       - master
     paths:
       - "charts/**"
+      - "charts/**/*.yaml"
+      - "charts/**/templates/*.yaml"
+      - "charts/**/dashboards/*.json"
   pull_request:
     branches:
       - master
-    # paths:
-    #   - "charts/**"
+    paths:
+      - "charts/**"
+      - "charts/**/*.yaml"
+      - "charts/**/templates/*.yaml"
+      - "charts/**/dashboards/*.json"
 
 jobs:
 
