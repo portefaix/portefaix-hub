@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ printf "%s-%s" (include "tempo-mixin.fullname" .) "tempo-resources" | trunc 63 | trimSuffix "-" }}
+  namespace: {{ include "tempo-mixin.namespace" . }}
+  annotations:
+    grafana-folder: {{ .Values.grafana.folder }}
+    {{- include "tempo-mixin.annotations" . | indent 4 }}
+  labels:
+    grafana-dashboard: {{ include "tempo-mixin.name" . }}-tempo-resources
+    {{- include "tempo-mixin.labels" . | indent 4 }}
+data:
+  tempo-resources.json: |-
+{{ .Files.Get "dashboards/tempo-resources.json" | indent 4}}
