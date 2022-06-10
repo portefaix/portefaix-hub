@@ -3487,6 +3487,43 @@ entries:
   promtail-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Bump to monitoring-mixins-v0.16.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: promtail
+          url: https://grafana.com/docs/promtail/latest/clients/promtail/
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.3.0
+    created: "2022-06-10T07:52:28.090542868Z"
+    description: A Helm chart for Promtail Mixin
+    digest: e2c2575492b5e483a0f1f8a7a6a0640c52658aa4b51b0e7b2c51f5b2e74fc004
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    keywords:
+    - promtail
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: promtail-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/promtail-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/promtail-mixin-0.12.0/promtail-mixin-0.12.0.tgz
+    version: 0.12.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Sigstore support
           links:
@@ -5035,4 +5072,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-06-09T17:35:44.643488586Z"
+generated: "2022-06-10T07:52:28.09148124Z"
