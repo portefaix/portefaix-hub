@@ -2589,6 +2589,48 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/osm-mixin-0.1.0/osm-mixin-0.1.0.tgz
     version: 0.1.0
+  portefaix-kubewarden:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Portefaix Kubewarden policies v0.10.0
+          links:
+            - name: Github release
+              url: https://github.com/portefaix/portefaix-policies/releases/tag/v0.10.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: kubewarden
+          url: https://kubewarden.io/
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-06-17T08:51:47.324078594Z"
+    description: A Helm chart for Kyverno policies for Portefaix
+    digest: 0564fc2862af76d1b394d73cd2ca6416d51c8262d13734dcfa0a45d12999dcaa
+    home: https://charts.portefaix.xyz
+    icon: https://www.kubewarden.io/images/icon-kubewarden.svg
+    keywords:
+    - kubewarden
+    - policies
+    - portefaix
+    kubeVersion: '>=1.10.0-0'
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: portefaix-kubewarden
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/portefaix-kubewarden
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/portefaix-kubewarden-0.1.0/portefaix-kubewarden-0.1.0.tgz
+    version: 0.1.0
   portefaix-kyverno:
   - annotations:
       artifacthub.io/changes: |
@@ -5150,4 +5192,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-06-16T09:53:01.846184256Z"
+generated: "2022-06-17T08:51:47.324807703Z"
