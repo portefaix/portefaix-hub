@@ -1,0 +1,4 @@
+{{ $.Chart.Name }} has been installed. Check its status by running:
+  kubectl --namespace {{ template "portefaix-kubewarden.namespace" . }} get clusterpolicy
+
+Visit https://github.com/nlamirault/portefaix-hub/charts/portefaix-kubewarden.
