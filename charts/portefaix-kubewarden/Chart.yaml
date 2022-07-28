@@ -14,7 +14,7 @@
 
 apiVersion: v2
 name: portefaix-kubewarden
-description: A Helm chart for Kyverno policies for Portefaix
+description: A Helm chart for Kubewarden policies for Portefaix
 home: https://charts.portefaix.xyz
 icon: https://www.kubewarden.io/images/icon-kubewarden.svg
 sources:
@@ -25,7 +25,7 @@ keywords:
   - kubewarden
   - policies
   - portefaix
-version: 0.1.1
+version: 0.1.2
 appVersion: 1.0.0
 maintainers:
   - name: nlamirault
