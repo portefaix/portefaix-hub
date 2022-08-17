@@ -12,6 +12,7 @@ Welcome to the Portefaix Hub.
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.4.0|A Helm chart for Alertmanager Mixin|application|2021-12-11T18:00:42.114716054Z
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.3.0|A Helm chart for Alertmanager Mixin|application|2021-08-31T15:39:08.103793493Z
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.1.0|A Helm chart for Alertmanager Mixin|application|2021-06-18T16:36:49.277772553Z
+[coredns-mixin](https://artifacthub.io/packages/helm/portefaix-hub/coredns-mixin)|1.0.0|A Helm chart for CoreDNS Mixin|application|2022-08-17T16:40:01.783113821Z
 [coredns-mixin](https://artifacthub.io/packages/helm/portefaix-hub/coredns-mixin)|0.1.0|A Helm chart for CoreDNS Mixin|application|2022-05-19T16:52:34.147871327Z
 [crossplane-aws-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-aws-factory)|0.4.0|An AWS Factory using Crossplane|application|2022-03-29T16:53:17.789684191Z
 [crossplane-aws-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-aws-factory)|0.3.0|An AWS Factory using Crossplane|application|2022-03-11T13:07:33.76762875Z
