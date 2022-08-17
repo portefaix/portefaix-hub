@@ -6,6 +6,7 @@ Welcome to the Portefaix Hub.
 
 |Name|version|description|Type|created|
 |:--|:-:|:--|:--|:--:|:--|
+[alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|1.1.0|A Helm chart for Alertmanager Mixin|application|2022-08-17T16:27:02.620743436Z
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.6.0|A Helm chart for Alertmanager Mixin|application|2022-03-29T13:52:27.695953006Z
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.5.0|A Helm chart for Alertmanager Mixin|application|2022-03-11T09:46:06.634714189Z
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.4.0|A Helm chart for Alertmanager Mixin|application|2021-12-11T18:00:42.114716054Z
