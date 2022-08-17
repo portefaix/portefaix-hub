@@ -227,6 +227,46 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: Refactoring Grafana dashboards management
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: coredns
+          url: https://coredns.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-08-17T16:40:01.783113821Z"
+    description: A Helm chart for CoreDNS Mixin
+    digest: c5c72a674df8bb6fc481e97cfb1a82b1af7f1f83899167507df66f3750b8264f
+    home: https://charts.portefaix.xyz
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/242px-Prometheus_software_logo.svg.png
+    keywords:
+    - coredns
+    - prometheus
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: coredns-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/coredns-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/coredns-mixin-1.0.0/coredns-mixin-1.0.0.tgz
+    version: 1.0.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: Use monitoring-mixins v0.19.0
       artifacthub.io/license: Apache-2.0
       artifacthub.io/links: |
@@ -5352,4 +5392,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-08-17T16:27:20.977820275Z"
+generated: "2022-08-17T16:40:01.783759731Z"
