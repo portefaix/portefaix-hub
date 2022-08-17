@@ -66,7 +66,7 @@ jobs:
     
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.0.4
+      uses: peter-evans/create-pull-request@v4.1.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-alertmanager-mixin-${{ steps.version.outputs.MIXINS_VERSION }}"
@@ -129,7 +129,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.0.4
+      uses: peter-evans/create-pull-request@v4.1.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-prometheus-operator-mixin-${{ steps.version.outputs.MIXINS_VERSION }}"
@@ -192,7 +192,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.0.4
+      uses: peter-evans/create-pull-request@v4.1.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-prometheus-mixin-${{ steps.version.outputs.MIXINS_VERSION }}"
@@ -256,7 +256,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.0.4
+      uses: peter-evans/create-pull-request@v4.1.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-linkerd-stable-mixin-${{ steps.version.outputs.MIXINS_VERSION }}"
@@ -320,7 +320,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.0.4
+      uses: peter-evans/create-pull-request@v4.1.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-linkerd-edge-mixin-${{ steps.version.outputs.MIXINS_VERSION }}"
@@ -383,7 +383,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.0.4
+      uses: peter-evans/create-pull-request@v4.1.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-fluxcd-mixin-${{ steps.version.outputs.MIXINS_VERSION }}"
@@ -446,7 +446,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.0.4
+      uses: peter-evans/create-pull-request@v4.1.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-grafana-mixin-${{ steps.version.outputs.MIXINS_VERSION }}"
@@ -509,7 +509,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.0.4
+      uses: peter-evans/create-pull-request@v4.1.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-ksm-mixin-${{ steps.version.outputs.MIXINS_VERSION }}"
@@ -572,7 +572,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.0.4
+      uses: peter-evans/create-pull-request@v4.1.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-kubernetes-mixin-${{ steps.version.outputs.MIXINS_VERSION }}"
@@ -635,7 +635,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.0.4
+      uses: peter-evans/create-pull-request@v4.1.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-node-exporter-mixin-${{ steps.version.outputs.MIXINS_VERSION }}"
@@ -698,7 +698,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.0.4
+      uses: peter-evans/create-pull-request@v4.1.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-loki-mixin-${{ steps.version.outputs.MIXINS_VERSION }}"
@@ -761,7 +761,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.0.4
+      uses: peter-evans/create-pull-request@v4.1.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-promtail-mixin-${{ steps.version.outputs.MIXINS_VERSION }}"
