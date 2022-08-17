@@ -1,6 +1,6 @@
 # alertmanager-mixin
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.23.0](https://img.shields.io/badge/AppVersion-0.23.0-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.23.0](https://img.shields.io/badge/AppVersion-0.23.0-informational?style=flat-square)
 
 A Helm chart for Alertmanager Mixin
 
@@ -23,6 +23,7 @@ A Helm chart for Alertmanager Mixin
 | additionalAnnotations | object | `{}` | Additional annotations to add to all resources |
 | additionalLabels | object | `{}` | Additional labels to add to all resources |
 | fullnameOverride | string | `""` | Provide a name to substitute for the full names of resources |
+| grafana.folder | string | `"monitoring"` | Grafana folder in which to store the dashboards |
 | monitor.additionalLabels | object | `{}` | Additional labels to add to resources managed by the Prometheus Operator |
 
 ----------------------------------------------
