@@ -2979,6 +2979,46 @@ entries:
   osm-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Refactoring Grafana dashboards loader
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: osm
+          url: https://openservicemesh.io/
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.1.0
+    created: "2022-08-18T07:06:27.364559889Z"
+    description: A Helm chart for Open Service Mesh mixin
+    digest: c58b45069676960f8a768112b8c33f880e3c9cbd2b541ab37468813de9908310
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/openservicemesh/osm/main/community/logos/icon/icon.svg
+    keywords:
+    - openservicemesh
+    - service-mesh
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: osm-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/osm-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/osm-mixin-1.0.0/osm-mixin-1.0.0.tgz
+    version: 1.0.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Grafana dashboards for OpenServiceMesh
       artifacthub.io/license: Apache-2.0
@@ -5702,4 +5742,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-08-18T07:03:58.817160310Z"
+generated: "2022-08-18T07:06:27.364988389Z"
