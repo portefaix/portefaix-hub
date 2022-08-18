@@ -1847,6 +1847,45 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Refactor Grafana dashboards loader
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: linkerd
+          url: https://linkerd.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: edge-21.6.3
+    created: "2022-08-18T06:43:25.06125784Z"
+    description: A Helm chart for Linkerd Edge Mixin
+    digest: bd34fb8c12e7059e50bca6f367a8a8ca3b21d2221555414384d0bd1629da4015
+    home: https://charts.portefaix.xyz
+    icon: https://linkerd.io/images/logo-only-200h.png
+    keywords:
+    - linkerd
+    - linkerd-edge
+    - monitoring-mixin
+    - portefaix
+    kubeVersion: '>= 1.14.0-0'
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: linkerd-edge-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/linkerd-edge-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/linkerd-edge-mixin-1.0.0/linkerd-edge-mixin-1.0.0.tgz
+    version: 1.0.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Bump to monitoring-mixins v0.21.0
       artifacthub.io/license: Apache-2.0
       artifacthub.io/links: |
@@ -5506,4 +5545,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-08-18T06:38:32.146731283Z"
+generated: "2022-08-18T06:43:25.061719544Z"
