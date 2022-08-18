@@ -7,7 +7,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ printf "dashboard-__mixin__-%s" $dashboardName | trunc 63 | trimSuffix "-" }}
-  namespace: {{ include "__mixin__.namespace" . }}
+  namespace: {{ include "__mixin__.namespace" $ }}
   annotations:
     grafana-folder: {{ $.Values.grafana.folder }}
     {{- include "__mixin__.annotations" $ | indent 4 }}
