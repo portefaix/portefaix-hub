@@ -85,6 +85,7 @@ Welcome to the Portefaix Hub.
 [loki-mixin](https://artifacthub.io/packages/helm/portefaix-hub/loki-mixin)|0.1.0|A Helm chart for loki Mixin|application|2021-03-06T15:36:52.563562032Z
 [mimir-mixin](https://artifacthub.io/packages/helm/portefaix-hub/mimir-mixin)|1.0.0|A Helm chart for Grafana Mimir mixin|application|2022-08-18T06:59:06.923858079Z
 [mimir-mixin](https://artifacthub.io/packages/helm/portefaix-hub/mimir-mixin)|0.1.0|A Helm chart for Grafana Mimir mixin|application|2022-03-31T06:52:02.982911042Z
+[node-exporter-mixin](https://artifacthub.io/packages/helm/portefaix-hub/node-exporter-mixin)|1.0.0|A Helm chart for Alertmanager Mixin|application|2022-08-18T07:03:41.358366581Z
 [node-exporter-mixin](https://artifacthub.io/packages/helm/portefaix-hub/node-exporter-mixin)|0.3.0|A Helm chart for Alertmanager Mixin|application|2022-03-11T13:34:24.65831197Z
 [node-exporter-mixin](https://artifacthub.io/packages/helm/portefaix-hub/node-exporter-mixin)|0.2.0|A Helm chart for Alertmanager Mixin|application|2021-12-11T18:00:43.672360585Z
 [node-exporter-mixin](https://artifacthub.io/packages/helm/portefaix-hub/node-exporter-mixin)|0.1.0|A Helm chart for Alertmanager Mixin|application|2021-09-01T06:09:12.375337814Z
