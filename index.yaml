@@ -752,6 +752,45 @@ entries:
     version: 0.1.0
   grafana-mixin:
   - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: Refactoring Grafana dashboards loader
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: grafana
+          url: https://github.com/grafana/grafana
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 9.0.0
+    created: "2022-08-18T06:32:15.46637879Z"
+    description: A Helm chart for Grafana Mixin
+    digest: da881a5ad4e7f91f4fff60f10ade26ecd6d69453fea1fa46bf81c0e171da5227
+    home: https://charts.portefaix.xyz
+    icon: https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Grafana_logo.svg/300px-Grafana_logo.svg.png
+    keywords:
+    - grafana
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: grafana-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/grafana-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/grafana-mixin-1.0.0/grafana-mixin-1.0.0.tgz
+    version: 1.0.0
+  - annotations:
       artifacthub.io/changes: |-
         - kind: added
           description: Sigstore support
@@ -5428,4 +5467,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-08-17T16:50:47.288421414Z"
+generated: "2022-08-18T06:32:15.466932697Z"
