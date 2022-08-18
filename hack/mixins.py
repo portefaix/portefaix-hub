@@ -77,15 +77,16 @@ def template(f, mixin, chart_dst, mixin_header):
             file.write("  %s" % escape(line))
 
 def update_dashboards_tags(orig, dashboard, new_tags):
+    logger.info("Update dashboard: %s %s", orig, dashboard)
     with open(orig, 'r') as fh:
         json_data = json.load(fh)
         json_data["tags"] = json_data["tags"] + new_tags
-        logger.info(json_data["tags"])
+        logger.debug("Dashboard tags: %s", json_data["tags"])
         with open(dashboard, 'w') as fh:
             json.dump(json_data, fh, indent=4)
 
 
-def template_configmap(f, mixin, chart_dst, mixin_header):
+def manage_dashboards(f, mixin, chart_dst):
     orig = "%s" % f
     filename = path.basename(orig)
 
@@ -119,25 +120,15 @@ def template_configmap(f, mixin, chart_dst, mixin_header):
         logger.info("Copy %s => %s", orig, dashboard)
         shutil.copy(orig, dashboard)
 
-    dest = "%s/templates/configmap-%s" % (chart_dst, filename.replace(".json", ".yaml"))
+def template_configmap(mixin, chart_dst, mixin_header):
+    dest = "%s/templates/configmap-dashboards.yaml" % chart_dst
     if os.path.exists(dest):
         os.remove(dest)
-    logger.info("Manage %s => %s", orig, dest)
-
+    logger.info("Dashboards configmap: %s", dest)
     with open(dest, "w") as file:
         header = open(mixin_header, "rt")
         for line in header:
-            file.write(
-                line.replace("__name__", filename.replace(".json", ""))
-                .replace("__mixin__", mixin)
-                .replace("_", "-")
-            )
-        file.write("  %s: |-\n" % filename)
-        if mixin == "osm-mixin":
-            file.write('{{ .Files.Get "dashboards/%s" | replace "${DS_PROMETHEUS}" "Prometheus" | indent 4}}' % filename)
-        else:
-            file.write('{{ .Files.Get "dashboards/%s" | indent 4}}' % filename)
-
+            file.write(line.replace("__mixin__", mixin).replace("_", "-"))
 
 def manage_mixin(mixin_directory, mixin):
     logger.info("Manage %s", mixin)
@@ -159,7 +150,8 @@ def manage_mixin(mixin_directory, mixin):
         logger.warning("Header for dashboards not found: %s", dashboard_header)
         return
     for f in glob.glob("%s/%s/dashboards/*.json" % (mixin_directory, mixin)):
-        template_configmap(f, mixin, chart_dst, dashboard_header)
+        manage_dashboards(f, mixin, chart_dst)
+    template_configmap(mixin, chart_dst, dashboard_header)
 
 
 def main(url, filename, chart):
