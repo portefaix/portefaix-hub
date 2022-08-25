@@ -1647,6 +1647,45 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Update to monitoring-mixin v0.24.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: kubernetes
+          url: https://kubernetes.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.8.0
+    created: "2022-08-25T14:37:19.256841105Z"
+    description: A Helm chart for Kubernetes Mixin
+    digest: cdbf0e97e00293417fec1f308580e3e7a0798566baafb88ac7e8d7e3517e4126
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.svg
+    keywords:
+    - kubernetes
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: kubernetes-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kubernetes-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/kubernetes-mixin-1.1.0/kubernetes-mixin-1.1.0.tgz
+    version: 1.1.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Refactoring Grafana dashboards loader
       artifacthub.io/license: Apache-2.0
       artifacthub.io/links: |
@@ -6283,4 +6322,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-08-25T14:36:32.551904072Z"
+generated: "2022-08-25T14:37:19.257315011Z"
