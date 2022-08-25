@@ -3527,6 +3527,45 @@ entries:
     version: 0.1.0
   prometheus-mixin:
   - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: Update to monitoring-mixin v0.24.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Prometheus
+          url: https://prometheus.io/
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.31.1
+    created: "2022-08-25T14:23:27.007429049Z"
+    description: A Helm chart for Prometheus Mixin
+    digest: 658cc733c649cab68d798e27823c1fa5a87f6e6973a5f98ad44a34efc1bc3a36
+    home: https://charts.portefaix.xyz
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/242px-Prometheus_software_logo.svg.png
+    keywords:
+    - prometheus
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: prometheus-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/prometheus-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/prometheus-mixin-1.1.0/prometheus-mixin-1.1.0.tgz
+    version: 1.1.0
+  - annotations:
       artifacthub.io/changes: |-
         - kind: changed
           description: Refactoring Grafana dashboards loader
@@ -5971,4 +6010,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-08-25T14:19:56.116453768Z"
+generated: "2022-08-25T14:23:27.008411396Z"
