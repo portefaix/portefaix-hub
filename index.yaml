@@ -4,6 +4,45 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Update to monitoring-mixin v0.24.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: alertmanager
+          url: https://prometheus.io/docs/alerting/latest/alertmanager/
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.23.0
+    created: "2022-08-25T14:36:16.62399041Z"
+    description: A Helm chart for Alertmanager Mixin
+    digest: 7192ca536b46ee4b71d82ebdd0d38b0717a2904a0188559463538fffabb82ea4
+    home: https://charts.portefaix.xyz
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/242px-Prometheus_software_logo.svg.png
+    keywords:
+    - alertmanager
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: alertmanager-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/alertmanager-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/alertmanager-mixin-1.2.0/alertmanager-mixin-1.2.0.tgz
+    version: 1.2.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Feature to specify Grafana folder for dashboards
       artifacthub.io/license: Apache-2.0
       artifacthub.io/links: |
@@ -6244,4 +6283,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-08-25T14:35:32.684426399Z"
+generated: "2022-08-25T14:36:16.624693985Z"
