@@ -27,6 +27,7 @@ Welcome to the Portefaix Hub.
 [fluxcd-mixin](https://artifacthub.io/packages/helm/portefaix-hub/fluxcd-mixin)|0.3.0|A Helm chart for FluxCD Mixin|application|2022-03-11T13:11:26.672149989Z
 [fluxcd-mixin](https://artifacthub.io/packages/helm/portefaix-hub/fluxcd-mixin)|0.2.0|A Helm chart for FluxCD Mixin|application|2021-12-11T18:00:42.307658669Z
 [fluxcd-mixin](https://artifacthub.io/packages/helm/portefaix-hub/fluxcd-mixin)|0.1.0|A Helm chart for FluxCD Mixin|application|2021-08-31T16:08:00.601057289Z
+[grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|1.1.0|A Helm chart for Grafana Mixin|application|2022-08-25T14:29:11.352049697Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|1.0.0|A Helm chart for Grafana Mixin|application|2022-08-18T06:32:15.46637879Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.10.0|A Helm chart for Grafana Mixin|application|2022-03-11T13:13:07.98181007Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.9.0|A Helm chart for Grafana Mixin|application|2021-12-11T18:00:42.491417546Z
