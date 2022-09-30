@@ -16,10 +16,9 @@ spec:
     vpcIdRef:
       name: {{ include "crossplane-aws-factory.name" . }}
     tags:
+      {{- include "crossplane-aws-factory.awsTags" $ | nindent 6 }}
       - key: Name
         value: {{ include "crossplane-aws-factory.name" . }}-ssh
-      - key: Made-by
-        value: crossplane
     groupName: {{ include "crossplane-aws-factory.name" . }}-ssh
     description: SSH Connexions
     ingress:
@@ -51,10 +50,9 @@ spec:
     vpcIdRef:
       name: {{ include "crossplane-aws-factory.name" . }}
     tags:
+      {{- include "crossplane-aws-factory.awsTags" $ | nindent 6 }}
       - key: Name
         value: {{ include "crossplane-aws-factory.name" . }}-eks
-      - key: Made-by
-        value: crossplane
     groupName: {{ include "crossplane-aws-factory.name" . }}-eks
     description: Cluster communication with worker nodes
     ingress:

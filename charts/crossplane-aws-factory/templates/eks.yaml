@@ -32,8 +32,8 @@ spec:
       clusterLogging:
         {{- toYaml .Values.aws.eks.cluster.logging | nindent 6 }}
     tags:
+      {{- include "crossplane-aws-factory.awsTagsObj" $ | nindent 6 }}
       Name: {{ include "crossplane-aws-factory.name" . }}
-      Made-by: crossplane
       {{- range $k, $v := .Values.aws.eks.cluster.tags }}
       {{ $k }}: {{ $v -}}
       {{ end }}
@@ -72,8 +72,8 @@ spec:
       - {{ . | quote }}
       {{- end }} 
     tags:
+      {{- include "crossplane-aws-factory.awsTagsObj" $ | nindent 6 }}
       Name: {{ include "crossplane-aws-factory.name" . }}
-      Made-by: crossplane
       k8s.io/cluster-autoscaler/{{ include "crossplane-aws-factory.name" . }}: owned
       k8s.io/cluster-autoscaler/enabled: "TRUE"
       {{- range $k, $v := .Values.aws.eks.nodegroups.core.tags }}
@@ -115,8 +115,8 @@ spec:
       - {{ . | quote }}
       {{- end }} 
     tags:
+      {{- include "crossplane-aws-factory.awsTagsObj" $ | nindent 6 }}
       Name: {{ include "crossplane-aws-factory.name" . }}
-      Made-by: crossplane
       k8s.io/cluster-autoscaler/{{ include "crossplane-aws-factory.name" . }}: owned
       k8s.io/cluster-autoscaler/enabled: "TRUE"
       {{- range $k, $v := .Values.aws.eks.nodegroups.ops.tags }}
