@@ -345,6 +345,49 @@ entries:
     version: 0.1.0
   crossplane-aws-factory:
   - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: SQS, SNS and ECR
+        - kind: changed
+          description: Refactoring AWS tags
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Crossplane
+          url: https://crossplane.io
+        - name: Crossplane AWS provider
+          url: https://github.com/crossplane/provider-aws
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/recommendations: |
+        - url: https://artifacthub.io/packages/helm/crossplane/crossplane
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-09-30T10:31:47.306591354Z"
+    description: An AWS Factory using Crossplane
+    digest: 10ec58c33ab8f29f2b2ef329452de6ba924cb8688fb54e7c85a9ae4911d7b674
+    home: https://github.com/portefaix/portefaix-hub/charts/crossplane-aws-factory
+    icon: https://crossplane.io/images/favicon_192x192.png
+    keywords:
+    - crossplane
+    - cloud
+    - infrastructure
+    - aws
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: crossplane-aws-factory
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/crossplane-aws-factory-0.5.0/crossplane-aws-factory-0.5.0.tgz
+    version: 0.5.0
+  - annotations:
       artifacthub.io/changes: |-
         - kind: added
           description: Sigstore support
@@ -6362,4 +6405,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-08-25T14:40:00.476715741Z"
+generated: "2022-09-30T10:31:47.306871765Z"
