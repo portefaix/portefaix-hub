@@ -34,12 +34,11 @@ spec:
         ]
       }
     tags:
+      {{- include "crossplane-aws-factory.awsTags" . | nindent 6 }}
       - key: Name
-        value: portefaix-krm-aws-eks-cluster
+        value: {{ include "crossplane-aws-factory.name" . }}-cluster
       - key: Service
         value: kubernetes
-      - key: Made-by
-        value: crossplane
   deletionPolicy: Delete
   writeConnectionSecretToRef:
     name: {{ include "crossplane-aws-factory.name" . }}-iam-role-cluster
@@ -79,12 +78,11 @@ spec:
         ]
       }
     tags:
+      {{- include "crossplane-aws-factory.awsTags" . | nindent 6 }}
       - key: Name
         value: {{ include "crossplane-aws-factory.name" . }}-eks-node
       - key: Service
         value: kubernetes
-      - key: Made-by
-        value: crossplane
   deletionPolicy: Delete
   writeConnectionSecretToRef:
     name: {{ include "crossplane-aws-factory.name" . }}-iam-role-eks-node

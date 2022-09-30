@@ -1,0 +1,81 @@
+# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+{{- $baseName := include "crossplane-aws-factory.name" $ }}
+{{- $region := .Values.aws.region }}
+{{- $namespace := include "crossplane-aws-factory.namespace" . }}
+{{ range .Values.aws.ecr }}
+{{- $repoName := printf "%s-%s" $baseName .name -}}
+---
+apiVersion: ecr.aws.crossplane.io/v1beta1
+kind: Repository
+metadata:
+  name: {{ $repoName }}
+  namespace: {{ $namespace }}
+  labels:
+    {{- include "crossplane-aws-factory.labels" $ | nindent 4 }}
+  {{- with $.Values.additionalAnnotations }}
+  annotations:
+  {{ toYaml . | indent 4 }}
+  {{- end }}
+spec:
+  forProvider:
+    region: {{ $region }}
+    imageScanningConfiguration:
+      scanOnPush: true
+    imageTagMutability: IMMUTABLE
+    tags:
+      {{- include "crossplane-aws-factory.awsTags" $ | nindent 6 }}
+      - key: Name
+        value: {{ $repoName }}
+  providerConfigRef:
+    name: {{ include "crossplane-aws-factory.name" $ }}
+---
+apiVersion: ecr.aws.crossplane.io/v1beta1
+kind: RepositoryPolicy
+metadata:
+  name: {{ $repoName }}
+  labels:
+    region: {{ $region }}
+spec:
+  forProvider:
+    region: {{ $region }}
+    repositoryName: {{ $repoName }}
+    rawPolicy:  |
+      {
+        "Statement": [
+          {
+            "Action":"ecr:DescribeImages",
+            "Effect":"Allow",
+            "Principal":"*",
+          }
+        ],
+        "Version":"2012-10-17"
+      }
+  providerConfigRef:
+    name: {{ include "crossplane-aws-factory.name" $ }}
+---
+apiVersion: ecr.aws.crossplane.io/v1alpha1
+kind: LifecyclePolicy
+metadata:
+  name: {{ $repoName }}
+spec:
+  forProvider:
+    region: {{ $region }}
+    repositoryNameRef:
+      name: {{ $repoName }}
+    lifecyclePolicyText: '{"rules":[{"rulePriority":1,"description":"Expire images older than 14 days","selection":{"tagStatus":"untagged","countType":"sinceImagePushed","countUnit":"days","countNumber":14},"action":{"type":"expire"}}]}'
+  providerConfigRef:
+    name: {{ include "crossplane-aws-factory.name" $ }}
+{{ end }}

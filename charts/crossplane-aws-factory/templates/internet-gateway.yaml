@@ -16,10 +16,9 @@ spec:
     vpcIdRef:
       name: {{ include "crossplane-aws-factory.name" . }}
     tags:
+      {{- include "crossplane-aws-factory.awsTags" $ | nindent 6 }}
       - key: Name
-        value: portefaix-krm
-      - key: Made-by
-        value: crossplane
+        value: {{ include "crossplane-aws-factory.name" . }}
       {{- range $k, $v := .Values.aws.internetgateway.tags }}
       - key: {{ $k }}
         value: {{ $v -}}
@@ -28,7 +27,7 @@ spec:
     name: {{ include "crossplane-aws-factory.name" . }}-igw
     namespace: {{ template "crossplane-aws-factory.namespace" . }}
   providerConfigRef:
-    name: crossplane-aws
+    name: {{ include "crossplane-aws-factory.name" . }}
 ---
 apiVersion: ec2.aws.crossplane.io/v1beta1
 kind: RouteTable
@@ -53,11 +52,10 @@ spec:
           name: {{ include "crossplane-aws-factory.name" . }}-a
     vpcIdRef:
       name: {{ include "crossplane-aws-factory.name" . }}
-    tags:
+    tags: 
+      {{- include "crossplane-aws-factory.awsTags" $ | nindent 6 }}
       - key: Name
-        value: portefaix-krm
-      - key: Made-by
-        value: crossplane
+        value: {{ include "crossplane-aws-factory.name" . }}
       {{- range $k, $v := .Values.aws.routetable.tags }}
       - key: {{ $k }}
         value: {{ $v -}}
@@ -66,4 +64,4 @@ spec:
     name: {{ include "crossplane-aws-factory.name" . }}-route-table
     namespace: {{ template "crossplane-aws-factory.namespace" . }}
   providerConfigRef:
-    name: crossplane-aws
+    name: {{ include "crossplane-aws-factory.name" . }}

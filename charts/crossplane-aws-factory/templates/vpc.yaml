@@ -14,10 +14,9 @@ spec:
   forProvider:
     region: {{ .Values.aws.region }}
     tags:
+      {{- include "crossplane-aws-factory.awsTags" . | nindent 6 }}
       - key: Name
         value: {{ include "crossplane-aws-factory.name" . }}
-      - key: Made-by
-        value: crossplane
       {{- range $k, $v := .Values.aws.vpc.tags }}
       - key: {{ $k }}
         value: {{ $v -}}

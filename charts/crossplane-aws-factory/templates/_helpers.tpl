@@ -53,6 +53,8 @@ app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 app.kubernetes.io/component: crossplane-factory
 app.kubernetes.io/part-of: {{ include "crossplane-aws-factory.name" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
+crossplane.io/version: {{ .Values.crossplane.version }}
+crossplane.io/provider: aws-{{ .Values.crossplane.aws.version }}
 {{- if .Values.additionalLabels }}
 {{ toYaml .Values.additionalLabels }}
 {{- end }}
@@ -64,4 +66,22 @@ Selector labels
 {{- define "crossplane-aws-factory.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "crossplane-aws-factory.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+{{/*
+AWS tags
+*/}}
+{{- define "crossplane-aws-factory.awsTags" -}}
+- key: Controller
+  value: krm
+- key: Made-by
+  value: crossplane
+{{- end }}
+
+{{/*
+AWS tags object
+*/}}
+{{- define "crossplane-aws-factory.awsTagsObj" -}}
+Controller: krm
+Made-by: crossplane
 {{- end }}

@@ -15,10 +15,9 @@ spec:
     region: {{ .Values.aws.region }}
     domain: "vpc"
     tags:
+      {{- include "crossplane-aws-factory.awsTags" $ | nindent 6 }}
       - key: Name
-        value: portefaix-krm
-      - key: Made-by
-        value: crossplane
+        value: {{ include "crossplane-aws-factory.name" . }}-nat-gw
       {{- range $k, $v := .Values.aws.natgateway.tags }}
       - key: {{ $k }}
         value: {{ $v -}}
@@ -27,7 +26,7 @@ spec:
     name: {{ include "crossplane-aws-factory.name" . }}-address-nat-gw
     namespace: {{ template "crossplane-aws-factory.namespace" . }}
   providerConfigRef:
-    name: crossplane-aws
+    name: {{ include "crossplane-aws-factory.name" . }}
 ---
 apiVersion: ec2.aws.crossplane.io/v1beta1
 kind: NATGateway
@@ -48,10 +47,9 @@ spec:
     subnetIdRef:
       name: {{ include "crossplane-aws-factory.name" . }}-b
     tags:
+      {{- include "crossplane-aws-factory.awsTags" $ | nindent 6 }}
       - key: Name
-        value: portefaix-krm
-      - key: Made-by
-        value: crossplane
+        value: {{ include "crossplane-aws-factory.name" . }}
       {{- range $k, $v := .Values.aws.natgateway.tags }}
       - key: {{ $k }}
         value: {{ $v -}}
@@ -60,4 +58,4 @@ spec:
     name: {{ include "crossplane-aws-factory.name" . }}-nat-gw
     namespace: {{ template "crossplane-aws-factory.namespace" . }}
   providerConfigRef:
-    name: crossplane-aws
+    name: {{ include "crossplane-aws-factory.name" . }}

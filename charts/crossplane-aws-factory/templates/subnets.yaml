@@ -1,5 +1,5 @@
 {{- $baseName := include "crossplane-aws-factory.name" $ }}
-{{- $region := .Values.region }}
+{{- $region := .Values.aws.region }}
 {{- $namespace := include "crossplane-aws-factory.namespace" . }}
 {{ range .Values.aws.subnets.az }}
 {{- $subnetName := printf "%s-%s" $baseName .name -}}
@@ -19,10 +19,9 @@ spec:
   forProvider:
     region: {{ $region }}
     tags:
+      {{- include "crossplane-aws-factory.awsTags" $ | nindent 6 }}
       - key: Name
         value: {{ $subnetName }}
-      - key: Made-by
-        value: crossplane
       - key: kubernetes.io/cluster/{{ include "crossplane-aws-factory.name" $ }}
         value: shared
       {{- range $k, $v := .tags }}

@@ -3,9 +3,8 @@
 # Declare variables to be passed into your templates.
 
 # -- Additional labels to add to all resources
-additionalLabels:
-  crossplane.io/version: v0.15.1
-  crossplane.io/provider: aws-v0.21.2
+additionalLabels: {}
+  # app: crossplane-krm
 
 # -- Additional annotations to add to all resources
 additionalAnnotations: {}
@@ -13,13 +12,15 @@ additionalAnnotations: {}
 
 crossplane:
   namespace: crossplane-system
+  # -- The Crossplane controller version
+  version: v1.9.1
   aws:
     # -- The Crossplane AWS provider version
-    version: v0.21.2
+    version: v0.31.0
 
 aws:
   # -- The region you'd like your infrastructure to be created in
-  region: eu-west-3
+  region: eu-west-1
   vpc:
     # -- The IPv4 network range for the VPC, in CIDR notation
     cidr: 10.1.0.0/16
@@ -112,3 +113,30 @@ aws:
           maxSize: 1
           # -- The minimum number of worker nodes that the Ops managed node group can scale in to
           minSize: 1
+  ecr:
+    # -- ECR repositories
+    - name: charts
+    - name: containers
+  sqs:
+    # -- SQS queues
+    - name: poc
+      delaySeconds: 4
+      maxReceiveCount: 1
+      # -- The metadata to apply to the cluster to assist with categorization and organization
+      tags:
+        Service: SQS
+  sns:
+    # -- SNS Topics
+    topics:
+      - name: poc
+        tags:
+          Service: SNS
+    # -- SNS Subscriptions
+    subscriptions:
+      - name: poc
+        topicName: poc
+        protocol: email
+        endpoint: john.doe@gmail.com
+        tags:
+          Service: SNS
+  
