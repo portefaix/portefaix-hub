@@ -42,7 +42,7 @@ An AWS Factory using Crossplane
 | aws.natgateway.tags.Service | string | `"nat-gateway"` |  |
 | aws.region | string | `"eu-west-1"` | The region you'd like your infrastructure to be created in |
 | aws.routetable.tags.Service | string | `"route-table"` |  |
-| aws.sns.subscriptions[0].endpoint | string | `"nicolas.lamirault+portefaix.aws@gmail.com"` |  |
+| aws.sns.subscriptions[0].endpoint | string | `"john.doe@gmail.com"` |  |
 | aws.sns.subscriptions[0].name | string | `"poc"` |  |
 | aws.sns.subscriptions[0].protocol | string | `"email"` |  |
 | aws.sns.subscriptions[0].tags.Service | string | `"SNS"` |  |
