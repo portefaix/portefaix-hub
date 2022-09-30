@@ -1,11 +1,10 @@
-# Default values for crossplane-aws-factory.
+# Default values for crossplane-gcp-factory.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 # -- Additional labels to add to all resources
-additionalLabels:
-  crossplane.io/version: v0.15.0
-  crossplane.io/provider: gcp-v0.19.0
+additionalLabels: {}
+  # app: crossplane-krm
 
 # -- Additional annotations to add to all resources
 additionalAnnotations: {}
@@ -14,6 +13,8 @@ additionalAnnotations: {}
 crossplane:
   # -- Namespace which contains the Crossplane controller
   namespace: crossplane-system
+  # -- The Crossplane controller version
+  version: v1.9.1
   gcp:
     # -- The Crossplane GCP provider version
     version: v0.19.0
@@ -65,6 +66,11 @@ gcp:
     # maintenancePolicy:
     #   window:
     #     dailyMaintenanceWindow:
+    notificationConfig:
+      pubsub:
+        enabled: true
+        topic: gke-updates
+
     nodes:
       - name: core
         management:
@@ -99,11 +105,17 @@ gcp:
         locations:
           - europe-west1-c
 
+  registry:
+    - name: charts
+      location: EU
+    - name: containers
+      location: EU
+      
   service_accounts:
     # Ex: observability stack:
     - name: prometheus
       namespace: monitoring
-    - name: thanos
+    - name: mimir
       namespace: monitoring
     - name: grafana
       namespace: monitoring
@@ -117,14 +129,14 @@ gcp:
       location: EU
       storageClass: REGIONAL
       service: Helm
-    - name: thanos
+    - name: mimir
       location: EU
       storageClass: REGIONAL
-      service: Thanos
+      service: Mimir
   buckets_policies:
-    - name: thanos
+    - name: mimir
       admins:
-        - thanos
+        - mimir
         - prometheus
 
   memorystore:
@@ -153,7 +165,7 @@ gcp:
 
   pubsub:
     topics:
-      - name: gke
+      - name: gke-updates
         service: Kubernetes
     subscriptions:
       - name: gke-updates

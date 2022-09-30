@@ -18,8 +18,8 @@ description: A Google Cloud Factory using Crossplane
 home: https://github.com/portefaix/portefaix-hub/charts/crossplane-gcp-factory
 icon: https://crossplane.io/images/favicon_192x192.png
 type: application
-version: 0.3.0
-appVersion: "1.5.0"
+version: 0.4.0
+appVersion: "1.0.0"
 keywords:
   - crossplane
   - cloud
@@ -48,8 +48,5 @@ annotations:
     fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
-    - kind: added
-      description: Sigstore support
-      links:
-        - name: Github Issue
-          url: https://github.com/portefaix/portefaix-hub/pull/129
+    - kind: changed
+      description: New GCP resources and refactoring labels

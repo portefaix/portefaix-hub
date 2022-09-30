@@ -53,6 +53,8 @@ app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 app.kubernetes.io/component: crossplane-factory
 app.kubernetes.io/part-of: {{ include "crossplane-gcp-factory.name" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
+crossplane.io/version: {{ .Values.crossplane.version }}
+crossplane.io/provider: gcp-{{ .Values.crossplane.gcp.version }}
 {{- if .Values.additionalLabels }}
 {{ toYaml .Values.additionalLabels }}
 {{- end }}
@@ -64,4 +66,12 @@ Selector labels
 {{- define "crossplane-gcp-factory.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "crossplane-gcp-factory.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+{{/*
+GCP labels object
+*/}}
+{{- define "crossplane-gcp-factory.gcpLabelsObj" -}}
+Controller: krm
+Made-by: crossplane
 {{- end }}
