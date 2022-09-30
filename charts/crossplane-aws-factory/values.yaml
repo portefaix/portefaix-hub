@@ -136,7 +136,7 @@ aws:
       - name: poc
         topicName: poc
         protocol: email
-        endpoint: nicolas.lamirault+portefaix.aws@gmail.com
+        endpoint: john.doe@gmail.com
         tags:
           Service: SNS
   
