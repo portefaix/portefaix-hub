@@ -40,7 +40,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - uses: actions/setup-python@v4.2.0
+    - uses: actions/setup-python@v4.3.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -103,7 +103,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - uses: actions/setup-python@v4.2.0
+    - uses: actions/setup-python@v4.3.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -166,7 +166,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - uses: actions/setup-python@v4.2.0
+    - uses: actions/setup-python@v4.3.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -230,7 +230,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - uses: actions/setup-python@v4.2.0
+    - uses: actions/setup-python@v4.3.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -294,7 +294,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - uses: actions/setup-python@v4.2.0
+    - uses: actions/setup-python@v4.3.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -357,7 +357,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - uses: actions/setup-python@v4.2.0
+    - uses: actions/setup-python@v4.3.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -420,7 +420,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - uses: actions/setup-python@v4.2.0
+    - uses: actions/setup-python@v4.3.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -483,7 +483,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - uses: actions/setup-python@v4.2.0
+    - uses: actions/setup-python@v4.3.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -546,7 +546,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - uses: actions/setup-python@v4.2.0
+    - uses: actions/setup-python@v4.3.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -609,7 +609,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - uses: actions/setup-python@v4.2.0
+    - uses: actions/setup-python@v4.3.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -672,7 +672,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - uses: actions/setup-python@v4.2.0
+    - uses: actions/setup-python@v4.3.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -735,7 +735,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - uses: actions/setup-python@v4.2.0
+    - uses: actions/setup-python@v4.3.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
