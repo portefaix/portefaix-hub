@@ -549,6 +549,47 @@ entries:
     version: 0.1.1
   crossplane-gcp-factory:
   - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: New GCP resources and refactoring labels
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Crossplane
+          url: https://crossplane.io
+        - name: Crossplane GCP provider
+          url: https://github.com/crossplane/provider-gcp
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/recommendations: |
+        - url: https://artifacthub.io/packages/helm/crossplane/crossplane
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-10-20T15:03:15.791876626Z"
+    description: A Google Cloud Factory using Crossplane
+    digest: 984a15d242b830aad2d452f5a6cc19889ce2b20722d44a362c1c3bf4daf6eb2f
+    home: https://github.com/portefaix/portefaix-hub/charts/crossplane-gcp-factory
+    icon: https://crossplane.io/images/favicon_192x192.png
+    keywords:
+    - crossplane
+    - cloud
+    - infrastructure
+    - gcp
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: crossplane-gcp-factory
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/crossplane-gcp-factory-0.4.0/crossplane-gcp-factory-0.4.0.tgz
+    version: 0.4.0
+  - annotations:
       artifacthub.io/changes: |-
         - kind: added
           description: Sigstore support
@@ -6405,4 +6446,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-09-30T10:32:06.381666013Z"
+generated: "2022-10-20T15:03:15.792275854Z"
