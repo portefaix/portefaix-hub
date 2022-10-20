@@ -1,0 +1,54 @@
+# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+---
+apiVersion: kubernetes.do.crossplane.io/v1alpha1
+kind: DOKubernetesCluster
+metadata:
+  name: {{ include "crossplane-digitalocean-factory.name" . }}
+  namespace: {{ template "crossplane-digitalocean-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-digitalocean-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    region: {{ .Values.digitalocean.doks.region }}
+    version: {{ .Values.digitalocean.doks.version }}
+    tags:
+      - kubernetes
+    {{- with .Values.digitalocean.doks.nodePools }}
+    nodePools:
+      - size: s-1vcpu-2gb
+        count: 2
+        name: core
+      - size: s-1vcpu-2gb
+        count: 1
+        name: ops
+    {{- end }}
+    {{- with .Values.digitalocean.doks.maintenancePolicy }}
+    maintenancePolicy:
+      startTime: "00:00"
+      day: wednesday
+    {{- end }}
+    autoUpgrade: {{ .Values.digitalocean.doks.autoUpgrade }}
+    surgeUpgrade: {{ .Values.digitalocean.doks.surgeUpgrade }}
+    highlyAvailable: {{ .Values.digitalocean.doks.highlyAvailable }}
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-digitalocean-factory.name" . }}-kubernetes
+    namespace: {{ template "crossplane-digitalocean-factory.namespace" . }}
+  providerConfigRef:
+    name: {{ include "crossplane-digitalocean-factory.name" . }}

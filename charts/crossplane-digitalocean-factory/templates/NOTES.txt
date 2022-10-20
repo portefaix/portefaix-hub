@@ -1,0 +1,4 @@
+{{ $.Chart.Name }} has been installed. Check its status by running:
+  kubectl --namespace {{ template "crossplane-digitalocean-factory.namespace" . }} get cluster -l "app.kubernetes.io/name={{ include "crossplane-digitalocean-factory.name" . }}"
+
+Visit https://github.com/nlamirault/portefaix-hub/charts/crossplane-digitalocean-factory.
