@@ -547,6 +547,48 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/crossplane-aws-factory-0.1.1/crossplane-aws-factory-0.1.1.tgz
     version: 0.1.1
+  crossplane-digitalocean-factory:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: Initialize resources
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Crossplane
+          url: https://crossplane.io
+        - name: Crossplane GCP provider
+          url: https://github.com/crossplane-contrib/provider-digitalocean
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/recommendations: |
+        - url: https://artifacthub.io/packages/helm/crossplane/crossplane
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-10-20T18:05:29.090374182Z"
+    description: A Google Cloud Factory using Crossplane
+    digest: 2ea83866a59005fb2f4a96fbfef2c4195ffc8b641c33cafe6158d6bf66b07627
+    home: https://github.com/portefaix/portefaix-hub/charts/crossplane-digitalocean-factory
+    icon: https://crossplane.io/images/favicon_192x192.png
+    keywords:
+    - crossplane
+    - cloud
+    - infrastructure
+    - digitalocean
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: crossplane-digitalocean-factory
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/crossplane-digitalocean-factory-0.1.0/crossplane-digitalocean-factory-0.1.0.tgz
+    version: 0.1.0
   crossplane-gcp-factory:
   - annotations:
       artifacthub.io/changes: |
@@ -6446,4 +6488,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-10-20T15:03:40.658402608Z"
+generated: "2022-10-20T18:05:29.090684387Z"
