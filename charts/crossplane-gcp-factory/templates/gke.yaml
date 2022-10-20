@@ -1,3 +1,17 @@
+# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 ---
 apiVersion: container.gcp.crossplane.io/v1beta2
 kind: Cluster
@@ -13,12 +27,6 @@ metadata:
 spec:
   forProvider:
     location: {{ .Values.gcp.gke.location }}
-    masterAuth:
-      # setting this master auth user name enables basic auth so that a client (e.g.,
-      # provider-helm), can connect with the generated kubeconfig from the connection secret
-      # username: admin
-    networkConfig:
-      enableIntraNodeVisibility: true
     loggingService: logging.googleapis.com/kubernetes
     monitoringService: monitoring.googleapis.com/kubernetes
     {{- with .Values.gcp.gke.addonsConfig }}
@@ -34,7 +42,11 @@ spec:
     # defaultMaxPodsConstraint:
     #    maxPodsPerNode: 110
     {{- with .Values.gcp.gke.maintenancePolicy }}
-    addonsConfig:
+    maintenancePolicy:
+    {{- toYaml . | nindent 6 }}
+    {{- end }}
+    {{- with .Values.gcp.gke.notificationConfig }}
+    notificationConfig:
     {{- toYaml . | nindent 6 }}
     {{- end }}
     legacyAbac:
@@ -49,10 +61,9 @@ spec:
     {{- end }}
     releaseChannel:
       channel: {{ .Values.gcp.gke.releaseChannel }}
-    # resourceLabels:
-    #   service: kubernetes
-    #   role: cluster
-    #   made-by: crossplane
+    resourceLabels:
+      {{- include "crossplane-gcp-factory.gcpLabelsObj" $ | nindent 6 }}
+      Role: cluster
     workloadIdentityConfig:
       workloadPool: {{ .Values.gcp.project_id }}.svc.id.goog
   writeConnectionSecretToRef:
@@ -91,15 +102,16 @@ spec:
     config:
       machineType: {{ .machineType }}
       {{- with .sandboxConfig }}
+      sandboxConfig:
       {{- toYaml . | nindent 6 }}
       {{- end }}
       diskSizeGb: {{ .diskSizeGb }}
       diskType: {{ .diskType }}
       imageType: {{ .imageType }}
-      # labels:
-      #   service: kubernetes
-      #   role: node
-      #   made-by: crossplane
+      labels:
+        {{- include "crossplane-gcp-factory.gcpLabelsObj" $ | nindent 8 }}
+        Service: kubernetes
+        Role: node
       tags:
         - kubernetes
         - nodes
