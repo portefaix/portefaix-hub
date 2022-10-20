@@ -20,6 +20,7 @@ Welcome to the Portefaix Hub.
 [crossplane-aws-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-aws-factory)|0.3.0|An AWS Factory using Crossplane|application|2022-03-11T13:07:33.76762875Z
 [crossplane-aws-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-aws-factory)|0.2.0|An AWS Factory using Crossplane|application|2021-12-11T09:42:03.692025488Z
 [crossplane-aws-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-aws-factory)|0.1.1|An AWS Factory using Crossplane|application|2021-12-10T11:49:36.977591774Z
+[crossplane-digitalocean-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-digitalocean-factory)|0.1.0|A Google Cloud Factory using Crossplane|application|2022-10-20T18:05:29.090374182Z
 [crossplane-gcp-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-gcp-factory)|0.4.0|A Google Cloud Factory using Crossplane|application|2022-10-20T15:03:15.791876626Z
 [crossplane-gcp-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-gcp-factory)|0.3.0|A Google Cloud Factory using Crossplane|application|2022-03-11T13:09:45.696391082Z
 [crossplane-gcp-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-gcp-factory)|0.2.0|A Google Cloud Factory using Crossplane|application|2021-12-10T14:23:04.795849864Z
