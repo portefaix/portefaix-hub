@@ -1,0 +1,54 @@
+# Default values for crossplane-digitalocean-factory.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- Additional labels to add to all resources
+additionalLabels: {}
+  # app: crossplane-krm
+
+# -- Additional annotations to add to all resources
+additionalAnnotations: {}
+  # monitoring: portefaix
+
+crossplane:
+  # -- Namespace which contains the Crossplane controller
+  namespace: crossplane-system
+  # -- The Crossplane controller version
+  version: v1.9.1
+  digitalocean:
+    # -- The Crossplane DigitalOcean provider version
+    version: v0.2.0
+
+digitalocean:
+  # The container registries
+  registries:
+    - name: charts
+      region: nyc1
+      subscriptionTier: starter
+    - name: foo
+      region: nyc1
+      subscriptionTier: starter
+  # DigitalOcean Kubernetes
+  doks:
+    # -- The slug identifier for the region where the Kubernetes cluster will be created
+    region: nyc1
+    # -- The slug identifier for the version of Kubernetes
+    version: 1.24.4-do.0
+    # -- A DigitalOcean Kubernetes node pool resource
+    nodePools:
+      - size: s-1vcpu-2gb
+        count: 2
+        name: core
+      - size: s-1vcpu-2gb
+        count: 1
+        name: ops
+    # -- The cluster's maintenance window
+    maintenancePolicy:
+      startTime: "00:00"
+      day: wednesday
+    # -- Enable/disable the cluster upgrade to new patch releases during its maintenance window
+    autoUpgrade: true
+    # -- Enable/disable surge upgrades for a cluster
+    surgeUpgrade: false
+    # -- Enable/disable the high availability control plane for a cluster.
+    highlyAvailable: false
