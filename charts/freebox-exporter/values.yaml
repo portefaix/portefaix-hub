@@ -21,14 +21,21 @@ exporter:
   credentialsSecretKey: ""
   # The credentials JSON file. Must be provided when no existing secret is used, in this case a new secret will be created
   credentials: "{}"
+  log:
+    # -- Log format. Could be logfmt or json
+    format: logfmt
+    # -- Log level
+    level: info
   web:
     # -- HTTP port used
     port: 9091
-
+    # -- Path under which to expose metrics.
+    path: /metrics
+    
 # -- Docker image
 image:
   repository: ghcr.io/nlamirault/freebox-exporter
-  tag: 0.0.0
+  tag: 0.1.0
   pullPolicy: IfNotPresent
   pullSecrets:
   # - name: "image-pull-secret"

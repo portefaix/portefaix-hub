@@ -55,11 +55,19 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["freebox-exporter"]
           args:
-            - "-debug"
-            - "-hostDetails"
-            - "-httpDiscovery"
+            - "--hostDetails"
+            - "--httpDiscovery"
+            {{- with .Values.exporter.log.format }}
+            - "--log.format={{ . }}"
+            {{- end }}
+            {{- with .Values.exporter.log.level }}
+            - "--web.listen-address=:{{ . }}"
+            {{- end }}
             {{- with .Values.exporter.web.port }}
             - "-listen=:{{ . }}"
+            {{- end }}
+            {{- with .Values.exporter.web.path }}
+            - "--web.telemetry-path={{ . }}"
             {{- end }}
             - /etc/secrets/freebox/credentials.json
           resources:
