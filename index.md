@@ -116,6 +116,7 @@ Welcome to the Portefaix Hub.
 [prometheus-bbox-exporter](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-bbox-exporter)|0.3.0|Prometheus BBOX Exporter||2022-03-11T10:03:43.946440597Z
 [prometheus-bbox-exporter](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-bbox-exporter)|0.2.0|Prometheus BBOX Exporter||2021-09-30T12:37:28.234720523Z
 [prometheus-bbox-exporter](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-bbox-exporter)|0.1.0|Prometheus BBOX Exporter||2021-09-17T10:09:36.582612871Z
+[prometheus-freebox-exporter](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-freebox-exporter)|0.1.0|Prometheus Freebox Exporter||2022-10-21T15:56:21.3144377Z
 [prometheus-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-mixin)|1.1.0|A Helm chart for Prometheus Mixin|application|2022-08-25T14:23:27.007429049Z
 [prometheus-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-mixin)|1.0.0|A Helm chart for Prometheus Mixin|application|2022-08-18T07:08:53.764217486Z
 [prometheus-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-mixin)|0.10.0|A Helm chart for Prometheus Mixin|application|2022-06-16T09:52:42.950913672Z
