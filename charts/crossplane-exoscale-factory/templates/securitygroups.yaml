@@ -1,0 +1,95 @@
+# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+---
+apiVersion: securitygroup.exoscale.jet.crossplane.io/v1alpha1
+kind: SecurityGroup
+metadata:
+  name: {{ include "crossplane-exoscale-factory.name" . }}-sks
+  labels:
+    {{- include "crossplane-exoscale-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    name: {{ include "crossplane-exoscale-factory.name" . }}-sks
+    description: "SKS cluster. Managed by Crossplane"
+  providerConfigRef:
+    name: {{ include "crossplane-exoscale-factory.name" . }}
+---
+apiVersion: securitygrouprule.exoscale.jet.crossplane.io/v1alpha1
+kind: SecurityGroupRule
+metadata:
+  name: {{ include "crossplane-exoscale-factory.name" . }}-calico
+  labels:
+    {{- include "crossplane-exoscale-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    description: "Calico. Managed by Crossplane"
+    securityGroup: {{ include "crossplane-exoscale-factory.name" . }}-sks
+    type: "INGRESS"
+    protocol: "UDP"
+    startPort: 4789
+    endPort: 4789
+  providerConfigRef:
+    name: {{ include "crossplane-exoscale-factory.name" . }}
+---
+apiVersion: securitygrouprule.exoscale.jet.crossplane.io/v1alpha1
+kind: SecurityGroupRule
+metadata:
+  name: {{ include "crossplane-exoscale-factory.name" . }}-kubelet
+  labels:
+    {{- include "crossplane-exoscale-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    description: "Kubelet. Managed by Crossplane"
+    securityGroup: {{ include "crossplane-exoscale-factory.name" . }}-sks
+    type: "INGRESS"
+    protocol: "TCP"
+    startPort: 10250
+    endPort: 10250
+  providerConfigRef:
+    name: {{ include "crossplane-exoscale-factory.name" . }}
+---
+apiVersion: securitygrouprule.exoscale.jet.crossplane.io/v1alpha1
+kind: SecurityGroupRule
+metadata:
+  name: {{ include "crossplane-exoscale-factory.name" . }}-nodeport
+  labels:
+    {{- include "crossplane-exoscale-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  forProvider:
+    description: "SKS Node ports. Managed by Crossplane"
+    securityGroup: {{ include "crossplane-exoscale-factory.name" . }}-sks
+    type: "INGRESS"
+    protocol: "TCP"
+    startPort: 30000
+    endPort: 32767
+    cidr: "0.0.0.0/0"
+  providerConfigRef:
+    name: {{ include "crossplane-exoscale-factory.name" . }}

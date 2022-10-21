@@ -1,0 +1,52 @@
+# Copyright (C) 2021 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: v2
+name: crossplane-exoscale-factory
+description: A Google Cloud Factory using Crossplane
+home: https://github.com/portefaix/portefaix-hub/charts/crossplane-exoscale-factory
+icon: https://crossplane.io/images/favicon_192x192.png
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+keywords:
+  - crossplane
+  - cloud
+  - infrastructure
+  - exoscale
+maintainers:
+  - name: nlamirault
+    email: nicolas.lamirault@gmail.com
+    url: https://github.com/nlamirault
+# https://artifacthub.io/docs/topics/repositories/
+annotations:
+  artifacthub.io/license: Apache-2.0
+  artifacthub.io/links: |
+    - name: Crossplane
+      url: https://crossplane.io
+    - name: Crossplane GCP provider
+      url: https://github.com/crossplane/provider-exoscale
+    - name: Portefaix
+      url: https://portefaix.xyz
+  artifacthub.io/recommendations: |
+    - url: https://artifacthub.io/packages/helm/crossplane/crossplane
+  artifacthub.io/maintainers: |
+    - name: nlamirault
+      email: nicolas.lamirault@gmail.com
+  artifacthub.io/signKey: |
+    fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+    url: https://keybase.io/nlamirault/pgp_keys.asc
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Init resources

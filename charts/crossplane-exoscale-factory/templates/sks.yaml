@@ -1,0 +1,60 @@
+# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+---
+apiVersion: sks.exoscale.jet.crossplane.io/v1alpha1
+kind: Cluster
+metadata:
+  name: {{ include "crossplane-exoscale-factory.name" . }}-krm
+spec:
+  forProvider:
+    description: "Cluster for KMR. Managed by Crossplane"
+    zone: {{ .Values.exoscale.sks.region }}
+    name: {{ include "crossplane-exoscale-factory.name" . }}-krm
+  providerConfigRef:
+    name: {{ include "crossplane-exoscale-factory.name" . }}
+---
+apiVersion: sks.exoscale.jet.crossplane.io/v1alpha1
+kind: Nodepool
+metadata:
+  name: {{ include "crossplane-exoscale-factory.name" . }}-krm-core
+spec:
+  forProvider:
+    clusterIdRef:
+      name: {{ include "crossplane-exoscale-factory.name" . }}-krm
+    securityGroupIdRefs:
+    - name: {{ include "crossplane-exoscale-factory.name" . }}-sks
+    zone: {{ .Values.exoscale.sks.nodepools.core.zone }}
+    name: {{ include "crossplane-exoscale-factory.name" . }}-core
+    instanceType: {{ .Values.exoscale.sks.nodepools.core.instanceType }}
+    size: {{ .Values.exoscale.sks.nodepools.core.size }}
+  providerConfigRef:
+    name: {{ include "crossplane-exoscale-factory.name" . }}
+---
+apiVersion: sks.exoscale.jet.crossplane.io/v1alpha1
+kind: Nodepool
+metadata:
+  name: {{ include "crossplane-exoscale-factory.name" . }}-krm-ops
+spec:
+  forProvider:
+    clusterIdRef:
+      name: {{ include "crossplane-exoscale-factory.name" . }}-krm
+    securityGroupIdRefs:
+    - name: {{ include "crossplane-exoscale-factory.name" . }}-sks
+    zone: {{ .Values.exoscale.sks.nodepools.ops.zone }}
+    name: {{ include "crossplane-exoscale-factory.name" . }}-ops
+    instanceType: {{ .Values.exoscale.sks.nodepools.ops.instanceType }}
+    size: {{ .Values.exoscale.sks.nodepools.ops.size }}
+  providerConfigRef:
+    name: {{ include "crossplane-exoscale-factory.name" . }}
