@@ -1,0 +1,29 @@
+{{- if .Values.serviceMonitor.enabled }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ template "prometheus-freebox-exporter.fullname" .  }}
+  namespace: {{ template "prometheus-freebox-exporter.namespace" . }}
+  {{- if .Values.additionalAnnotations }}
+  annotations:
+  {{ toYaml .Values.additionalAnnotations | indent 4 }}
+  {{- end }}
+  labels:
+    {{- include "prometheus-freebox-exporter.labels" . | indent 4 }}
+    {{- if .Values.serviceMonitor.additionalLabels }}
+    {{ toYaml .Values.serviceMonitor.additionalLabels }}
+    {{- end }}
+spec:
+  jobLabel: {{ template "prometheus-freebox-exporter.fullname" . }}
+  endpoints:
+    - port: http
+      interval: {{ .Values.serviceMonitor.interval }}
+      scrapeTimeout: {{ .Values.serviceMonitor.scrapeTimeout }}
+      {{- if .Values.serviceMonitor.honorLabels }}
+      honorLabels: true
+      {{- end }}
+  selector:
+    matchLabels:
+      {{- include "prometheus-freebox-exporter.selectorLabels" . | indent 6 }}
+{{- end }}
