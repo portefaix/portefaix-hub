@@ -589,6 +589,48 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/crossplane-digitalocean-factory-0.1.0/crossplane-digitalocean-factory-0.1.0.tgz
     version: 0.1.0
+  crossplane-exoscale-factory:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: Init resources
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Crossplane
+          url: https://crossplane.io
+        - name: Crossplane GCP provider
+          url: https://github.com/crossplane/provider-exoscale
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/recommendations: |
+        - url: https://artifacthub.io/packages/helm/crossplane/crossplane
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-10-21T12:04:49.835805828Z"
+    description: A Google Cloud Factory using Crossplane
+    digest: fc55f77ab3b51c901be6681088ca8d08d68469f75f975f1fc31455bec4f236fa
+    home: https://github.com/portefaix/portefaix-hub/charts/crossplane-exoscale-factory
+    icon: https://crossplane.io/images/favicon_192x192.png
+    keywords:
+    - crossplane
+    - cloud
+    - infrastructure
+    - exoscale
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: crossplane-exoscale-factory
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/crossplane-exoscale-factory-0.1.0/crossplane-exoscale-factory-0.1.0.tgz
+    version: 0.1.0
   crossplane-gcp-factory:
   - annotations:
       artifacthub.io/changes: |
@@ -6488,4 +6530,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-10-20T18:05:45.020253427Z"
+generated: "2022-10-21T12:04:49.836239335Z"
