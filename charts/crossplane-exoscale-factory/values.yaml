@@ -1,0 +1,39 @@
+# Default values for crossplane-exoscale-factory.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- Additional labels to add to all resources
+additionalLabels: {}
+  # app: crossplane-krm
+
+# -- Additional annotations to add to all resources
+additionalAnnotations: {}
+  # monitoring: portefaix
+
+crossplane:
+  # -- Namespace which contains the Crossplane controller
+  namespace: crossplane-system
+  # -- The Crossplane controller version
+  version: v1.9.1
+  exoscale:
+    # -- The Crossplane Exoscale package name
+    package: lucj/provider-jet-exoscale-amd64
+    # -- The Crossplane Exoscale provider version
+    version: latest
+
+exoscale:
+  sks:
+    # -- The Exoscale region
+    region: de-fra-1
+    # -- SKS node pools
+    nodepools:
+      # -- The Core node pool
+      core:
+        zone: de-fra-1
+        size: 1
+        instanceType: standard.medium
+      # The Ops node pool
+      ops:
+        zone: de-fra-1
+        size: 1
+        instanceType: standard.medium
