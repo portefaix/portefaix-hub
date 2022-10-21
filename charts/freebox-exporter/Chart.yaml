@@ -17,9 +17,9 @@ description: Prometheus Freebox Exporter
 name: prometheus-freebox-exporter
 version: 0.1.0
 appVersion: 0.4.0
-home: https://github.com/trazfr/freebox-exporter
+home: https://github.com/nlamirault/freebox-exporter
 sources:
-  - https://github.com/trazfr/freebox-exporter
+  - https://github.com/nlamirault/freebox-exporter
 keywords:
   - prometheus
   - bbox
@@ -35,7 +35,7 @@ annotations:
   artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: Freebox exporter
-      url: https://github.com/trazfr/freebox-exporter
+      url: https://github.com/nlamirault/freebox-exporter
   artifacthub.io/maintainers: |
     - name: nlamirault
       email: nicolas.lamirault@gmail.com
