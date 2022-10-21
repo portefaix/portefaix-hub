@@ -1,0 +1,21 @@
+{{- if .Values.rbac.create }}
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ template "prometheus-freebox-exporter.fullname" . }}
+  namespace: {{ template "prometheus-freebox-exporter.namespace" . }}
+  {{- if .Values.additionalAnnotations }}
+  annotations:
+  {{ toYaml .Values.additionalAnnotations | indent 4 }}
+  {{- end }}
+  labels:
+    {{- include "prometheus-freebox-exporter.labels" . | indent 4 }}
+subjects:
+- kind: ServiceAccount
+  name: {{ template "prometheus-freebox-exporter.serviceAccountName" . }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ template "prometheus-freebox-exporter.fullname" . }}
+{{- end }}

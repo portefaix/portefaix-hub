@@ -1,0 +1,113 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "prometheus-freebox-exporter.fullname" . }}
+  namespace: {{ template "prometheus-freebox-exporter.namespace" . }}
+  {{- if .Values.additionalAnnotations }}
+  annotations:
+  {{ toYaml .Values.additionalAnnotations | indent 4 }}
+  {{- end }}
+  labels:
+    {{- include "prometheus-freebox-exporter.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      {{- include "prometheus-freebox-exporter.selectorLabels" . | indent 6 }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        {{- include "prometheus-freebox-exporter.labels" . | indent 8 }}
+      annotations:
+      {{ toYaml .Values.podAnnotations | indent 8 }}
+    spec:
+      {{- if .Values.nodeSelector }}
+      nodeSelector:
+      {{ toYaml .Values.nodeSelector | indent 8 }}
+      {{- end }}
+      {{- if .Values.affinity }}
+      affinity:
+      {{ toYaml .Values.affinity | indent 8 }}
+      {{- end }}
+      {{- if .Values.tolerations }}
+      tolerations:
+      {{ toYaml .Values.tolerations | indent 8 }}
+      {{- end }}
+      {{- with .Values.securityContext }}
+      securityContext:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      restartPolicy: {{ .Values.restartPolicy }}
+      serviceAccountName: {{ template "prometheus-freebox-exporter.serviceAccountName" . }}
+      {{- if .Values.image.pullSecrets }}
+      imagePullSecrets:
+      {{- toYaml .Values.image.pullSecrets | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: freebox-exporter
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["freebox-exporter"]
+          args:
+            - "-debug"
+            - "-hostDetails"
+            - "-httpDiscovery"
+            {{- with .Values.exporter.web.port }}
+            - "-listen=:{{ . }}"
+            {{- end }}
+            - /etc/secrets/freebox/credentials.json
+          resources:
+          {{ toYaml .Values.resources | nindent 12 }}
+          ports:
+          - containerPort: {{ .Values.service.port }}
+            name: http
+          {{- if .Values.livenessProbe.enabled }}
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+          {{- end }}
+          {{- if .Values.readinessProbe.enabled }}
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+            successThreshold: {{ .Values.readinessProbe.successThreshold }}
+            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+          {{- end }}
+          {{- if .Values.securityContext.enabled }}
+          {{- with .Values.containerSecurityContext }}
+          securityContext:
+          {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- end }}
+          volumeMounts:
+          {{- if or .Values.exporter.credentialsSecret .Values.exporter.credentials }}
+            - name: freebox-service-account
+              mountPath: /etc/secrets/freebox/
+          {{- end}}
+      volumes:
+      {{- if .Values.exporter.credentialsSecret }}
+        - name: freebox-service-account
+          secret:
+            secretName: {{ .Values.exporter.credentialsSecret | quote }}
+            {{- if and (.Values.exporter.credentialsSecret) (.Values.exporter.credentialsSecretKey) }}
+            items:
+              - key: {{ .Values.exporter.credentialsSecretKey | quote }}
+                path: credentials.json
+            {{- end }}
+      {{- else if .Values.exporter.credentials }}
+        - name: freebox-service-account
+          secret:
+            secretName: {{ template "prometheus-freebox-exporter.fullname" . }}
+      {{- end}}
