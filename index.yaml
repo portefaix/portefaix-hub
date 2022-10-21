@@ -4008,6 +4008,41 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/prometheus-bbox-exporter-0.1.0/prometheus-bbox-exporter-0.1.0.tgz
     version: 0.1.0
+  prometheus-freebox-exporter:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: updated
+          description: Refactoring secret
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Freebox exporter
+          url: https://github.com/nlamirault/freebox-exporter
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.4.0
+    created: "2022-10-21T15:56:21.3144377Z"
+    description: Prometheus Freebox Exporter
+    digest: 383c0ed63a4f99d76761526b788efd8763291715844dc77e39a9484d3fd6720a
+    home: https://github.com/nlamirault/freebox-exporter
+    keywords:
+    - prometheus
+    - bbox
+    - monitoring
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: prometheus-freebox-exporter
+    sources:
+    - https://github.com/nlamirault/freebox-exporter
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/prometheus-freebox-exporter-0.1.0/prometheus-freebox-exporter-0.1.0.tgz
+    version: 0.1.0
   prometheus-mixin:
   - annotations:
       artifacthub.io/changes: |
@@ -6530,4 +6565,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-10-21T12:05:07.074569957Z"
+generated: "2022-10-21T15:56:21.314773705Z"
