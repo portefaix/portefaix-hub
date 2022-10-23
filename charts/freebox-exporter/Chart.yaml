@@ -15,7 +15,7 @@
 apiVersion: v2
 description: Prometheus Freebox Exporter
 name: prometheus-freebox-exporter
-version: 0.1.0
+version: 0.1.1
 appVersion: 0.4.0
 home: https://github.com/nlamirault/freebox-exporter
 sources:
@@ -43,5 +43,5 @@ annotations:
     fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
-    - kind: updated
+    - kind: changed
       description: Refactoring secret
