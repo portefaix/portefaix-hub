@@ -24,7 +24,7 @@ keywords:
   - kubernetes
   - monitoring-mixin
   - portefaix
-version: 1.0.0
+version: 1.0.1
 appVersion: 2.0.0
 
 maintainers:
@@ -48,5 +48,5 @@ annotations:
     fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
-    - kind: changed
-      description: Refactoring Grafana dashboards loader
+    - kind: fixed
+      description: Fix Helm loop for dashboards

@@ -28,7 +28,7 @@ keywords:
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 1.1.0
+version: 1.1.1
 
 
 # This is the version number of the application being deployed. This version number should be
@@ -55,5 +55,5 @@ annotations:
     fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
-    - kind: changed
-      description: Update to monitoring-mixin v0.24.0
+    - kind: fixed
+      description: Fix Helm loop for dashboards
