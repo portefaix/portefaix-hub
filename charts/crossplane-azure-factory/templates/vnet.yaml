@@ -1,0 +1,44 @@
+# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+---
+apiVersion: network.azure.crossplane.io/v1alpha3
+kind: VirtualNetwork
+metadata:
+  name: {{ include "crossplane-azure-factory.name" . }}-krm
+  namespace: {{ template "crossplane-azure-factory.namespace" . }}
+  labels:
+    {{- include "crossplane-azure-factory.labels" . | nindent 4 }}
+{{- with .Values.additionalAnnotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  resourceGroupNameRef:
+    name: {{ include "crossplane-azure-factory.name" . }}-krm
+  location: {{ .Values.azure.location }}
+  properties:
+    addressSpace:
+      {{- with .Values.azure.vnet.addressPrefixes }}
+      addressPrefixes:
+      {{- toYaml . | nindent 6 }}
+      {{- end }}
+  tags:
+    {{- include "crossplane-azure-factory.azureLabelsObj" $ | nindent 4 }}
+    Service: Network
+  writeConnectionSecretToRef:
+    name: {{ include "crossplane-azure-factory.name" . }}-krm-vnet
+    namespace: {{ .Values.crossplane.namespace }}
+  providerConfigRef:
+    name: {{ include "crossplane-azure-factory.name" . }}

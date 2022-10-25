@@ -1,0 +1,33 @@
+# Default values for crossplane-azure-factory.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- Additional labels to add to all resources
+additionalLabels: {}
+  # app: crossplane-krm
+
+# -- Additional annotations to add to all resources
+additionalAnnotations: {}
+  # monitoring: portefaix
+
+crossplane:
+  namespace: crossplane-system
+  # -- The Crossplane controller version
+  version: v1.9.1
+  azure:
+    # -- The Crossplane AWS provider version
+    version: v0.20.0
+
+azure:
+  location: West Europe
+
+  vnet:
+    addressPrefixes:
+      - 10.2.0.0/16
+  subnet:
+    addressPrefix: 10.2.0.0/24
+    
+  account:
+    sku:
+      name: Standard_LRS
+      tier: Standard
