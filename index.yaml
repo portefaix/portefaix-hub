@@ -547,6 +547,49 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/crossplane-aws-factory-0.1.1/crossplane-aws-factory-0.1.1.tgz
     version: 0.1.1
+  crossplane-azure-factory:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Init Factory
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Crossplane
+          url: https://crossplane.io
+        - name: Crossplane Azure provider
+          url: https://github.com/crossplane/provider-azure
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/recommendations: |
+        - url: https://artifacthub.io/packages/helm/crossplane/crossplane
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-10-25T06:08:27.589193149Z"
+    description: An AWS Factory using Crossplane
+    digest: 19b228e8a9f60930500053b165e02ee20b3128eb997b0253e8421e69ba2cfe9b
+    home: https://github.com/portefaix/portefaix-hub/charts/crossplane-azure-factory
+    icon: https://crossplane.io/images/favicon_192x192.png
+    keywords:
+    - crossplane
+    - cloud
+    - infrastructure
+    - krm
+    - azure
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: crossplane-azure-factory
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/crossplane-azure-factory-0.1.0/crossplane-azure-factory-0.1.0.tgz
+    version: 0.1.0
   crossplane-digitalocean-factory:
   - annotations:
       artifacthub.io/changes: |
@@ -6633,4 +6676,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-10-23T07:47:55.635642251Z"
+generated: "2022-10-25T06:08:27.589461452Z"
