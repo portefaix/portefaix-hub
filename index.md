@@ -6,6 +6,7 @@ Welcome to the Portefaix Hub.
 
 |Name|version|description|Type|created|
 |:--|:-:|:--|:--|:--:|:--|
+[alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|1.2.1|A Helm chart for Alertmanager Mixin|application|2022-10-25T07:28:50.56653445Z
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|1.2.0|A Helm chart for Alertmanager Mixin|application|2022-08-25T14:36:16.62399041Z
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|1.1.0|A Helm chart for Alertmanager Mixin|application|2022-08-17T16:27:02.620743436Z
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.6.0|A Helm chart for Alertmanager Mixin|application|2022-03-29T13:52:27.695953006Z
@@ -13,6 +14,7 @@ Welcome to the Portefaix Hub.
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.4.0|A Helm chart for Alertmanager Mixin|application|2021-12-11T18:00:42.114716054Z
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.3.0|A Helm chart for Alertmanager Mixin|application|2021-08-31T15:39:08.103793493Z
 [alertmanager-mixin](https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin)|0.1.0|A Helm chart for Alertmanager Mixin|application|2021-06-18T16:36:49.277772553Z
+[coredns-mixin](https://artifacthub.io/packages/helm/portefaix-hub/coredns-mixin)|1.0.1|A Helm chart for CoreDNS Mixin|application|2022-10-25T07:28:50.789524804Z
 [coredns-mixin](https://artifacthub.io/packages/helm/portefaix-hub/coredns-mixin)|1.0.0|A Helm chart for CoreDNS Mixin|application|2022-08-17T16:40:01.783113821Z
 [coredns-mixin](https://artifacthub.io/packages/helm/portefaix-hub/coredns-mixin)|0.1.0|A Helm chart for CoreDNS Mixin|application|2022-05-19T16:52:34.147871327Z
 [crossplane-aws-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-aws-factory)|0.5.0|An AWS Factory using Crossplane|application|2022-09-30T10:31:47.306591354Z
@@ -27,12 +29,14 @@ Welcome to the Portefaix Hub.
 [crossplane-gcp-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-gcp-factory)|0.3.0|A Google Cloud Factory using Crossplane|application|2022-03-11T13:09:45.696391082Z
 [crossplane-gcp-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-gcp-factory)|0.2.0|A Google Cloud Factory using Crossplane|application|2021-12-10T14:23:04.795849864Z
 [crossplane-gcp-factory](https://artifacthub.io/packages/helm/portefaix-hub/crossplane-gcp-factory)|0.1.0|A Google Cloud Factory using Crossplane|application|2021-12-10T11:49:37.101949861Z
+[fluxcd-mixin](https://artifacthub.io/packages/helm/portefaix-hub/fluxcd-mixin)|1.1.1|A Helm chart for FluxCD Mixin|application|2022-10-25T07:28:50.997692602Z
 [fluxcd-mixin](https://artifacthub.io/packages/helm/portefaix-hub/fluxcd-mixin)|1.1.0|A Helm chart for FluxCD Mixin|application|2022-08-25T14:19:41.466208923Z
 [fluxcd-mixin](https://artifacthub.io/packages/helm/portefaix-hub/fluxcd-mixin)|1.0.0|A Helm chart for FluxCD Mixin|application|2022-08-17T16:50:27.443098991Z
 [fluxcd-mixin](https://artifacthub.io/packages/helm/portefaix-hub/fluxcd-mixin)|0.4.0|A Helm chart for FluxCD Mixin|application|2022-03-29T15:22:05.76231823Z
 [fluxcd-mixin](https://artifacthub.io/packages/helm/portefaix-hub/fluxcd-mixin)|0.3.0|A Helm chart for FluxCD Mixin|application|2022-03-11T13:11:26.672149989Z
 [fluxcd-mixin](https://artifacthub.io/packages/helm/portefaix-hub/fluxcd-mixin)|0.2.0|A Helm chart for FluxCD Mixin|application|2021-12-11T18:00:42.307658669Z
 [fluxcd-mixin](https://artifacthub.io/packages/helm/portefaix-hub/fluxcd-mixin)|0.1.0|A Helm chart for FluxCD Mixin|application|2021-08-31T16:08:00.601057289Z
+[grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|1.1.1|A Helm chart for Grafana Mixin|application|2022-10-25T07:28:51.216164179Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|1.1.0|A Helm chart for Grafana Mixin|application|2022-08-25T14:29:11.352049697Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|1.0.0|A Helm chart for Grafana Mixin|application|2022-08-18T06:32:15.46637879Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.10.0|A Helm chart for Grafana Mixin|application|2022-03-11T13:13:07.98181007Z
@@ -46,6 +50,7 @@ Welcome to the Portefaix Hub.
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.3.0|A Helm chart for Grafana Mixin|application|2021-04-27T10:11:10.373191529Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.2.0|A Helm chart for Grafana Mixin|application|2021-04-27T07:12:04.990763325Z
 [grafana-mixin](https://artifacthub.io/packages/helm/portefaix-hub/grafana-mixin)|0.1.0|A Helm chart for Grafana Mixin|application|2021-03-07T07:42:15.632202053Z
+[kube-state-metrics-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kube-state-metrics-mixin)|1.0.1|A Helm chart for Kube-State-Metrics Mixin|application|2022-10-25T07:28:51.458131261Z
 [kube-state-metrics-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kube-state-metrics-mixin)|1.0.0|A Helm chart for Kube-State-Metrics Mixin|application|2022-08-25T14:33:27.864126803Z
 [kube-state-metrics-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kube-state-metrics-mixin)|0.10.0|A Helm chart for Kube-State-Metrics Mixin|application|2022-03-29T14:11:56.405130313Z
 [kube-state-metrics-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kube-state-metrics-mixin)|0.8.0|A Helm chart for Kube-State-Metrics Mixin|application|2021-12-11T18:00:42.672271542Z
@@ -57,6 +62,7 @@ Welcome to the Portefaix Hub.
 [kube-state-metrics-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kube-state-metrics-mixin)|0.3.0|A Helm chart for Kube-State-Metrics Mixin|application|2021-04-27T10:11:10.479452822Z
 [kube-state-metrics-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kube-state-metrics-mixin)|0.2.0|A Helm chart for Kube-State-Metrics Mixin|application|2021-04-27T07:12:05.171974647Z
 [kube-state-metrics-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kube-state-metrics-mixin)|0.1.0|A Helm chart for Kube-State-Metrics Mixin|application|2021-03-07T06:59:37.616260149Z
+[kubernetes-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kubernetes-mixin)|1.1.1|A Helm chart for Kubernetes Mixin|application|2022-10-25T07:28:51.66750268Z
 [kubernetes-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kubernetes-mixin)|1.1.0|A Helm chart for Kubernetes Mixin|application|2022-08-25T14:37:19.256841105Z
 [kubernetes-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kubernetes-mixin)|1.0.0|A Helm chart for Kubernetes Mixin|application|2022-08-18T06:38:17.694066759Z
 [kubernetes-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kubernetes-mixin)|0.10.1|A Helm chart for Kubernetes Mixin|application|2022-07-28T08:00:53.078085386Z
@@ -68,18 +74,21 @@ Welcome to the Portefaix Hub.
 [kubernetes-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kubernetes-mixin)|0.3.0|A Helm chart for Kubernetes Mixin|application|2021-06-20T19:49:27.10898265Z
 [kubernetes-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kubernetes-mixin)|0.2.0|A Helm chart for Kubernetes Mixin|application|2021-06-20T16:28:44.750736877Z
 [kubernetes-mixin](https://artifacthub.io/packages/helm/portefaix-hub/kubernetes-mixin)|0.1.0|A Helm chart for Kubernetes Mixin|application|2021-06-18T12:19:39.045870933Z
+[linkerd-edge-mixin](https://artifacthub.io/packages/helm/portefaix-hub/linkerd-edge-mixin)|1.1.1|A Helm chart for Linkerd Edge Mixin|application|2022-10-25T07:28:51.904912384Z
 [linkerd-edge-mixin](https://artifacthub.io/packages/helm/portefaix-hub/linkerd-edge-mixin)|1.1.0|A Helm chart for Linkerd Edge Mixin|application|2022-08-25T14:26:32.787745331Z
 [linkerd-edge-mixin](https://artifacthub.io/packages/helm/portefaix-hub/linkerd-edge-mixin)|1.0.0|A Helm chart for Linkerd Edge Mixin|application|2022-08-18T06:43:25.06125784Z
 [linkerd-edge-mixin](https://artifacthub.io/packages/helm/portefaix-hub/linkerd-edge-mixin)|0.6.0|A Helm chart for Linkerd Edge Mixin|application|2022-06-10T08:14:14.079046723Z
 [linkerd-edge-mixin](https://artifacthub.io/packages/helm/portefaix-hub/linkerd-edge-mixin)|0.3.0|A Helm chart for Linkerd Edge Mixin|application|2021-12-11T18:00:43.082325313Z
 [linkerd-edge-mixin](https://artifacthub.io/packages/helm/portefaix-hub/linkerd-edge-mixin)|0.2.0|A Helm chart for Linkerd Edge Mixin|application|2021-06-22T21:09:46.422512503Z
 [linkerd-mixin](https://artifacthub.io/packages/helm/portefaix-hub/linkerd-mixin)|0.1.0|A Helm chart for Linkerd Edge Mixin|application|2021-06-22T20:50:02.183481036Z
+[linkerd-stable-mixin](https://artifacthub.io/packages/helm/portefaix-hub/linkerd-stable-mixin)|1.1.1|A Helm chart for Linkerd Stable Mixin|application|2022-10-25T07:28:52.120081203Z
 [linkerd-stable-mixin](https://artifacthub.io/packages/helm/portefaix-hub/linkerd-stable-mixin)|1.1.0|A Helm chart for Linkerd Stable Mixin|application|2022-08-25T14:27:41.975625222Z
 [linkerd-stable-mixin](https://artifacthub.io/packages/helm/portefaix-hub/linkerd-stable-mixin)|1.0.0|A Helm chart for Linkerd Stable Mixin|application|2022-08-18T06:49:18.548330694Z
 [linkerd-stable-mixin](https://artifacthub.io/packages/helm/portefaix-hub/linkerd-stable-mixin)|0.5.0|A Helm chart for Linkerd Stable Mixin|application|2022-03-29T15:26:09.638044294Z
 [linkerd-stable-mixin](https://artifacthub.io/packages/helm/portefaix-hub/linkerd-stable-mixin)|0.3.0|A Helm chart for Linkerd Stable Mixin|application|2021-12-11T18:00:43.289317535Z
 [linkerd-stable-mixin](https://artifacthub.io/packages/helm/portefaix-hub/linkerd-stable-mixin)|0.2.0|A Helm chart for Linkerd Stable Mixin|application|2021-06-23T10:21:49.277633099Z
 [linkerd-stable-mixin](https://artifacthub.io/packages/helm/portefaix-hub/linkerd-stable-mixin)|0.1.0|A Helm chart for Linkerd Stable Mixin|application|2021-06-22T20:58:56.885331947Z
+[loki-mixin](https://artifacthub.io/packages/helm/portefaix-hub/loki-mixin)|1.1.1|A Helm chart for Loki Mixin|application|2022-10-25T07:28:52.366971571Z
 [loki-mixin](https://artifacthub.io/packages/helm/portefaix-hub/loki-mixin)|1.1.0|A Helm chart for Loki Mixin|application|2022-08-25T14:35:15.344635494Z
 [loki-mixin](https://artifacthub.io/packages/helm/portefaix-hub/loki-mixin)|1.0.0|A Helm chart for Loki Mixin|application|2022-08-18T06:53:30.858038534Z
 [loki-mixin](https://artifacthub.io/packages/helm/portefaix-hub/loki-mixin)|0.13.0|A Helm chart for Loki Mixin|application|2022-06-09T17:35:24.06974924Z
@@ -96,13 +105,16 @@ Welcome to the Portefaix Hub.
 [loki-mixin](https://artifacthub.io/packages/helm/portefaix-hub/loki-mixin)|0.3.0|A Helm chart for loki Mixin|application|2021-04-27T07:12:05.407589919Z
 [loki-mixin](https://artifacthub.io/packages/helm/portefaix-hub/loki-mixin)|0.2.0|A Helm chart for loki Mixin|application|2021-03-13T17:53:16.616725283Z
 [loki-mixin](https://artifacthub.io/packages/helm/portefaix-hub/loki-mixin)|0.1.0|A Helm chart for loki Mixin|application|2021-03-06T15:36:52.563562032Z
+[mimir-mixin](https://artifacthub.io/packages/helm/portefaix-hub/mimir-mixin)|1.0.1|A Helm chart for Grafana Mimir mixin|application|2022-10-25T07:28:52.57750761Z
 [mimir-mixin](https://artifacthub.io/packages/helm/portefaix-hub/mimir-mixin)|1.0.0|A Helm chart for Grafana Mimir mixin|application|2022-08-18T06:59:06.923858079Z
 [mimir-mixin](https://artifacthub.io/packages/helm/portefaix-hub/mimir-mixin)|0.1.0|A Helm chart for Grafana Mimir mixin|application|2022-03-31T06:52:02.982911042Z
+[node-exporter-mixin](https://artifacthub.io/packages/helm/portefaix-hub/node-exporter-mixin)|1.1.1|A Helm chart for Alertmanager Mixin|application|2022-10-25T07:28:52.798891937Z
 [node-exporter-mixin](https://artifacthub.io/packages/helm/portefaix-hub/node-exporter-mixin)|1.1.0|A Helm chart for Alertmanager Mixin|application|2022-08-25T14:39:41.454891704Z
 [node-exporter-mixin](https://artifacthub.io/packages/helm/portefaix-hub/node-exporter-mixin)|1.0.0|A Helm chart for Alertmanager Mixin|application|2022-08-18T07:03:41.358366581Z
 [node-exporter-mixin](https://artifacthub.io/packages/helm/portefaix-hub/node-exporter-mixin)|0.3.0|A Helm chart for Alertmanager Mixin|application|2022-03-11T13:34:24.65831197Z
 [node-exporter-mixin](https://artifacthub.io/packages/helm/portefaix-hub/node-exporter-mixin)|0.2.0|A Helm chart for Alertmanager Mixin|application|2021-12-11T18:00:43.672360585Z
 [node-exporter-mixin](https://artifacthub.io/packages/helm/portefaix-hub/node-exporter-mixin)|0.1.0|A Helm chart for Alertmanager Mixin|application|2021-09-01T06:09:12.375337814Z
+[osm-mixin](https://artifacthub.io/packages/helm/portefaix-hub/osm-mixin)|1.0.1|A Helm chart for Open Service Mesh mixin|application|2022-10-25T07:28:53.051222898Z
 [osm-mixin](https://artifacthub.io/packages/helm/portefaix-hub/osm-mixin)|1.0.0|A Helm chart for Open Service Mesh mixin|application|2022-08-18T07:06:27.364559889Z
 [osm-mixin](https://artifacthub.io/packages/helm/portefaix-hub/osm-mixin)|0.1.0|A Helm chart for Open Service Mesh mixin|application|2022-04-26T09:25:09.016321922Z
 [portefaix-kubewarden](https://artifacthub.io/packages/helm/portefaix-hub/portefaix-kubewarden)|0.1.2|A Helm chart for Kubewarden policies for Portefaix|application|2022-07-28T07:57:44.819822502Z
@@ -120,6 +132,7 @@ Welcome to the Portefaix Hub.
 [prometheus-bbox-exporter](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-bbox-exporter)|0.1.0|Prometheus BBOX Exporter||2021-09-17T10:09:36.582612871Z
 [prometheus-freebox-exporter](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-freebox-exporter)|0.1.1|Prometheus Freebox Exporter||2022-10-23T07:47:36.646963196Z
 [prometheus-freebox-exporter](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-freebox-exporter)|0.1.0|Prometheus Freebox Exporter||2022-10-21T15:56:21.3144377Z
+[prometheus-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-mixin)|1.1.1|A Helm chart for Prometheus Mixin|application|2022-10-25T07:28:53.251812666Z
 [prometheus-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-mixin)|1.1.0|A Helm chart for Prometheus Mixin|application|2022-08-25T14:23:27.007429049Z
 [prometheus-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-mixin)|1.0.0|A Helm chart for Prometheus Mixin|application|2022-08-18T07:08:53.764217486Z
 [prometheus-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-mixin)|0.10.0|A Helm chart for Prometheus Mixin|application|2022-06-16T09:52:42.950913672Z
@@ -132,6 +145,7 @@ Welcome to the Portefaix Hub.
 [prometheus-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-mixin)|0.3.0|A Helm chart for Prometheus Mixin|application|2021-04-27T10:11:10.699833767Z
 [prometheus-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-mixin)|0.2.0|A Helm chart for Prometheus Mixin|application|2021-04-27T07:12:05.588003885Z
 [prometheus-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-mixin)|0.1.0|A Helm chart for Prometheus Mixin|application|2021-03-07T07:17:01.778003245Z
+[prometheus-operator-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-operator-mixin)|1.0.1|A Helm chart for Prometheus Operator Mixin|application|2022-10-25T07:28:53.479076194Z
 [prometheus-operator-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-operator-mixin)|1.0.0|A Helm chart for Prometheus Operator Mixin|application|2022-08-25T14:16:17.611854903Z
 [prometheus-operator-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-operator-mixin)|0.8.0|A Helm chart for Prometheus Operator Mixin|application|2022-03-29T15:33:37.481044017Z
 [prometheus-operator-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-operator-mixin)|0.7.0|A Helm chart for Prometheus Operator Mixin|application|2022-03-11T13:34:25.090941199Z
@@ -142,6 +156,7 @@ Welcome to the Portefaix Hub.
 [prometheus-operator-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-operator-mixin)|0.3.0|A Helm chart for Prometheus Operator Mixin|application|2021-04-27T10:11:10.809543285Z
 [prometheus-operator-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-operator-mixin)|0.2.0|A Helm chart for Prometheus Operator Mixin|application|2021-04-27T07:12:05.838444206Z
 [prometheus-operator-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-operator-mixin)|0.1.0|A Helm chart for Prometheus Operator Mixin|application|2021-03-06T21:55:29.923555529Z
+[promtail-mixin](https://artifacthub.io/packages/helm/portefaix-hub/promtail-mixin)|1.1.1|A Helm chart for Promtail Mixin|application|2022-10-25T07:28:53.699369402Z
 [promtail-mixin](https://artifacthub.io/packages/helm/portefaix-hub/promtail-mixin)|1.1.0|A Helm chart for Promtail Mixin|application|2022-08-25T14:32:46.991988005Z
 [promtail-mixin](https://artifacthub.io/packages/helm/portefaix-hub/promtail-mixin)|1.0.0|A Helm chart for Promtail Mixin|application|2022-08-18T07:11:27.09663202Z
 [promtail-mixin](https://artifacthub.io/packages/helm/portefaix-hub/promtail-mixin)|0.12.0|A Helm chart for Promtail Mixin|application|2022-06-10T07:52:28.090542868Z
@@ -175,6 +190,7 @@ Welcome to the Portefaix Hub.
 [tempo-mixin](https://artifacthub.io/packages/helm/portefaix-hub/tempo-mixin)|1.0.1|A Helm chart for Grafana Tempo mixin|application|2022-10-25T06:09:18.762567119Z
 [tempo-mixin](https://artifacthub.io/packages/helm/portefaix-hub/tempo-mixin)|1.0.0|A Helm chart for Grafana Tempo mixin|application|2022-08-18T07:13:57.82968072Z
 [tempo-mixin](https://artifacthub.io/packages/helm/portefaix-hub/tempo-mixin)|0.1.0|A Helm chart for Grafana Tempo mixin|application|2022-06-09T17:31:33.20030013Z
+[thanos-mixin](https://artifacthub.io/packages/helm/portefaix-hub/thanos-mixin)|1.0.1|A Helm chart for Thanos Mixin|application|2022-10-25T07:28:53.989470216Z
 [thanos-mixin](https://artifacthub.io/packages/helm/portefaix-hub/thanos-mixin)|1.0.0|A Helm chart for Thanos Mixin|application|2022-08-18T07:15:10.292040788Z
 [thanos-mixin](https://artifacthub.io/packages/helm/portefaix-hub/thanos-mixin)|0.15.0|A Helm chart for Thanos Mixin|application|2021-12-11T18:00:44.403461029Z
 [thanos-mixin](https://artifacthub.io/packages/helm/portefaix-hub/thanos-mixin)|0.14.2|A Helm chart for Thanos Mixin|application|2021-12-11T09:42:03.870543832Z
