@@ -2,6 +2,45 @@ apiVersion: v1
 entries:
   alertmanager-mixin:
   - annotations:
+      artifacthub.io/changes: |-
+        - kind: fixed
+          description: Fix Helm loop for dashboards
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: alertmanager
+          url: https://prometheus.io/docs/alerting/latest/alertmanager/
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.23.0
+    created: "2022-10-25T07:28:50.56653445Z"
+    description: A Helm chart for Alertmanager Mixin
+    digest: d013c28a9817a092d43fea6d1130c44c849a38247a3b5cd0dd2f2b8c48169fc4
+    home: https://charts.portefaix.xyz
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/242px-Prometheus_software_logo.svg.png
+    keywords:
+    - alertmanager
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: alertmanager-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/alertmanager-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/alertmanager-mixin-1.2.1/alertmanager-mixin-1.2.1.tgz
+    version: 1.2.1
+  - annotations:
       artifacthub.io/changes: |
         - kind: changed
           description: Update to monitoring-mixin v0.24.0
@@ -263,6 +302,46 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/alertmanager-mixin-0.1.0/alertmanager-mixin-0.1.0.tgz
     version: 0.1.0
   coredns-mixin:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
+          description: Fix Helm loop for dashboards
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: coredns
+          url: https://coredns.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-10-25T07:28:50.789524804Z"
+    description: A Helm chart for CoreDNS Mixin
+    digest: 133721fc8b2244db55b153ab5f201ef3359b296d1c47d35d850ca345775dd221
+    home: https://charts.portefaix.xyz
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/242px-Prometheus_software_logo.svg.png
+    keywords:
+    - coredns
+    - prometheus
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: coredns-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/coredns-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/coredns-mixin-1.0.1/coredns-mixin-1.0.1.tgz
+    version: 1.0.1
   - annotations:
       artifacthub.io/changes: |
         - kind: added
@@ -827,6 +906,42 @@ entries:
   fluxcd-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: Fix Helm loop for dashboards
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: fluxcd
+          url: https://fluxcd.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.32.0
+    created: "2022-10-25T07:28:50.997692602Z"
+    description: A Helm chart for FluxCD Mixin
+    digest: d1350e13b3ebe655a634d46b0da2b2278c3def1767acaa16923c3f6fde30bddf
+    home: https://charts.portefaix.xyz
+    keywords:
+    - fluxcd
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: fluxcd-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/fluxcd-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/fluxcd-mixin-1.1.1/fluxcd-mixin-1.1.1.tgz
+    version: 1.1.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Update to monitoring-mixin v0.24.0
       artifacthub.io/license: Apache-2.0
@@ -1037,6 +1152,45 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/fluxcd-mixin-0.1.0/fluxcd-mixin-0.1.0.tgz
     version: 0.1.0
   grafana-mixin:
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: fixed
+          description: Fix Helm loop for dashboards
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: grafana
+          url: https://github.com/grafana/grafana
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 9.0.0
+    created: "2022-10-25T07:28:51.216164179Z"
+    description: A Helm chart for Grafana Mixin
+    digest: df93be91b4d8de61bc219d14efd07395d3f670ae8c893b3d239e56e7ef119410
+    home: https://charts.portefaix.xyz
+    icon: https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Grafana_logo.svg/300px-Grafana_logo.svg.png
+    keywords:
+    - grafana
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: grafana-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/grafana-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/grafana-mixin-1.1.1/grafana-mixin-1.1.1.tgz
+    version: 1.1.1
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
@@ -1484,6 +1638,45 @@ entries:
   kube-state-metrics-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: Fix Helm loop for dashboards
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Kube-State-Metrics
+          url: https://github.com/kubernetes/kube-state-metrics
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.2.4
+    created: "2022-10-25T07:28:51.458131261Z"
+    description: A Helm chart for Kube-State-Metrics Mixin
+    digest: 68329da63fd9a543c950af45eb7cc02b5e080c905701dd4bb69fb599381f6e18
+    home: https://charts.portefaix.xyz
+    icon: https://bitnami.com/assets/stacks/kube-state-metrics/img/kube-state-metrics-stack-220x234.png
+    keywords:
+    - kube-state-metrics
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: kube-state-metrics-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kube-state-metrics-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/kube-state-metrics-mixin-1.0.1/kube-state-metrics-mixin-1.0.1.tgz
+    version: 1.0.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Bump to monitoring-mixins v0.24.0
         - kind: changed
@@ -1855,6 +2048,45 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/kube-state-metrics-mixin-0.1.0/kube-state-metrics-mixin-0.1.0.tgz
     version: 0.1.0
   kubernetes-mixin:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
+          description: Fix Helm loop for dashboards
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: kubernetes
+          url: https://kubernetes.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.8.0
+    created: "2022-10-25T07:28:51.66750268Z"
+    description: A Helm chart for Kubernetes Mixin
+    digest: 70ab691bb1f33abe81a245b9672fe2825dd3324ca60b4cf2bae5a7c3253f65d7
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.svg
+    keywords:
+    - kubernetes
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: kubernetes-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kubernetes-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/kubernetes-mixin-1.1.1/kubernetes-mixin-1.1.1.tgz
+    version: 1.1.1
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
@@ -2251,6 +2483,45 @@ entries:
   linkerd-edge-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: Fix Helm loop for dashboards
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: linkerd
+          url: https://linkerd.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: edge-21.6.3
+    created: "2022-10-25T07:28:51.904912384Z"
+    description: A Helm chart for Linkerd Edge Mixin
+    digest: dd16bff311afb38b328742bfe20e302aef483e44d6a51c2ead83bafcd144f7d8
+    home: https://charts.portefaix.xyz
+    icon: https://linkerd.io/images/logo-only-200h.png
+    keywords:
+    - linkerd
+    - linkerd-edge
+    - monitoring-mixin
+    - portefaix
+    kubeVersion: '>= 1.14.0-0'
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: linkerd-edge-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/linkerd-edge-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/linkerd-edge-mixin-1.1.1/linkerd-edge-mixin-1.1.1.tgz
+    version: 1.1.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Update to monitoring-mixin v0.24.0
       artifacthub.io/license: Apache-2.0
@@ -2477,6 +2748,45 @@ entries:
   linkerd-stable-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: Fix Helm loop for dashboards
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: linkerd
+          url: https://linkerd.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: stable-2.10.2
+    created: "2022-10-25T07:28:52.120081203Z"
+    description: A Helm chart for Linkerd Stable Mixin
+    digest: 9a630e5dab782cfa3f09ebea18da37b057160113cc51f8d4fb904cefff018dc0
+    home: https://charts.portefaix.xyz
+    icon: https://linkerd.io/images/logo-only-200h.png
+    keywords:
+    - linkerd
+    - linkerd-stable
+    - monitoring-mixin
+    - portefaix
+    kubeVersion: '>= 1.14.0-0'
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: linkerd-stable-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/linkerd-stable-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/linkerd-stable-mixin-1.1.1/linkerd-stable-mixin-1.1.1.tgz
+    version: 1.1.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Update to monitoring-mixin v0.24.0
       artifacthub.io/license: Apache-2.0
@@ -2700,6 +3010,45 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/linkerd-stable-mixin-0.1.0/linkerd-stable-mixin-0.1.0.tgz
     version: 0.1.0
   loki-mixin:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
+          description: Fix Helm loop for dashboards
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: loki
+          url: https://grafana.com/oss/loki/
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.4.1
+    created: "2022-10-25T07:28:52.366971571Z"
+    description: A Helm chart for Loki Mixin
+    digest: 524e22f33eb8be29716cc24bb01a185f2614e5397a644549fde4f6d301c38270
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    keywords:
+    - loki
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: loki-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/loki-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/loki-mixin-1.1.1/loki-mixin-1.1.1.tgz
+    version: 1.1.1
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
@@ -3267,6 +3616,45 @@ entries:
   mimir-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: Fix Helm loop for dashboards
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: mimir
+          url: https://grafana.com/oss/mimir
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.0.0
+    created: "2022-10-25T07:28:52.57750761Z"
+    description: A Helm chart for Grafana Mimir mixin
+    digest: 7c3c95b765f82afcb70283cf00fb3e09dbf53cf2f3f7c76360aa64f7ff3da981
+    home: https://charts.portefaix.xyz
+    icon: https://grafana.com/static/img/logos/logo-mimir.svg
+    keywords:
+    - kubernetes
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: mimir-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kubernetes-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/mimir-mixin-1.0.1/mimir-mixin-1.0.1.tgz
+    version: 1.0.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Refactoring Grafana dashboards loader
       artifacthub.io/license: Apache-2.0
@@ -3344,6 +3732,46 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/mimir-mixin-0.1.0/mimir-mixin-0.1.0.tgz
     version: 0.1.0
   node-exporter-mixin:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
+          description: Fix Helm loop for dashboards
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: node-exporter
+          url: https://github.com/prometheus/node_exporter
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.3.1
+    created: "2022-10-25T07:28:52.798891937Z"
+    description: A Helm chart for Alertmanager Mixin
+    digest: 163074bf6ed6129727ab95c2de57bc5595a18a08a030f115a0411ff639ad0cc5
+    home: https://charts.portefaix.xyz
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/242px-Prometheus_software_logo.svg.png
+    keywords:
+    - node-exporter
+    - prometheus
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: node-exporter-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/node-exporter-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/node-exporter-mixin-1.1.1/node-exporter-mixin-1.1.1.tgz
+    version: 1.1.1
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
@@ -3539,6 +3967,46 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/node-exporter-mixin-0.1.0/node-exporter-mixin-0.1.0.tgz
     version: 0.1.0
   osm-mixin:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
+          description: Fix Helm loop for dashboards
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: osm
+          url: https://openservicemesh.io/
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.1.0
+    created: "2022-10-25T07:28:53.051222898Z"
+    description: A Helm chart for Open Service Mesh mixin
+    digest: 7906213c32605fc0a5e25e9921fdb2698bc7d83f2d96eacc177f7e8df3cd18f0
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/openservicemesh/osm/main/community/logos/icon/icon.svg
+    keywords:
+    - openservicemesh
+    - service-mesh
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: osm-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/osm-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/osm-mixin-1.0.1/osm-mixin-1.0.1.tgz
+    version: 1.0.1
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
@@ -4157,6 +4625,45 @@ entries:
   prometheus-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: Fix Helm loop for dashboards
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Prometheus
+          url: https://prometheus.io/
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.31.1
+    created: "2022-10-25T07:28:53.251812666Z"
+    description: A Helm chart for Prometheus Mixin
+    digest: dc28e3cb981c460d089ad8eaca213083386c11d2b43abebbe2ded8b179e2c0a8
+    home: https://charts.portefaix.xyz
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/242px-Prometheus_software_logo.svg.png
+    keywords:
+    - prometheus
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: prometheus-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/prometheus-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/prometheus-mixin-1.1.1/prometheus-mixin-1.1.1.tgz
+    version: 1.1.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Update to monitoring-mixin v0.24.0
       artifacthub.io/license: Apache-2.0
@@ -4584,6 +5091,45 @@ entries:
   prometheus-operator-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: Fix Helm loop for dashboards
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: prometheus-operator
+          url: https://prometheus-operator.dev/
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.52.1
+    created: "2022-10-25T07:28:53.479076194Z"
+    description: A Helm chart for Prometheus Operator Mixin
+    digest: a71b7769fe337bd514348622ffc98348a0f376419f724385d85c29a84a226369
+    home: https://charts.portefaix.xyz
+    icon: https://avatars.githubusercontent.com/u/66682517?s=200&v=4
+    keywords:
+    - prometheus-operator
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: prometheus-operator-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/prometheus-operator-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/prometheus-operator-mixin-1.0.1/prometheus-operator-mixin-1.0.1.tgz
+    version: 1.0.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Bump to monitoring-mixins-v0.24.0
       artifacthub.io/license: Apache-2.0
@@ -4937,6 +5483,43 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/prometheus-operator-mixin-0.1.0/prometheus-operator-mixin-0.1.0.tgz
     version: 0.1.0
   promtail-mixin:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
+          description: Fix Helm loop for dashboards
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: promtail
+          url: https://grafana.com/docs/promtail/latest/clients/promtail/
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.3.0
+    created: "2022-10-25T07:28:53.699369402Z"
+    description: A Helm chart for Promtail Mixin
+    digest: 72714e882c83ce4c1f4430e72bc6a7fa6c7bf88d9bdd5f3624fea959670c2006
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    keywords:
+    - promtail
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: promtail-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/promtail-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/promtail-mixin-1.1.1/promtail-mixin-1.1.1.tgz
+    version: 1.1.1
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
@@ -6118,6 +6701,45 @@ entries:
     version: 0.1.0
   thanos-mixin:
   - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
+          description: Fix Helm loop for dashboards
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Thanos
+          url: https://thanos.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.23.1
+    created: "2022-10-25T07:28:53.989470216Z"
+    description: A Helm chart for Thanos Mixin
+    digest: 05997aed6cfba29a0e69809cd678d38ae1793067384928ea92d1b2d10aa2cd22
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/thanos-io/thanos/master/docs/img/Thanos-logo_fullmedium.png
+    keywords:
+    - thanos
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: thanos-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/thanos-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/thanos-mixin-1.0.1/thanos-mixin-1.0.1.tgz
+    version: 1.0.1
+  - annotations:
       artifacthub.io/changes: |-
         - kind: changed
           description: Refactoring Grafana dashboards loader
@@ -6715,4 +7337,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-10-25T06:09:33.910855082Z"
+generated: "2022-10-25T07:28:53.990207929Z"
