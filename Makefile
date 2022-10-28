@@ -130,6 +130,10 @@ helm-package: guard-CHART ## Package a Helm chart
 helm-publish: guard-CHART guard-PKG ## Publish a Helm package to the Github Registry
 	helm push ${PKG} oci://ghcr.io/portefaix/portefaix-hub/
 
+.PHONY: helm-index
+helm-index: ## Generate the index file for Helm charts
+	helm-cr index -i ./index.yaml -p . --owner portefaix --git-repo portefaix-hub
+
 # ====================================
 # O P A
 # ====================================
