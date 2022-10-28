@@ -49,7 +49,7 @@ jobs:
 
       - name: Publish OCI Chart
         run: |
-          helm package charts/{{ github.event.inputs.chart }}
-          helm push {{ github.event.inputs.chart }}-{{ github.event.inputs.version }}.tgz oci://ghcr.io/${GITHUB_REPOSITORY}
+          helm package charts/${{ github.event.inputs.chart }}
+          helm push ${{ github.event.inputs.chart }}-${{ github.event.inputs.version }}.tgz oci://ghcr.io/${GITHUB_REPOSITORY}
         env:
           HELM_EXPERIMENTAL_OCI: 1
