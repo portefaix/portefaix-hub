@@ -55,6 +55,10 @@ policies: guard-CHART guard-LOG ## Install policies
 # 	$(ANSIBLE_VENV)/bin/pre-commit install
 
 
+.PHONY: ghr-login
+ghr-login: guard-GITHUB_TOKEN ## Authentication to the Github Registry
+	echo ${GITHUB_TOKEN} | docker login ghcr.io -u nlamirault --password-stdin
+
 # ====================================
 # K I N D
 # ====================================
@@ -117,6 +121,14 @@ helm-lint-docker: guard-CHART ## Lint Helm chart
 .PHONY: helm-install
 helm-install: guard-CHART guard-RELEASE ## Install a Helm chart
 	helm install $(RELEASE) $(CHART)
+
+.PHONY: helm-package 
+helm-package: guard-CHART ## Package a Helm chart
+	helm package $(CHART)
+
+.PHONY: helm-publish
+helm-publish: guard-CHART guard-PKG ## Publish a Helm package to the Github Registry
+	helm push ${PKG} oci://ghcr.io/portefaix/portefaix-hub/
 
 # ====================================
 # O P A
