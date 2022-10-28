@@ -114,6 +114,7 @@ Welcome to the Portefaix Hub.
 [loki-mixin](https://artifacthub.io/packages/helm/portefaix-hub/loki-mixin)|0.3.0|A Helm chart for loki Mixin|application|2021-04-27T07:12:05.407589919Z
 [loki-mixin](https://artifacthub.io/packages/helm/portefaix-hub/loki-mixin)|0.2.0|A Helm chart for loki Mixin|application|2021-03-13T17:53:16.616725283Z
 [loki-mixin](https://artifacthub.io/packages/helm/portefaix-hub/loki-mixin)|0.1.0|A Helm chart for loki Mixin|application|2021-03-06T15:36:52.563562032Z
+[mimir-mixin](https://artifacthub.io/packages/helm/portefaix-hub/mimir-mixin)|1.0.3|A Helm chart for Grafana Mimir mixin|application|2022-10-28T08:54:31.565762292Z
 [mimir-mixin](https://artifacthub.io/packages/helm/portefaix-hub/mimir-mixin)|1.0.2|A Helm chart for Grafana Mimir mixin|application|2022-10-28T09:59:42.380152441+02:00
 [mimir-mixin](https://artifacthub.io/packages/helm/portefaix-hub/mimir-mixin)|1.0.1|A Helm chart for Grafana Mimir mixin|application|2022-10-25T07:28:52.57750761Z
 [mimir-mixin](https://artifacthub.io/packages/helm/portefaix-hub/mimir-mixin)|1.0.0|A Helm chart for Grafana Mimir mixin|application|2022-08-18T06:59:06.923858079Z
