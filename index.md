@@ -126,6 +126,7 @@ Welcome to the Portefaix Hub.
 [node-exporter-mixin](https://artifacthub.io/packages/helm/portefaix-hub/node-exporter-mixin)|0.3.0|A Helm chart for Alertmanager Mixin|application|2022-03-11T13:34:24.65831197Z
 [node-exporter-mixin](https://artifacthub.io/packages/helm/portefaix-hub/node-exporter-mixin)|0.2.0|A Helm chart for Alertmanager Mixin|application|2021-12-11T18:00:43.672360585Z
 [node-exporter-mixin](https://artifacthub.io/packages/helm/portefaix-hub/node-exporter-mixin)|0.1.0|A Helm chart for Alertmanager Mixin|application|2021-09-01T06:09:12.375337814Z
+[osm-mixin](https://artifacthub.io/packages/helm/portefaix-hub/osm-mixin)|1.0.3|A Helm chart for Open Service Mesh mixin|application|2022-10-28T09:21:00.557445083Z
 [osm-mixin](https://artifacthub.io/packages/helm/portefaix-hub/osm-mixin)|1.0.2|A Helm chart for Open Service Mesh mixin|application|2022-10-28T09:59:42.789657471+02:00
 [osm-mixin](https://artifacthub.io/packages/helm/portefaix-hub/osm-mixin)|1.0.1|A Helm chart for Open Service Mesh mixin|application|2022-10-25T07:28:53.051222898Z
 [osm-mixin](https://artifacthub.io/packages/helm/portefaix-hub/osm-mixin)|1.0.0|A Helm chart for Open Service Mesh mixin|application|2022-08-18T07:06:27.364559889Z
