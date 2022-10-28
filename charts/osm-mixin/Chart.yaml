@@ -25,7 +25,7 @@ keywords:
   - service-mesh
   - monitoring-mixin
   - portefaix
-version: 1.0.1
+version: 1.0.2
 appVersion: 1.1.0
 
 maintainers:
@@ -49,5 +49,5 @@ annotations:
     fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
-    - kind: fixed
-      description: Fix Helm loop for dashboards
+    - kind: chore
+      description: Normalise dashboards ConfigMaps using ConfigMapList

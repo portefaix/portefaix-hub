@@ -6,7 +6,7 @@ Contributions are welcome via GitHub pull requests. This document outlines the p
 
 The Developer Certificate of Origin (DCO) is a lightweight way for contributors to certify that they wrote or otherwise have
 the right to submit the code they are contributing to the project.
-Here is the full text of the [DCO](http://developercertificate.org/).
+Here is the full text of the [DCO](https://developercertificate.org/).
 Contributors must sign-off that they adhere to these requirements by adding a `Signed-off-by` line to commit messages.
 
 ```
