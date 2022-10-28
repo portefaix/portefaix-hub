@@ -158,6 +158,7 @@ Welcome to the Portefaix Hub.
 [prometheus-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-mixin)|0.3.0|A Helm chart for Prometheus Mixin|application|2021-04-27T10:11:10.699833767Z
 [prometheus-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-mixin)|0.2.0|A Helm chart for Prometheus Mixin|application|2021-04-27T07:12:05.588003885Z
 [prometheus-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-mixin)|0.1.0|A Helm chart for Prometheus Mixin|application|2021-03-07T07:17:01.778003245Z
+[prometheus-operator-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-operator-mixin)|1.0.2|A Helm chart for Prometheus Operator Mixin|application|2022-10-28T08:17:04.25144865Z
 [prometheus-operator-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-operator-mixin)|1.0.1|A Helm chart for Prometheus Operator Mixin|application|2022-10-25T07:28:53.479076194Z
 [prometheus-operator-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-operator-mixin)|1.0.0|A Helm chart for Prometheus Operator Mixin|application|2022-08-25T14:16:17.611854903Z
 [prometheus-operator-mixin](https://artifacthub.io/packages/helm/portefaix-hub/prometheus-operator-mixin)|0.8.0|A Helm chart for Prometheus Operator Mixin|application|2022-03-29T15:33:37.481044017Z
