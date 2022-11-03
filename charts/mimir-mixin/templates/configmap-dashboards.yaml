@@ -12,10 +12,10 @@ items:
     name: {{ printf "dashboard-mimir-mixin-%s" $dashboardName | trunc 63 | trimSuffix "-" }}
     annotations:
       grafana-folder: {{ $.Values.grafana.folder }}
-      {{- include "mimir-mixin.annotations" $ | indent 4 }}
+      {{- include "mimir-mixin.annotations" $ | indent 6 }}
     labels:
       grafana-dashboard: {{ $dashboardName }}
-      {{- include "mimir-mixin.labels" $ | indent 4 }}
+      {{- include "mimir-mixin.labels" $ | indent 6 }}
   data:
     {{ $dashboardName }}.json: |-
 {{ $.Files.Get $path | indent 6}}

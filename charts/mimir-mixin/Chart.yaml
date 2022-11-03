@@ -24,7 +24,7 @@ keywords:
   - kubernetes
   - monitoring-mixin
   - portefaix
-version: 1.0.3
+version: 1.0.4
 appVersion: 2.0.0
 
 maintainers:
@@ -49,4 +49,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: fixed
-      description: Normalise dashboards ConfigMaps using ConfigMapList
+      description: Annotations indentations for dashboards configmaps
