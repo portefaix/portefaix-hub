@@ -212,6 +212,7 @@ Welcome to the Portefaix Hub.
 [tempo-mixin](https://artifacthub.io/packages/helm/portefaix-hub/tempo-mixin)|1.0.1|A Helm chart for Grafana Tempo mixin|application|2022-10-25T06:09:18.762567119Z
 [tempo-mixin](https://artifacthub.io/packages/helm/portefaix-hub/tempo-mixin)|1.0.0|A Helm chart for Grafana Tempo mixin|application|2022-08-18T07:13:57.82968072Z
 [tempo-mixin](https://artifacthub.io/packages/helm/portefaix-hub/tempo-mixin)|0.1.0|A Helm chart for Grafana Tempo mixin|application|2022-06-09T17:31:33.20030013Z
+[thanos-mixin](https://artifacthub.io/packages/helm/portefaix-hub/thanos-mixin)|1.0.3|A Helm chart for Thanos Mixin|application|2022-11-03T16:25:56.198754075Z
 [thanos-mixin](https://artifacthub.io/packages/helm/portefaix-hub/thanos-mixin)|1.0.2|A Helm chart for Thanos Mixin|application|2022-10-28T09:59:43.62695791+02:00
 [thanos-mixin](https://artifacthub.io/packages/helm/portefaix-hub/thanos-mixin)|1.0.1|A Helm chart for Thanos Mixin|application|2022-10-25T07:28:53.989470216Z
 [thanos-mixin](https://artifacthub.io/packages/helm/portefaix-hub/thanos-mixin)|1.0.0|A Helm chart for Thanos Mixin|application|2022-08-18T07:15:10.292040788Z
