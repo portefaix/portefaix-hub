@@ -35,7 +35,7 @@ Create chart name and version as used by the chart label.
 {{/*
 Selector labels
 */}}
-{{- define "thanos-mixin.selectorLabels" -}}
+{{- define "thanos-mixin.selectorLabels" }}
 app.kubernetes.io/name: {{ include "thanos-mixin.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
@@ -43,7 +43,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{/*
 Common labels
 */}}
-{{- define "thanos-mixin.labels" -}}
+{{- define "thanos-mixin.labels" }}
 helm.sh/chart: {{ include "thanos-mixin.chart" . }}
 {{ include "thanos-mixin.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
@@ -61,7 +61,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Common annotations 
 */}}
-{{- define "thanos-mixin.annotations" -}}
+{{- define "thanos-mixin.annotations" }}
 a8r.io/description: Monitoring Mixin for Thanos
 a8r.io/owner: portefaix
 a8r.io/bugs: https://github.com/portefaix/portefaix-hub/issues
