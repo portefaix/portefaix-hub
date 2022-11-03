@@ -49,4 +49,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: fixed
-      description: Normalise dashboards ConfigMaps using ConfigMapList
+      description: Dashboards ConfigMaps annotations
