@@ -7383,6 +7383,45 @@ entries:
         url: https://keybase.io/nlamirault/pgp_keys.asc
     apiVersion: v2
     appVersion: 1.4.0
+    created: "2022-11-03T16:36:50.016589721Z"
+    description: A Helm chart for Grafana Tempo mixin
+    digest: aacd0ef7ca5e772082cd13fb981c6658096f9de50fb95e116cc41560684b2a99
+    home: https://charts.portefaix.xyz
+    icon: https://grafana.com/static/assets/img/logos/grafana-tempo.svg
+    keywords:
+    - tempo
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: tempo-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/tempo-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/tempo-mixin-1.0.4/tempo-mixin-1.0.4.tgz
+    version: 1.0.4
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
+          description: Normalise dashboards ConfigMaps using ConfigMapList
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: tempo
+          url: https://grafana.com/oss/tempo
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.4.0
     created: "2022-10-28T09:17:20.436617672Z"
     description: A Helm chart for Grafana Tempo mixin
     digest: 82c5e5cd5c7253581519484d01a6405cb09511fa3d98e614e44693b8bcfb4844
@@ -8274,4 +8313,4 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-11-03T16:26:11.020715846Z"
+generated: "2022-11-03T16:36:50.017146956Z"
