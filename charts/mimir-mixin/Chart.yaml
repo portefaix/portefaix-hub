@@ -49,4 +49,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: fixed
-      description: Annotations indentations for dashboards configmaps
+      description: Dashboards ConfigMaps annotations
