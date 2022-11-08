@@ -133,12 +133,13 @@ jobs:
           COSIGN_EXPERIMENTAL: 1
         run: |
           for pkg in `find .cr-release-packages -name '*.tgz' -print`; do
-            helm push "${pkg}" oci://ghcr.io/"${GITHUB_REPOSITORY_OWNER}"
+            helm push "${pkg}" oci://ghcr.io/"${GITHUB_REPOSITORY}"
             file=${pkg##*/}
             name=${file%-*}
             version=${file%.*}
             version=${version#*-}
-            cosign sign "ghcr.io/${GITHUB_REPOSITORY_OWNER}/${name}:${version}"
+            echo "Cosign package: ${GITHUB_REPOSITORY}/${name}:${version}"
+            cosign sign "ghcr.io/${GITHUB_REPOSITORY}/${name}:${version}"
           done
 
   # Update the generated timestamp in the index.yaml
