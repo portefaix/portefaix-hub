@@ -140,8 +140,6 @@ jobs:
             version=${version#*-}
             cosign sign "ghcr.io/${GITHUB_REPOSITORY_OWNER}/${name}:${version}"
           done
-        env:
-          HELM_EXPERIMENTAL_OCI: 1
 
   # Update the generated timestamp in the index.yaml
   # needed until https://github.com/helm/chart-releaser/issues/90
