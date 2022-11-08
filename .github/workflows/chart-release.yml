@@ -108,6 +108,14 @@ jobs:
           # If we didn't bump the chart version then we can skip the release
           CR_SKIP_EXISTING: true
 
+      - name: Install cosign
+        uses: sigstore/cosign-installer@v2.8.1
+        # with:
+        #   cosign-release: 'v1.13.0'
+
+      - name: Check Cosign
+        run: cosign version
+
       - name: Upload Helm Charts to Rekor
         run: |
           for chart in `find .cr-release-packages -name '*.tgz' -print`; do
@@ -121,12 +129,18 @@ jobs:
           HELM_EXPERIMENTAL_OCI: 1
 
       - name: Publish OCI Charts
-        run: |
-          for chart in `find .cr-release-packages -name '*.tgz' -print`; do
-            helm push ${chart} oci://ghcr.io/${GITHUB_REPOSITORY}
-          done
         env:
-          HELM_EXPERIMENTAL_OCI: 1
+          COSIGN_EXPERIMENTAL: 1
+        run: |
+          for pkg in `find .cr-release-packages -name '*.tgz' -print`; do
+            helm push "${pkg}" oci://ghcr.io/"${GITHUB_REPOSITORY}"
+            file=${pkg##*/}
+            name=${file%-*}
+            version=${file%.*}
+            version=${version#*-}
+            echo "Cosign package: ${GITHUB_REPOSITORY}/${name}:${version}"
+            cosign sign "ghcr.io/${GITHUB_REPOSITORY}/${name}:${version}"
+          done
 
   # Update the generated timestamp in the index.yaml
   # needed until https://github.com/helm/chart-releaser/issues/90
