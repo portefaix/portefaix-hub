@@ -55,7 +55,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}       
           args:
             - "-c"
-            - "/etc/unifi-poller/up.toml"
+            - "/etc/unifi-poller/config.toml"
           ports:
           - containerPort: {{ .Values.service.port }}
             name: http
