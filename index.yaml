@@ -8352,4 +8352,42 @@ entries:
     urls:
     - https://github.com/nlamirault/portefaix-hub/releases/download/thanos-mixin-0.3.0/thanos-mixin-0.3.0.tgz
     version: 0.3.0
-generated: "2022-11-03T16:54:03.431993862Z"
+  unifi-poller:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Initialize chart
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Unifi Poller
+          url: https://github.com/unifi-poller/unifi-poller
+        - name: Portefaix charts
+          url: https://github.com/portefaix/portefaix-hub
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.1.8
+    created: "2022-11-14T11:20:21.825074702Z"
+    description: Unifi Poller
+    digest: 3e16b40843a6a5e41a18a017f686edf6998d246dd09113cc5127e8aa5cb04b3c
+    home: https://github.com/portefaix/portefaix-hub
+    keywords:
+    - unifi
+    - unifi-poller
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: unifi-poller
+    sources:
+    - https://github.com/unifi-poller/unifi-poller
+    - https://hub.docker.com/r/golift/unifi-poller
+    - https://github.com/portefaix/portefaix-hub
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
+    version: 0.1.0
+generated: "2022-11-14T11:20:21.8254594Z"
