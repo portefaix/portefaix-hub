@@ -1,0 +1,13 @@
+---
+apiVersion: v2
+description: A Helm chart for OpenCost
+name: opencost
+version: 0.1.0
+appVersion: v1.98.0
+home: https://github.com/opencost/opencost
+sources:
+- https://github.com/opencost/opencost
+- https://github.com/portefaix/portefaix-hub
+keywords:
+- opencost
+- prometheus
