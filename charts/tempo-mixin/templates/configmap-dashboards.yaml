@@ -10,6 +10,7 @@ items:
   kind: ConfigMap
   metadata:
     name: {{ printf "dashboard-tempo-mixin-%s" $dashboardName | trunc 63 | trimSuffix "-" }}
+    namespace: {{ include "tempo-mixin.namespace" $ }}
     annotations:
       grafana-folder: {{ $.Values.grafana.folder }}
       {{- include "tempo-mixin.annotations" $ | indent 6 }}
