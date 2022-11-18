@@ -20,6 +20,9 @@ on:
       # version:
       #   description: "Monitoring Mixins version"
       #   required: true
+      mixins:
+        description: "Monitoring-Mixins release"
+        required: true
       loglevel:
         description: "Log level"
         required: true
@@ -62,7 +65,7 @@ jobs:
     - name: Alertmanager Mixin
       id: alertmanager-mixin
       run: |
-        poetry run ./hack/mixins.py alertmanager-mixin --log ${{ github.event.inputs.loglevel }}
+        poetry run ./hack/mixins.py alertmanager-mixin --release ${{ github.event.inputs.mixins }}--log ${{ github.event.inputs.loglevel }}
     
     - name: Create pull request for charts updates
       id: cpr
