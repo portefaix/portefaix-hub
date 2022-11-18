@@ -31,9 +31,6 @@ import requests
 
 MIXIN_REPOSITORY = "https://github.com/nlamirault/monitoring-mixins"
 
-#datasource=github-tags depName=nlamirault/monitoring-mixins
-# mixins_version = "v0.24.0"
-
 
 logger = logging.getLogger(__name__)
 
