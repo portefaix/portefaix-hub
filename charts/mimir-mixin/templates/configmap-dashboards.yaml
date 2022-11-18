@@ -10,6 +10,7 @@ items:
   kind: ConfigMap
   metadata:
     name: {{ printf "dashboard-mimir-mixin-%s" $dashboardName | trunc 63 | trimSuffix "-" }}
+    namespace: {{ include "mimir-mixin.namespace" $ }}
     annotations:
       grafana-folder: {{ $.Values.grafana.folder }}
       {{- include "mimir-mixin.annotations" $ | indent 6 }}
