@@ -6268,6 +6268,43 @@ entries:
   promtail-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Monitoring Mixins v1.0.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: promtail
+          url: https://grafana.com/docs/promtail/latest/clients/promtail/
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.3.0
+    created: "2022-11-18T15:54:43.655594681Z"
+    description: A Helm chart for Promtail Mixin
+    digest: 768613f310aa565ddc882144606f287668684bedb2ce27107aa1347f3cbe85b6
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    keywords:
+    - promtail
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: promtail-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/promtail-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/promtail-mixin-1.2.0/promtail-mixin-1.2.0.tgz
+    version: 1.2.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fix
           description: Normalise dashboards ConfigMaps using ConfigMapList
       artifacthub.io/license: Apache-2.0
@@ -8390,4 +8427,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-14T11:20:21.8254594Z"
+generated: "2022-11-18T15:54:43.656101285Z"
