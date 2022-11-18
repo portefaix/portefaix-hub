@@ -51,4 +51,3 @@ annotations:
   artifacthub.io/changes: |
     - kind: added
       description: Initialize chart
-
