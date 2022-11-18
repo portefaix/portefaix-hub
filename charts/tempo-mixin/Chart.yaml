@@ -24,8 +24,8 @@ keywords:
   - tempo
   - monitoring-mixin
   - portefaix
-version: 1.0.4
-appVersion: 1.4.0
+version: 1.1.0
+appVersion: 1.5.0
 
 maintainers:
   - name: nlamirault
@@ -48,5 +48,5 @@ annotations:
     fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
-    - kind: fixed
-      description: Normalise dashboards ConfigMaps using ConfigMapList
+    - kind: changed
+      description: Monitoring Mixins v1.0.0
