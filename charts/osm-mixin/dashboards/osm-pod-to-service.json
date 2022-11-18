@@ -839,7 +839,9 @@
     "style": "dark",
     "tags": [
         "osm",
-        "osm-mixin"
+        "osm-mixin",
+        "service-mesh",
+        "portefaix"
     ],
     "templating": {
         "list": [
