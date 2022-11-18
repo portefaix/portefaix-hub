@@ -24,7 +24,7 @@ keywords:
   - kubernetes
   - monitoring-mixin
   - portefaix
-version: 1.1.0
+version: 1.2.0
 appVersion: 2.0.0
 
 maintainers:
@@ -49,4 +49,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: Additional labels and annotations
+      description: Monitoring Mixins v1.0.0
