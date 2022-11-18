@@ -104,7 +104,6 @@ jobs:
       matrix:
         k8s:
           # from https://hub.docker.com/r/kindest/node/tags
-          - v1.20.0
           - v1.21.1
           - v1.22.0
           - v1.23.0
