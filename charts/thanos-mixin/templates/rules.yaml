@@ -5,9 +5,12 @@ metadata:
   name: {{ printf "%s-%s" (include "thanos-mixin.fullname" .) "rules" | trunc 63 | trimSuffix "-" }}
   namespace: {{ include "thanos-mixin.namespace" . }}
   annotations:
-{{ include "thanos-mixin.annotations" . | indent 4 }}
+    {{- include "thanos-mixin.annotations" . | indent 4 }}
   labels:
-{{ include "thanos-mixin.labels" . | indent 4 }}
+    {{- include "thanos-mixin.labels" . | indent 4 }}
+    {{- if .Values.monitor.additionalLabels }}
+    {{- toYaml .Values.monitor.additionalLabels | nindent 4 }}
+    {{- end }}
 spec:
   groups:
   - name: thanos-query.rules

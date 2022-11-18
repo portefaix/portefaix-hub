@@ -10,6 +10,7 @@ items:
   kind: ConfigMap
   metadata:
     name: {{ printf "dashboard-thanos-mixin-%s" $dashboardName | trunc 63 | trimSuffix "-" }}
+    namespace: {{ include "thanos-mixin.namespace" $ }}
     annotations:
       grafana-folder: {{ $.Values.grafana.folder }}
       {{- include "thanos-mixin.annotations" $ | indent 6 }}
