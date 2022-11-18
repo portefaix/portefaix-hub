@@ -3362,6 +3362,45 @@ entries:
   loki-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Monitoring Mixins v1.0.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: loki
+          url: https://grafana.com/oss/loki/
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.7.0
+    created: "2022-11-18T16:25:21.447725481Z"
+    description: A Helm chart for Loki Mixin
+    digest: 33f78aa7cda91689056c0141896005608ec45891da8f7c6ab3b011ea167a4a1f
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    keywords:
+    - loki
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: loki-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/loki-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/loki-mixin-1.2.0/loki-mixin-1.2.0.tgz
+    version: 1.2.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fix
           description: Normalise dashboards ConfigMaps using ConfigMapList
       artifacthub.io/license: Apache-2.0
@@ -8546,4 +8585,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-18T16:24:39.318167486Z"
+generated: "2022-11-18T16:25:21.448780982Z"
