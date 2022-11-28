@@ -48,7 +48,7 @@ jobs:
         python-version: ${{ github.event.inputs.python-version }}
 
     - name: Run image
-      uses: abatilo/actions-poetry@v2.1.6
+      uses: abatilo/actions-poetry@v2.2.0
       with:
         poetry-version: ${{ github.event.inputs.poetry-version }}
 
@@ -105,7 +105,7 @@ jobs:
         python-version: ${{ github.event.inputs.python-version }}
 
     - name: Run image
-      uses: abatilo/actions-poetry@v2.1.6
+      uses: abatilo/actions-poetry@v2.2.0
       with:
         poetry-version: ${{ github.event.inputs.poetry-version }}
 
@@ -162,7 +162,7 @@ jobs:
         python-version: ${{ github.event.inputs.python-version }}
 
     - name: Run image
-      uses: abatilo/actions-poetry@v2.1.6
+      uses: abatilo/actions-poetry@v2.2.0
       with:
         poetry-version: ${{ github.event.inputs.poetry-version }}
 
@@ -219,7 +219,7 @@ jobs:
         python-version: ${{ github.event.inputs.python-version }}
 
     - name: Run image
-      uses: abatilo/actions-poetry@v2.1.6
+      uses: abatilo/actions-poetry@v2.2.0
       with:
         poetry-version: ${{ github.event.inputs.poetry-version }}
 
@@ -276,7 +276,7 @@ jobs:
         python-version: ${{ github.event.inputs.python-version }}
 
     - name: Run image
-      uses: abatilo/actions-poetry@v2.1.6
+      uses: abatilo/actions-poetry@v2.2.0
       with:
         poetry-version: ${{ github.event.inputs.poetry-version }}
 
@@ -333,7 +333,7 @@ jobs:
         python-version: ${{ github.event.inputs.python-version }}
 
     - name: Run image
-      uses: abatilo/actions-poetry@v2.1.6
+      uses: abatilo/actions-poetry@v2.2.0
       with:
         poetry-version: ${{ github.event.inputs.poetry-version }}
 
@@ -390,7 +390,7 @@ jobs:
         python-version: ${{ github.event.inputs.python-version }}
 
     - name: Run image
-      uses: abatilo/actions-poetry@v2.1.6
+      uses: abatilo/actions-poetry@v2.2.0
       with:
         poetry-version: ${{ github.event.inputs.poetry-version }}
 
@@ -447,7 +447,7 @@ jobs:
         python-version: ${{ github.event.inputs.python-version }}
 
     - name: Run image
-      uses: abatilo/actions-poetry@v2.1.6
+      uses: abatilo/actions-poetry@v2.2.0
       with:
         poetry-version: ${{ github.event.inputs.poetry-version }}
 
@@ -504,7 +504,7 @@ jobs:
         python-version: ${{ github.event.inputs.python-version }}
 
     - name: Run image
-      uses: abatilo/actions-poetry@v2.1.6
+      uses: abatilo/actions-poetry@v2.2.0
       with:
         poetry-version: ${{ github.event.inputs.poetry-version }}
 
@@ -561,7 +561,7 @@ jobs:
         python-version: ${{ github.event.inputs.python-version }}
 
     - name: Run image
-      uses: abatilo/actions-poetry@v2.1.6
+      uses: abatilo/actions-poetry@v2.2.0
       with:
         poetry-version: ${{ github.event.inputs.poetry-version }}
 
@@ -618,7 +618,7 @@ jobs:
         python-version: ${{ github.event.inputs.python-version }}
 
     - name: Run image
-      uses: abatilo/actions-poetry@v2.1.6
+      uses: abatilo/actions-poetry@v2.2.0
       with:
         poetry-version: ${{ github.event.inputs.poetry-version }}
 
@@ -675,7 +675,7 @@ jobs:
         python-version: ${{ github.event.inputs.python-version }}
 
     - name: Run image
-      uses: abatilo/actions-poetry@v2.1.6
+      uses: abatilo/actions-poetry@v2.2.0
       with:
         poetry-version: ${{ github.event.inputs.poetry-version }}
 
@@ -732,7 +732,7 @@ jobs:
         python-version: ${{ github.event.inputs.python-version }}
 
     - name: Run image
-      uses: abatilo/actions-poetry@v2.1.6
+      uses: abatilo/actions-poetry@v2.2.0
       with:
         poetry-version: ${{ github.event.inputs.poetry-version }}
 
@@ -789,7 +789,7 @@ jobs:
         python-version: ${{ github.event.inputs.python-version }}
 
     - name: Run image
-      uses: abatilo/actions-poetry@v2.1.6
+      uses: abatilo/actions-poetry@v2.2.0
       with:
         poetry-version: ${{ github.event.inputs.poetry-version }}
 
@@ -846,7 +846,7 @@ jobs:
         python-version: ${{ github.event.inputs.python-version }}
 
     - name: Run image
-      uses: abatilo/actions-poetry@v2.1.6
+      uses: abatilo/actions-poetry@v2.2.0
       with:
         poetry-version: ${{ github.event.inputs.poetry-version }}
 
@@ -903,7 +903,7 @@ jobs:
         python-version: ${{ github.event.inputs.python-version }}
 
     - name: Run image
-      uses: abatilo/actions-poetry@v2.1.6
+      uses: abatilo/actions-poetry@v2.2.0
       with:
         poetry-version: ${{ github.event.inputs.poetry-version }}
 
@@ -960,7 +960,7 @@ jobs:
         python-version: ${{ github.event.inputs.python-version }}
 
     - name: Run image
-      uses: abatilo/actions-poetry@v2.1.6
+      uses: abatilo/actions-poetry@v2.2.0
       with:
         poetry-version: ${{ github.event.inputs.poetry-version }}
 
@@ -1017,7 +1017,7 @@ jobs:
         python-version: ${{ github.event.inputs.python-version }}
 
     - name: Run image
-      uses: abatilo/actions-poetry@v2.1.6
+      uses: abatilo/actions-poetry@v2.2.0
       with:
         poetry-version: ${{ github.event.inputs.poetry-version }}
 
