@@ -86,7 +86,7 @@ jobs:
 
       - name: Build release changelog
         id: github_release
-        uses: mikepenz/release-changelog-builder-action@v3.4.0
+        uses: mikepenz/release-changelog-builder-action@v3.5.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
