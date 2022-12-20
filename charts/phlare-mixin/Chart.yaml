@@ -14,6 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+---
 apiVersion: v2
 name: phlare-mixin
 description: A Helm chart for Grafana Phlare mixin
