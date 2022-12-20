@@ -1,0 +1,77 @@
+# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+---
+apiVersion: ec2.services.k8s.aws/v1alpha1
+kind: InternetGateway
+metadata:
+  {{- with .Values.additionalAnnotations }}
+  annotations:
+  {{ toYaml . | indent 4 }}
+  {{- end }}
+  labels:
+    {{- include "ack-factory.labels" . | nindent 4 }}
+  name: portefaix-krm-ack
+  namespace: {{ template "ack-factory.namespace" . }}
+spec:
+  vpcRef:
+    from:
+      name: portefaix-krm-ack
+---
+apiVersion: ec2.services.k8s.aws/v1alpha1
+kind: NATGateway
+metadata:
+  {{- with .Values.additionalAnnotations }}
+  annotations:
+  {{ toYaml . | indent 4 }}
+  {{- end }}
+  labels:
+    {{- include "ack-factory.labels" . | nindent 4 }}
+  name: portefaix-krm-ack
+  namespace: {{ template "ack-factory.namespace" . }}
+spec:
+  allocationRef: # Elastic IP Address
+    from:
+      name: portefaix-krm-ack
+  subnetRef:
+    from:
+      name: portefaix-krm-ack-private
+  connectivityType: "public"
+---
+apiVersion: ec2.services.k8s.aws/v1alpha1
+kind: RouteTable
+metadata:
+  {{- with .Values.additionalAnnotations }}
+  annotations:
+  {{ toYaml . | indent 4 }}
+  {{- end }}
+  labels:
+    {{- include "ack-factory.labels" . | nindent 4 }}
+  name: portefaix-krm-ack
+  namespace: {{ template "ack-factory.namespace" . }}
+spec:
+  routes:
+    - destinationCIDRBlock: 10.10.1.0/24
+      gatewayRef:
+        from:
+          name: portefaix-krm-ack
+    - destinationCIDRBlock: 10.10.2.0/24
+      natGatewayRef:
+        from:
+          name: portefaix-krm-ack
+  vpcRef:
+    from:
+      name: portefaix-krm-ack
