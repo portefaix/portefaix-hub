@@ -16,6 +16,37 @@ An AWS Factory using AWS Controllers for Kubernetes
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| ack.ecr[0] | object | `{"name":"charts"}` | ECR repositories |
+| ack.ecr[1].name | string | `"containers"` |  |
+| ack.eks.nodegroups.core.amiType | string | `"AL2_x86_64"` |  |
+| ack.eks.nodegroups.core.capacityTypes[0] | string | `"SPOT"` |  |
+| ack.eks.nodegroups.core.diskSize | int | `50` |  |
+| ack.eks.nodegroups.core.instanceTypes[0] | string | `"t3.large"` |  |
+| ack.eks.nodegroups.core.scalingConfig.desiredSize | int | `1` |  |
+| ack.eks.nodegroups.core.scalingConfig.maxSize | int | `3` |  |
+| ack.eks.nodegroups.core.scalingConfig.minSize | int | `1` |  |
+| ack.eks.nodegroups.core.updateConfig.maxUnavailable | int | `1` |  |
+| ack.eks.nodegroups.core.updateConfig.maxUnavailablePercentage | int | `50` |  |
+| ack.eks.nodegroups.ops.amiType | string | `"AL2_x86_64"` |  |
+| ack.eks.nodegroups.ops.capacityTypes[0] | string | `"SPOT"` |  |
+| ack.eks.nodegroups.ops.diskSize | int | `50` |  |
+| ack.eks.nodegroups.ops.instanceTypes[0] | string | `"t3.large"` |  |
+| ack.eks.nodegroups.ops.scalingConfig.desiredSize | int | `1` |  |
+| ack.eks.nodegroups.ops.scalingConfig.maxSize | int | `3` |  |
+| ack.eks.nodegroups.ops.scalingConfig.minSize | int | `1` |  |
+| ack.eks.nodegroups.ops.updateConfig.maxUnavailable | int | `1` |  |
+| ack.eks.nodegroups.ops.updateConfig.maxUnavailablePercentage | int | `50` |  |
+| ack.eks.subnet.cluster | string | `"public"` |  |
+| ack.eks.subnet.node | string | `"private"` |  |
+| ack.eks.version | float | `1.23` |  |
+| ack.gateway.routes.gateway | string | `"10.10.1.0/24"` |  |
+| ack.gateway.routes.natGateway | string | `"10.10.2.0/24"` |  |
+| ack.gateway.subnet | string | `"private"` |  |
+| ack.subnets[0].cidrBlock | string | `"10.10.1.0/24"` |  |
+| ack.subnets[0].name | string | `"public"` |  |
+| ack.subnets[1].cidrBlock | string | `"10.10.2.0/24"` |  |
+| ack.subnets[1].name | string | `"private"` |  |
+| ack.vpc.cidr | string | `"10.10.0.0/16"` |  |
 | additionalAnnotations | object | `{}` | Additional annotations to add to all resources |
 | additionalLabels | object | `{}` | Additional labels to add to all resources |
 
