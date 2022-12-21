@@ -22,7 +22,14 @@
       "matchStrings": [
         "datasource=(?<datasource>.*)\\sdepName=(?<depName>.*)\\n.*version:\\s(?<currentValue>.*)"
       ]
-    }
+    },
+    {
+      "fileMatch": [".yml$"],
+      "matchStrings": [
+        "datasource=(?<datasource>.*)\\sdepName=(?<depName>.*)\\n.*_VERSION\\s=\\s(?<currentValue>.*)"
+      ],
+      "datasourceTemplate": "github-tags"
+    },
   ],
   "packageRules": [
     // Labels for Docker
