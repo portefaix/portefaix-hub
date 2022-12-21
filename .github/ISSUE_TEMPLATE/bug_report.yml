@@ -19,7 +19,7 @@ description: Create a report to help us improve
 title: "[name of the chart e.g. portefaix-kyverno] Issue Title"
 labels: [kind/bug, needs/priority, needs/triage]
 assignees:
-  - 
+  -
 body:
   - type: markdown
     attributes:
@@ -37,7 +37,7 @@ body:
     attributes:
       label: What's your helm version?
       description: Enter the output of `$ helm version`
-      placeholder: Copy paste the entire output of the above 
+      placeholder: Copy paste the entire output of the above
     validations:
       required: true
   - type: input
