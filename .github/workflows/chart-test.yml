@@ -45,19 +45,17 @@ jobs:
       - name: Fetch history
         run: git fetch --prune --unshallow
 
-      - name: Run chart-testing (lint)
-        id: lint
+      - name: Setup chart-testing
         uses: helm/chart-testing-action@v2.3.1
 
-      - name: Run chart-testing (list-changed)
-        id: list-changed
+      - name: List changed
         run: |
           changed=$(ct list-changed --config .github/ct.yaml)
           if [[ -n "$changed" ]]; then
             echo "::set-output name=changed::true"
           fi
 
-      - name: Run chart-testing (lint)
+      - name: Lint
         run: |
           ct lint --config .github/ct.yaml
 
@@ -132,6 +130,7 @@ jobs:
         run: |
           # Prometheus Operator CRDs
 
+          # datasource=github-tags depName=prometheus-operator/prometheus-operator
           PROM_OPERATOR_VERSION=v0.61.0
           kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/${PROM_OPERATOR_VERSION}/example/prometheus-operator-crd/monitoring.coreos.com_alertmanagerconfigs.yaml
           kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/${PROM_OPERATOR_VERSION}/example/prometheus-operator-crd/monitoring.coreos.com_alertmanagers.yaml
@@ -157,21 +156,27 @@ jobs:
           sleep 10
 
           # ACK
-          helm upgrade --install --create-namespace --namespace ack-system ack-ec2-controller \
-            oci://public.ecr.aws/aws-controllers-k8s/ec2-chart \
-            -f krm/ack/ec2-values.yaml
-          helm upgrade --install --create-namespace --namespace ack-system ack-ecr-controller \
-            oci://public.ecr.aws/aws-controllers-k8s/ecr-chart \
-            -f krm/ack/ecr-values.yaml
-          helm upgrade --install --create-namespace --namespace ack-system ack-eks-controller \
-            oci://public.ecr.aws/aws-controllers-k8s/eks-chart \
-            -f krm/ack/eks-values.yaml
-          helm upgrade --install --create-namespace --namespace ack-system ack-iam-controller \
-            oci://public.ecr.aws/aws-controllers-k8s/iam-chart \
-            -f krm/ack/iam-values.yaml
-          helm upgrade --install --create-namespace --namespace ack-system ack-s3-controller \
-            oci://public.ecr.aws/aws-controllers-k8s/s3-chart \
-            -f krm/ack/s3-values.yaml
+          ACK_SYSTEM_NAMESPACE = ack-system
+          # datasource=github-tags depName=aws-controllers-k8s/ec2-controller
+          ACK_EC2_VERSION = v0.1.0
+          # datasource=github-tags depName=aws-controllers-k8s/ecr-controller
+          ACK_ECR_VERSION = v0.1.8
+          # datasource=github-tags depName=aws-controllers-k8s/eks-controller
+          ACK_EKS_VERSION = v0.1.7
+          # datasource=github-tags depName=aws-controllers-k8s/iam-controller
+          ACK_IAM_VERSION = v0.1.1
+          # datasource=github-tags depName=aws-controllers-k8s/s3-controller
+          ACK_S3_VERSION = v0.1.6
+          helm upgrade --install --create-namespace --namespace $(ACK_SYSTEM_NAMESPACE) ack-ec2-controller \
+            oci://public.ecr.aws/aws-controllers-k8s/ec2-chart --version=v$(ACK_EC2_VERSION)
+          helm upgrade --install --create-namespace --namespace $(ACK_SYSTEM_NAMESPACE) ack-ecr-controller \
+            oci://public.ecr.aws/aws-controllers-k8s/ecr-chart --version=v$(ACK_ECR_VERSION)
+          helm upgrade --install --create-namespace --namespace $(ACK_SYSTEM_NAMESPACE) ack-eks-controller \
+            oci://public.ecr.aws/aws-controllers-k8s/eks-chart --version=v$(ACK_EKS_VERSION)
+          helm upgrade --install --create-namespace --namespace $(ACK_SYSTEM_NAMESPACE) ack-iam-controller \
+            oci://public.ecr.aws/aws-controllers-k8s/iam-chart --version=v$(ACK_IAM_VERSION)
+          helm upgrade --install --create-namespace --namespace $(ACK_SYSTEM_NAMESPACE) ack-s3-controller \
+            oci://public.ecr.aws/aws-controllers-k8s/s3-chart --version=v$(ACK_S3_VERSION)
           sleep 10
 
       - name: Run chart-testing (install)
