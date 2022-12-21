@@ -25,6 +25,11 @@ chart-repos:
   - banzaicloud=https://kubernetes-charts.banzaicloud.com
   - kyverno=https://kyverno.github.io/kyverno/
   - crossplane-stable=https://charts.crossplane.io/stable
+  - ec2-chart=oci://public.ecr.aws/aws-controllers-k8s/ec2-chart
+  - ecr-chart=oci://public.ecr.aws/aws-controllers-k8s/ecr-chart
+  - eks-chart=oci://public.ecr.aws/aws-controllers-k8s/eks-chart
+  - iam-chart=oci://public.ecr.aws/aws-controllers-k8s/iam-chart
+  - s3-chart=oci://public.ecr.aws/aws-controllers-k8s/s3-chart
 helm-extra-args: --timeout 600s
 # excluded-charts:
   # If not running on GCE, will error: "Failed to get GCE config"
