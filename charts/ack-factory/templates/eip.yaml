@@ -24,7 +24,7 @@ metadata:
   {{- end }}
   labels:
     {{- include "ack-factory.labels" . | nindent 4 }}
-  name: portefaix-krm-ack
+  name: {{ include "ack-factory.name" . }}
   namespace: {{ template "ack-factory.namespace" . }}
 spec:
   domain: vpc

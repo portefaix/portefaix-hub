@@ -24,12 +24,12 @@ metadata:
   {{- end }}
   labels:
     {{- include "ack-factory.labels" . | nindent 4 }}
-  name: portefaix-krm-ack
+  name: {{ include "ack-factory.name" . }}
   namespace: {{ template "ack-factory.namespace" . }}
 spec:
   vpcRef:
     from:
-      name: portefaix-krm-ack
+      name: {{ include "ack-factory.name" . }}
 ---
 apiVersion: ec2.services.k8s.aws/v1alpha1
 kind: NATGateway
@@ -40,15 +40,15 @@ metadata:
   {{- end }}
   labels:
     {{- include "ack-factory.labels" . | nindent 4 }}
-  name: portefaix-krm-ack
+  name: {{ include "ack-factory.name" . }}
   namespace: {{ template "ack-factory.namespace" . }}
 spec:
   allocationRef: # Elastic IP Address
     from:
-      name: portefaix-krm-ack
+      name: {{ include "ack-factory.name" . }}
   subnetRef:
     from:
-      name: portefaix-krm-ack-private
+      name: {{ include "ack-factory.name" . }}-{{ .Values.ack.gateway.subnet }}
   connectivityType: "public"
 ---
 apiVersion: ec2.services.k8s.aws/v1alpha1
@@ -60,18 +60,18 @@ metadata:
   {{- end }}
   labels:
     {{- include "ack-factory.labels" . | nindent 4 }}
-  name: portefaix-krm-ack
+  name: {{ include "ack-factory.name" . }}
   namespace: {{ template "ack-factory.namespace" . }}
 spec:
   routes:
-    - destinationCIDRBlock: 10.10.1.0/24
+    - destinationCIDRBlock: {{ .Values.ack.gateway.routes.gateway }}
       gatewayRef:
         from:
-          name: portefaix-krm-ack
-    - destinationCIDRBlock: 10.10.2.0/24
+          name: {{ include "ack-factory.name" . }}
+    - destinationCIDRBlock: {{ .Values.ack.gateway.routes.natGateway }}
       natGatewayRef:
         from:
-          name: portefaix-krm-ack
+          name: {{ include "ack-factory.name" . }}
   vpcRef:
     from:
-      name: portefaix-krm-ack
+      name: {{ include "ack-factory.name" . }}

@@ -24,11 +24,11 @@ metadata:
   {{- end }}
   labels:
     {{- include "ack-factory.labels" . | nindent 4 }}
-  name: portefaix-krm-ack-core
+  name: {{ include "ack-factory.name" . }}-core
   namespace: {{ template "ack-factory.namespace" . }}
 spec:
   description: Portefaix Core
-  name: portefaix-krm-ack-core
+  name: {{ include "ack-factory.name" . }}-core
   vpcRef:
     from:
-      name: portefaix-krm-ack
+      name: {{ include "ack-factory.name" . }}

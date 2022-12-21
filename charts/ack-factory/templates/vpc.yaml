@@ -18,9 +18,9 @@
 apiVersion: ec2.services.k8s.aws/v1alpha1
 kind: VPC
 metadata:
-  name: portefaix-krm-ack
+  name: {{ include "ack-factory.name" . }}
 spec:
-  cidrBlock: 10.10.0.0/16
+  cidrBlock: {{ .Values.ack.vpc.cidr }}
   enableDNSSupport: true
   enableDNSHostnames: true
   instanceTenancy: "default"

@@ -24,10 +24,10 @@ metadata:
   {{- end }}
   labels:
     {{- include "ack-factory.labels" . | nindent 4 }}
-  name: portefaix-krm-ack
+  name: {{ include "ack-factory.name" . }}
   namespace: {{ template "ack-factory.namespace" . }}
 spec:
-  name: portefaix-krm-ack
+  name: {{ include "ack-factory.name" . }}
   versioning:
     status: Enabled
   encryption:
@@ -45,7 +45,7 @@ spec:
   #       storageClass: "GLACIER"
   logging:
     loggingEnabled:
-      targetBucket: portefaix-krm-ack
+      targetBucket: {{ include "ack-factory.name" . }}
       targetPrefix: "logging-"
   publicAccessBlock:
     blockPublicACLs: true

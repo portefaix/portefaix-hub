@@ -24,13 +24,13 @@ metadata:
   {{- end }}
   labels:
     {{- include "ack-factory.labels" . | nindent 4 }}
-  name: portefaix-krm-ack-eks-cluster
+  name: {{ include "ack-factory.name" . }}-eks-cluster
   namespace: {{ template "ack-factory.namespace" . }}
 spec:
-  name: portefaix-krm-ack-eks-cluster
+  name: {{ include "ack-factory.name" . }}-eks-cluster
   roleRef:
     from:
-      name: portefaix-krm-ack-eks-cluster
+      name: {{ include "ack-factory.name" . }}-eks-cluster
   resourcesVPCConfig:
     endpointPrivateAccess: true
     endpointPublicAccess: false
@@ -39,8 +39,8 @@ spec:
     #     name: XXXX
     subnetRefs:
       - from:
-          name: portefaix-krm-ack-public
-  version: 1.23
+          name: {{ include "ack-factory.name" . }}-{{ .Values.ack.eks.subnet.cluster }}
+  version: {{ .Values.ack.eks.version }}
 ---
 apiVersion: eks.services.k8s.aws/v1alpha1
 kind: Nodegroup
@@ -51,28 +51,27 @@ metadata:
   {{- end }}
   labels:
     {{- include "ack-factory.labels" . | nindent 4 }}
-  name: portefaix-krm-ack-core
+  name: {{ include "ack-factory.name" . }}-core
   namespace: {{ template "ack-factory.namespace" . }}
 spec:
-  name: portefaix-krm-ack-core
-  clusterName: portefaix-krm-ack-eks-cluster
+  name: {{ include "ack-factory.name" . }}-core
+  clusterName: {{ include "ack-factory.name" . }}-eks-cluster
   roleRef:
     from:
-      name: portefaix-krm-ack-eks-node
-  amiType: AL2_x86_64
-  diskSize: 50
+      name: {{ include "ack-factory.name" . }}-eks-node
+  amiType: {{ .Values.ack.eks.nodegroups.core.amiType }}
+  diskSize: {{ .Values.ack.eks.nodegroups.core.diskSize }}
   instanceTypes:
-  - "t3.large"
+  {{- toYaml .Values.ack.eks.nodegroups.core.instanceTypes | nindent 4 }}
+  capacityTypes:
+  {{- toYaml .Values.ack.eks.nodegroups.core.capacityTypes | nindent 4 }}
   subnetRefs:
     - from:
-        name: portefaix-krm-ack-private
+        name: {{ include "ack-factory.name" . }}-{{ .Values.ack.eks.subnet.node }}
   scalingConfig:
-    minSize: 1
-    maxSize: 3
-    desiredSize: 1
+  {{- toYaml .Values.ack.eks.nodegroups.core.scalingConfig | nindent 4 }}
   updateConfig:
-    maxUnavailable: 1
-    maxUnavailablePercentage: 50
+  {{- toYaml .Values.ack.eks.nodegroups.core.updateConfig | nindent 4 }}
 ---
 apiVersion: eks.services.k8s.aws/v1alpha1
 kind: Nodegroup
@@ -83,29 +82,26 @@ metadata:
   {{- end }}
   labels:
     {{- include "ack-factory.labels" . | nindent 4 }}
-  name: portefaix-krm-ack-ops
+  name: {{ include "ack-factory.name" . }}-ops
   namespace: {{ template "ack-factory.namespace" . }}
 spec:
-  name: portefaix-krm-ack-ops
-  clusterName: portefaix-krm-ack-eks-cluster
+  name: {{ include "ack-factory.name" . }}-ops
+  clusterName: {{ include "ack-factory.name" . }}-eks-cluster
   nodeRoleRef:
     from:
-      name: portefaix-krm-ack-eks-node
-  amiType: AL2_x86_64
-  diskSize: 50
+      name: {{ include "ack-factory.name" . }}-eks-node
+  amiType: {{ .Values.ack.eks.nodegroups.core.amiType }}
+  diskSize: {{ .Values.ack.eks.nodegroups.core.diskSize }}
   instanceTypes:
-  - "t3.large"
+  {{- toYaml .Values.ack.eks.nodegroups.ops.instanceTypes | nindent 4 }}
   capacityTypes:
-  - "SPOT"
+  {{- toYaml .Values.ack.eks.nodegroups.ops.capacityTypes | nindent 4 }}
   subnetRefs:
-      - name: portefaix-krm-ack-private
+      - name: {{ include "ack-factory.name" . }}-{{ .Values.ack.eks.subnet.node }}
   scalingConfig:
-    minSize: 1
-    maxSize: 3
-    desiredSize: 1
+  {{- toYaml .Values.ack.eks.nodegroups.ops.scalingConfig | nindent 4 }}
   updateConfig:
-    maxUnavailable: 1
-    maxUnavailablePercentage: 50
+  {{- toYaml .Values.ack.eks.nodegroups.ops.updateConfig | nindent 4 }}
 ---
 apiVersion: eks.services.k8s.aws/v1alpha1
 kind: FargateProfile
@@ -116,14 +112,14 @@ metadata:
   {{- end }}
   labels:
     {{- include "ack-factory.labels" . | nindent 4 }}
-  name: portefaix-krm-ack
+  name: {{ include "ack-factory.name" . }}
   namespace: {{ template "ack-factory.namespace" . }}
 spec:
-  name: portefaix-krm-ack
-  clusterName: portefaix-krm-ack-eks-cluster
+  name: {{ include "ack-factory.name" . }}
+  clusterName: {{ include "ack-factory.name" . }}-eks-cluster
   # podExecutionRoleARN: $FARGATE_POD_ROLE
   subnetRefs:
-      - name: portefaix-krm-ack-private
+      - name: {{ include "ack-factory.name" . }}-{{ .Values.ack.eks.subnet.node }}
   selectors:
     labels: {}
     namespace: {{ template "ack-factory.namespace" . }}

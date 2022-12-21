@@ -14,37 +14,25 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+{{- $baseName := include "ack-factory.name" $ }}
+{{- $namespace := include "ack-factory.namespace" . }}
+{{ range .Values.ack.subnets }}
+{{- $subnetName := printf "%s-%s" $baseName .name -}}
 ---
 apiVersion: ec2.services.k8s.aws/v1alpha1
 kind: Subnet
 metadata:
-  {{- with .Values.additionalAnnotations }}
+  {{- with $.Values.additionalAnnotations }}
   annotations:
   {{ toYaml . | indent 4 }}
   {{- end }}
   labels:
-    {{- include "ack-factory.labels" . | nindent 4 }}
-  name: portefaix-krm-ack-public
-  namespace: {{ template "ack-factory.namespace" . }}
+    {{- include "ack-factory.labels" $ | nindent 4 }}
+  name: {{ $subnetName }}
+  namespace: {{ $namespace }}
 spec:
-  cidrBlock: 10.10.1.0/24
+  cidrBlock: {{ .cidrBlock }}
   vpcRef:
     from:
-      name: portefaix-krm-ack
----
-apiVersion: ec2.services.k8s.aws/v1alpha1
-kind: Subnet
-metadata:
-  {{- with .Values.additionalAnnotations }}
-  annotations:
-  {{ toYaml . | indent 4 }}
-  {{- end }}
-  labels:
-    {{- include "ack-factory.labels" . | nindent 4 }}
-  name: portefaix-krm-ack-private
-  namespace: {{ template "ack-factory.namespace" . }}
-spec:
-  cidrBlock: 10.10.2.0/24
-  vpcRef:
-    from:
-      name: portefaix-krm-ack
+      name: {{ include "ack-factory.name" $ }}
+{{ end }}

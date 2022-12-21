@@ -26,3 +26,55 @@ additionalLabels: {}
 # -- Additional annotations to add to all resources
 additionalAnnotations: {}
   # monitoring: portefaix
+
+ack:
+  vpc:
+    cidr: 10.10.0.0/16
+  subnets:
+    - name: public
+      cidrBlock: 10.10.1.0/24
+    - name: private
+      cidrBlock: 10.10.2.0/24
+  gateway:
+    subnet: private
+    routes:
+      gateway: 10.10.1.0/24
+      natGateway: 10.10.2.0/24
+  eks:
+    version: 1.23
+    subnet:
+      cluster: public
+      node: private
+    nodegroups:
+      core:
+        amiType: AL2_x86_64
+        diskSize: 50
+        capacityTypes:
+          - "SPOT"
+        instanceTypes:
+          - "t3.large"
+        scalingConfig:
+          minSize: 1
+          maxSize: 3
+          desiredSize: 1
+        updateConfig:
+          maxUnavailable: 1
+          maxUnavailablePercentage: 50
+      ops:
+        amiType: AL2_x86_64
+        diskSize: 50
+        capacityTypes:
+          - "SPOT"
+        instanceTypes:
+          - "t3.large"
+        scalingConfig:
+          minSize: 1
+          maxSize: 3
+          desiredSize: 1
+        updateConfig:
+          maxUnavailable: 1
+          maxUnavailablePercentage: 50
+  ecr:
+    # -- ECR repositories
+    - name: charts
+    - name: containers
