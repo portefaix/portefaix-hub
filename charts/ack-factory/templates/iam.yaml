@@ -29,7 +29,7 @@ metadata:
 spec:
   name: {{ include "ack-factory.name" . }}-eks-cluster
   description: Portefaix EKS cluster
-  maxSessionDuration: $MAX_SESSION_DURATION
+  maxSessionDuration: 3600
   policies:
   - arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
   - arn:aws:iam::aws:policy/AmazonEKSServicePolicy
@@ -64,7 +64,7 @@ metadata:
 spec:
   name: {{ include "ack-factory.name" . }}-eks-node
   description: Portefaix EKS node
-  maxSessionDuration: $MAX_SESSION_DURATION
+  maxSessionDuration: 3600
   policies:
   - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
   - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
