@@ -29,8 +29,8 @@ metadata:
 spec:
   name: {{ include "ack-factory.name" . }}-eks-cluster
   roleRef:
-    - from:
-        name: {{ include "ack-factory.name" . }}-eks-cluster
+    from:
+      name: {{ include "ack-factory.name" . }}-eks-cluster
   resourcesVPCConfig:
     endpointPrivateAccess: true
     endpointPublicAccess: false
