@@ -14,16 +14,16 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-name: "Project / Label PRs from globs"
-on:
-  schedule:
-  - cron: "0 * * * *"
-
-jobs:
-  execute:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: jpmcb/prow-github-actions@v1.1.3
-        with:
-          jobs: 'pr-labeler'
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+---
+apiVersion: ec2.services.k8s.aws/v1alpha1
+kind: VPC
+metadata:
+  name: {{ include "ack-factory.name" . }}
+spec:
+  cidrBlocks:
+    - {{ .Values.ack.vpc.cidr }}
+  enableDNSSupport: true
+  enableDNSHostnames: true
+  instanceTenancy: "default"
+  tags:
+  {{- toYaml .Values.ack.tags | nindent 4 }}

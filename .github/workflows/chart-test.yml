@@ -45,20 +45,19 @@ jobs:
       - name: Fetch history
         run: git fetch --prune --unshallow
 
-      - name: Run chart-testing (lint)
-        id: lint
+      - name: Setup chart-testing
         uses: helm/chart-testing-action@v2.3.1
 
-      - name: Run chart-testing (list-changed)
-        id: list-changed
+      - name: List changed
         run: |
           changed=$(ct list-changed --config .github/ct.yaml)
           if [[ -n "$changed" ]]; then
             echo "::set-output name=changed::true"
           fi
 
-      - name: Run chart-testing (lint)
-        run: ct lint --config .github/ct.yaml
+      - name: Lint
+        run: |
+          ct lint --config .github/ct.yaml
 
   # lint-docs:
   #   runs-on: ubuntu-latest
@@ -106,7 +105,6 @@ jobs:
       matrix:
         k8s:
           # from https://hub.docker.com/r/kindest/node/tags
-          - v1.21.1
           - v1.22.0
           - v1.23.0
           - v1.24.0
@@ -119,8 +117,8 @@ jobs:
 
       - name: Setup chart-testing
         uses: helm/chart-testing-action@v2.3.1
-        with:
-          version: v3.3.0
+        # with:
+        #   version: v3.3.0
 
       - name: Create kind ${{ matrix.k8s }} cluster
         uses: helm/kind-action@v1.5.0
@@ -131,27 +129,53 @@ jobs:
       - name: Install Helm dependencies
         run: |
           # Prometheus Operator CRDs
-          kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.50.0/example/prometheus-operator-crd/monitoring.coreos.com_alertmanagerconfigs.yaml
-          kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.50.0/example/prometheus-operator-crd/monitoring.coreos.com_alertmanagers.yaml
-          kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.50.0/example/prometheus-operator-crd/monitoring.coreos.com_podmonitors.yaml
-          kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.50.0/example/prometheus-operator-crd/monitoring.coreos.com_probes.yaml
-          kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.50.0/example/prometheus-operator-crd/monitoring.coreos.com_prometheuses.yaml
-          kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.50.0/example/prometheus-operator-crd/monitoring.coreos.com_prometheusrules.yaml
-          kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.50.0/example/prometheus-operator-crd/monitoring.coreos.com_servicemonitors.yaml
-          kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.50.0/example/prometheus-operator-crd/monitoring.coreos.com_thanosrulers.yaml
+
+          # datasource=github-tags depName=prometheus-operator/prometheus-operator
+          PROM_OPERATOR_VERSION=v0.61.0
+          kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/${PROM_OPERATOR_VERSION}/example/prometheus-operator-crd/monitoring.coreos.com_alertmanagerconfigs.yaml
+          kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/${PROM_OPERATOR_VERSION}/example/prometheus-operator-crd/monitoring.coreos.com_alertmanagers.yaml
+          kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/${PROM_OPERATOR_VERSION}/example/prometheus-operator-crd/monitoring.coreos.com_podmonitors.yaml
+          kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/${PROM_OPERATOR_VERSION}/example/prometheus-operator-crd/monitoring.coreos.com_probes.yaml
+          kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/${PROM_OPERATOR_VERSION}/example/prometheus-operator-crd/monitoring.coreos.com_prometheuses.yaml
+          kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/${PROM_OPERATOR_VERSION}/example/prometheus-operator-crd/monitoring.coreos.com_prometheusrules.yaml
+          kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/${PROM_OPERATOR_VERSION}/example/prometheus-operator-crd/monitoring.coreos.com_servicemonitors.yaml
+          kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/${PROM_OPERATOR_VERSION}/example/prometheus-operator-crd/monitoring.coreos.com_thanosrulers.yaml
 
           # Kyverno
           helm repo add kyverno https://kyverno.github.io/kyverno/
           helm repo update
-          helm install my-kyverno-crds kyverno/kyverno-crds --version 2.0.2
+          helm install my-kyverno kyverno/kyverno --namespace kyverno --create-namespace
           sleep 10
           kubectl get crds
-          helm install my-kyverno kyverno/kyverno --namespace kyverno --create-namespace --version 2.0.2
 
           # Crossplane
           helm repo add crossplane-stable https://charts.crossplane.io/stable
           helm repo update
           helm install crossplane --namespace crossplane-system crossplane-stable/crossplane --create-namespace
+          sleep 10
+
+          # ACK
+          export ACK_SYSTEM_NAMESPACE=ack-system
+          # datasource=github-tags depName=aws-controllers-k8s/ec2-controller
+          export ACK_EC2_VERSION=v0.1.0
+          # datasource=github-tags depName=aws-controllers-k8s/ecr-controller
+          export ACK_ECR_VERSION=v0.1.8
+          # datasource=github-tags depName=aws-controllers-k8s/eks-controller
+          export ACK_EKS_VERSION=v0.1.7
+          # datasource=github-tags depName=aws-controllers-k8s/iam-controller
+          export ACK_IAM_VERSION=v0.1.1
+          # datasource=github-tags depName=aws-controllers-k8s/s3-controller
+          export ACK_S3_VERSION=v0.1.6
+          helm upgrade --install --create-namespace --namespace ${ACK_SYSTEM_NAMESPACE} ack-ec2-controller \
+            oci://public.ecr.aws/aws-controllers-k8s/ec2-chart --version=${ACK_EC2_VERSION}
+          helm upgrade --install --create-namespace --namespace ${ACK_SYSTEM_NAMESPACE} ack-ecr-controller \
+            oci://public.ecr.aws/aws-controllers-k8s/ecr-chart --version=${ACK_ECR_VERSION}
+          helm upgrade --install --create-namespace --namespace ${ACK_SYSTEM_NAMESPACE} ack-eks-controller \
+            oci://public.ecr.aws/aws-controllers-k8s/eks-chart --version=${ACK_EKS_VERSION}
+          helm upgrade --install --create-namespace --namespace ${ACK_SYSTEM_NAMESPACE} ack-iam-controller \
+            oci://public.ecr.aws/aws-controllers-k8s/iam-chart --version=${ACK_IAM_VERSION}
+          helm upgrade --install --create-namespace --namespace ${ACK_SYSTEM_NAMESPACE} ack-s3-controller \
+            oci://public.ecr.aws/aws-controllers-k8s/s3-chart --version=${ACK_S3_VERSION}
           sleep 10
 
       - name: Run chart-testing (install)

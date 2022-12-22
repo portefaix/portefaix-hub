@@ -124,7 +124,7 @@ helm-lint-docker: guard-CHART ## Lint Helm chart
 helm-install: guard-CHART guard-RELEASE ## Install a Helm chart
 	helm install $(RELEASE) $(CHART)
 
-.PHONY: helm-package 
+.PHONY: helm-package
 helm-package: guard-CHART ## Package a Helm chart
 	helm package $(CHART)
 
