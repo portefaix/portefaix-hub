@@ -34,9 +34,9 @@ spec:
   resourcesVPCConfig:
     endpointPrivateAccess: true
     endpointPublicAccess: false
-    # securityGroupRefs:
-    #   from:
-    #     name: XXXX
+    securityGroupRefs:
+      - from:
+          name: {{ include "ack-factory.name" . }}-core
     subnetRefs:
       - from:
           name: {{ include "ack-factory.name" . }}-{{ .Values.ack.eks.subnet.cluster }}
@@ -63,7 +63,7 @@ spec:
   diskSize: {{ .Values.ack.eks.nodegroups.core.diskSize }}
   instanceTypes:
   {{- toYaml .Values.ack.eks.nodegroups.core.instanceTypes | nindent 4 }}
-  capacityType: {{- .Values.ack.eks.nodegroups.core.capacityType }}
+  capacityType: {{ .Values.ack.eks.nodegroups.core.capacityType }}
   subnetRefs:
     - from:
         name: {{ include "ack-factory.name" . }}-{{ .Values.ack.eks.subnet.node }}
@@ -93,7 +93,7 @@ spec:
   diskSize: {{ .Values.ack.eks.nodegroups.core.diskSize }}
   instanceTypes:
   {{- toYaml .Values.ack.eks.nodegroups.ops.instanceTypes | nindent 4 }}
-  capacityType: {{- .Values.ack.eks.nodegroups.ops.capacityType }}
+  capacityType: {{ .Values.ack.eks.nodegroups.ops.capacityType }}
   subnetRefs:
     - from:
         name: {{ include "ack-factory.name" . }}-{{ .Values.ack.eks.subnet.node }}
