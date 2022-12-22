@@ -123,7 +123,7 @@ spec:
     - from:
         name: {{ include "ack-factory.name" . }}-{{ .Values.ack.eks.subnet.node }}
   selectors:
-    namespace: {{ template "ack-factory.namespace" . }}
+    - namespace: {{ template "ack-factory.namespace" . }}
 ---
 # apiVersion: eks.services.k8s.aws/v1alpha1
 # kind: Addon
