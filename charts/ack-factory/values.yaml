@@ -82,4 +82,5 @@ ack:
   # -- AWS Tags for all resources
   # https://aws-controllers-k8s.github.io/community/docs/user-docs/ack-tags/
   tags:
-    - portefaix/krm: aws-controllers-k8s
+    - key: portefaix/krm
+      value: aws-controllers-k8s
