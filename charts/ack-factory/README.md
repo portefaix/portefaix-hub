@@ -46,6 +46,7 @@ An AWS Factory using AWS Controllers for Kubernetes
 | ack.subnets[0].name | string | `"public"` |  |
 | ack.subnets[1].cidrBlock | string | `"10.10.2.0/24"` |  |
 | ack.subnets[1].name | string | `"private"` |  |
+| ack.tags | list | `[{"portefaix/krm":"aws-controllers-k8s"}]` | AWS Tags for all resources https://aws-controllers-k8s.github.io/community/docs/user-docs/ack-tags/ |
 | ack.vpc.cidr | string | `"10.10.0.0/16"` |  |
 | additionalAnnotations | object | `{}` | Additional annotations to add to all resources |
 | additionalLabels | object | `{}` | Additional labels to add to all resources |
