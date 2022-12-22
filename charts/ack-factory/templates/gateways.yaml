@@ -30,6 +30,8 @@ spec:
   vpcRef:
     from:
       name: {{ include "ack-factory.name" . }}
+  tags:
+  {{- toYaml .Values.ack.tags | nindent 4 }}
 ---
 apiVersion: ec2.services.k8s.aws/v1alpha1
 kind: NATGateway
@@ -50,6 +52,8 @@ spec:
     from:
       name: {{ include "ack-factory.name" . }}-{{ .Values.ack.gateway.subnet }}
   connectivityType: "public"
+  tags:
+  {{- toYaml .Values.ack.tags | nindent 4 }}
 ---
 apiVersion: ec2.services.k8s.aws/v1alpha1
 kind: RouteTable
@@ -75,3 +79,5 @@ spec:
   vpcRef:
     from:
       name: {{ include "ack-factory.name" . }}
+  tags:
+  {{- toYaml .Values.ack.tags | nindent 4 }}

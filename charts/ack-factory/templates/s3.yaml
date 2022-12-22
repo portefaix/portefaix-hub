@@ -50,3 +50,5 @@ spec:
   publicAccessBlock:
     blockPublicACLs: true
     blockPublicPolicy: true
+  tags:
+  {{- toYaml .Values.ack.tags | nindent 4 }}

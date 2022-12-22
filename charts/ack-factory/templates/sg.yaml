@@ -32,3 +32,5 @@ spec:
   vpcRef:
     from:
       name: {{ include "ack-factory.name" . }}
+  tags:
+  {{- toYaml .Values.ack.tags | nindent 4 }}

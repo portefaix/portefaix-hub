@@ -36,4 +36,6 @@ spec:
   imageScanningConfiguration:
     scanOnPush: true
   lifecyclePolicy: '{"rules":[{"rulePriority":1,"description":"Expire images older than 14 days","selection":{"tagStatus":"untagged","countType":"sinceImagePushed","countUnit":"days","countNumber":14},"action":{"type":"expire"}}]}'
+  tags:
+  {{- toYaml $.Values.ack.tags | nindent 4 }}
 {{ end }}

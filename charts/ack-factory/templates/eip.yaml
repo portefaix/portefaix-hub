@@ -27,4 +27,5 @@ metadata:
   name: {{ include "ack-factory.name" . }}
   namespace: {{ template "ack-factory.namespace" . }}
 spec:
-  domain: vpc
+  tags:
+  {{- toYaml .Values.ack.tags | nindent 4 }}

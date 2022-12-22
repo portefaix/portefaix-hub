@@ -49,6 +49,8 @@ spec:
         "Action": ["sts:AssumeRole"]
       }]
     }
+  tags:
+  {{- toYaml .Values.ack.tags | nindent 4 }}
 ---
 apiVersion: iam.services.k8s.aws/v1alpha1
 kind: Role
@@ -85,3 +87,5 @@ spec:
         "Action": ["sts:AssumeRole"]
       }]
     }
+  tags:
+  {{- toYaml .Values.ack.tags | nindent 4 }}

@@ -24,3 +24,5 @@ spec:
   enableDNSSupport: true
   enableDNSHostnames: true
   instanceTenancy: "default"
+  tags:
+  {{- toYaml .Values.ack.tags | nindent 4 }}
