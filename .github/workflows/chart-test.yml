@@ -157,25 +157,25 @@ jobs:
           # ACK
           export ACK_SYSTEM_NAMESPACE=ack-system
           # datasource=github-tags depName=aws-controllers-k8s/ec2-controller
-          ACK_EC2_VERSION = v0.1.0
+          export ACK_EC2_VERSION=v0.1.0
           # datasource=github-tags depName=aws-controllers-k8s/ecr-controller
-          ACK_ECR_VERSION = v0.1.8
+          export ACK_ECR_VERSION=v0.1.8
           # datasource=github-tags depName=aws-controllers-k8s/eks-controller
-          ACK_EKS_VERSION = v0.1.7
+          export ACK_EKS_VERSION=v0.1.7
           # datasource=github-tags depName=aws-controllers-k8s/iam-controller
-          ACK_IAM_VERSION = v0.1.1
+          export ACK_IAM_VERSION=v0.1.1
           # datasource=github-tags depName=aws-controllers-k8s/s3-controller
-          ACK_S3_VERSION = v0.1.6
+          export ACK_S3_VERSION=v0.1.6
           helm upgrade --install --create-namespace --namespace ${ACK_SYSTEM_NAMESPACE} ack-ec2-controller \
-            oci://public.ecr.aws/aws-controllers-k8s/ec2-chart --version=v$(ACK_EC2_VERSION)
+            oci://public.ecr.aws/aws-controllers-k8s/ec2-chart --version=${ACK_EC2_VERSION}
           helm upgrade --install --create-namespace --namespace ${ACK_SYSTEM_NAMESPACE} ack-ecr-controller \
-            oci://public.ecr.aws/aws-controllers-k8s/ecr-chart --version=v$(ACK_ECR_VERSION)
+            oci://public.ecr.aws/aws-controllers-k8s/ecr-chart --version=${ACK_ECR_VERSION}
           helm upgrade --install --create-namespace --namespace ${ACK_SYSTEM_NAMESPACE} ack-eks-controller \
-            oci://public.ecr.aws/aws-controllers-k8s/eks-chart --version=v$(ACK_EKS_VERSION)
+            oci://public.ecr.aws/aws-controllers-k8s/eks-chart --version=${ACK_EKS_VERSION}
           helm upgrade --install --create-namespace --namespace ${ACK_SYSTEM_NAMESPACE} ack-iam-controller \
-            oci://public.ecr.aws/aws-controllers-k8s/iam-chart --version=v$(ACK_IAM_VERSION)
+            oci://public.ecr.aws/aws-controllers-k8s/iam-chart --version=${ACK_IAM_VERSION}
           helm upgrade --install --create-namespace --namespace ${ACK_SYSTEM_NAMESPACE} ack-s3-controller \
-            oci://public.ecr.aws/aws-controllers-k8s/s3-chart --version=v$(ACK_S3_VERSION)
+            oci://public.ecr.aws/aws-controllers-k8s/s3-chart --version=${ACK_S3_VERSION}
           sleep 10
 
       - name: Run chart-testing (install)
