@@ -97,7 +97,8 @@ spec:
   capacityTypes:
   {{- toYaml .Values.ack.eks.nodegroups.ops.capacityTypes | nindent 4 }}
   subnetRefs:
-      - name: {{ include "ack-factory.name" . }}-{{ .Values.ack.eks.subnet.node }}
+    - from:
+        name: {{ include "ack-factory.name" . }}-{{ .Values.ack.eks.subnet.node }}
   scalingConfig:
   {{- toYaml .Values.ack.eks.nodegroups.ops.scalingConfig | nindent 4 }}
   updateConfig:
@@ -119,9 +120,9 @@ spec:
   clusterName: {{ include "ack-factory.name" . }}-eks-cluster
   # podExecutionRoleARN: $FARGATE_POD_ROLE
   subnetRefs:
-      - name: {{ include "ack-factory.name" . }}-{{ .Values.ack.eks.subnet.node }}
+    - from:
+        name: {{ include "ack-factory.name" . }}-{{ .Values.ack.eks.subnet.node }}
   selectors:
-    labels: {}
     namespace: {{ template "ack-factory.namespace" . }}
 ---
 # apiVersion: eks.services.k8s.aws/v1alpha1
