@@ -40,7 +40,7 @@ spec:
     subnetRefs:
       - from:
           name: {{ include "ack-factory.name" . }}-{{ .Values.ack.eks.subnet.cluster }}
-  version: {{ .Values.ack.eks.version }}
+  version: {{ .Values.ack.eks.version | quote }}
 ---
 apiVersion: eks.services.k8s.aws/v1alpha1
 kind: Nodegroup
