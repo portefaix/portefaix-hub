@@ -155,7 +155,7 @@ jobs:
           sleep 10
 
           # ACK
-          ACK_SYSTEM_NAMESPACE = ack-system
+          export ACK_SYSTEM_NAMESPACE=ack-system
           # datasource=github-tags depName=aws-controllers-k8s/ec2-controller
           ACK_EC2_VERSION = v0.1.0
           # datasource=github-tags depName=aws-controllers-k8s/ecr-controller
@@ -166,15 +166,15 @@ jobs:
           ACK_IAM_VERSION = v0.1.1
           # datasource=github-tags depName=aws-controllers-k8s/s3-controller
           ACK_S3_VERSION = v0.1.6
-          helm upgrade --install --create-namespace --namespace $(ACK_SYSTEM_NAMESPACE) ack-ec2-controller \
+          helm upgrade --install --create-namespace --namespace ${ACK_SYSTEM_NAMESPACE} ack-ec2-controller \
             oci://public.ecr.aws/aws-controllers-k8s/ec2-chart --version=v$(ACK_EC2_VERSION)
-          helm upgrade --install --create-namespace --namespace $(ACK_SYSTEM_NAMESPACE) ack-ecr-controller \
+          helm upgrade --install --create-namespace --namespace ${ACK_SYSTEM_NAMESPACE} ack-ecr-controller \
             oci://public.ecr.aws/aws-controllers-k8s/ecr-chart --version=v$(ACK_ECR_VERSION)
-          helm upgrade --install --create-namespace --namespace $(ACK_SYSTEM_NAMESPACE) ack-eks-controller \
+          helm upgrade --install --create-namespace --namespace ${ACK_SYSTEM_NAMESPACE} ack-eks-controller \
             oci://public.ecr.aws/aws-controllers-k8s/eks-chart --version=v$(ACK_EKS_VERSION)
-          helm upgrade --install --create-namespace --namespace $(ACK_SYSTEM_NAMESPACE) ack-iam-controller \
+          helm upgrade --install --create-namespace --namespace ${ACK_SYSTEM_NAMESPACE} ack-iam-controller \
             oci://public.ecr.aws/aws-controllers-k8s/iam-chart --version=v$(ACK_IAM_VERSION)
-          helm upgrade --install --create-namespace --namespace $(ACK_SYSTEM_NAMESPACE) ack-s3-controller \
+          helm upgrade --install --create-namespace --namespace ${ACK_SYSTEM_NAMESPACE} ack-s3-controller \
             oci://public.ecr.aws/aws-controllers-k8s/s3-chart --version=v$(ACK_S3_VERSION)
           sleep 10
 
