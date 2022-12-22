@@ -56,15 +56,14 @@ metadata:
 spec:
   name: {{ include "ack-factory.name" . }}-core
   clusterName: {{ include "ack-factory.name" . }}-eks-cluster
-  roleRef:
+  nodeRoleRef:
     from:
       name: {{ include "ack-factory.name" . }}-eks-node
   amiType: {{ .Values.ack.eks.nodegroups.core.amiType }}
   diskSize: {{ .Values.ack.eks.nodegroups.core.diskSize }}
   instanceTypes:
   {{- toYaml .Values.ack.eks.nodegroups.core.instanceTypes | nindent 4 }}
-  capacityTypes:
-  {{- toYaml .Values.ack.eks.nodegroups.core.capacityTypes | nindent 4 }}
+  capacityType: {{- .Values.ack.eks.nodegroups.core.capacityType }}
   subnetRefs:
     - from:
         name: {{ include "ack-factory.name" . }}-{{ .Values.ack.eks.subnet.node }}
@@ -94,8 +93,7 @@ spec:
   diskSize: {{ .Values.ack.eks.nodegroups.core.diskSize }}
   instanceTypes:
   {{- toYaml .Values.ack.eks.nodegroups.ops.instanceTypes | nindent 4 }}
-  capacityTypes:
-  {{- toYaml .Values.ack.eks.nodegroups.ops.capacityTypes | nindent 4 }}
+  capacityType: {{- .Values.ack.eks.nodegroups.ops.capacityType }}
   subnetRefs:
     - from:
         name: {{ include "ack-factory.name" . }}-{{ .Values.ack.eks.subnet.node }}

@@ -20,7 +20,8 @@ kind: VPC
 metadata:
   name: {{ include "ack-factory.name" . }}
 spec:
-  cidrBlock: {{ .Values.ack.vpc.cidr }}
+  cidrBlocks:
+    - {{ .Values.ack.vpc.cidr }}
   enableDNSSupport: true
   enableDNSHostnames: true
   instanceTenancy: "default"

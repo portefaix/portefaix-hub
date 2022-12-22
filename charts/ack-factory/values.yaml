@@ -49,8 +49,7 @@ ack:
       core:
         amiType: AL2_x86_64
         diskSize: 50
-        capacityTypes:
-          - "SPOT"
+        capacityType: ON-DEMAND
         instanceTypes:
           - "t3.large"
         scalingConfig:
@@ -63,8 +62,7 @@ ack:
       ops:
         amiType: AL2_x86_64
         diskSize: 50
-        capacityTypes:
-          - "SPOT"
+        capacityType: SPOT
         instanceTypes:
           - "t3.large"
         scalingConfig:
