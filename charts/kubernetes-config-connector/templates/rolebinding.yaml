@@ -1,0 +1,38 @@
+{{- if .Values.rbac.create -}}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  annotations:
+    {{- include "kcc.annotations" . | indent 4 }}
+  labels:
+    {{- include "kcc.labels" . | indent 4 }}
+  name: {{ .Values.alias }}-deletiondefender-role-binding
+  namespace: {{ template "kcc.namespace" . }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ .Values.alias }}-deletiondefender-cnrm-system-role
+subjects:
+- kind: ServiceAccount
+  name: {{ .Values.alias }}-deletiondefender
+  namespace: {{ template "kcc.namespace" . }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  annotations:
+    {{- include "kcc.annotations" . | indent 4 }}
+  labels:
+    {{- include "kcc.labels" . | indent 4 }}
+  name: {{ .Values.alias }}-webhook-role-binding
+  namespace: {{ template "kcc.namespace" . }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ .Values.alias }}-webhook-cnrm-system-role
+subjects:
+- kind: ServiceAccount
+  name: {{ .Values.alias }}-webhook-manager
+  namespace: {{ template "kcc.namespace" . }}
+{{- end -}}

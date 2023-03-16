@@ -1,0 +1,142 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    {{- include "kcc.annotations" . | indent 4 }}
+  labels:
+    {{- include "kcc.labels" . | indent 4 }}
+    cnrm.cloud.google.com/component: {{ .Values.alias }}-resource-stats-recorder
+  name: {{ .Values.alias }}-resource-stats-recorder
+  namespace: {{ template "kcc.namespace" . }}
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      cnrm.cloud.google.com/component: {{ .Values.alias }}-resource-stats-recorder
+      {{- include "kcc.selectorLabels" . | indent 6 }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        {{- include "kcc.annotations" . | indent 8 }}
+      labels:
+        {{- include "kcc.labels" . | indent 8 }}
+        cnrm.cloud.google.com/component: {{ .Values.alias }}-resource-stats-recorder
+    spec:
+      {{- with .Values.statsRecoder.nodeSelector }}
+      nodeSelector:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.statsRecoder.affinity }}
+      affinity:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.statsRecoder.tolerations }}
+      tolerations:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+      - args:
+        - --prometheus-scrape-endpoint=:48797
+        - --metric-interval=60
+        command:
+        - /configconnector/recorder
+        env:
+        - name: CONFIG_CONNECTOR_VERSION
+          value: 1.101.0
+        image: {{ .Values.statsRecoder.image.repository }}:{{ .Values.statsRecoder.image.tag }}
+        imagePullPolicy: {{ .Values.statsRecoder.image.pullPolicy }}
+        name: recorder
+        ports:
+        - containerPort: 48797
+          hostPort: 48797
+          protocol: TCP
+        - containerPort: 23232
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 23232
+          initialDelaySeconds: 7
+          periodSeconds: 3
+        {{- with .Values.statsRecoder.resources }}
+        resources:
+        {{- toYaml . | nindent 10 }}
+        {{- end }}
+        {{- with .Values.securityContext }}
+        securityContext:
+        {{- toYaml . | nindent 10 }}
+        {{- end }}
+      enableServiceLinks: false
+      hostNetwork: true
+      serviceAccountName: {{ .Values.alias }}-resource-stats-recorder
+      terminationGracePeriodSeconds: 10
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    {{- include "kcc.annotations" . | indent 4 }}
+  labels:
+    {{- include "kcc.labels" . | indent 4 }}
+    cnrm.cloud.google.com/component: {{ .Values.alias }}-webhook-manager
+  name: {{ .Values.alias }}-webhook-manager
+  namespace: {{ template "kcc.namespace" . }}
+spec:
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      cnrm.cloud.google.com/component: {{ .Values.alias }}-webhook-manager
+      {{- include "kcc.selectorLabels" . | indent 6 }}
+  template:
+    metadata:
+      annotations:
+        {{- include "kcc.annotations" . | indent 8 }}
+      labels:
+        {{- include "kcc.labels" . | indent 8 }}
+        cnrm.cloud.google.com/component: {{ .Values.alias }}-webhook-manager
+    spec:
+      {{- with .Values.webhookManager.nodeSelector }}
+      nodeSelector:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.webhookManager.affinity }}
+      affinity:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.webhookManager.tolerations }}
+      tolerations:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+      - command:
+        - /configconnector/webhook
+        env:
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        image: {{ .Values.webhookManager.image.repository }}:{{ .Values.webhookManager.image.tag }}
+        imagePullPolicy: {{ .Values.webhookManager.image.pullPolicy }}
+        name: webhook
+        ports:
+        - containerPort: 23232
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 23232
+          initialDelaySeconds: 7
+          periodSeconds: 3
+        {{- with .Values.webhookManager.resources }}
+        resources:
+        {{- toYaml . | nindent 10 }}
+        {{- end }}
+        {{- with .Values.securityContext }}
+        securityContext:
+        {{- toYaml . | nindent 10 }}
+        {{- end }}
+      enableServiceLinks: false
+      serviceAccountName: {{ .Values.alias }}-webhook-manager
+      terminationGracePeriodSeconds: 10

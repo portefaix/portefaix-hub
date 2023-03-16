@@ -1,0 +1,126 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  annotations:
+    {{- include "kcc.annotations" . | indent 4 }}
+  labels:
+    {{- include "kcc.labels" . | indent 4 }}
+    cnrm.cloud.google.com/component: cnrm-controller-manager
+  name: {{ .Values.alias }}-controller-manager
+  namespace: {{ template "kcc.namespace" . }}
+spec:
+  selector:
+    matchLabels:
+      cnrm.cloud.google.com/component: {{ .Values.alias }}-controller-manager
+      {{- include "kcc.selectorLabels" . | indent 6 }}
+  serviceName: cnrm-manager
+  template:
+    metadata:
+      annotations:
+        {{- include "kcc.annotations" . | indent 8 }}
+      labels:
+        {{- include "kcc.labels" . | indent 8 }}
+        cnrm.cloud.google.com/component: {{ .Values.alias }}-controller-manager
+    spec:
+      {{- with .Values.controllerManager.nodeSelector }}
+      nodeSelector:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.controllerManager.affinity }}
+      affinity:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.controllerManager.tolerations }}
+      tolerations:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+      - args:
+        - --prometheus-scrape-endpoint=:8888
+        command:
+        - /configconnector/manager
+        image: {{ .Values.controllerManager.image.repository }}:{{ .Values.controllerManager.image.tag }}
+        imagePullPolicy: {{ .Values.controllerManager.image.pullPolicy }}
+        name: manager
+        ports:
+        - containerPort: 23232
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 23232
+          initialDelaySeconds: 7
+          periodSeconds: 3
+        {{- with .Values.controllerManager.resources }}
+        resources:
+        {{- toYaml . | nindent 10 }}
+        {{- end }}
+        {{- with .Values.securityContext }}
+        securityContext:
+        {{- toYaml . | nindent 10 }}
+        {{- end }}
+      enableServiceLinks: false
+      serviceAccountName: {{ .Values.alias }}-controller-manager
+      terminationGracePeriodSeconds: 10
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  annotations:
+    {{- include "kcc.annotations" . | indent 4 }}
+  labels:
+    {{- include "kcc.labels" . | indent 4 }}
+    cnrm.cloud.google.com/component: cnrm-deletiondefender
+  name: {{ .Values.alias }}-deletiondefender
+  namespace: {{ template "kcc.namespace" . }}
+spec:
+  selector:
+    matchLabels:
+      cnrm.cloud.google.com/component: {{ .Values.alias }}-deletiondefender
+      {{- include "kcc.selectorLabels" . | indent 6 }}
+  serviceName: cnrm-deletiondefender
+  template:
+    metadata:
+      annotations:
+        {{- include "kcc.annotations" . | indent 8 }}
+      labels:
+        {{- include "kcc.labels" . | indent 8 }}
+        cnrm.cloud.google.com/component: {{ .Values.alias }}-deletiondefender
+    spec:
+      {{- with .Values.deletionDefender.nodeSelector }}
+      nodeSelector:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.deletionDefender.affinity }}
+      affinity:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.deletionDefender.tolerations }}
+      tolerations:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+      - command:
+        - /configconnector/deletiondefender
+        image: {{ .Values.deletionDefender.image.repository }}:{{ .Values.deletionDefender.image.tag }}
+        imagePullPolicy: {{ .Values.deletionDefender.image.pullPolicy }}
+        name: deletiondefender
+        ports:
+        - containerPort: 23232
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 23232
+          initialDelaySeconds: 7
+          periodSeconds: 3
+        {{- with .Values.deletionDefender.resources }}
+        resources:
+        {{- toYaml . | nindent 10 }}
+        {{- end }}
+        {{- with .Values.securityContext }}
+        securityContext:
+        {{- toYaml . | nindent 10 }}
+        {{- end }}
+      enableServiceLinks: false
+      serviceAccountName: {{ .Values.alias }}-deletiondefender
+      terminationGracePeriodSeconds: 10

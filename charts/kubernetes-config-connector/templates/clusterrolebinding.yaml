@@ -1,0 +1,111 @@
+{{- if .Values.rbac.create -}}
+---
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    {{- include "kcc.annotations" . | indent 4 }}
+  labels:
+    {{- include "kcc.labels" . | indent 4 }}
+  name: {{ .Values.alias }}-admin-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Values.alias }}-admin
+subjects:
+- kind: ServiceAccount
+  name: {{ .Values.alias }}-controller-manager
+  namespace: {{ template "kcc.namespace" . }}
+- kind: ServiceAccount
+  name: {{ .Values.alias }}-resource-stats-recorder
+  namespace: {{ template "kcc.namespace" . }}
+- kind: ServiceAccount
+  name: {{ .Values.alias }}-deletiondefender
+  namespace: {{ template "kcc.namespace" . }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    {{- include "kcc.annotations" . | indent 4 }}
+  labels:
+    {{- include "kcc.labels" . | indent 4 }}
+  name: {{ .Values.alias }}-deletiondefender-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Values.alias }}-deletiondefender-role
+subjects:
+- kind: ServiceAccount
+  name: {{ .Values.alias }}-deletiondefender
+  namespace: {{ template "kcc.namespace" . }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    {{- include "kcc.annotations" . | indent 4 }}
+  labels:
+    {{- include "kcc.labels" . | indent 4 }}
+  name: {{ .Values.alias }}-manager-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Values.alias }}-manager-cluster-role
+subjects:
+- kind: ServiceAccount
+  name: {{ .Values.alias }}-controller-manager
+  namespace: {{ template "kcc.namespace" . }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    {{- include "kcc.annotations" . | indent 4 }}
+  labels:
+    {{- include "kcc.labels" . | indent 4 }}
+  name: {{ .Values.alias }}-manager-watcher-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Values.alias }}-manager-ns-role
+subjects:
+- kind: ServiceAccount
+  name: {{ .Values.alias }}-controller-manager
+  namespace: {{ template "kcc.namespace" . }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    {{- include "kcc.annotations" . | indent 4 }}
+  labels:
+    {{- include "kcc.labels" . | indent 4 }}
+  name: {{ .Values.alias }}-recorder-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Values.alias }}-recorder-role
+subjects:
+- kind: ServiceAccount
+  name: {{ .Values.alias }}-resource-stats-recorder
+  namespace: {{ template "kcc.namespace" . }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    {{- include "kcc.annotations" . | indent 4 }}
+  labels:
+    {{- include "kcc.labels" . | indent 4 }}
+  name: {{ .Values.alias }}-webhook-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Values.alias }}-webhook-role
+subjects:
+- kind: ServiceAccount
+  name: {{ .Values.alias }}-webhook-manager
+  namespace: {{ template "kcc.namespace" . }}
+{{- end -}}
