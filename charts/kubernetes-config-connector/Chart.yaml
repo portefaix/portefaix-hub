@@ -39,7 +39,13 @@ annotations:
   artifacthub.io/license: Apache-2.0
   artifacthub.io/images: |
     - name: kubernetes-config-connector
-      image: us-docker.pkg.dev/secretmanager-csi/secrets-store-csi-driver-provider-gcp/plugin:v1.0.0
+      image: gcr.io/cnrm-eap/recorder
+    - name: kubernetes-config-connector
+      image: gcr.io/cnrm-eap/webhook
+    - name: kubernetes-config-connector
+      image: gcr.io/cnrm-eap/controller
+    - name: kubernetes-config-connector
+      image: gcr.io/cnrm-eap/deletiondefender
   artifacthub.io/links: |
     - name: kubernetes-config-connector
       url: https://cloud.google.com/config-connector/docs/overview
