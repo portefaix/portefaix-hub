@@ -178,4 +178,5 @@ serviceAccount:
   imagePullSecrets: []
   # -- ServiceAccount annotations.
   ## Use case: GKE Workload Identity for service accounts
-  annotations: {}
+  annotations:
+    foo: bar

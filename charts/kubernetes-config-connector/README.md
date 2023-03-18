@@ -46,7 +46,7 @@ A Helm chart for Google Kubernetes Config Connector (kcc)
 | securityContext.privileged | bool | `false` |  |
 | securityContext.runAsNonRoot | bool | `true` |  |
 | securityContext.runAsUser | int | `1000` |  |
-| serviceAccount.annotations | object | `{}` | ServiceAccount annotations. # Use case: GKE Workload Identity for service accounts |
+| serviceAccount.annotations | object | `{"foo":"bar"}` | ServiceAccount annotations. # Use case: GKE Workload Identity for service accounts |
 | serviceAccount.create | bool | `true` | Specifies whether a ServiceAccount should be created, require rbac true |
 | serviceAccount.imagePullSecrets | list | `[]` |  |
 | statsRecoder.affinity | object | `{}` | Affinity settings for pod assignment # Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/ |
