@@ -1,0 +1,126 @@
+# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+{{- if .Values.rbac.create -}}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    {{- include "kcc.annotations" . | indent 4 }}
+  labels:
+    {{- include "kcc.labels" . | indent 4 }}
+  name: {{ .Values.alias }}-admin-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Values.alias }}-admin
+subjects:
+- kind: ServiceAccount
+  name: {{ .Values.alias }}-controller-manager
+  namespace: {{ template "kcc.namespace" . }}
+- kind: ServiceAccount
+  name: {{ .Values.alias }}-resource-stats-recorder
+  namespace: {{ template "kcc.namespace" . }}
+- kind: ServiceAccount
+  name: {{ .Values.alias }}-deletiondefender
+  namespace: {{ template "kcc.namespace" . }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    {{- include "kcc.annotations" . | indent 4 }}
+  labels:
+    {{- include "kcc.labels" . | indent 4 }}
+  name: {{ .Values.alias }}-deletiondefender-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Values.alias }}-deletiondefender-role
+subjects:
+- kind: ServiceAccount
+  name: {{ .Values.alias }}-deletiondefender
+  namespace: {{ template "kcc.namespace" . }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    {{- include "kcc.annotations" . | indent 4 }}
+  labels:
+    {{- include "kcc.labels" . | indent 4 }}
+  name: {{ .Values.alias }}-manager-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Values.alias }}-manager-cluster-role
+subjects:
+- kind: ServiceAccount
+  name: {{ .Values.alias }}-controller-manager
+  namespace: {{ template "kcc.namespace" . }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    {{- include "kcc.annotations" . | indent 4 }}
+  labels:
+    {{- include "kcc.labels" . | indent 4 }}
+  name: {{ .Values.alias }}-manager-watcher-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Values.alias }}-manager-ns-role
+subjects:
+- kind: ServiceAccount
+  name: {{ .Values.alias }}-controller-manager
+  namespace: {{ template "kcc.namespace" . }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    {{- include "kcc.annotations" . | indent 4 }}
+  labels:
+    {{- include "kcc.labels" . | indent 4 }}
+  name: {{ .Values.alias }}-recorder-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Values.alias }}-recorder-role
+subjects:
+- kind: ServiceAccount
+  name: {{ .Values.alias }}-resource-stats-recorder
+  namespace: {{ template "kcc.namespace" . }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    {{- include "kcc.annotations" . | indent 4 }}
+  labels:
+    {{- include "kcc.labels" . | indent 4 }}
+  name: {{ .Values.alias }}-webhook-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Values.alias }}-webhook-role
+subjects:
+- kind: ServiceAccount
+  name: {{ .Values.alias }}-webhook-manager
+  namespace: {{ template "kcc.namespace" . }}
+{{- end -}}

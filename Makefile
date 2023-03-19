@@ -16,9 +16,14 @@
 
 include hack/commons.mk
 
-CLUSTER = portefaix-hub-local
-KUBE_CONTEXT = kind-portefaix-hub-local
+CLUSTER_kind = portefaix-hub-local
+KUBE_CONTEXT_kind = kind-portefaix-hub-local
 
+CLUSTER_minikube = minikube-portefaix-hub-local
+KUBE_CLUSTER_minikube = minikube-portefaix-hub-local
+
+CLUSTER = $(CLUSTER_$(ENV))
+KUBE_CONTEXT = $(KUBE_CONTEXT_$(ENV))
 
 # ====================================
 # D E V E L O P M E N T
@@ -79,6 +84,26 @@ kind-delete: ## Delete a local Kubernetes cluster (ENV=xxx)
 
 .PHONY: kind-kube-credentials
 kind-kube-credentials: ## Credentials for Kind (ENV=xxx)
+	@kubectl config use-context $(KUBE_CONTEXT)
+
+# ====================================
+# M I N I K U B E
+# ====================================
+
+##@ Minikube
+
+.PHONY: minikube-create
+minikube-create: guard-ENV ## Creates a local Kubernetes cluster (ENV=xxx)
+	@echo -e "$(OK_COLOR)[$(APP)] Create Kubernetes cluster ${CLUSTER}$(NO_COLOR)"
+	@minikube start --container-runtime=containerd --profile=$(CLUSTER)
+
+.PHONY: minikube-delete
+minikube-delete: guard-ENV ## Delete a local Kubernetes cluster (ENV=xxx)
+	@echo -e "$(OK_COLOR)[$(APP)] Delete Kubernetes cluster ${CLUSTER}$(NO_COLOR)"
+	@minikube delete --profile=$(CLUSTER)
+
+.PHONY: minikube-kube-credentials
+minikube-kube-credentials: guard-ENV ## Credentials for Kind (ENV=xxx)
 	@kubectl config use-context $(KUBE_CONTEXT)
 
 

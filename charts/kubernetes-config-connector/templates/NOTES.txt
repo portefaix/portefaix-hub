@@ -1,0 +1,4 @@
+{{ $.Chart.Name }} has been installed. Check its status by running:
+  kubectl --namespace {{ template "kcc.namespace" . }} get all
+
+Visit https://cloud.google.com/config-connector/docs/overview
