@@ -5071,6 +5071,37 @@ entries:
   podtato-head:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Resources labels
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Podtato Head
+          url: https://github.com/podtato-head/podtato-head
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/recommendations: |
+        - url: https://github.com/podtato-head/
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.2.7
+    created: "2023-03-24T14:06:49.775989056Z"
+    description: Deploys the podtato-head app
+    digest: 08afe66276e7ec89ef477ccb5e8b49088dbca0bf6872be03376ccabbf75d16e9
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: podtato-head
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/podtato-head-0.2.0/podtato-head-0.2.0.tgz
+    version: 0.2.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Initialize chart
       artifacthub.io/license: Apache-2.0
@@ -8813,4 +8844,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-03-24T11:34:43.35649615Z"
+generated: "2023-03-24T14:06:49.776770376Z"
