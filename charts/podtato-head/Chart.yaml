@@ -18,7 +18,7 @@
 apiVersion: v2
 name: podtato-head
 description: Deploys the podtato-head app
-version: 0.2.0
+version: 0.3.0
 appVersion: 0.2.7
 maintainers:
   - name: nlamirault
@@ -42,4 +42,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: Resources labels
+      description: Set Ingress API version
