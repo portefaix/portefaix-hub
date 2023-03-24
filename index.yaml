@@ -5072,6 +5072,37 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Set Ingress API version
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Podtato Head
+          url: https://github.com/podtato-head/podtato-head
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/recommendations: |
+        - url: https://github.com/podtato-head/
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.2.7
+    created: "2023-03-24T15:18:38.959571576Z"
+    description: Deploys the podtato-head app
+    digest: ad1305be7801739bbd54afc2acd8a2fef7cdf1dcdd87e04ae626ee61beb88798
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: podtato-head
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/podtato-head-0.3.0/podtato-head-0.3.0.tgz
+    version: 0.3.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Resources labels
       artifacthub.io/license: Apache-2.0
       artifacthub.io/links: |
@@ -8844,4 +8875,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-03-24T14:06:49.776770376Z"
+generated: "2023-03-24T15:18:38.960303583Z"
