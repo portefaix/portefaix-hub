@@ -36,7 +36,7 @@ on:
       poetry-version:
         description: "Poetry"
         required: true
-        default: "1.1.12"
+        default: "1.4.1"
 
 jobs:
   alertmanager-mixin:
@@ -62,7 +62,7 @@ jobs:
       id: alertmanager-mixin
       run: |
         poetry run ./hack/mixins.py alertmanager-mixin --release ${{ github.event.inputs.mixins }} --log ${{ github.event.inputs.loglevel }}
-    
+
     - name: Create pull request for charts updates
       id: cpr
       uses: peter-evans/create-pull-request@v4.2.4
@@ -119,7 +119,7 @@ jobs:
       id: coredns-mixin
       run: |
         poetry run ./hack/mixins.py coredns-mixin --release ${{ github.event.inputs.mixins }} --log ${{ github.event.inputs.loglevel }}
-    
+
     - name: Create pull request for charts updates
       id: cpr
       uses: peter-evans/create-pull-request@v4.2.4
@@ -152,7 +152,7 @@ jobs:
       run: |
         echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
-   
+
   prometheus-operator-mixin:
     runs-on: ubuntu-latest
     steps:
@@ -266,7 +266,7 @@ jobs:
       run: |
         echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
-     
+
   linkerd-stable-mixin:
     runs-on: ubuntu-latest
     steps:
@@ -323,7 +323,7 @@ jobs:
       run: |
         echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
-     
+
   linkerd-edge-mixin:
     runs-on: ubuntu-latest
     steps:
@@ -380,7 +380,7 @@ jobs:
       run: |
         echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
-    
+
   fluxcd-mixin:
     runs-on: ubuntu-latest
     steps:
@@ -437,7 +437,7 @@ jobs:
       run: |
         echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
-    
+
   grafana-mixin:
     runs-on: ubuntu-latest
     steps:
