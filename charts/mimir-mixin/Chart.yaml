@@ -26,8 +26,9 @@ sources:
 keywords:
   - kubernetes
   - monitoring-mixin
+  - mimir
   - portefaix
-version: 1.2.0
+version: 1.3.0
 appVersion: 2.0.0
 
 maintainers:
@@ -52,4 +53,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: Monitoring Mixins v1.0.0
+      description: Mimir Mixin v2.7.1
