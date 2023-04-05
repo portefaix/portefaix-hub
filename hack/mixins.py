@@ -25,10 +25,12 @@ import logging
 import os
 from os import path
 import pathlib
+import re
 import shutil
 import zipfile
 
 import coloredlogs
+import semver
 import requests
 
 MIXIN_REPOSITORY = "https://github.com/nlamirault/monitoring-mixins"
@@ -129,6 +131,40 @@ def template_configmap(mixin, chart_dst, mixin_header):
         for line in header:
             file.write(line.replace("__mixin__", mixin).replace("_", "-"))
 
+def update_chart(mixin, chart_dst):
+    chart_file = "%s/Chart.yaml" % chart_dst
+    logger.debug("Chart to update: %s", chart_file)
+    infile = open(chart_file, 'r')
+    lines = infile.readlines()
+    current_version = None
+    next_version = None
+    for line in lines:
+        if re.match("^version:", line):
+            # print(line)
+            current_version = line
+            data = line.strip().split(": ")
+            logger.info("Current version: %s", data[1])
+            chart_version = data[1]
+            ver = semver.Version.parse(chart_version)
+            next_version = ver.bump_minor()
+    infile.close()
+
+    if current_version and next_version:
+        logger.info("Next version: %s", next_version.finalize_version())
+        with open(chart_file) as file:
+            contents = file.read()
+            new_chart_contents = contents.replace(current_version, "version: %s\n" % next_version)
+        with open(chart_file, "w") as file:
+            file.write(new_chart_contents)
+        new_contents = open(chart_file, 'r')
+        lines = new_contents.readlines()[:-2]
+        lines.append("    - kind: changed\n")
+        lines.append("      description: %s v%s\n" % (mixin, next_version))
+        new_contents.close()
+        outfile = open(chart_file, 'w')
+        outfile.writelines(lines)
+        outfile.close()
+
 def manage_mixin(mixin_directory, mixin):
     logger.info("Manage %s", mixin)
 
@@ -151,6 +187,7 @@ def manage_mixin(mixin_directory, mixin):
     for f in glob.glob("%s/%s/dashboards/*.json" % (mixin_directory, mixin)):
         manage_dashboards(f, mixin, chart_dst)
     template_configmap(mixin, chart_dst, dashboard_header)
+    update_chart(mixin, chart_dst)
 
 
 def main(url, filename, chart):
