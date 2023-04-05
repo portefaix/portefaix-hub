@@ -47,9 +47,9 @@ jobs:
       #   # with:
       #   #   version: v3.10.1
 
-      - name: Install sigstore Helm plugin
-        run: |
-          helm plugin install https://github.com/sigstore/helm-sigstore
+      # - name: Install sigstore Helm plugin
+      #   run: |
+      #     helm plugin install https://github.com/sigstore/helm-sigstore
 
       # - name: Install GPG Keys
       #   run: |
