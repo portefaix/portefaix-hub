@@ -32,3 +32,10 @@ helm-extra-args: --timeout 600s
 # check-version-increment: false
 debug: true
 release-notes-file: CHANGELOG.md
+
+# validate-maintainers: false
+# validate-chart-schema: true
+validate-yaml: true
+check-version-increment: true
+upgrade: true
+skip-missing-values: true

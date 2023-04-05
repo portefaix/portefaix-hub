@@ -28,6 +28,10 @@ jobs:
     runs-on: ubuntu-latest
     container: ghcr.io/chgl/kube-powertools:v1.22.17
     steps:
+      - name: Add workspace as safe directory
+        run: |
+          git config --global --add safe.directory /__w/portefaix-hub/portefaix-hub
+
       - name: Checkout
         uses: actions/checkout@v3.5.0
         with:

@@ -38,7 +38,7 @@ jobs:
     steps:
       - name: Add workspace as safe directory
         run: |
-          git config --global --add safe.directory /__w/charts/charts
+          git config --global --add safe.directory /__w/portefaix-hub/portefaix-hub
 
       - name: Checkout
         uses: actions/checkout@v3.5.0
