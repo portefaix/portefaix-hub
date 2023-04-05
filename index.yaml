@@ -6362,6 +6362,45 @@ entries:
   prometheus-operator-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Prometheus Operator Mixin v0.64.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: prometheus-operator
+          url: https://prometheus-operator.dev/
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.64.0
+    created: "2023-04-05T06:37:15.702459158Z"
+    description: A Helm chart for Prometheus Operator Mixin
+    digest: a5ca978cf2ca9601fcb20ed1df23e15b53ccbf8a76b9e4c707a2b58d34a1df86
+    home: https://charts.portefaix.xyz
+    icon: https://avatars.githubusercontent.com/u/66682517?s=200&v=4
+    keywords:
+    - prometheus-operator
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: prometheus-operator-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/prometheus-operator-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/prometheus-operator-mixin-1.1.0/prometheus-operator-mixin-1.1.0.tgz
+    version: 1.1.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fix
           description: Normalise dashboards ConfigMaps using ConfigMapList
       artifacthub.io/license: Apache-2.0
@@ -9108,4 +9147,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-05T06:18:32.101529345Z"
+generated: "2023-04-05T06:37:15.702858152Z"
