@@ -55,9 +55,9 @@ jobs:
       #   # with:
       #   #   version: v3.10.1
 
-      - name: Install sigstore Helm plugin
-        run: |
-          helm plugin install https://github.com/sigstore/helm-sigstore
+      # - name: Install sigstore Helm plugin
+      #   run: |
+      #     helm plugin install https://github.com/sigstore/helm-sigstore
 
       # - name: Install GPG Keys
       #   run: |
@@ -79,19 +79,19 @@ jobs:
       #     echo ${{ secrets.GPG_PASSPHRASE }} | gpg --armor --batch --passphrase-fd 0 --pinentry-mode=loopback --export-secret-key ${{ secrets.GPG_KEY_NAME }} > /home/runner/.gnupg/secring.gpg
 
       # Optional step if GPG signing is used
-      - name: Prepare GPG key
-        run: |
-          gpg_dir="/home/runner/.gnupg"
-          mkdir "$gpg_dir"
-          keyring="$gpg_dir/secring.gpg"
-          base64 -d <<< "$GPG_KEYRING_BASE64" > "$keyring"
-          passphrase_file="$gpg_dir/passphrase"
-          echo "$GPG_PASSPHRASE" > "$passphrase_file"
-          echo "CR_PASSPHRASE_FILE=$passphrase_file" >> "$GITHUB_ENV"
-          echo "CR_KEYRING=$keyring" >> "$GITHUB_ENV"
-        env:
-          GPG_KEYRING_BASE64: "${{ secrets.GPG_KEYRING_BASE64 }}"
-          GPG_PASSPHRASE: "${{ secrets.GPG_PASSPHRASE }}"
+      # - name: Prepare GPG key
+      #   run: |
+      #     gpg_dir="/home/runner/.gnupg"
+      #     mkdir "$gpg_dir"
+      #     keyring="$gpg_dir/secring.gpg"
+      #     base64 -d <<< "$GPG_KEYRING_BASE64" > "$keyring"
+      #     passphrase_file="$gpg_dir/passphrase"
+      #     echo "$GPG_PASSPHRASE" > "$passphrase_file"
+      #     echo "CR_PASSPHRASE_FILE=$passphrase_file" >> "$GITHUB_ENV"
+      #     echo "CR_KEYRING=$keyring" >> "$GITHUB_ENV"
+      #   env:
+      #     GPG_KEYRING_BASE64: "${{ secrets.GPG_KEYRING_BASE64 }}"
+      #     GPG_PASSPHRASE: "${{ secrets.GPG_PASSPHRASE }}"
 
       # - name: Build release changelog
       #   id: github_release
@@ -114,25 +114,23 @@ jobs:
           charts_repo_url: https://charts.portefaix.xyz
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          CR_SIGN: "true"
-          CR_KEY: "${{ secrets.GPG_KEY_NAME }}"
+          # CR_SIGN: "true"
+          # CR_KEY: "${{ secrets.GPG_KEY_NAME }}"
           # CR_RELEASE_NOTES_FILE: ${{ runner.temp }}/CHANGELOG.md
           # If we didn't bump the chart version then we can skip the release
-          CR_SKIP_EXISTING: true
+          # CR_SKIP_EXISTING: true
 
-      - name: Install cosign
-        uses: sigstore/cosign-installer@v3.0.1
-        # with:
-        #   cosign-release: 'v1.13.0'
+      # - name: Install cosign
+      #   uses: sigstore/cosign-installer@v3.0.1
 
-      - name: Check Cosign
-        run: cosign version
+      # - name: Check Cosign
+      #   run: cosign version
 
-      - name: Upload Helm Charts to Rekor
-        run: |
-          for chart in `find .cr-release-packages -name '*.tgz' -print`; do
-            helm sigstore upload --keyring=/home/runner/.gnupg/secring.gpg ${chart}
-          done
+      # - name: Upload Helm Charts to Rekor
+      #   run: |
+      #     for chart in `find .cr-release-packages -name '*.tgz' -print`; do
+      #       helm sigstore upload --keyring=/home/runner/.gnupg/secring.gpg ${chart}
+      #     done
 
       - name: Login to GitHub Container Registry
         run: |
@@ -150,8 +148,8 @@ jobs:
             name=${file%-*}
             version=${file%.*}
             version=${version#*-}
-            echo "Cosign package: ${GITHUB_REPOSITORY}/${name}:${version}"
-            cosign sign "ghcr.io/${GITHUB_REPOSITORY}/${name}:${version}"
+            # echo "Cosign package: ${GITHUB_REPOSITORY}/${name}:${version}"
+            # cosign sign "ghcr.io/${GITHUB_REPOSITORY}/${name}:${version}"
           done
 
   # Update the generated timestamp in the index.yaml
