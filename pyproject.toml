@@ -26,6 +26,7 @@ pre-commit = "^3.0.0"
 requests = "^2.27.1"
 coloredlogs = "^15.0.1"
 black = "^23.0.0"
+semver = "^3.0.0"
 
 [tool.poetry.dev-dependencies]
 
