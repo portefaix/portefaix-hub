@@ -1,6 +1,6 @@
 # ack-factory
 
-![Version: 0.2.2](https://img.shields.io/badge/Version-0.2.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 An AWS Factory using AWS Controllers for Kubernetes
 
@@ -38,7 +38,7 @@ An AWS Factory using AWS Controllers for Kubernetes
 | ack.eks.nodegroups.ops.updateConfig.maxUnavailablePercentage | int | `50` |  |
 | ack.eks.subnet.cluster | string | `"public"` |  |
 | ack.eks.subnet.node | string | `"private"` |  |
-| ack.eks.version | float | `1.23` |  |
+| ack.eks.version | float | `1.25` |  |
 | ack.gateway.routes.gateway | string | `"10.10.1.0/24"` |  |
 | ack.gateway.routes.natGateway | string | `"10.10.2.0/24"` |  |
 | ack.gateway.subnet | string | `"private"` |  |
