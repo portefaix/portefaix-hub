@@ -65,7 +65,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.2.4
+      uses: peter-evans/create-pull-request@v5.0.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-alertmanager-mixin-${{ github.event.inputs.mixins }}"
@@ -122,7 +122,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.2.4
+      uses: peter-evans/create-pull-request@v5.0.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-coredns-mixin-${{ github.event.inputs.mixins }}"
@@ -179,7 +179,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.2.4
+      uses: peter-evans/create-pull-request@v5.0.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-prometheus-operator-mixin-${{ github.event.inputs.mixins }}"
@@ -236,7 +236,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.2.4
+      uses: peter-evans/create-pull-request@v5.0.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-prometheus-mixin-${{ github.event.inputs.mixins }}"
@@ -293,7 +293,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.2.4
+      uses: peter-evans/create-pull-request@v5.0.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-linkerd-stable-mixin-${{ github.event.inputs.mixins }}"
@@ -350,7 +350,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.2.4
+      uses: peter-evans/create-pull-request@v5.0.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-linkerd-edge-mixin-${{ github.event.inputs.mixins }}"
@@ -407,7 +407,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.2.4
+      uses: peter-evans/create-pull-request@v5.0.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-fluxcd-mixin-${{ github.event.inputs.mixins }}"
@@ -464,7 +464,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.2.4
+      uses: peter-evans/create-pull-request@v5.0.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-grafana-mixin-${{ github.event.inputs.mixins }}"
@@ -521,7 +521,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.2.4
+      uses: peter-evans/create-pull-request@v5.0.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-ksm-mixin-${{ github.event.inputs.mixins }}"
@@ -578,7 +578,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.2.4
+      uses: peter-evans/create-pull-request@v5.0.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-kubernetes-mixin-${{ github.event.inputs.mixins }}"
@@ -635,7 +635,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.2.4
+      uses: peter-evans/create-pull-request@v5.0.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-node-exporter-mixin-${{ github.event.inputs.mixins }}"
@@ -692,7 +692,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.2.4
+      uses: peter-evans/create-pull-request@v5.0.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-loki-mixin-${{ github.event.inputs.mixins }}"
@@ -749,7 +749,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.2.4
+      uses: peter-evans/create-pull-request@v5.0.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-mimir-mixin-${{ github.event.inputs.mixins }}"
@@ -806,7 +806,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.2.4
+      uses: peter-evans/create-pull-request@v5.0.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-osm-mixin-${{ github.event.inputs.mixins }}"
@@ -863,7 +863,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.2.4
+      uses: peter-evans/create-pull-request@v5.0.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-phlare-mixin-${{ github.event.inputs.mixins }}"
@@ -920,7 +920,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.2.4
+      uses: peter-evans/create-pull-request@v5.0.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-promtail-mixin-${{ github.event.inputs.mixins }}"
@@ -977,7 +977,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.2.4
+      uses: peter-evans/create-pull-request@v5.0.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-tempo-mixin-${{ github.event.inputs.mixins }}"
@@ -1034,7 +1034,7 @@ jobs:
 
     - name: Create pull request for charts updates
       id: cpr
-      uses: peter-evans/create-pull-request@v4.2.4
+      uses: peter-evans/create-pull-request@v5.0.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "mixins/update-thanos-mixin-${{ github.event.inputs.mixins }}"
