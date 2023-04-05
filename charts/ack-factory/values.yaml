@@ -21,7 +21,7 @@
 
 # -- Additional labels to add to all resources
 additionalLabels: {}
-  # app: ack-controller
+  # app: ack-factory
 
 # -- Additional annotations to add to all resources
 additionalAnnotations: {}
