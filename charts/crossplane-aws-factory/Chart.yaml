@@ -21,13 +21,14 @@ description: An AWS Factory using Crossplane
 home: https://github.com/portefaix/portefaix-hub/charts/crossplane-aws-factory
 icon: https://crossplane.io/images/favicon_192x192.png
 type: application
-version: 0.5.0
+version: 0.5.1
 appVersion: 1.0.0
 keywords:
-  - crossplane
   - cloud
   - infrastructure
+  - crossplane
   - aws
+  - krm
 maintainers:
   - name: nlamirault
     email: nicolas.lamirault@gmail.com
@@ -51,7 +52,5 @@ annotations:
     fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
-    - kind: added
-      description: SQS, SNS and ECR
     - kind: changed
-      description: Refactoring AWS tags
+      description: Additional labels and annotations

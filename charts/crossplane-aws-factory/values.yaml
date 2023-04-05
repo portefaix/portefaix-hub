@@ -21,11 +21,10 @@
 
 # -- Additional labels to add to all resources
 additionalLabels: {}
-  # app: crossplane-krm
+  # app: crossplane-aws-factory
 
 # -- Additional annotations to add to all resources
 additionalAnnotations: {}
-  # monitoring: portefaix
 
 crossplane:
   namespace: crossplane-system
