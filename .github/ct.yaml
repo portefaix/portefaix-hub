@@ -31,3 +31,4 @@ helm-extra-args: --timeout 600s
   # - xxxxxx
 # check-version-increment: false
 debug: true
+release-notes-file: CHANGELOG.md
