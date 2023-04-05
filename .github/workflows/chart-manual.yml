@@ -1,0 +1,143 @@
+# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+name: Charts / Manual
+
+on:
+  workflow_dispatch:
+    inputs:
+      chart:
+        description: "Which chart"
+        required: true
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    container: ghcr.io/chgl/kube-powertools:v1.22.17
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.5.0
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Install Helm
+        uses: azure/setup-helm@v3.5
+        # with:
+        #   version: v3.10.1
+
+      - name: Install sigstore Helm plugin
+        run: |
+          helm plugin install https://github.com/sigstore/helm-sigstore
+
+      # - name: Install GPG Keys
+      #   run: |
+      #     cat <(echo -e "${{ secrets.GPG_PRIVATE_KEY }}") | gpg --import --batch
+      #     gpg --export > /home/runner/.gnupg/pubring.gpg
+      #     gpg --export-secret-keys > /home/runner/.gnupg/secring.gpg
+
+      # - name: Import GPG key
+      #   id: import_gpg
+      #   uses: crazy-max/ghaction-import-gpg@v4
+      #   with:
+      #     gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+      #     passphrase: ${{ secrets.GPG_PASSPHRASE }}
+
+      # - name: Configure GPG keys
+      #   run: |
+      #     gpg -K
+      #     echo ${{ secrets.GPG_PASSPHRASE }} | gpg --armor --batch --passphrase-fd 0 --pinentry-mode=loopback --export ${{ secrets.GPG_KEY_NAME }} > /home/runner/.gnupg/pubring.gpg
+      #     echo ${{ secrets.GPG_PASSPHRASE }} | gpg --armor --batch --passphrase-fd 0 --pinentry-mode=loopback --export-secret-key ${{ secrets.GPG_KEY_NAME }} > /home/runner/.gnupg/secring.gpg
+
+      # Optional step if GPG signing is used
+      - name: Prepare GPG key
+        run: |
+          gpg_dir="/home/runner/.gnupg"
+          mkdir "$gpg_dir"
+          keyring="$gpg_dir/secring.gpg"
+          base64 -d <<< "$GPG_KEYRING_BASE64" > "$keyring"
+          passphrase_file="$gpg_dir/passphrase"
+          echo "$GPG_PASSPHRASE" > "$passphrase_file"
+          echo "CR_PASSPHRASE_FILE=$passphrase_file" >> "$GITHUB_ENV"
+          echo "CR_KEYRING=$keyring" >> "$GITHUB_ENV"
+        env:
+          GPG_KEYRING_BASE64: "${{ secrets.GPG_KEYRING_BASE64 }}"
+          GPG_PASSPHRASE: "${{ secrets.GPG_PASSPHRASE }}"
+
+      # - name: Build release changelog
+      #   id: github_release
+      #   uses: mikepenz/release-changelog-builder-action@v3.7.0
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     configuration: '.github/changelog-config.json'
+      #     outputFile: ${{ runner.temp }}/CHANGELOG.md
+
+      # - name: Inspect changelog
+      #   run: cat ${{ runner.temp }}/CHANGELOG.md
+
+      - name: Generate changelogs
+        run: .github/generate-chart-changelogs.sh
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.5.0
+        with:
+          charts_repo_url: https://charts.portefaix.xyz
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CR_SIGN: "true"
+          CR_KEY: "${{ secrets.GPG_KEY_NAME }}"
+          # CR_RELEASE_NOTES_FILE: ${{ runner.temp }}/CHANGELOG.md
+          # If we didn't bump the chart version then we can skip the release
+          CR_SKIP_EXISTING: true
+
+      - name: Install cosign
+        uses: sigstore/cosign-installer@v3.0.1
+        # with:
+        #   cosign-release: 'v1.13.0'
+
+      - name: Check Cosign
+        run: cosign version
+
+      - name: Upload Helm Charts to Rekor
+        run: |
+          for chart in `find .cr-release-packages -name '*.tgz' -print`; do
+            helm sigstore upload --keyring=/home/runner/.gnupg/secring.gpg ${chart}
+          done
+
+      - name: Login to GitHub Container Registry
+        run: |
+          helm registry login --username ${GITHUB_ACTOR} --password ${{ secrets.GITHUB_TOKEN }} ghcr.io
+        env:
+          HELM_EXPERIMENTAL_OCI: 1
+
+      - name: Publish OCI Charts
+        env:
+          COSIGN_EXPERIMENTAL: 1
+        run: |
+          for pkg in `find .cr-release-packages -name '*.tgz' -print`; do
+            helm push "${pkg}" oci://ghcr.io/"${GITHUB_REPOSITORY}"
+            file=${pkg##*/}
+            name=${file%-*}
+            version=${file%.*}
+            version=${version#*-}
+            echo "Cosign package: ${GITHUB_REPOSITORY}/${name}:${version}"
+            cosign sign "ghcr.io/${GITHUB_REPOSITORY}/${name}:${version}"
+          done
