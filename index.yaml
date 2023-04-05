@@ -743,6 +743,48 @@ entries:
   crossplane-aws-factory:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Additional labels and annotations
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Crossplane
+          url: https://crossplane.io
+        - name: Crossplane AWS provider
+          url: https://github.com/crossplane/provider-aws
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/recommendations: |
+        - url: https://artifacthub.io/packages/helm/crossplane/crossplane
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2023-04-05T16:28:19.508334142Z"
+    description: An AWS Factory using Crossplane
+    digest: 7c373da1b44ade4737d1147f5762fae4a72d00ef047e277f4efe27826ad693a3
+    home: https://github.com/portefaix/portefaix-hub/charts/crossplane-aws-factory
+    icon: https://crossplane.io/images/favicon_192x192.png
+    keywords:
+    - cloud
+    - infrastructure
+    - crossplane
+    - aws
+    - krm
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: crossplane-aws-factory
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/crossplane-aws-factory-0.5.1/crossplane-aws-factory-0.5.1.tgz
+    version: 0.5.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: SQS, SNS and ECR
         - kind: changed
@@ -9265,4 +9307,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-05T14:37:03.594077437Z"
+generated: "2023-04-05T16:28:19.508712141Z"
