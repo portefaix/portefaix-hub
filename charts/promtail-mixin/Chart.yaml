@@ -27,16 +27,7 @@ keywords:
   - promtail
   - monitoring-mixin
   - portefaix
-
-# This is the chart version. This version number should be incremented each time you make changes
-# to the chart and its templates, including the app version.
-# Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 1.2.0
-
-
-# This is the version number of the application being deployed. This version number should be
-# incremented each time you make changes to the application. Versions are not expected to
-# follow Semantic Versioning. They should reflect the version the application is using.
+version: 1.3.0
 appVersion: 2.3.0
 
 maintainers:
@@ -59,4 +50,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: Monitoring Mixins v1.0.0
+      description: Promtail Mixin v2.8.0
