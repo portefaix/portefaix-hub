@@ -59,4 +59,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: Monitoring Mixins v1.0.0
+      description: Promtail Mixin v2.8.0
