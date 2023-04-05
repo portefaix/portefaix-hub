@@ -3,6 +3,46 @@ entries:
   ack-factory:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Kubernetes v1.15 as default value for EKS
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: AWS Controllers for Kubernetes
+          url: https://aws-controllers-k8s.github.io/community/
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/recommendations: |
+        - url: https://aws-controllers-k8s.github.io/community/
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2023-04-05T14:36:33.187769644Z"
+    description: An AWS Factory using AWS Controllers for Kubernetes
+    digest: 18c33756b569bd3f33fe0f91f5b5784bc4b77506295de3a38160f03d3e4fc429
+    home: https://github.com/portefaix/portefaix-hub/charts/ack-factory
+    icon: https://raw.githubusercontent.com/aws/eks-charts/master/docs/logo/aws.png
+    keywords:
+    - cloud
+    - infrastructure
+    - aws
+    - ack
+    - krm
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: ack-factory
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/ack-factory-0.3.0/ack-factory-0.3.0.tgz
+    version: 0.3.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: Additional annotations default values
       artifacthub.io/license: Apache-2.0
@@ -9225,4 +9265,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-05T14:09:45.550515777Z"
+generated: "2023-04-05T14:36:33.188642955Z"
