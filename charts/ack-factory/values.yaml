@@ -25,7 +25,6 @@ additionalLabels: {}
 
 # -- Additional annotations to add to all resources
 additionalAnnotations: {}
-  # monitoring: portefaix
 
 ack:
   vpc:

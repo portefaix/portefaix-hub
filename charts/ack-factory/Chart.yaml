@@ -21,12 +21,13 @@ description: An AWS Factory using AWS Controllers for Kubernetes
 home: https://github.com/portefaix/portefaix-hub/charts/ack-factory
 icon: https://raw.githubusercontent.com/aws/eks-charts/master/docs/logo/aws.png
 type: application
-version: 0.2.1
+version: 0.2.2
 appVersion: 1.0.0
 keywords:
   - cloud
   - infrastructure
   - aws
+  - ack
   - krm
 maintainers:
   - name: nlamirault
@@ -52,4 +53,4 @@ annotations:
   # added, changed, deprecated, removed, fixed and security.
   artifacthub.io/changes: |
     - kind: fixed
-      description: Additional labels
+      description: Additional annotations default values
