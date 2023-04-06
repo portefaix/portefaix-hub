@@ -2603,6 +2603,45 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: kubernetes-mixin vmaster
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: kubernetes
+          url: https://kubernetes.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.8.0
+    created: "2023-04-06T10:41:52.275794385Z"
+    description: A Helm chart for Kubernetes Mixin
+    digest: 22ea6cd4c75c45fd1b2cb2967bbe9485633ef7331ce9c1063f21ce897162c8ba
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.svg
+    keywords:
+    - kubernetes
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: kubernetes-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kubernetes-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/kubernetes-mixin-1.3.0/kubernetes-mixin-1.3.0.tgz
+    version: 1.3.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Monitoring Mixins v1.0.0
       artifacthub.io/license: Apache-2.0
       artifacthub.io/links: |
@@ -9504,4 +9543,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-06T10:40:51.194455153Z"
+generated: "2023-04-06T10:41:52.276433977Z"
