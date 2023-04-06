@@ -27,7 +27,7 @@ keywords:
   - prometheus-operator
   - monitoring-mixin
   - portefaix
-version: 1.1.0
+version: 1.2.0
 appVersion: 0.64.0
 
 maintainers:
@@ -52,4 +52,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: Prometheus Operator Mixin v0.64.0
+      description: prometheus-operator-mixin v0.64.0
