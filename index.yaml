@@ -8636,6 +8636,45 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: thanos-mixin v0.31.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Thanos
+          url: https://thanos.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.29.0
+    created: "2023-04-06T09:47:10.448684529Z"
+    description: A Helm chart for Thanos Mixin
+    digest: c2ed5fa62486ac8b8bd3155c2f190a37a0c7f33615804e76377ac06724e70db5
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/thanos-io/thanos/master/docs/img/Thanos-logo_fullmedium.png
+    keywords:
+    - thanos
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: thanos-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/thanos-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/thanos-mixin-1.2.0/thanos-mixin-1.2.0.tgz
+    version: 1.2.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Monitoring Mixins v1.0.0
       artifacthub.io/license: Apache-2.0
       artifacthub.io/links: |
@@ -9425,4 +9464,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-06T09:45:22.170001110Z"
+generated: "2023-04-06T09:47:10.449336838Z"
