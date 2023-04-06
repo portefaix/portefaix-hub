@@ -131,7 +131,7 @@ def template_configmap(mixin, chart_dst, mixin_header):
         for line in header:
             file.write(line.replace("__mixin__", mixin).replace("_", "-"))
 
-def update_chart(mixin, chart_dst):
+def update_chart(mixin, mixin_version, chart_dst):
     chart_file = "%s/Chart.yaml" % chart_dst
     logger.debug("Chart to update: %s", chart_file)
     infile = open(chart_file, 'r')
@@ -149,7 +149,7 @@ def update_chart(mixin, chart_dst):
             next_version = ver.bump_minor()
     infile.close()
 
-    if current_version and next_version:
+    if current_version and next_version and mixin_version:
         logger.info("Next version: %s", next_version.finalize_version())
         with open(chart_file) as file:
             contents = file.read()
@@ -159,7 +159,7 @@ def update_chart(mixin, chart_dst):
         new_contents = open(chart_file, 'r')
         lines = new_contents.readlines()[:-2]
         lines.append("    - kind: changed\n")
-        lines.append("      description: %s v%s\n" % (mixin, next_version))
+        lines.append("      description: %s v%s\n" % (mixin, mixin_version))
         new_contents.close()
         outfile = open(chart_file, 'w')
         outfile.writelines(lines)
@@ -185,9 +185,14 @@ def manage_mixin(mixin_directory, mixin):
         logger.warning("Header for dashboards not found: %s", dashboard_header)
         return
     for f in glob.glob("%s/%s/dashboards/*.json" % (mixin_directory, mixin)):
-        manage_dashboards(f, mixin, chart_dst)
+        manage_dashboards(f, mixin, chart_dst)    
+    
     template_configmap(mixin, chart_dst, dashboard_header)
-    update_chart(mixin, chart_dst)
+
+    mixin_version_file = open("%s/%s/.version" % (mixin_directory, mixin), 'r')
+    lines = mixin_version_file.readlines()
+    mixin_version = lines[0].strip()
+    update_chart(mixin, mixin_version, chart_dst)
 
 
 def main(url, filename, chart):
