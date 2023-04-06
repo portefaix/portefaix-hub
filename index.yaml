@@ -2151,6 +2151,45 @@ entries:
   kube-state-metrics-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: kube-state-metrics-mixin v2.8.2
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Kube-State-Metrics
+          url: https://github.com/kubernetes/kube-state-metrics
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.2.4
+    created: "2023-04-06T11:05:08.63768388Z"
+    description: A Helm chart for Kube-State-Metrics Mixin
+    digest: f0706e88ae92dc61f43c6b0e1726804a529f670f2df03d1f22833b12608b3f71
+    home: https://charts.portefaix.xyz
+    icon: https://bitnami.com/assets/stacks/kube-state-metrics/img/kube-state-metrics-stack-220x234.png
+    keywords:
+    - kube-state-metrics
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: kube-state-metrics-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kube-state-metrics-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/kube-state-metrics-mixin-1.1.0/kube-state-metrics-mixin-1.1.0.tgz
+    version: 1.1.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fix
           description: Normalise dashboards ConfigMaps using ConfigMapList
       artifacthub.io/license: Apache-2.0
@@ -9662,4 +9701,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-06T10:58:30.715395631Z"
+generated: "2023-04-06T11:05:08.638743853Z"
