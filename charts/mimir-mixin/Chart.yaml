@@ -28,7 +28,7 @@ keywords:
   - monitoring-mixin
   - mimir
   - portefaix
-version: 1.3.0
+version: 1.4.0
 appVersion: 2.0.0
 
 maintainers:
@@ -53,4 +53,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: Mimir Mixin v2.7.1
+      description: mimir-mixin v1.4.0
