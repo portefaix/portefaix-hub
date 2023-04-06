@@ -85,6 +85,45 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: alertmanager-mixin v0.25.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: alertmanager
+          url: https://prometheus.io/docs/alerting/latest/alertmanager/
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.25.0
+    created: "2023-04-06T11:11:35.332217904Z"
+    description: A Helm chart for Alertmanager Mixin
+    digest: 3651037b0ab3b64c961afd7d55e079ef57e0e5a69c77966bb93718838aa74d06
+    home: https://charts.portefaix.xyz
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/242px-Prometheus_software_logo.svg.png
+    keywords:
+    - alertmanager
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: alertmanager-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/alertmanager-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/alertmanager-mixin-1.5.0/alertmanager-mixin-1.5.0.tgz
+    version: 1.5.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Alertmanager Mixin v0.25.0
       artifacthub.io/license: Apache-2.0
       artifacthub.io/links: |
@@ -9738,4 +9777,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-06T11:08:49.278761823Z"
+generated: "2023-04-06T11:11:35.332791604Z"
