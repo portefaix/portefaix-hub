@@ -5545,6 +5545,47 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/osm-mixin-0.1.0/osm-mixin-0.1.0.tgz
     version: 0.1.0
+  phlare-mixin:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: phlare-mixin v0.5.1
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: phlare
+          url: https://grafana.com/oss/phlare
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.1.0
+    created: "2023-04-06T10:58:15.442585175Z"
+    description: A Helm chart for Grafana Phlare mixin
+    digest: 9cf83704758c1aca6f9525b6ad9175b7ab880e43ec095b71797f36034e8c7d41
+    home: https://charts.portefaix.xyz
+    icon: https://grafana.com/static/img/logos/logo-phlare.svg
+    keywords:
+    - phlare
+    - kubernetes
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: phlare-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kubernetes-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/phlare-mixin-1.2.0/phlare-mixin-1.2.0.tgz
+    version: 1.2.0
   podtato-head:
   - annotations:
       artifacthub.io/changes: |
@@ -9621,4 +9662,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-06T10:49:54.778417400Z"
+generated: "2023-04-06T10:58:15.443110783Z"
