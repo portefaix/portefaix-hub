@@ -4481,6 +4481,46 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: mimir-mixin v2.7.1
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: mimir
+          url: https://grafana.com/oss/mimir
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.0.0
+    created: "2023-04-06T10:40:34.729995215Z"
+    description: A Helm chart for Grafana Mimir mixin
+    digest: 70848322e42c733dc7e29124d0772fd42b2e0635c5f1eaebfc9d9edef9c6383d
+    home: https://charts.portefaix.xyz
+    icon: https://grafana.com/static/img/logos/logo-mimir.svg
+    keywords:
+    - kubernetes
+    - monitoring-mixin
+    - mimir
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: mimir-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kubernetes-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/mimir-mixin-1.4.0/mimir-mixin-1.4.0.tgz
+    version: 1.4.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Mimir Mixin v2.7.1
       artifacthub.io/license: Apache-2.0
       artifacthub.io/links: |
@@ -9464,4 +9504,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-06T09:47:28.742452083Z"
+generated: "2023-04-06T10:40:34.730567821Z"
