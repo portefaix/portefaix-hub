@@ -27,7 +27,7 @@ keywords:
   - promtail
   - monitoring-mixin
   - portefaix
-version: 1.4.0
+version: 1.5.0
 appVersion: 2.3.0
 
 maintainers:
@@ -50,4 +50,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: promtail-mixin v1.4.0
+      description: promtail-mixin v2.8.0
