@@ -39,7 +39,7 @@ jobs:
           git config --global --add safe.directory /__w/portefaix-hub/portefaix-hub
 
       - name: Checkout
-        uses: actions/checkout@v3.5.0
+        uses: actions/checkout@v3.5.2
         with:
           fetch-depth: 0
 
@@ -159,7 +159,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.5.0
+        uses: actions/checkout@v3.5.2
         with:
           ref: "gh-pages"
           fetch-depth: 0
@@ -184,7 +184,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.5.0
+        uses: actions/checkout@v3.5.2
         with:
           ref: "gh-pages"
           fetch-depth: 0
