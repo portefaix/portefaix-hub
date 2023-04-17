@@ -33,7 +33,7 @@ jobs:
           git config --global --add safe.directory /__w/portefaix-hub/portefaix-hub
 
       - name: Checkout
-        uses: actions/checkout@v3.5.0
+        uses: actions/checkout@v3.5.2
         with:
           fetch-depth: 0
 
