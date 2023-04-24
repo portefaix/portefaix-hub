@@ -1,0 +1,127 @@
+# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+---
+chatgpt:
+  model: gpt-3.5-turbo
+  backend: openai
+  secret:
+    name: ai-backend-secret
+    key: secret-key
+
+# -- Docker image
+image:
+  repository: ghcr.io/k8sgpt-ai/k8sgpt
+  tag: v0.2.4
+  pullPolicy: IfNotPresent
+  pullSecrets:
+  # - name: "image-pull-secret"
+
+# Optionally specify an array of imagePullSecrets.
+# Secrets must be manually created in the namespace.
+# ref: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
+# imagePullSecrets:
+  # - name: myRegistryKeySecretName
+
+# -- Additional labels to add to all resources
+additionalLabels: {}
+
+# -- Additional annotations to add to all resources
+additionalAnnotations: {}
+
+restartPolicy: Always
+
+# -- Number of instance
+replicas: 1
+
+## For RBAC support:
+rbac:
+  # -- Specifies whether RBAC resources should be created
+  create: true
+
+serviceAccount:
+  # -- Specifies whether a ServiceAccount should be created
+  create: true
+
+  # The name of the ServiceAccount to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+# -- Container resources: requests and limits for CPU, Memory
+resources: {}
+  # limits:
+  #   memory: 300Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 50Mi
+
+# -- Configure Kubernetes liveness probe.
+# Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
+livenessProbe:
+  enabled: false
+  initialDelaySeconds: 0
+  timeoutSeconds: 1
+
+# -- Configure Kubernetes readiness probe.
+# Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
+readinessProbe:
+  enabled: false
+  initialDelaySeconds: 0
+  timeoutSeconds: 1
+  periodSeconds: 10
+  successThreshold: 1
+
+service:
+  type: ClusterIP
+  port: 8080
+
+# -- Affinity for pod assignment
+# Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+affinity: {}
+
+# -- Tolerations for pod assignment
+# Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+tolerations: []
+
+# -- Node labels for pod assignment
+# Ref: https://kubernetes.io/docs/user-guide/node-selection/
+nodeSelector: {}
+
+# Configure Kubernetes security context for container
+# Ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+containerSecurityContext: {}
+  # allowPrivilegeEscalation: false
+  # readOnlyRootFilesystem: true
+
+securityContext:
+  runAsUser: 65534
+  fsGroup: 65534
+
+serviceMonitor:
+  # -- Enable this if you're using https://github.com/coreos/prometheus-operator
+  enabled: false
+  # -- Namespace to deploy the ServiceMonitor
+  namespace: ""
+  # -- Fallback to the prometheus default unless specified
+  interval: 30s
+  # -- Add custom labels to the ServiceMonitor resource
+  additionalLabels: {}
+    # prometheus: kube-prometheus
+  honorLabels: false
+  # -- Path to scrape metrics
+  path: /metrics
+  # -- Timeout for scrape metrics request
+  scrapeTimeout: 10s

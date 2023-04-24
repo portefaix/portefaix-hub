@@ -1,0 +1,15 @@
+{{ if .Values.serviceAccount.create }}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  {{- if .Values.additionalAnnotations }}
+  annotations:
+  {{ toYaml .Values.additionalAnnotations | indent 4 }}
+  {{- end }}
+  labels:
+    app: k8sgpt
+    {{- include "k8sgpt.labels" . | indent 4 }}
+  name: {{ template "k8sgpt.serviceAccountName" . }}
+  namespace: {{ template "k8sgpt.namespace" . }}
+{{- end -}}

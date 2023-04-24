@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: k8sgpt
+    {{- include "k8sgpt.labels" . | indent 4 }}
+    {{- if .Values.serviceMonitor.additionalLabels }}
+    {{ toYaml .Values.serviceMonitor.additionalLabels }}
+    {{- end }}
+  name: {{ template "k8sgpt.fullname" .  }}
+  namespace: {{ template "k8sgpt.namespace" . }}
+spec:
+  selector:
+    {{- include "k8sgpt.selectorLabels" . | indent 4 }}
+  ports:
+    - name: http
+      port: {{ .Values.service.port }}
+      targetPort: 8080
+  type: {{ .Values.service.type }}
