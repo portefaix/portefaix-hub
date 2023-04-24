@@ -58,7 +58,7 @@ Common labels
 {{- define "k8sgpt.labels" }}
 helm.sh/chart: {{ include "k8sgpt.chart" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
-app.kubernetes.io/component: metrics
+app.kubernetes.io/component: controller
 app.kubernetes.io/part-of: {{ template "k8sgpt.name" . }}
 {{- include "k8sgpt.selectorLabels" . }}
 {{- if .Chart.AppVersion }}

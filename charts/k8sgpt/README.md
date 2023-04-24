@@ -1,6 +1,6 @@
 # k8sgpt
 
-![Version: 0.4.1](https://img.shields.io/badge/Version-0.4.1-informational?style=flat-square) ![AppVersion: 0.4.0](https://img.shields.io/badge/AppVersion-0.4.0-informational?style=flat-square)
+![Version: 0.4.1](https://img.shields.io/badge/Version-0.4.1-informational?style=flat-square) ![AppVersion: 0.2.4](https://img.shields.io/badge/AppVersion-0.2.4-informational?style=flat-square)
 
 K8sgpt
 
@@ -26,14 +26,17 @@ K8sgpt
 | affinity | object | `{}` | Affinity for pod assignment Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity |
 | chatgpt.backend | string | `"openai"` |  |
 | chatgpt.model | string | `"gpt-3.5-turbo"` |  |
+| chatgpt.secret.created | bool | `true` |  |
 | chatgpt.secret.key | string | `"secret-key"` |  |
 | chatgpt.secret.name | string | `"ai-backend-secret"` |  |
+| chatgpt.secret.value | string | `""` |  |
 | containerSecurityContext | object | `{}` |  |
+| extraEnvSecrets | object | `{}` |  |
 | image | object | `{"pullPolicy":"IfNotPresent","pullSecrets":null,"repository":"ghcr.io/k8sgpt-ai/k8sgpt","tag":"v0.2.4"}` | Docker image |
-| livenessProbe | object | `{"enabled":false,"initialDelaySeconds":0,"timeoutSeconds":1}` | Configure Kubernetes liveness probe. Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/ |
+| livenessProbe | object | `{"enabled":true,"initialDelaySeconds":0,"path":"/healthz","timeoutSeconds":1}` | Configure Kubernetes liveness probe. Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/ |
 | nodeSelector | object | `{}` | Node labels for pod assignment Ref: https://kubernetes.io/docs/user-guide/node-selection/ |
 | rbac.create | bool | `true` | Specifies whether RBAC resources should be created |
-| readinessProbe | object | `{"enabled":false,"initialDelaySeconds":0,"periodSeconds":10,"successThreshold":1,"timeoutSeconds":1}` | Configure Kubernetes readiness probe. Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/ |
+| readinessProbe | object | `{"enabled":true,"initialDelaySeconds":0,"path":"/healthz","periodSeconds":10,"successThreshold":1,"timeoutSeconds":1}` | Configure Kubernetes readiness probe. Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/ |
 | replicas | int | `1` | Number of instance |
 | resources | object | `{}` | Container resources: requests and limits for CPU, Memory |
 | restartPolicy | string | `"Always"` |  |

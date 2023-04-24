@@ -73,14 +73,16 @@ resources: {}
 # -- Configure Kubernetes liveness probe.
 # Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
 livenessProbe:
-  enabled: false
+  enabled: true
+  path: /healthz
   initialDelaySeconds: 0
   timeoutSeconds: 1
 
 # -- Configure Kubernetes readiness probe.
 # Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
 readinessProbe:
-  enabled: false
+  enabled: true
+  path: /healthz
   initialDelaySeconds: 0
   timeoutSeconds: 1
   periodSeconds: 10
