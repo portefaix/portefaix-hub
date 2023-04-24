@@ -19,7 +19,7 @@ apiVersion: v2
 description: K8sgpt
 name: k8sgpt
 version: 0.4.1
-appVersion: 0.4.0
+appVersion: 0.2.4
 home: https://github.com/portefaix/portefaix-hub
 sources:
   - https://github.com/k8sgpt-ai/k8sgpt

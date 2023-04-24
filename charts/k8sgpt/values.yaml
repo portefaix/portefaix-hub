@@ -19,8 +19,10 @@ chatgpt:
   model: gpt-3.5-turbo
   backend: openai
   secret:
+    created: true
     name: ai-backend-secret
     key: secret-key
+    value: ""
 
 # -- Docker image
 image:
@@ -109,6 +111,15 @@ containerSecurityContext: {}
 securityContext:
   runAsUser: 65534
   fsGroup: 65534
+
+## A list of environment variables from secret refs that will be passed into the exporter pod
+## example:
+## This will set ${ES_PASSWORD} to the 'password' key from the 'my-secret' secret
+## extraEnvSecrets:
+##   ES_PASSWORD:
+##     secret: my-secret
+##     key: password
+extraEnvSecrets: {}
 
 serviceMonitor:
   # -- Enable this if you're using https://github.com/coreos/prometheus-operator
