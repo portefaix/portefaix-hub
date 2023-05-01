@@ -32,7 +32,7 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-    container: ghcr.io/chgl/kube-powertools:v1.22.20
+    container: ghcr.io/chgl/kube-powertools:v1.22.21
     steps:
       - name: Add workspace as safe directory
         run: |
