@@ -28,6 +28,8 @@ additionalAnnotations: {}
 
 kcc:
   network:
+    routingMode: REGIONAL
+    region: eu-west1
     ipCidrRange: 10.2.0.0/16
     secondaryIpRange:
     - ipCidrRange: 10.3.0.0/16
@@ -42,3 +44,89 @@ kcc:
   - name: containers
     format: DOCKER
     location: eu-west1
+
+  pubsub:
+    topics:
+    - name: gke-update
+
+  buckets:
+  - name: logs
+    location: eu-west1
+    storageClass: standard
+    versioning: true
+    lifecycleRule: 
+    - action:
+        type: Delete
+      condition:
+        age: 10
+
+  gke:
+    location: eu-west1
+    releaseChannel: REGULAR
+
+    # Automation
+
+    clusterAutoscaling:
+      enabled: true
+      autoscalingProfile: BALANCED
+      resourceLimits:
+      - resourceType: cpu
+        maximum: 100
+        minimum: 10
+      - resourceType: memory
+        maximum: 1000
+        minimum: 100
+    verticalPodAutoscaling:
+      enabled: false
+    maintenancePolicy:
+      dailyMaintenanceWindow:
+        startTime: 03:00
+    notificationConfig:
+      pubsub:
+        enabled: true
+        topicRef:
+          name: kcc-factory-gke-update
+
+    # Node Pools
+
+    defaultNodepools:
+      initialNodeCount: 0
+      defaultMaxPodsPerNode: 16
+      nodeLocations:
+        - eu-west1-a
+        - eu-west1-b
+        - eu-west1-c
+
+    # Networking
+
+    networkingMode: VPC_NATIVE
+    datapathProvider: ADVANCED_DATAPATH
+    masterAuthorizedNetworksConfig:
+      cidrBlocks:
+        - cidrBlock: 0.0.0.0/0
+          displayName: The Internet
+    ipAllocationPolicy:
+      servicesSecondaryRangeName: services
+      clusterSecondaryRangeName: pods
+    networkPolicy:
+      enabled: true
+    
+    # NodePool
+
+    nodepools:
+    - name: core
+      autoscaling:
+        minNodeCount: 1
+        maxNodeCount: 3
+      machineType: e2-standard-16
+      diskSizeGb: 100
+      diskType: pd-ssd
+      preemptible: false
+    - name: ops
+      autoscaling:
+        minNodeCount: 1
+        maxNodeCount: 3
+      machineType: e2-standard-16
+      diskSizeGb: 100
+      diskType: pd-ssd
+      preemptible: true
