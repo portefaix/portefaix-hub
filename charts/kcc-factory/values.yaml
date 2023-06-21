@@ -27,57 +27,18 @@ additionalLabels: {}
 additionalAnnotations: {}
 
 kcc:
-  vpc:
-    cidr: 10.10.0.0/16
-  subnets:
-    - name: public
-      cidrBlock: 10.10.1.0/24
-    - name: private
-      cidrBlock: 10.10.2.0/24
-  gateway:
-    subnet: private
-    routes:
-      gateway: 10.10.1.0/24
-      natGateway: 10.10.2.0/24
-  eks:
-    version: 1.23
-    subnet:
-      cluster: public
-      node: private
-    nodegroups:
-      core:
-        amiType: AL2_x86_64
-        diskSize: 50
-        capacityType: ON-DEMAND
-        instanceTypes:
-          - "t3.large"
-        scalingConfig:
-          minSize: 1
-          maxSize: 3
-          desiredSize: 1
-        updateConfig:
-          maxUnavailable: 1
-          maxUnavailablePercentage: 50
-      ops:
-        amiType: AL2_x86_64
-        diskSize: 50
-        capacityType: SPOT
-        instanceTypes:
-          - "t3.large"
-        scalingConfig:
-          minSize: 1
-          maxSize: 3
-          desiredSize: 1
-        updateConfig:
-          maxUnavailable: 1
-          maxUnavailablePercentage: 50
-  ecr:
-    # -- ECR repositories
-    - name: charts
-    - name: containers
+  network:
+    ipCidrRange: 10.2.0.0/16
+    secondaryIpRange:
+    - ipCidrRange: 10.3.0.0/16
+      rangeName: services
+    - ipCidrRange: 10.4.0.0/16
+      rangeName: pods
 
-  # -- AWS Tags for all resources
-  # https://aws-controllers-k8s.github.io/community/docs/user-docs/kcc-tags/
-  tags:
-    - key: portefaix/krm
-      value: aws-controllers-k8s
+  artifactregistry:
+  - name: charts
+    format: DOCKER
+    location: eu-west1
+  - name: containers
+    format: DOCKER
+    location: eu-west1

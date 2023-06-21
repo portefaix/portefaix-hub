@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "ack-factory.name" -}}
+{{- define "kcc-factory.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "ack-factory.fullname" -}}
+{{- define "kcc-factory.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,7 +26,7 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Allow the release namespace to be overridden for multi-namespace deployments in combined charts
 */}}
-{{- define "ack-factory.namespace" -}}
+{{- define "kcc-factory.namespace" -}}
   {{- if .Values.namespaceOverride -}}
     {{- .Values.namespaceOverride -}}
   {{- else -}}
@@ -37,22 +37,22 @@ Allow the release namespace to be overridden for multi-namespace deployments in 
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "ack-factory.chart" -}}
+{{- define "kcc-factory.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "ack-factory.labels" -}}
-helm.sh/chart: {{ include "ack-factory.chart" . }}
-{{ include "ack-factory.selectorLabels" . }}
+{{- define "kcc-factory.labels" -}}
+helm.sh/chart: {{ include "kcc-factory.chart" . }}
+{{ include "kcc-factory.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/component: krm-controller
-app.kubernetes.io/part-of: {{ include "ack-factory.name" . }}
-app.kubernetes.io/managed-by: {{ .Release.Service }} 
+app.kubernetes.io/part-of: {{ include "kcc-factory.name" . }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- if .Values.additionalLabels }}
 {{ toYaml .Values.additionalLabels }}
 {{- end }}
@@ -61,7 +61,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "ack-factory.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "ack-factory.name" . }}
+{{- define "kcc-factory.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "kcc-factory.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
