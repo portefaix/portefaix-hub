@@ -54,7 +54,7 @@ kcc:
     location: eu-west1
     storageClass: standard
     versioning: true
-    lifecycleRule: 
+    lifecycleRule:
     - action:
         type: Delete
       condition:
@@ -110,7 +110,7 @@ kcc:
       clusterSecondaryRangeName: pods
     networkPolicy:
       enabled: true
-    
+
     # NodePool
 
     nodepools:
