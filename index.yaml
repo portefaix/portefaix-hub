@@ -2227,6 +2227,48 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/grafana-mixin-0.1.0/grafana-mixin-0.1.0.tgz
     version: 0.1.0
+  kcc-factory:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Initialize chart
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Kubernetes Config Connector
+          url: https://cloud.google.com/config-connector/docs/overview
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/recommendations: |
+        - url: https://cloud.google.com/config-connector/docs/overview
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2023-06-22T05:31:46.586026881Z"
+    description: A GCP Factory using Kubernetes Config Connector
+    digest: 4c6f4dd67c4c13aa0f5ee76dc1f1c43c53ec0160a650be7f44ed47361920b4c2
+    home: https://github.com/portefaix/portefaix-hub/charts/kcc-factory
+    icon: https://crossplane.io/images/favicon_192x192.png
+    keywords:
+    - cloud
+    - infrastructure
+    - gcp
+    - krm
+    - kcc
+    - config-connector
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: kcc-factory
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/kcc-factory-0.1.0/kcc-factory-0.1.0.tgz
+    version: 0.1.0
   kube-state-metrics-mixin:
   - annotations:
       artifacthub.io/changes: |
@@ -9896,4 +9938,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-06T11:18:44.121247343Z"
+generated: "2023-06-22T05:31:46.586638687Z"
