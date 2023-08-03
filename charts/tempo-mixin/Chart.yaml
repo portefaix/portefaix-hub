@@ -27,7 +27,7 @@ keywords:
   - tempo
   - monitoring-mixin
   - portefaix
-version: 1.3.0
+version: 1.4.0
 appVersion: 2.0.0
 
 maintainers:
@@ -52,4 +52,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: tempo-mixin v2.0.1
+      description: Includes additionalLabels and additionalAnnotations on configmaps
