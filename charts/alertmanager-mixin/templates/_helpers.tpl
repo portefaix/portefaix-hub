@@ -52,11 +52,14 @@ app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 app.kubernetes.io/component: monitoring-mixin
 app.kubernetes.io/part-of: {{ include "alertmanager-mixin.name" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{ if .Values.additionalLabels -}}
+{{ toYaml .Values.additionalLabels -}}
+{{ end -}}
 {{- end }}
 
 {{/* See: https://ambassadorlabs.github.io/k8s-for-humans/ */}}
 {{/*
-Common annotations 
+Common annotations
 */}}
 {{- define "alertmanager-mixin.annotations" }}
 a8r.io/description: Monitoring Mixin for alertmanager
@@ -65,6 +68,9 @@ a8r.io/bugs: https://github.com/portefaix/portefaix-hub/issues
 a8r.io/documentation: https://artifacthub.io/packages/helm/portefaix-hub/alertmanager-mixin
 a8r.io/repository: https://github.com/portefaix/portefaix-hub
 a8r.io/support: https://github.com/portefaix/portefaix-hub/issues
+{{ if .Values.additionalAnnotations -}}
+{{ toYaml .Values.additionalAnnotations -}}
+{{ end -}}
 {{- end }}
 
 {{/* a8r.io/logs: */}}
