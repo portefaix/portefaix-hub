@@ -91,21 +91,6 @@ jobs:
       #     GPG_KEYRING_BASE64: "${{ secrets.GPG_KEYRING_BASE64 }}"
       #     GPG_PASSPHRASE: "${{ secrets.GPG_PASSPHRASE }}"
 
-      # - name: Build release changelog
-      #   id: github_release
-      #   uses: mikepenz/release-changelog-builder-action@v3.7.0
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     configuration: '.github/changelog-config.json'
-      #     outputFile: ${{ runner.temp }}/CHANGELOG.md
-
-      # - name: Inspect changelog
-      #   run: cat ${{ runner.temp }}/CHANGELOG.md
-
-      - name: Generate changelogs
-        run: .github/generate-chart-changelogs.sh
-
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.5.0
         with:
