@@ -24,6 +24,9 @@ metadata:
     {{- include "alertmanager-mixin.annotations" . | indent 4 }}
   labels:
     {{- include "alertmanager-mixin.labels" . | indent 4 }}
+    {{- if .Values.monitor.additionalLabels }}
+    {{- toYaml .Values.monitor.additionalLabels | nindent 4 }}
+    {{- end }}
 spec:
   groups:
       - name: alertmanager.rules
