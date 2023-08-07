@@ -97,8 +97,8 @@ jobs:
       # - name: Inspect changelog
       #   run: cat ${{ runner.temp }}/CHANGELOG.md
 
-      - name: Generate changelogs
-        run: .github/generate-chart-changelogs.sh
+      # - name: Generate changelogs
+      #   run: .github/generate-chart-changelogs.sh
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.5.0

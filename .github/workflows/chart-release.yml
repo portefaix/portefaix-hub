@@ -115,6 +115,7 @@ jobs:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           # CR_SIGN: "true"
           # CR_KEY: "${{ secrets.GPG_KEY_NAME }}"
+          CR_GENERATE_RELEASE_NOTES: true
           # CR_RELEASE_NOTES_FILE: ${{ runner.temp }}/CHANGELOG.md
           # If we didn't bump the chart version then we can skip the release
           # CR_SKIP_EXISTING: true
@@ -132,10 +133,15 @@ jobs:
       #     done
 
       - name: Login to GitHub Container Registry
-        run: |
-          helm registry login --username ${GITHUB_ACTOR} --password ${{ secrets.GITHUB_TOKEN }} ghcr.io
-        env:
-          HELM_EXPERIMENTAL_OCI: 1
+        # run: |
+        #   helm registry login --username ${GITHUB_ACTOR} --password ${{ secrets.GITHUB_TOKEN }} ghcr.io
+        # env:
+        #   HELM_EXPERIMENTAL_OCI: 1
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish OCI Charts
         env:
