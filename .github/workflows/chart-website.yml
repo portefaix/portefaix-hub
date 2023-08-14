@@ -19,8 +19,13 @@ name: Charts / Website
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   update-website:
+    permissions:
+      contents: write  # for Git to git push
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

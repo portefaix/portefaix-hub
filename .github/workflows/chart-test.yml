@@ -34,6 +34,9 @@ on:
       - "charts/**/templates/*.yaml"
       - "charts/**/dashboards/*.json"
 
+permissions:
+  contents: read
+
 jobs:
   # Reference https://github.com/marketplace/actions/helm-chart-testing
   lint-chart:
