@@ -38,8 +38,14 @@ on:
         required: true
         default: "1.4.1"
 
+permissions:
+  contents: read
+
 jobs:
   alertmanager-mixin:
+    permissions:
+      contents: write  # for peter-evans/create-pull-request to create branch
+      pull-requests: write  # for peter-evans/create-pull-request to create a PR
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -97,6 +103,9 @@ jobs:
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
   coredns-mixin:
+    permissions:
+      contents: write  # for peter-evans/create-pull-request to create branch
+      pull-requests: write  # for peter-evans/create-pull-request to create a PR
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -154,6 +163,9 @@ jobs:
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
   prometheus-operator-mixin:
+    permissions:
+      contents: write  # for peter-evans/create-pull-request to create branch
+      pull-requests: write  # for peter-evans/create-pull-request to create a PR
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -211,6 +223,9 @@ jobs:
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
   prometheus-mixin:
+    permissions:
+      contents: write  # for peter-evans/create-pull-request to create branch
+      pull-requests: write  # for peter-evans/create-pull-request to create a PR
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -268,6 +283,9 @@ jobs:
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
   linkerd-stable-mixin:
+    permissions:
+      contents: write  # for peter-evans/create-pull-request to create branch
+      pull-requests: write  # for peter-evans/create-pull-request to create a PR
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -325,6 +343,9 @@ jobs:
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
   linkerd-edge-mixin:
+    permissions:
+      contents: write  # for peter-evans/create-pull-request to create branch
+      pull-requests: write  # for peter-evans/create-pull-request to create a PR
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -382,6 +403,9 @@ jobs:
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
   fluxcd-mixin:
+    permissions:
+      contents: write  # for peter-evans/create-pull-request to create branch
+      pull-requests: write  # for peter-evans/create-pull-request to create a PR
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -439,6 +463,9 @@ jobs:
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
   grafana-mixin:
+    permissions:
+      contents: write  # for peter-evans/create-pull-request to create branch
+      pull-requests: write  # for peter-evans/create-pull-request to create a PR
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -496,6 +523,9 @@ jobs:
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
   kube-state-metrics-mixin:
+    permissions:
+      contents: write  # for peter-evans/create-pull-request to create branch
+      pull-requests: write  # for peter-evans/create-pull-request to create a PR
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -553,6 +583,9 @@ jobs:
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
   kubernetes-mixin:
+    permissions:
+      contents: write  # for peter-evans/create-pull-request to create branch
+      pull-requests: write  # for peter-evans/create-pull-request to create a PR
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -610,6 +643,9 @@ jobs:
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
   node-exporter-mixin:
+    permissions:
+      contents: write  # for peter-evans/create-pull-request to create branch
+      pull-requests: write  # for peter-evans/create-pull-request to create a PR
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -667,6 +703,9 @@ jobs:
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
   loki-mixin:
+    permissions:
+      contents: write  # for peter-evans/create-pull-request to create branch
+      pull-requests: write  # for peter-evans/create-pull-request to create a PR
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -724,6 +763,9 @@ jobs:
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
   mimir-mixin:
+    permissions:
+      contents: write  # for peter-evans/create-pull-request to create branch
+      pull-requests: write  # for peter-evans/create-pull-request to create a PR
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -781,6 +823,9 @@ jobs:
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
   osm-mixin:
+    permissions:
+      contents: write  # for peter-evans/create-pull-request to create branch
+      pull-requests: write  # for peter-evans/create-pull-request to create a PR
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -838,6 +883,9 @@ jobs:
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
   phlare-mixin:
+    permissions:
+      contents: write  # for peter-evans/create-pull-request to create branch
+      pull-requests: write  # for peter-evans/create-pull-request to create a PR
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -895,6 +943,9 @@ jobs:
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
   promtail-mixin:
+    permissions:
+      contents: write  # for peter-evans/create-pull-request to create branch
+      pull-requests: write  # for peter-evans/create-pull-request to create a PR
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -952,6 +1003,9 @@ jobs:
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
   tempo-mixin:
+    permissions:
+      contents: write  # for peter-evans/create-pull-request to create branch
+      pull-requests: write  # for peter-evans/create-pull-request to create a PR
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -1009,6 +1063,9 @@ jobs:
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
   thanos-mixin:
+    permissions:
+      contents: write  # for peter-evans/create-pull-request to create branch
+      pull-requests: write  # for peter-evans/create-pull-request to create a PR
     runs-on: ubuntu-latest
     steps:
     - name: Checkout

@@ -29,8 +29,13 @@ on:
     #   - "charts/**"
 
 
+permissions:
+  contents: read
+
 jobs:
   release:
+    permissions:
+      contents: write  # for helm/chart-releaser-action to push chart release and create a release
     runs-on: ubuntu-latest
     # container: ghcr.io/chgl/kube-powertools:v2.1.20
     steps:
@@ -167,6 +172,8 @@ jobs:
   # needed until https://github.com/helm/chart-releaser/issues/90
   # or helm/chart-releaser-action supports this
   post-release:
+    permissions:
+      contents: write  # for Git to git push
     needs: release
     runs-on: ubuntu-latest
     steps:
@@ -192,6 +199,8 @@ jobs:
           fi
 
   update-website:
+    permissions:
+      contents: write  # for Git to git push
     needs: post-release
     runs-on: ubuntu-latest
     steps:
