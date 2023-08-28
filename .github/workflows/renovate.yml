@@ -31,7 +31,7 @@ jobs:
       pull-requests: write  # for peter-evans/create-pull-request to create a PR
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3.5.3
+    - uses: actions/checkout@v3.6.0
       with:
         fetch-depth: 1
 
