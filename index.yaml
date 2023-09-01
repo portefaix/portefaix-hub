@@ -8358,6 +8358,47 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/promtail-mixin-0.1.0/promtail-mixin-0.1.0.tgz
     version: 0.1.0
+  pyroscope-mixin:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: pyroscope-mixin v0.1.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: pyroscope
+          url: https://grafana.com/oss/pyroscope
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.1.0
+    created: "2023-09-01T08:11:01.067621712Z"
+    description: A Helm chart for Grafana Pyroscope mixin
+    digest: 66bd621a6301e5078834c13c0c9c0a1d086fb8295343c60ec7659931b3c9fdcf
+    home: https://charts.portefaix.xyz
+    icon: https://grafana.com/static/img/pyroscope-logo.svg
+    keywords:
+    - pyroscope
+    - kubernetes
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: pyroscope-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kubernetes-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/pyroscope-mixin-0.1.0/pyroscope-mixin-0.1.0.tgz
+    version: 0.1.0
   secrets-store-csi-driver-provider-aws:
   - annotations:
       artifacthub.io/changes: |
@@ -10095,4 +10136,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-09-01T07:45:22.726527686Z"
+generated: "2023-09-01T08:11:01.068069522Z"
