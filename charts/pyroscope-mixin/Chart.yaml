@@ -28,7 +28,7 @@ keywords:
   - kubernetes
   - monitoring-mixin
   - portefaix
-version: 1.2.0
+version: 0.1.0
 appVersion: 0.1.0
 
 maintainers:
