@@ -29,14 +29,14 @@ import zipfile
 import coloredlogs
 import requests
 
-#datasource=github-tags depName=portefaix/portefaix-policies
-policies_version = "v0.9.0"
-policies_archive = "portefaix-policies-%s.zip" % policies_version
+# datasource=github-tags depName=portefaix/portefaix-policies
+version = "v0.9.0"
+policies_archive = "portefaix-policies-%s.zip" % version
 policies_url = (
     "https://github.com/portefaix/portefaix-policies/archive/refs/tags/%s.zip"
-    % policies_version
+    % version
 )
-policies_directory = "portefaix-policies-%s" % policies_version.replace('v', '')
+policies_directory = "portefaix-policies-%s" % version.replace('v', '')
 
 
 logger = logging.getLogger(__name__)
