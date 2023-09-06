@@ -6126,6 +6126,47 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Bump Portefaix Kyverno policies to v0.11.0
+          links:
+            - name: Github release
+              url: https://github.com/portefaix/portefaix-policies/releases/tag/v0.11.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: kyverno
+          url: https://kyverno.io/
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.11.0
+    created: "2023-09-06T07:42:11.779196459Z"
+    description: A Helm chart for Kyverno policies for Portefaix
+    digest: 94bf5640829aa4b3da53b35122525590b3b8f6c6403ed32e43479697c4acdbc4
+    home: https://charts.portefaix.xyz
+    icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
+    keywords:
+    - kyverno
+    - policies
+    - portefaix
+    kubeVersion: '>=1.10.0-0'
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: portefaix-kyverno
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/portefaix-kyverno
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/portefaix-kyverno-1.1.0/portefaix-kyverno-1.1.0.tgz
+    version: 1.1.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Bump Portefaix Kyverno policies to v0.9.0
           links:
             - name: Github release
@@ -10175,4 +10216,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-09-04T08:23:25.240787853Z"
+generated: "2023-09-06T07:42:11.779662162Z"
