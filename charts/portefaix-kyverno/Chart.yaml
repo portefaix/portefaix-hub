@@ -28,16 +28,8 @@ keywords:
   - kyverno
   - policies
   - portefaix
-
-# This is the chart version. This version number should be incremented each time you make changes
-# to the chart and its templates, including the app version.
-# Versions are expected to follow Semantic Versioning (https://semver.org/)
 version: 1.0.0
-
-# This is the version number of the application being deployed. This version number should be
-# incremented each time you make changes to the application. Versions are not expected to
-# follow Semantic Versioning. They should reflect the version the application is using.
-appVersion: 1.0.0
+appVersion: 1.1.0
 
 maintainers:
   - name: nlamirault
@@ -59,7 +51,7 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: Bump Portefaix Kyverno policies to v0.9.0
+      description: Bump Portefaix Kyverno policies to v0.11.0
       links:
         - name: Github release
-          url: https://github.com/portefaix/portefaix-policies/releases/tag/v0.9.0
+          url: https://github.com/portefaix/portefaix-policies/releases/tag/v0.11.0

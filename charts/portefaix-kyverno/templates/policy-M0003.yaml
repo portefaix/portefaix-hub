@@ -14,7 +14,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
----
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
@@ -38,7 +37,25 @@ spec:
     match:
       resources:
         kinds:
-        - Pod
+        - "ConfigMap"
+        - "Secret"
+        - "Pod"
+        - "Deployment"
+        - "DaemonSet"
+        - "StatefulSet"
+        - "Service"
+        - "Job"
+        - "CronJob"
+        - "Role"
+        - "RoleBinding"
+        - "ClusterRole"
+        - "ClusterRoleBinding"
+        - "ServiceAccount"
+        - "Ingress"
+        - "IngressClass"
+        - "NetworkPolicy"
+        - "PodDisruptionBudget"
+        - "StorageClass"
     validate:
       message: "portefaix.xyz labels is required."
       pattern:

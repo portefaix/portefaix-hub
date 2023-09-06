@@ -14,14 +14,13 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
----
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
   name: portefaix-m0001
   annotations:
     policies.kyverno.io/title: Metadata must set recommanded Kubernetes labels
-    policies.kyverno.io/category: Portefaix
+    policies.kyverno.io/category: Best Practices
     policies.kyverno.io/severity: low
     policies.kyverno.io/subject: Metadata
     policies.kyverno.io/description: >-
@@ -37,7 +36,25 @@ spec:
     match:
       resources:
         kinds:
-        - Pod
+        - "ConfigMap"
+        - "Secret"
+        - "Pod"
+        - "Deployment"
+        - "DaemonSet"
+        - "StatefulSet"
+        - "Service"
+        - "Job"
+        - "CronJob"
+        - "Role"
+        - "RoleBinding"
+        - "ClusterRole"
+        - "ClusterRoleBinding"
+        - "ServiceAccount"
+        - "Ingress"
+        - "IngressClass"
+        - "NetworkPolicy"
+        - "PodDisruptionBudget"
+        - "StorageClass"
     validate:
       message: "Kubernetes recommanded labels is required."
       pattern:
