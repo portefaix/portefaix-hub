@@ -127,7 +127,7 @@ jobs:
         #   helm registry login --username ${GITHUB_ACTOR} --password ${{ secrets.GITHUB_TOKEN }} ghcr.io
         # env:
         #   HELM_EXPERIMENTAL_OCI: 1
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
