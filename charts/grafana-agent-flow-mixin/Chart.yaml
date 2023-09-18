@@ -17,7 +17,7 @@
 ---
 apiVersion: v2
 name: grafana-agent-flow-mixin
-description: A Helm chart for CoreDNS Mixin
+description: A Helm chart for Grafana Agent Flow mixin
 home: https://charts.portefaix.xyz
 # icon:
 sources:
@@ -28,7 +28,7 @@ keywords:
   - prometheus
   - monitoring-mixin
   - portefaix
-version: 0.3.0
+version: 0.1.0
 appVersion: 1.0.0
 
 maintainers:
