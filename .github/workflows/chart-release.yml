@@ -34,19 +34,20 @@ permissions:
 
 jobs:
   release:
-    permissions:
-      contents: write  # for helm/chart-releaser-action to push chart release and create a release
+    contents: write # to push chart release and create a release (helm/chart-releaser-action)
+    packages: write # needed for ghcr access
+    id-token: write # needed for keyless signing
+
     runs-on: ubuntu-latest
     # container: ghcr.io/chgl/kube-powertools:v2.1.20
     steps:
-      - name: Add workspace as safe directory
-        run: |
-          git config --global --add safe.directory /__w/portefaix-hub/portefaix-hub
-
       - name: Checkout
         uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
         with:
           fetch-depth: 0
+
+      - name: Fetch history
+        run: git fetch --prune --unshallow
 
       - name: Configure Git
         run: |
@@ -58,43 +59,11 @@ jobs:
         with:
           version: v3.12.0
 
-      # - name: Install sigstore Helm plugin
-      #   run: |
-      #     helm plugin install https://github.com/sigstore/helm-sigstore
-
-      # - name: Install GPG Keys
-      #   run: |
-      #     cat <(echo -e "${{ secrets.GPG_PRIVATE_KEY }}") | gpg --import --batch
-      #     gpg --export > /home/runner/.gnupg/pubring.gpg
-      #     gpg --export-secret-keys > /home/runner/.gnupg/secring.gpg
-
-      # - name: Import GPG key
-      #   id: import_gpg
-      #   uses: crazy-max/ghaction-import-gpg@v4
-      #   with:
-      #     gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-      #     passphrase: ${{ secrets.GPG_PASSPHRASE }}
-
-      # - name: Configure GPG keys
-      #   run: |
-      #     gpg -K
-      #     echo ${{ secrets.GPG_PASSPHRASE }} | gpg --armor --batch --passphrase-fd 0 --pinentry-mode=loopback --export ${{ secrets.GPG_KEY_NAME }} > /home/runner/.gnupg/pubring.gpg
-      #     echo ${{ secrets.GPG_PASSPHRASE }} | gpg --armor --batch --passphrase-fd 0 --pinentry-mode=loopback --export-secret-key ${{ secrets.GPG_KEY_NAME }} > /home/runner/.gnupg/secring.gpg
-
-      # Optional step if GPG signing is used
-      # - name: Prepare GPG key
-      #   run: |
-      #     gpg_dir="/home/runner/.gnupg"
-      #     mkdir "$gpg_dir"
-      #     keyring="$gpg_dir/secring.gpg"
-      #     base64 -d <<< "$GPG_KEYRING_BASE64" > "$keyring"
-      #     passphrase_file="$gpg_dir/passphrase"
-      #     echo "$GPG_PASSPHRASE" > "$passphrase_file"
-      #     echo "CR_PASSPHRASE_FILE=$passphrase_file" >> "$GITHUB_ENV"
-      #     echo "CR_KEYRING=$keyring" >> "$GITHUB_ENV"
-      #   env:
-      #     GPG_KEYRING_BASE64: "${{ secrets.GPG_KEYRING_BASE64 }}"
-      #     GPG_PASSPHRASE: "${{ secrets.GPG_PASSPHRASE }}"
+      - name: Add dependency chart repos
+        run: |
+          helm repo add bitnami https://charts.bitnami.com/bitnami
+          helm repo add grafana https://grafana.github.io/helm-charts
+          helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.5.0
@@ -102,70 +71,24 @@ jobs:
           config: .github/ct.yaml
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          # CR_SIGN: "true"
-          # CR_KEY: "${{ secrets.GPG_KEY_NAME }}"
           CR_GENERATE_RELEASE_NOTES: true
-          # CR_RELEASE_NOTES_FILE: ${{ runner.temp }}/CHANGELOG.md
-          # If we didn't bump the chart version then we can skip the release
-          # CR_SKIP_EXISTING: true
-
-      # - name: Install cosign
-      #   uses: sigstore/cosign-installer@v3.0.1
-
-      # - name: Check Cosign
-      #   run: cosign version
-
-      # - name: Upload Helm Charts to Rekor
-      #   run: |
-      #     for chart in `find .cr-release-packages -name '*.tgz' -print`; do
-      #       helm sigstore upload --keyring=/home/runner/.gnupg/secring.gpg ${chart}
-      #     done
 
       - name: Login to GitHub Container Registry
-        # run: |
-        #   helm registry login --username ${GITHUB_ACTOR} --password ${{ secrets.GITHUB_TOKEN }} ghcr.io
-        # env:
-        #   HELM_EXPERIMENTAL_OCI: 1
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publish OCI Charts
-        env:
-          COSIGN_EXPERIMENTAL: 1
+      - name: Push charts to GHCR
         run: |
-          for pkg in `find .cr-release-packages -name '*.tgz' -print`; do
-            helm push "${pkg}" oci://ghcr.io/"${GITHUB_REPOSITORY}"
-            file=${pkg##*/}
-            name=${file%-*}
-            version=${file%.*}
-            version=${version#*-}
-            # echo "Cosign package: ${GITHUB_REPOSITORY}/${name}:${version}"
-            # cosign sign "ghcr.io/${GITHUB_REPOSITORY}/${name}:${version}"
+          shopt -s nullglob
+          for pkg in .cr-release-packages/*; do
+            if [ -z "${pkg:-}" ]; then
+              break
+            fi
+            helm push "${pkg}" "oci://ghcr.io/${GITHUB_REPOSITORY_OWNER}/charts"
           done
-
-      # - name: Publish OCI Charts
-      #   env:
-      #     COSIGN_EXPERIMENTAL: 1
-      #   run: |
-      #     shopt -s nullglob
-      #     for pkg in .cr-release-packages/*; do
-      #       if [ -z "${pkg:-}" ]; then
-      #         break
-      #       fi
-      #       if helm push "${pkg}" "oci://ghcr.io/${GITHUB_REPOSITORY_OWNER}/charts"; then
-      #         file=${pkg##*/}
-      #         name=${file%-*}
-      #         version=${file%.*}
-      #         version=${version#*-}
-      #         # echo "Cosign package: ${GITHUB_REPOSITORY}/${name}:${version}"
-      #         # cosign sign "ghcr.io/${GITHUB_REPOSITORY}/${name}:${version}"
-      #       else
-      #         echo '::warning:: helm push failed!'
-      #       fi
-      #     done
 
   # Update the generated timestamp in the index.yaml
   # needed until https://github.com/helm/chart-releaser/issues/90
