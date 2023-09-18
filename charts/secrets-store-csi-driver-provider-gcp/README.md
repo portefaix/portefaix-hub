@@ -26,7 +26,7 @@ A Helm chart for Google Secret Manager Provider for Secret Store CSI Driver
 | fullnameOverride | string | `""` | Provide a name to substitute for the full names of resources |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"us-docker.pkg.dev/secretmanager-csi/secrets-store-csi-driver-provider-gcp/plugin"` |  |
-| image.tag | string | `"v1.0.0"` |  |
+| image.tag | string | `"v1.3.0"` |  |
 | imagePullSecrets | list | `[]` |  |
 | namespace | string | `"kube-system"` | Namespace to deploy the Secret Store CSI Driver |
 | nodeSelector | object | `{"kubernetes.io/os":"linux"}` | Node labels for pod assignment # Ref: https://kubernetes.io/docs/user-guide/node-selection/ |

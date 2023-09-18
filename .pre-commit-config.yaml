@@ -16,7 +16,7 @@
 
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.3.0
+  rev: v4.4.0
   hooks:
     - id: trailing-whitespace
     - id: end-of-file-fixer
@@ -25,7 +25,7 @@ repos:
       exclude: ^charts/.*/templates/
     - id: check-added-large-files
 -   repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.3.1
+    rev: v1.5.4
     hooks:
     -   id: insert-license
         files: (Makefile|\.mk|\.yaml|\.yml|\.toml)
@@ -46,7 +46,7 @@ repos:
       - lint
       - --validate-maintainers=false
 - repo: https://github.com/norwoodj/helm-docs
-  rev: v1.11.0
+  rev: v1.11.2
   hooks:
     - id: helm-docs
       args:
@@ -60,6 +60,6 @@ repos:
         # A base filename makes it relative to each chart directory found
         - --template-files=README.md.gotmpl
 - repo: https://github.com/psf/black
-  rev: 20.8b1
+  rev: 23.9.1
   hooks:
   - id: black

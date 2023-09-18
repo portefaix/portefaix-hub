@@ -77,13 +77,14 @@ def template(f, mixin, chart_dst, mixin_header):
         for line in fin:
             file.write("  %s" % escape(line))
 
+
 def update_dashboards_tags(orig, dashboard, new_tags):
     logger.info("Update dashboard: %s %s", orig, dashboard)
-    with open(orig, 'r') as fh:
+    with open(orig, "r") as fh:
         json_data = json.load(fh)
         json_data["tags"] = json_data["tags"] + new_tags
         logger.debug("Dashboard tags: %s", json_data["tags"])
-        with open(dashboard, 'w') as fh:
+        with open(dashboard, "w") as fh:
             json.dump(json_data, fh, indent=4)
 
 
@@ -98,19 +99,33 @@ def manage_dashboards(f, mixin, chart_dst):
     if mixin == "alertmanager-mixin":
         update_dashboards_tags(orig, dashboard, ["portefaix"])
     elif mixin == "fluxcd-mixin":
-        update_dashboards_tags(orig, dashboard, ["fluxcd", "fluxcd-mixin", "gitops", "portefaix"])
+        update_dashboards_tags(
+            orig, dashboard, ["fluxcd", "fluxcd-mixin", "gitops", "portefaix"]
+        )
     elif mixin == "grafana-mixin":
-        update_dashboards_tags(orig, dashboard, ["grafana", "grafana-mixin", "portefaix"])
+        update_dashboards_tags(
+            orig, dashboard, ["grafana", "grafana-mixin", "portefaix"]
+        )
     elif mixin == "linkerd-edge-mixin":
-        update_dashboards_tags(orig, dashboard, ["linkerd", "linkerd-edge-mixin", "service-mesh", "portefaix"])
+        update_dashboards_tags(
+            orig,
+            dashboard,
+            ["linkerd", "linkerd-edge-mixin", "service-mesh", "portefaix"],
+        )
     elif mixin == "linkerd-stable-mixin":
-        update_dashboards_tags(orig, dashboard, ["linkerd", "linkerd-stable-mixin", "service-mesh", "portefaix"])
+        update_dashboards_tags(
+            orig,
+            dashboard,
+            ["linkerd", "linkerd-stable-mixin", "service-mesh", "portefaix"],
+        )
     elif mixin == "loki-mixin":
         update_dashboards_tags(orig, dashboard, ["portefaix"])
     elif mixin == "mimir-mixin":
         update_dashboards_tags(orig, dashboard, ["portefaix"])
     elif mixin == "osm-mixin":
-        update_dashboards_tags(orig, dashboard, ["osm", "osm-mixin", "service-mesh", "portefaix"])
+        update_dashboards_tags(
+            orig, dashboard, ["osm", "osm-mixin", "service-mesh", "portefaix"]
+        )
     elif mixin == "prometheus-mixin":
         update_dashboards_tags(orig, dashboard, ["portefaix"])
     elif mixin == "promtail-mixin":
@@ -120,6 +135,7 @@ def manage_dashboards(f, mixin, chart_dst):
     else:
         logger.info("Copy %s => %s", orig, dashboard)
         shutil.copy(orig, dashboard)
+
 
 def template_configmap(mixin, chart_dst, mixin_header):
     dest = "%s/templates/configmap-dashboards.yaml" % chart_dst
@@ -131,10 +147,11 @@ def template_configmap(mixin, chart_dst, mixin_header):
         for line in header:
             file.write(line.replace("__mixin__", mixin).replace("_", "-"))
 
+
 def update_chart(mixin, mixin_version, chart_dst):
     chart_file = "%s/Chart.yaml" % chart_dst
     logger.debug("Chart to update: %s", chart_file)
-    infile = open(chart_file, 'r')
+    infile = open(chart_file, "r")
     lines = infile.readlines()
     current_version = None
     next_version = None
@@ -153,17 +170,20 @@ def update_chart(mixin, mixin_version, chart_dst):
         logger.info("Next version: %s", next_version.finalize_version())
         with open(chart_file) as file:
             contents = file.read()
-            new_chart_contents = contents.replace(current_version, "version: %s\n" % next_version)
+            new_chart_contents = contents.replace(
+                current_version, "version: %s\n" % next_version
+            )
         with open(chart_file, "w") as file:
             file.write(new_chart_contents)
-        new_contents = open(chart_file, 'r')
+        new_contents = open(chart_file, "r")
         lines = new_contents.readlines()[:-2]
         lines.append("    - kind: changed\n")
         lines.append("      description: %s v%s\n" % (mixin, mixin_version))
         new_contents.close()
-        outfile = open(chart_file, 'w')
+        outfile = open(chart_file, "w")
         outfile.writelines(lines)
         outfile.close()
+
 
 def manage_mixin(mixin_directory, mixin):
     logger.info("Manage %s", mixin)
@@ -185,31 +205,33 @@ def manage_mixin(mixin_directory, mixin):
         logger.warning("Header for dashboards not found: %s", dashboard_header)
         return
     for f in glob.glob("%s/%s/dashboards/*.json" % (mixin_directory, mixin)):
-        manage_dashboards(f, mixin, chart_dst)    
-    
+        manage_dashboards(f, mixin, chart_dst)
+
     template_configmap(mixin, chart_dst, dashboard_header)
 
-    mixin_version_file = open("%s/%s/.version" % (mixin_directory, mixin), 'r')
+    mixin_version_file = open("%s/%s/.version" % (mixin_directory, mixin), "r")
     lines = mixin_version_file.readlines()
     mixin_version = lines[0].strip()
     update_chart(mixin, mixin_version, chart_dst)
 
 
 def main(url, filename, chart):
-    download(url, filename)
-    with zipfile.ZipFile(filename, "r") as zf:
-        mixins_directory = pathlib.Path(filename).stem
-        logger.info("Extract into: %s", mixins_directory)
-        pathlib.Path(mixins_directory).mkdir(parents=True, exist_ok=True)
-        zf.extractall(path=mixins_directory)
-        logger.info("Extract monitoring mixins")
-        for mixin in os.listdir(path=mixins_directory):
-            if mixin == chart:
-                manage_mixin(mixins_directory, mixin)
-            else:
-                logger.debug("Not mixin: %s", mixin)
-        os.remove(filename)
-        shutil.rmtree(mixins_directory)
+    # download(url, filename)
+    # with zipfile.ZipFile(filename, "r") as zf:
+    #     mixins_directory = pathlib.Path(filename).stem
+    #     logger.info("Extract into: %s", mixins_directory)
+    #     pathlib.Path(mixins_directory).mkdir(parents=True, exist_ok=True)
+    #     zf.extractall(path=mixins_directory)
+    #     logger.info("Extract monitoring mixins")
+    #     for mixin in os.listdir(path=mixins_directory):
+    #         if mixin == chart:
+    #             manage_mixin(mixins_directory, mixin)
+    #         else:
+    #             logger.debug("Not mixin: %s", mixin)
+    #     os.remove(filename)
+    #     shutil.rmtree(mixins_directory)
+    mixins_directory = "monitoring-mixins-v1.3.0/monitoring-mixins"
+    manage_mixin(mixins_directory, chart)
 
 
 if __name__ == "__main__":
@@ -222,5 +244,9 @@ if __name__ == "__main__":
     # archive = mixin_archive % args.mixins
     # main(mixin_url % (args.mixins, archive), archive, args.chart)
     mixin_archive = "monitoring-mixins-%s.zip" % args.release
-    mixin_url = "%s/releases/download/%s/%s" % (MIXIN_REPOSITORY, args.release, mixin_archive)
+    mixin_url = "%s/releases/download/%s/%s" % (
+        MIXIN_REPOSITORY,
+        args.release,
+        mixin_archive,
+    )
     main(mixin_url, mixin_archive, args.chart)

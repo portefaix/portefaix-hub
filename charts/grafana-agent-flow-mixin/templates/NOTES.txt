@@ -1,0 +1,4 @@
+{{ $.Chart.Name }} has been installed. Check its status by running:
+  kubectl --namespace {{ template "grafana-agent-flow-mixin.namespace" . }} get prometheusrules -l "app.kubernetes.io/name={{ include "grafana-agent-flow-mixin.name" . }}"
+
+Visit https://github.com/nlamirault/portefaix-hub/charts/grafana-agent-flow-mixin.

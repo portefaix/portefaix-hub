@@ -14,22 +14,27 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-[tool.poetry]
-name = "portefaix-hub"
-version = "0.1.0"
-description = ""
-authors = ["Nicolas Lamirault <nicolas.lamirault@gmail.com>"]
+---
+# Default values for coredns-mixin.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
 
-[tool.poetry.dependencies]
-python = "^3.8"
-pre-commit = "^3.0.0"
-requests = "^2.27.1"
-coloredlogs = "^15.0.1"
-black = "^23.9.0"
-semver = "^3.0.0"
+# -- Provide a name to substitute for the full names of resources
+fullnameOverride: ""
 
-[tool.poetry.dev-dependencies]
+# -- Additional labels to add to all resources
+additionalLabels: {}
+  # app: coredns
 
-[build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
+# -- Additional annotations to add to all resources
+additionalAnnotations: {}
+  # role: monitoring
+
+monitor:
+  # -- Additional labels to add to resources managed by the Prometheus Operator
+  additionalLabels: {}
+    # release: kube-prometheus-stack
+
+grafana:
+  # -- Grafana folder in which to store the dashboards
+  folder: kubernetes
