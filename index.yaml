@@ -1705,6 +1705,46 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/fluxcd-mixin-0.1.0/fluxcd-mixin-0.1.0.tgz
     version: 0.1.0
+  grafana-agent-flow-mixin:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: grafana-agent-flow-mixin v0.36.1
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Grafana Agent
+          url: https://github.com/grafana/agent
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2023-09-18T06:52:11.88478809Z"
+    description: A Helm chart for Grafana Agent Flow mixin
+    digest: 2c06e507e38066bead273c4c6c0910384df7456ab3f93b84cd5f804b6c14fb15
+    home: https://charts.portefaix.xyz
+    keywords:
+    - grafana-agent
+    - prometheus
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: grafana-agent-flow-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/grafana-agent-flow-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/grafana-agent-flow-mixin-0.1.0/grafana-agent-flow-mixin-0.1.0.tgz
+    version: 0.1.0
   grafana-mixin:
   - annotations:
       artifacthub.io/changes: |
@@ -10216,4 +10256,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-09-06T07:42:11.779662162Z"
+generated: "2023-09-18T06:52:11.885578195Z"
