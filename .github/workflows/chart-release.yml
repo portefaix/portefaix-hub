@@ -118,32 +118,32 @@ jobs:
             git push
           fi
 
-  update-website:
-    permissions:
-      contents: write  # for Git to git push
-    needs: post-release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
-        with:
-          ref: "gh-pages"
-          fetch-depth: 0
+  # update-website:
+  #   permissions:
+  #     contents: write  # for Git to git push
+  #   needs: post-release
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
+  #       with:
+  #         ref: "gh-pages"
+  #         fetch-depth: 0
 
-      - name: Configure Git
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+  #     - name: Configure Git
+  #       run: |
+  #         git config user.name "$GITHUB_ACTOR"
+  #         git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
-      - name: Use Node.js 14.x
-        uses: actions/setup-node@v3.8.1
-        with:
-          node-version: 14.x
+  #     - name: Use Node.js 14.x
+  #       uses: actions/setup-node@v3.8.1
+  #       with:
+  #         node-version: 14.x
 
-      - run: npx js-yaml index.yaml | npx hbs-cli .github/templates/index.hbs -i - -e md
+  #     - run: npx js-yaml index.yaml | npx hbs-cli .github/templates/index.hbs -i - -e md
 
-      - name: Commit and push website
-        run: |
-          git add index.md
-          git commit -sm "Update website [ci-skip]" || exit 0
-          git push
+  #     - name: Commit and push website
+  #       run: |
+  #         git add index.md
+  #         git commit -sm "Update website [ci-skip]" || exit 0
+  #         git push
