@@ -24,11 +24,11 @@ fullnameOverride: ""
 
 # -- Additional labels to add to all resources
 additionalLabels: {}
-  # app: coredns
+  # app: grafana-agent
 
 # -- Additional annotations to add to all resources
 additionalAnnotations: {}
-  # role: monitoring
+  # role: opentelemetry
 
 monitor:
   # -- Additional labels to add to resources managed by the Prometheus Operator
@@ -37,4 +37,4 @@ monitor:
 
 grafana:
   # -- Grafana folder in which to store the dashboards
-  folder: kubernetes
+  folder: opentelemetry
