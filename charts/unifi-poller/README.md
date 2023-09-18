@@ -27,7 +27,7 @@ Unifi Poller
 | affinity | object | `{}` | Affinity for pod assignment Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity |
 | containerSecurityContext | object | `{}` |  |
 | extraSecretMounts | list | `[]` | Additional secret mounts Defines additional mounts with secrets. Secrets must be manually created in the namespace. |
-| image | object | `{"pullPolicy":"IfNotPresent","repository":"golift/unifi-poller","tag":"v2.9.2"}` | Docker image |
+| image | object | `{"pullPolicy":"IfNotPresent","repository":"golift/unifi-poller","tag":"v2.1.3"}` | Docker image |
 | ingress.annotations | object | `{}` |  |
 | ingress.enabled | bool | `false` |  |
 | ingress.hosts | list | `[]` |  |
