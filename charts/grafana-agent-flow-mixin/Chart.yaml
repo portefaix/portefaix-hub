@@ -30,6 +30,7 @@ keywords:
   - portefaix
 version: 0.1.0
 appVersion: 1.0.0
+
 maintainers:
   - name: nlamirault
     email: nicolas.lamirault@gmail.com
