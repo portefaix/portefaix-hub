@@ -34,9 +34,10 @@ permissions:
 
 jobs:
   release:
-    contents: write # to push chart release and create a release (helm/chart-releaser-action)
-    packages: write # needed for ghcr access
-    id-token: write # needed for keyless signing
+    permissions:
+      contents: write # to push chart release and create a release (helm/chart-releaser-action)
+      packages: write # needed for ghcr access
+      id-token: write # needed for keyless signing
 
     runs-on: ubuntu-latest
     # container: ghcr.io/chgl/kube-powertools:v2.1.20
