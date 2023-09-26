@@ -8996,6 +8996,47 @@ entries:
     version: 0.1.0
   tempo-mixin:
   - annotations:
+      artifacthub.io/changes: |-
+        - kind: fixed
+          description: YAML indentation when additionalLabels are defined
+        - kind: fixed
+          description: Source of the repository
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: tempo
+          url: https://grafana.com/oss/tempo
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.0.0
+    created: "2023-09-26T06:43:42.590207237Z"
+    description: A Helm chart for Grafana Tempo mixin
+    digest: 97dc78288913b60e63b64e45726ca617f5d53761cea3506dba88d960fc68aad3
+    home: https://charts.portefaix.xyz
+    icon: https://grafana.com/static/assets/img/logos/grafana-tempo.svg
+    keywords:
+    - tempo
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: tempo-mixin
+    sources:
+    - https://github.com/portefaix/portefaix-hub/tree/master/charts/tempo-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/tempo-mixin-1.4.2/tempo-mixin-1.4.2.tgz
+    version: 1.4.2
+  - annotations:
       artifacthub.io/changes: |
         - kind: fixed
           description: YAML indentation
@@ -10256,4 +10297,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-09-18T07:02:14.813042892Z"
+generated: "2023-09-26T06:43:42.590791046Z"
