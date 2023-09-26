@@ -22,7 +22,7 @@ type: application
 home: https://charts.portefaix.xyz
 icon: https://grafana.com/static/assets/img/logos/grafana-tempo.svg
 sources:
-  - https://github.com/nlamirault/portefaix-hub/tree/master/charts/tempo-mixin
+  - https://github.com/portefaix/portefaix-hub/tree/master/charts/tempo-mixin
 keywords:
   - tempo
   - monitoring-mixin
@@ -53,3 +53,5 @@ annotations:
   artifacthub.io/changes: |
     - kind: fixed
       description: YAML indentation when additionalLabels are defined
+    - kind: fixed
+      description: Source of the repository
