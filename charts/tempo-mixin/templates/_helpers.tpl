@@ -53,7 +53,7 @@ app.kubernetes.io/component: monitoring-mixin
 app.kubernetes.io/part-of: {{ include "tempo-mixin.name" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- if .Values.additionalLabels }}
-{{- toYaml .Values.additionalLabels }}
+{{ toYaml .Values.additionalLabels }}
 {{- end }}
 {{- end }}
 

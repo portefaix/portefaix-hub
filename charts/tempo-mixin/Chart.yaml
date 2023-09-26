@@ -27,7 +27,7 @@ keywords:
   - tempo
   - monitoring-mixin
   - portefaix
-version: 1.4.1
+version: 1.4.2
 appVersion: 2.0.0
 
 maintainers:
@@ -52,4 +52,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: fixed
-      description: YAML indentation
+      description: YAML indentation when additionalLabels are defined
