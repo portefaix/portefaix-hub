@@ -21,7 +21,7 @@ description: A Helm chart for Grafana Agent Flow mixin
 home: https://charts.portefaix.xyz
 # icon:
 sources:
-  - https://github.com/nlamirault/portefaix-hub/tree/master/charts/grafana-agent-flow-mixin
+  - https://github.com/portefaix/portefaix-hub/tree/master/charts/grafana-agent-flow-mixin
 type: application
 keywords:
   - grafana-agent
@@ -55,3 +55,5 @@ annotations:
   artifacthub.io/changes: |
     - kind: changed
       description: grafana-agent-flow-mixin v0.36.1
+    - kind: fixed
+      description: Source of the repository
