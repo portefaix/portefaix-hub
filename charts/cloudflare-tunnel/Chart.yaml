@@ -1,0 +1,36 @@
+---
+apiVersion: v2
+name: cloudflare-tunnel
+description: Creation of a cloudflared deployment - a reverse tunnel for an environment
+type: application
+version: 0.1.0
+appVersion: "2023.5.1"
+icon: https://www.vectorlogo.zone/logos/cloudflare/cloudflare-icon.svg
+home: https://github.com/nlamirault/portefaix-hub
+sources:
+  - https://github.com/nlamirault/portefaix-hub/tree/master/charts/cloudflare-tunnel
+keywords:
+  - cloudflare
+  - cloudflared
+  - tunnel
+
+maintainers:
+  - name: nlamirault
+    email: nicolas.lamirault@gmail.com
+    url: https://github.com/nlamirault
+
+# https://artifacthub.io/docs/topics/annotations/helm/
+annotations:
+  artifacthub.io/license: Apache-2.0
+  artifacthub.io/links: |
+    - name: Cloudflare Tunnel
+      url: https://github.com/cloudflare/cloudflared
+  artifacthub.io/maintainers: |
+    - name: nlamirault
+      email: nicolas.lamirault@gmail.com
+  artifacthub.io/signKey: |
+    fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+    url: https://keybase.io/nlamirault/pgp_keys.asc
+  artifacthub.io/changes: |
+    - kind: added
+      description: Bootstrap chart from Cloudflare chart
