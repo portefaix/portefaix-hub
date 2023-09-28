@@ -3,7 +3,7 @@ apiVersion: v2
 name: cloudflare-tunnel
 description: Creation of a cloudflared deployment - a reverse tunnel for an environment
 type: application
-version: 0.1.0
+version: 0.2.0
 appVersion: "2023.5.1"
 icon: https://www.vectorlogo.zone/logos/cloudflare/cloudflare-icon.svg
 home: https://github.com/nlamirault/portefaix-hub
@@ -33,4 +33,6 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: added
-      description: Bootstrap chart from Cloudflare chart
+      description: Expose metrics port
+    - kind: fixed
+      description: ServiceMonitor selector labels indentation

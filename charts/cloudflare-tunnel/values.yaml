@@ -29,6 +29,10 @@ cloudflare:
     # - hostname: hello.example.com
     #   service: hello_world
 
+metrics:
+  # -- The port on which to expose the metrics and ready endpoints
+  port: 2000
+
 image:
   repository: cloudflare/cloudflared
   pullPolicy: IfNotPresent
