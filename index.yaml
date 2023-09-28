@@ -577,6 +577,43 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/alertmanager-mixin-0.1.0/alertmanager-mixin-0.1.0.tgz
     version: 0.1.0
+  cloudflare-tunnel:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Bootstrap chart from Cloudflare chart
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Cloudflare Tunnel
+          url: https://github.com/cloudflare/cloudflared
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2023.5.1
+    created: "2023-09-28T07:10:04.218479009Z"
+    description: Creation of a cloudflared deployment - a reverse tunnel for an environment
+    digest: 38287b378abdc2c54242f75578badaec3e192632ba9bb9814669b34c3e8dd3ae
+    home: https://github.com/nlamirault/portefaix-hub
+    icon: https://www.vectorlogo.zone/logos/cloudflare/cloudflare-icon.svg
+    keywords:
+    - cloudflare
+    - cloudflared
+    - tunnel
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: cloudflare-tunnel
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/cloudflare-tunnel
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/cloudflare-tunnel-0.1.0/cloudflare-tunnel-0.1.0.tgz
+    version: 0.1.0
   coredns-mixin:
   - annotations:
       artifacthub.io/changes: |
@@ -10297,4 +10334,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-09-26T06:43:59.284825847Z"
+generated: "2023-09-28T07:10:04.218964913Z"
