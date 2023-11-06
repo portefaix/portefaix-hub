@@ -18,7 +18,7 @@
 # -- Docker image
 image:
   repository: golift/unifi-poller
-  tag: v2.9.2
+  tag: v2.9.4
   pullPolicy: IfNotPresent
 
 # Optionally specify an array of imagePullSecrets.
