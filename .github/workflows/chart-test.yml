@@ -49,7 +49,7 @@ jobs:
         run: git fetch --prune --unshallow
 
       - name: Setup chart-testing
-        uses: helm/chart-testing-action@v2.4.0
+        uses: helm/chart-testing-action@v2.6.1
 
       - name: List changed
         run: |
@@ -119,7 +119,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup chart-testing
-        uses: helm/chart-testing-action@v2.4.0
+        uses: helm/chart-testing-action@v2.6.1
         # with:
         #   version: v3.3.0
 
