@@ -6,8 +6,8 @@
 
 Charts are available in the following formats:
 
-* [Chart Repository](https://helm.sh/docs/topics/chart_repository/)
-* [OCI Artifacts](https://helm.sh/docs/topics/registries/)
+- [Chart Repository](https://helm.sh/docs/topics/chart_repository/)
+- [OCI Artifacts](https://helm.sh/docs/topics/registries/)
 
 ### Installing from the Chart Repository
 
