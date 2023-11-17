@@ -200,7 +200,7 @@ def manage_mixin(mixin_directory, mixin):
     update_chart(mixin, mixin_version, chart_dst)
 
 
-def main(url, filename, chart):
+def main(url, filename, chart, download_enabled):
     download(url, filename)
     with zipfile.ZipFile(filename, "r") as zf:
         mixins_directory = pathlib.Path(filename).stem
@@ -208,13 +208,14 @@ def main(url, filename, chart):
         pathlib.Path(mixins_directory).mkdir(parents=True, exist_ok=True)
         zf.extractall(path=mixins_directory)
         logger.info("Extract monitoring mixins")
-        for mixin in os.listdir(path=mixins_directory):
-            if mixin == chart:
-                manage_mixin(mixins_directory, mixin)
-            else:
-                logger.debug("Not mixin: %s", mixin)
-        os.remove(filename)
-        shutil.rmtree(mixins_directory)
+
+    for mixin in os.listdir(path=mixins_directory):
+        if mixin == chart:
+            manage_mixin(mixins_directory, mixin)
+        else:
+            logger.debug("Not mixin: %s", mixin)
+    os.remove(filename)
+    shutil.rmtree(mixins_directory)
 
 
 if __name__ == "__main__":
