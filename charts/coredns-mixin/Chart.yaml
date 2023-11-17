@@ -28,7 +28,7 @@ keywords:
   - prometheus
   - monitoring-mixin
   - portefaix
-version: 1.3.0
+version: 1.4.0
 appVersion: 1.0.0
 
 maintainers:
@@ -53,4 +53,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: Refactoring labels and dashboard management
+      description: coredns-mixin vmaster
