@@ -138,6 +138,7 @@ def update_chart(mixin, mixin_version, chart_dst):
     lines = infile.readlines()
     current_version = None
     next_version = None
+    app_version = None
     for line in lines:
         if re.match("^version:", line):
             # print(line)
@@ -147,6 +148,8 @@ def update_chart(mixin, mixin_version, chart_dst):
             chart_version = data[1]
             ver = semver.Version.parse(chart_version)
             next_version = ver.bump_minor()
+        elif re.match("^appVersion:", line):
+            app_version = line
     infile.close()
 
     if current_version and next_version and mixin_version:
@@ -154,6 +157,8 @@ def update_chart(mixin, mixin_version, chart_dst):
         with open(chart_file) as file:
             contents = file.read()
             new_chart_contents = contents.replace(current_version, "version: %s\n" % next_version)
+            if app_version:
+                new_chart_contents = new_chart_contents.replace(app_version, "appVersion: %s\n" % mixin_version)
         with open(chart_file, "w") as file:
             file.write(new_chart_contents)
         new_contents = open(chart_file, 'r')
