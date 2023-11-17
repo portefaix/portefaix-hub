@@ -27,7 +27,7 @@ keywords:
   - alertmanager
   - monitoring-mixin
   - portefaix
-version: 1.7.0
+version: 1.8.0
 appVersion: 0.25.0
 
 maintainers:
@@ -52,4 +52,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: Additional labels for Alerting PrometheusRules
+      description: alertmanager-mixin v0.26.0
