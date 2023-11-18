@@ -46,9 +46,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v3.6.0
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-    - uses: actions/setup-python@v4.7.0
+    - uses: actions/setup-python@v4.7.1
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -64,7 +64,7 @@ jobs:
     - name: Retrieve version
       id: version
       run: |
-        version=$(grep 'policies_version = ' ./hack/policies.py | awk -F'"' '{ print $2 }')
+        version=$(grep 'version = ' ./hack/policies.py | awk -F'"' '{ print $2 }')
         echo "::set-output name=POLICIES_VERSION::$version"
 
     - name: Kyverno policies

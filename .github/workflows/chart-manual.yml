@@ -26,14 +26,14 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-    container: ghcr.io/chgl/kube-powertools:v2.1.27
+    container: ghcr.io/chgl/kube-powertools:v2.2.4
     steps:
       - name: Add workspace as safe directory
         run: |
           git config --global --add safe.directory /__w/portefaix-hub/portefaix-hub
 
       - name: Checkout
-        uses: actions/checkout@v3.6.0
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           fetch-depth: 0
 
@@ -101,7 +101,7 @@ jobs:
       #   run: .github/generate-chart-changelogs.sh
 
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.5.0
+        uses: helm/chart-releaser-action@v1.6.0
         with:
           config: .github/cr.yaml
           charts_repo_url: https://charts.portefaix.xyz
