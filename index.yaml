@@ -7509,6 +7509,45 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: prometheus-operator-mixin v0.69.1
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: prometheus-operator
+          url: https://prometheus-operator.dev/
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.69.1
+    created: "2023-11-19T13:43:06.533932218Z"
+    description: A Helm chart for Prometheus Operator Mixin
+    digest: 75e6df16b618c1ac4d0fdbbf53d741cfa1481bc29628ede958dfe98e3be090fc
+    home: https://charts.portefaix.xyz
+    icon: https://avatars.githubusercontent.com/u/66682517?s=200&v=4
+    keywords:
+    - prometheus-operator
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: prometheus-operator-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/prometheus-operator-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/prometheus-operator-mixin-1.3.0/prometheus-operator-mixin-1.3.0.tgz
+    version: 1.3.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: prometheus-operator-mixin v0.64.0
       artifacthub.io/license: Apache-2.0
       artifacthub.io/links: |
@@ -10725,4 +10764,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-11-19T13:41:19.775244868Z"
+generated: "2023-11-19T13:43:06.534333571Z"
