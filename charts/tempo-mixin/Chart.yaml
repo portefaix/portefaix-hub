@@ -27,8 +27,8 @@ keywords:
   - tempo
   - monitoring-mixin
   - portefaix
-version: 1.4.2
-appVersion: 2.0.0
+version: 1.5.0
+appVersion: 2.3.0
 
 maintainers:
   - name: nlamirault
@@ -53,5 +53,5 @@ annotations:
   artifacthub.io/changes: |
     - kind: fixed
       description: YAML indentation when additionalLabels are defined
-    - kind: fixed
-      description: Source of the repository
+    - kind: changed
+      description: tempo-mixin v2.3.0
