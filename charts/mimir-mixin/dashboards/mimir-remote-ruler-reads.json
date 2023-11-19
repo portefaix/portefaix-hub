@@ -22,7 +22,7 @@
             "keepTime": true,
             "tags": [
                 "mimir-mixin",
-                "monitoring-mixins-v1.3.0"
+                "monitoring-mixins-v1.6.0"
             ],
             "targetBlank": false,
             "title": "Mimir dashboards",
@@ -154,6 +154,8 @@
                         "3xx": "#6ED0E0",
                         "4xx": "#EF843C",
                         "5xx": "#E24D42",
+                        "OK": "#7EB26D",
+                        "cancel": "#A9A9A9",
                         "error": "#E24D42",
                         "success": "#7EB26D"
                     },
@@ -187,12 +189,11 @@
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "sum by (status) (\n  label_replace(label_replace(rate(cortex_request_duration_seconds_count{cluster=~\"$cluster\", job=~\"($namespace)/((ruler-query-frontend.*))\", route=~\"/httpgrpc.HTTP/Handle|.*api_v1_query\"}[$__rate_interval]),\n  \"status\", \"${1}xx\", \"status_code\", \"([0-9])..\"),\n  \"status\", \"${1}\", \"status_code\", \"([a-z]+)\"))\n",
+                            "expr": "sum by (status) (\n  label_replace(label_replace(rate(cortex_request_duration_seconds_count{cluster=~\"$cluster\", job=~\"($namespace)/((ruler-query-frontend.*))\", route=~\"/httpgrpc.HTTP/Handle|.*api_v1_query\"}[$__rate_interval]),\n  \"status\", \"${1}xx\", \"status_code\", \"([0-9])..\"),\n  \"status\", \"${1}\", \"status_code\", \"([a-zA-Z]+)\"))\n",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{status}}",
-                            "refId": "A",
-                            "step": 10
+                            "refId": "A"
                         }
                     ],
                     "thresholds": [],
@@ -266,7 +267,7 @@
                             "expr": "histogram_quantile(0.99, sum by (le) (cluster_job_route:cortex_request_duration_seconds_bucket:sum_rate{cluster=~\"$cluster\", job=~\"($namespace)/((ruler-query-frontend.*))\", route=~\"/httpgrpc.HTTP/Handle|.*api_v1_query\"})) * 1e3",
                             "format": "time_series",
                             "intervalFactor": 2,
-                            "legendFormat": "99th Percentile",
+                            "legendFormat": "99th percentile",
                             "refId": "A",
                             "step": 10
                         },
@@ -274,7 +275,7 @@
                             "expr": "histogram_quantile(0.50, sum by (le) (cluster_job_route:cortex_request_duration_seconds_bucket:sum_rate{cluster=~\"$cluster\", job=~\"($namespace)/((ruler-query-frontend.*))\", route=~\"/httpgrpc.HTTP/Handle|.*api_v1_query\"})) * 1e3",
                             "format": "time_series",
                             "intervalFactor": 2,
-                            "legendFormat": "50th Percentile",
+                            "legendFormat": "50th percentile",
                             "refId": "B",
                             "step": 10
                         },
@@ -367,8 +368,7 @@
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         }
                     ],
                     "title": "Per pod p99 latency",
@@ -393,6 +393,8 @@
                         "3xx": "#6ED0E0",
                         "4xx": "#EF843C",
                         "5xx": "#E24D42",
+                        "OK": "#7EB26D",
+                        "cancel": "#A9A9A9",
                         "error": "#E24D42",
                         "success": "#7EB26D"
                     },
@@ -426,12 +428,11 @@
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "sum by (status) (\n  label_replace(label_replace(rate(cortex_query_scheduler_queue_duration_seconds_count{cluster=~\"$cluster\", job=~\"($namespace)/((ruler-query-scheduler.*))\"}[$__rate_interval]),\n  \"status\", \"${1}xx\", \"status_code\", \"([0-9])..\"),\n  \"status\", \"${1}\", \"status_code\", \"([a-z]+)\"))\n",
+                            "expr": "sum by (status) (\n  label_replace(label_replace(rate(cortex_query_scheduler_queue_duration_seconds_count{cluster=~\"$cluster\", job=~\"($namespace)/((ruler-query-scheduler.*))\"}[$__rate_interval]),\n  \"status\", \"${1}xx\", \"status_code\", \"([0-9])..\"),\n  \"status\", \"${1}\", \"status_code\", \"([a-zA-Z]+)\"))\n",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{status}}",
-                            "refId": "A",
-                            "step": 10
+                            "refId": "A"
                         }
                     ],
                     "thresholds": [],
@@ -506,24 +507,21 @@
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "99th Percentile",
-                            "refId": "A",
-                            "step": 10
+                            "refId": "A"
                         },
                         {
                             "expr": "histogram_quantile(0.50, sum(rate(cortex_query_scheduler_queue_duration_seconds_bucket{cluster=~\"$cluster\", job=~\"($namespace)/((ruler-query-scheduler.*))\"}[$__rate_interval])) by (le)) * 1e3",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "50th Percentile",
-                            "refId": "B",
-                            "step": 10
+                            "refId": "B"
                         },
                         {
                             "expr": "sum(rate(cortex_query_scheduler_queue_duration_seconds_sum{cluster=~\"$cluster\", job=~\"($namespace)/((ruler-query-scheduler.*))\"}[$__rate_interval])) * 1e3 / sum(rate(cortex_query_scheduler_queue_duration_seconds_count{cluster=~\"$cluster\", job=~\"($namespace)/((ruler-query-scheduler.*))\"}[$__rate_interval]))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "Average",
-                            "refId": "C",
-                            "step": 10
+                            "refId": "C"
                         }
                     ],
                     "thresholds": [],
@@ -581,6 +579,8 @@
                         "3xx": "#6ED0E0",
                         "4xx": "#EF843C",
                         "5xx": "#E24D42",
+                        "OK": "#7EB26D",
+                        "cancel": "#A9A9A9",
                         "error": "#E24D42",
                         "success": "#7EB26D"
                     },
@@ -614,12 +614,11 @@
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "sum by (status) (\n  label_replace(label_replace(rate(cortex_querier_request_duration_seconds_count{cluster=~\"$cluster\", job=~\"($namespace)/((ruler-querier.*))\", route=~\"(prometheus|api_prom)_api_v1_.+\"}[$__rate_interval]),\n  \"status\", \"${1}xx\", \"status_code\", \"([0-9])..\"),\n  \"status\", \"${1}\", \"status_code\", \"([a-z]+)\"))\n",
+                            "expr": "sum by (status) (\n  label_replace(label_replace(rate(cortex_querier_request_duration_seconds_count{cluster=~\"$cluster\", job=~\"($namespace)/((ruler-querier.*))\", route=~\"(prometheus|api_prom)_api_v1_.+\"}[$__rate_interval]),\n  \"status\", \"${1}xx\", \"status_code\", \"([0-9])..\"),\n  \"status\", \"${1}\", \"status_code\", \"([a-zA-Z]+)\"))\n",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{status}}",
-                            "refId": "A",
-                            "step": 10
+                            "refId": "A"
                         }
                     ],
                     "thresholds": [],
@@ -693,7 +692,7 @@
                             "expr": "histogram_quantile(0.99, sum by (le) (cluster_job_route:cortex_querier_request_duration_seconds_bucket:sum_rate{cluster=~\"$cluster\", job=~\"($namespace)/((ruler-querier.*))\", route=~\"(prometheus|api_prom)_api_v1_.+\"})) * 1e3",
                             "format": "time_series",
                             "intervalFactor": 2,
-                            "legendFormat": "99th Percentile",
+                            "legendFormat": "99th percentile",
                             "refId": "A",
                             "step": 10
                         },
@@ -701,7 +700,7 @@
                             "expr": "histogram_quantile(0.50, sum by (le) (cluster_job_route:cortex_querier_request_duration_seconds_bucket:sum_rate{cluster=~\"$cluster\", job=~\"($namespace)/((ruler-querier.*))\", route=~\"(prometheus|api_prom)_api_v1_.+\"})) * 1e3",
                             "format": "time_series",
                             "intervalFactor": 2,
-                            "legendFormat": "50th Percentile",
+                            "legendFormat": "50th percentile",
                             "refId": "B",
                             "step": 10
                         },
@@ -794,8 +793,7 @@
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         }
                     ],
                     "title": "Per pod p99 latency",
@@ -814,7 +812,7 @@
     "style": "dark",
     "tags": [
         "mimir-mixin",
-        "monitoring-mixins-v1.3.0",
+        "monitoring-mixins-v1.6.0",
         "portefaix"
     ],
     "templating": {
