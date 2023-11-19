@@ -22,7 +22,7 @@
             "keepTime": true,
             "tags": [
                 "mimir-mixin",
-                "monitoring-mixins-v1.3.0"
+                "monitoring-mixins-v1.6.0"
             ],
             "targetBlank": false,
             "title": "Mimir dashboards",
@@ -282,6 +282,8 @@
                         "3xx": "#6ED0E0",
                         "4xx": "#EF843C",
                         "5xx": "#E24D42",
+                        "OK": "#7EB26D",
+                        "cancel": "#A9A9A9",
                         "error": "#E24D42",
                         "success": "#7EB26D"
                     },
@@ -315,12 +317,11 @@
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "sum by (status) (\n  label_replace(label_replace(rate(cortex_request_duration_seconds_count{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\", route=~\"/alertmanagerpb.Alertmanager/HandleRequest\"}[$__rate_interval]),\n  \"status\", \"${1}xx\", \"status_code\", \"([0-9])..\"),\n  \"status\", \"${1}\", \"status_code\", \"([a-z]+)\"))\n",
+                            "expr": "sum by (status) (\n  label_replace(label_replace(rate(cortex_request_duration_seconds_count{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\", route=~\"/alertmanagerpb.Alertmanager/HandleRequest\"}[$__rate_interval]),\n  \"status\", \"${1}xx\", \"status_code\", \"([0-9])..\"),\n  \"status\", \"${1}\", \"status_code\", \"([a-zA-Z]+)\"))\n",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{status}}",
-                            "refId": "A",
-                            "step": 10
+                            "refId": "A"
                         }
                     ],
                     "thresholds": [],
@@ -394,7 +395,7 @@
                             "expr": "histogram_quantile(0.99, sum by (le) (cluster_job_route:cortex_request_duration_seconds_bucket:sum_rate{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\", route=~\"/alertmanagerpb.Alertmanager/HandleRequest\"})) * 1e3",
                             "format": "time_series",
                             "intervalFactor": 2,
-                            "legendFormat": "99th Percentile",
+                            "legendFormat": "99th percentile",
                             "refId": "A",
                             "step": 10
                         },
@@ -402,7 +403,7 @@
                             "expr": "histogram_quantile(0.50, sum by (le) (cluster_job_route:cortex_request_duration_seconds_bucket:sum_rate{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\", route=~\"/alertmanagerpb.Alertmanager/HandleRequest\"})) * 1e3",
                             "format": "time_series",
                             "intervalFactor": 2,
-                            "legendFormat": "50th Percentile",
+                            "legendFormat": "50th percentile",
                             "refId": "B",
                             "step": 10
                         },
@@ -502,16 +503,14 @@
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "successful",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         },
                         {
                             "expr": "sum(cluster_job:cortex_alertmanager_alerts_invalid_total:rate5m{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"})",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "failed",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         }
                     ],
                     "thresholds": [],
@@ -563,15 +562,12 @@
             "height": "250px",
             "panels": [
                 {
-                    "aliasColors": {
-                        "failed": "#E24D42",
-                        "successful": "#7EB26D"
-                    },
+                    "aliasColors": {},
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
                     "datasource": "$datasource",
-                    "fill": 1,
+                    "fill": 10,
                     "id": 7,
                     "legend": {
                         "avg": false,
@@ -583,7 +579,7 @@
                         "values": false
                     },
                     "lines": true,
-                    "linewidth": 1,
+                    "linewidth": 0,
                     "links": [],
                     "nullPointMode": "null as zero",
                     "percentage": false,
@@ -592,31 +588,22 @@
                     "renderer": "flot",
                     "seriesOverrides": [],
                     "spaceLength": 10,
-                    "span": 4,
-                    "stack": false,
+                    "span": 12,
+                    "stack": true,
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "sum(cluster_job_integration:cortex_alertmanager_notifications_total:rate5m{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"})\n-\nsum(cluster_job_integration:cortex_alertmanager_notifications_failed_total:rate5m{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"})\n",
+                            "expr": "cortex_alertmanager_dispatcher_aggregation_groups{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"}",
                             "format": "time_series",
                             "intervalFactor": 2,
-                            "legendFormat": "successful",
-                            "legendLink": null,
-                            "step": 10
-                        },
-                        {
-                            "expr": "sum(cluster_job_integration:cortex_alertmanager_notifications_failed_total:rate5m{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"})\n",
-                            "format": "time_series",
-                            "intervalFactor": 2,
-                            "legendFormat": "failed",
-                            "legendLink": null,
-                            "step": 10
+                            "legendFormat": "{{pod}}",
+                            "legendLink": null
                         }
                     ],
                     "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
-                    "title": "NPS",
+                    "title": "per pod Active Aggregation Groups",
                     "tooltip": {
                         "shared": false,
                         "sort": 0,
@@ -648,9 +635,24 @@
                             "show": false
                         }
                     ]
-                },
+                }
+            ],
+            "repeat": null,
+            "repeatIteration": null,
+            "repeatRowId": null,
+            "showTitle": true,
+            "title": "Alerts grouping",
+            "titleSize": "h6"
+        },
+        {
+            "collapse": false,
+            "height": "250px",
+            "panels": [
                 {
-                    "aliasColors": {},
+                    "aliasColors": {
+                        "failed": "#E24D42",
+                        "successful": "#7EB26D"
+                    },
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
@@ -681,26 +683,24 @@
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "(\nsum(cluster_job_integration:cortex_alertmanager_notifications_total:rate5m{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"}) by(integration)\n-\nsum(cluster_job_integration:cortex_alertmanager_notifications_failed_total:rate5m{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"}) by(integration)\n) > 0\nor on () vector(0)\n",
+                            "expr": "sum(cluster_job_integration:cortex_alertmanager_notifications_total:rate5m{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"})\n-\nsum(cluster_job_integration:cortex_alertmanager_notifications_failed_total:rate5m{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"})\n",
                             "format": "time_series",
                             "intervalFactor": 2,
-                            "legendFormat": "success - {{ integration }}",
-                            "legendLink": null,
-                            "step": 10
+                            "legendFormat": "successful",
+                            "legendLink": null
                         },
                         {
-                            "expr": "sum(cluster_job_integration:cortex_alertmanager_notifications_failed_total:rate5m{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"}) by(integration)",
+                            "expr": "sum(cluster_job_integration:cortex_alertmanager_notifications_failed_total:rate5m{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"})\n",
                             "format": "time_series",
                             "intervalFactor": 2,
-                            "legendFormat": "failed - {{ integration }}",
-                            "legendLink": null,
-                            "step": 10
+                            "legendFormat": "failed",
+                            "legendLink": null
                         }
                     ],
                     "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
-                    "title": "NPS by integration",
+                    "title": "NPS",
                     "tooltip": {
                         "shared": false,
                         "sort": 0,
@@ -765,28 +765,107 @@
                     "steppedLine": false,
                     "targets": [
                         {
+                            "expr": "(\nsum(cluster_job_integration:cortex_alertmanager_notifications_total:rate5m{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"}) by(integration)\n-\nsum(cluster_job_integration:cortex_alertmanager_notifications_failed_total:rate5m{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"}) by(integration)\n) > 0\nor on () vector(0)\n",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "legendFormat": "success - {{ integration }}",
+                            "legendLink": null
+                        },
+                        {
+                            "expr": "sum(cluster_job_integration:cortex_alertmanager_notifications_failed_total:rate5m{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"}) by(integration)",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "legendFormat": "failed - {{ integration }}",
+                            "legendLink": null
+                        }
+                    ],
+                    "thresholds": [],
+                    "timeFrom": null,
+                    "timeShift": null,
+                    "title": "NPS by integration",
+                    "tooltip": {
+                        "shared": false,
+                        "sort": 0,
+                        "value_type": "individual"
+                    },
+                    "type": "graph",
+                    "xaxis": {
+                        "buckets": null,
+                        "mode": "time",
+                        "name": null,
+                        "show": true,
+                        "values": []
+                    },
+                    "yaxes": [
+                        {
+                            "format": "short",
+                            "label": null,
+                            "logBase": 1,
+                            "max": null,
+                            "min": 0,
+                            "show": true
+                        },
+                        {
+                            "format": "short",
+                            "label": null,
+                            "logBase": 1,
+                            "max": null,
+                            "min": null,
+                            "show": false
+                        }
+                    ]
+                },
+                {
+                    "aliasColors": {},
+                    "bars": false,
+                    "dashLength": 10,
+                    "dashes": false,
+                    "datasource": "$datasource",
+                    "fill": 1,
+                    "id": 10,
+                    "legend": {
+                        "avg": false,
+                        "current": false,
+                        "max": false,
+                        "min": false,
+                        "show": true,
+                        "total": false,
+                        "values": false
+                    },
+                    "lines": true,
+                    "linewidth": 1,
+                    "links": [],
+                    "nullPointMode": "null as zero",
+                    "percentage": false,
+                    "pointradius": 5,
+                    "points": false,
+                    "renderer": "flot",
+                    "seriesOverrides": [],
+                    "spaceLength": 10,
+                    "span": 4,
+                    "stack": false,
+                    "steppedLine": false,
+                    "targets": [
+                        {
                             "expr": "histogram_quantile(0.99, sum(rate(cortex_alertmanager_notification_latency_seconds_bucket{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"}[$__rate_interval])) by (le)) * 1e3",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "99th Percentile",
-                            "refId": "A",
-                            "step": 10
+                            "refId": "A"
                         },
                         {
                             "expr": "histogram_quantile(0.50, sum(rate(cortex_alertmanager_notification_latency_seconds_bucket{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"}[$__rate_interval])) by (le)) * 1e3",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "50th Percentile",
-                            "refId": "B",
-                            "step": 10
+                            "refId": "B"
                         },
                         {
                             "expr": "sum(rate(cortex_alertmanager_notification_latency_seconds_sum{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"}[$__rate_interval])) * 1e3 / sum(rate(cortex_alertmanager_notification_latency_seconds_count{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"}[$__rate_interval]))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "Average",
-                            "refId": "C",
-                            "step": 10
+                            "refId": "C"
                         }
                     ],
                     "thresholds": [],
@@ -844,7 +923,7 @@
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 10,
-                    "id": 10,
+                    "id": 11,
                     "legend": {
                         "avg": false,
                         "current": false,
@@ -873,8 +952,7 @@
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{operation}}",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         }
                     ],
                     "thresholds": [],
@@ -914,80 +992,38 @@
                     ]
                 },
                 {
-                    "aliasColors": {},
-                    "bars": false,
-                    "dashLength": 10,
-                    "dashes": false,
                     "datasource": "$datasource",
-                    "fill": 1,
-                    "id": 11,
-                    "legend": {
-                        "avg": false,
-                        "current": false,
-                        "max": false,
-                        "min": false,
-                        "show": true,
-                        "total": false,
-                        "values": false
+                    "fieldConfig": {
+                        "defaults": {
+                            "max": 1,
+                            "min": 0,
+                            "noValue": "0",
+                            "unit": "percentunit"
+                        }
                     },
-                    "lines": true,
-                    "linewidth": 1,
+                    "id": 12,
                     "links": [],
-                    "nullPointMode": "null as zero",
-                    "percentage": false,
-                    "pointradius": 5,
-                    "points": false,
-                    "renderer": "flot",
-                    "seriesOverrides": [],
-                    "spaceLength": 10,
+                    "options": {
+                        "legend": {
+                            "showLegend": true
+                        },
+                        "tooltip": {
+                            "mode": "single",
+                            "sort": "none"
+                        }
+                    },
                     "span": 3,
-                    "stack": false,
-                    "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "sum by(operation) (rate(thanos_objstore_bucket_operation_failures_total{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\"}[$__rate_interval])) / sum by(operation) (rate(thanos_objstore_bucket_operations_total{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\"}[$__rate_interval]))",
+                            "expr": "sum by(operation) (rate(thanos_objstore_bucket_operation_failures_total{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\"}[$__rate_interval])) / sum by(operation) (rate(thanos_objstore_bucket_operations_total{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\"}[$__rate_interval])) >= 0",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{operation}}",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         }
                     ],
-                    "thresholds": [],
-                    "timeFrom": null,
-                    "timeShift": null,
                     "title": "Error rate",
-                    "tooltip": {
-                        "shared": false,
-                        "sort": 0,
-                        "value_type": "individual"
-                    },
-                    "type": "graph",
-                    "xaxis": {
-                        "buckets": null,
-                        "mode": "time",
-                        "name": null,
-                        "show": true,
-                        "values": []
-                    },
-                    "yaxes": [
-                        {
-                            "format": "percentunit",
-                            "label": null,
-                            "logBase": 1,
-                            "max": null,
-                            "min": 0,
-                            "show": true
-                        },
-                        {
-                            "format": "short",
-                            "label": null,
-                            "logBase": 1,
-                            "max": null,
-                            "min": null,
-                            "show": false
-                        }
-                    ]
+                    "type": "timeseries"
                 },
                 {
                     "aliasColors": {},
@@ -996,7 +1032,7 @@
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "id": 12,
+                    "id": 13,
                     "legend": {
                         "avg": false,
                         "current": false,
@@ -1025,24 +1061,21 @@
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "99th Percentile",
-                            "refId": "A",
-                            "step": 10
+                            "refId": "A"
                         },
                         {
                             "expr": "histogram_quantile(0.50, sum(rate(thanos_objstore_bucket_operation_duration_seconds_bucket{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"attributes\"}[$__rate_interval])) by (le)) * 1e3",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "50th Percentile",
-                            "refId": "B",
-                            "step": 10
+                            "refId": "B"
                         },
                         {
                             "expr": "sum(rate(thanos_objstore_bucket_operation_duration_seconds_sum{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"attributes\"}[$__rate_interval])) * 1e3 / sum(rate(thanos_objstore_bucket_operation_duration_seconds_count{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"attributes\"}[$__rate_interval]))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "Average",
-                            "refId": "C",
-                            "step": 10
+                            "refId": "C"
                         }
                     ],
                     "thresholds": [],
@@ -1088,7 +1121,7 @@
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "id": 13,
+                    "id": 14,
                     "legend": {
                         "avg": false,
                         "current": false,
@@ -1117,24 +1150,21 @@
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "99th Percentile",
-                            "refId": "A",
-                            "step": 10
+                            "refId": "A"
                         },
                         {
                             "expr": "histogram_quantile(0.50, sum(rate(thanos_objstore_bucket_operation_duration_seconds_bucket{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"exists\"}[$__rate_interval])) by (le)) * 1e3",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "50th Percentile",
-                            "refId": "B",
-                            "step": 10
+                            "refId": "B"
                         },
                         {
                             "expr": "sum(rate(thanos_objstore_bucket_operation_duration_seconds_sum{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"exists\"}[$__rate_interval])) * 1e3 / sum(rate(thanos_objstore_bucket_operation_duration_seconds_count{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"exists\"}[$__rate_interval]))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "Average",
-                            "refId": "C",
-                            "step": 10
+                            "refId": "C"
                         }
                     ],
                     "thresholds": [],
@@ -1192,7 +1222,7 @@
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "id": 14,
+                    "id": 15,
                     "legend": {
                         "avg": false,
                         "current": false,
@@ -1221,122 +1251,27 @@
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "99th Percentile",
-                            "refId": "A",
-                            "step": 10
+                            "refId": "A"
                         },
                         {
                             "expr": "histogram_quantile(0.50, sum(rate(thanos_objstore_bucket_operation_duration_seconds_bucket{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"get\"}[$__rate_interval])) by (le)) * 1e3",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "50th Percentile",
-                            "refId": "B",
-                            "step": 10
+                            "refId": "B"
                         },
                         {
                             "expr": "sum(rate(thanos_objstore_bucket_operation_duration_seconds_sum{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"get\"}[$__rate_interval])) * 1e3 / sum(rate(thanos_objstore_bucket_operation_duration_seconds_count{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"get\"}[$__rate_interval]))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "Average",
-                            "refId": "C",
-                            "step": 10
+                            "refId": "C"
                         }
                     ],
                     "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Latency of op: Get",
-                    "tooltip": {
-                        "shared": false,
-                        "sort": 0,
-                        "value_type": "individual"
-                    },
-                    "type": "graph",
-                    "xaxis": {
-                        "buckets": null,
-                        "mode": "time",
-                        "name": null,
-                        "show": true,
-                        "values": []
-                    },
-                    "yaxes": [
-                        {
-                            "format": "ms",
-                            "label": null,
-                            "logBase": 1,
-                            "max": null,
-                            "min": 0,
-                            "show": true
-                        },
-                        {
-                            "format": "short",
-                            "label": null,
-                            "logBase": 1,
-                            "max": null,
-                            "min": null,
-                            "show": false
-                        }
-                    ]
-                },
-                {
-                    "aliasColors": {},
-                    "bars": false,
-                    "dashLength": 10,
-                    "dashes": false,
-                    "datasource": "$datasource",
-                    "fill": 1,
-                    "id": 15,
-                    "legend": {
-                        "avg": false,
-                        "current": false,
-                        "max": false,
-                        "min": false,
-                        "show": true,
-                        "total": false,
-                        "values": false
-                    },
-                    "lines": true,
-                    "linewidth": 1,
-                    "links": [],
-                    "nullPointMode": "null as zero",
-                    "percentage": false,
-                    "pointradius": 5,
-                    "points": false,
-                    "renderer": "flot",
-                    "seriesOverrides": [],
-                    "spaceLength": 10,
-                    "span": 3,
-                    "stack": false,
-                    "steppedLine": false,
-                    "targets": [
-                        {
-                            "expr": "histogram_quantile(0.99, sum(rate(thanos_objstore_bucket_operation_duration_seconds_bucket{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"get_range\"}[$__rate_interval])) by (le)) * 1e3",
-                            "format": "time_series",
-                            "intervalFactor": 2,
-                            "legendFormat": "99th Percentile",
-                            "refId": "A",
-                            "step": 10
-                        },
-                        {
-                            "expr": "histogram_quantile(0.50, sum(rate(thanos_objstore_bucket_operation_duration_seconds_bucket{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"get_range\"}[$__rate_interval])) by (le)) * 1e3",
-                            "format": "time_series",
-                            "intervalFactor": 2,
-                            "legendFormat": "50th Percentile",
-                            "refId": "B",
-                            "step": 10
-                        },
-                        {
-                            "expr": "sum(rate(thanos_objstore_bucket_operation_duration_seconds_sum{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"get_range\"}[$__rate_interval])) * 1e3 / sum(rate(thanos_objstore_bucket_operation_duration_seconds_count{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"get_range\"}[$__rate_interval]))",
-                            "format": "time_series",
-                            "intervalFactor": 2,
-                            "legendFormat": "Average",
-                            "refId": "C",
-                            "step": 10
-                        }
-                    ],
-                    "thresholds": [],
-                    "timeFrom": null,
-                    "timeShift": null,
-                    "title": "Latency of op: GetRange",
                     "tooltip": {
                         "shared": false,
                         "sort": 0,
@@ -1401,34 +1336,31 @@
                     "steppedLine": false,
                     "targets": [
                         {
-                            "expr": "histogram_quantile(0.99, sum(rate(thanos_objstore_bucket_operation_duration_seconds_bucket{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"upload\"}[$__rate_interval])) by (le)) * 1e3",
+                            "expr": "histogram_quantile(0.99, sum(rate(thanos_objstore_bucket_operation_duration_seconds_bucket{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"get_range\"}[$__rate_interval])) by (le)) * 1e3",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "99th Percentile",
-                            "refId": "A",
-                            "step": 10
+                            "refId": "A"
                         },
                         {
-                            "expr": "histogram_quantile(0.50, sum(rate(thanos_objstore_bucket_operation_duration_seconds_bucket{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"upload\"}[$__rate_interval])) by (le)) * 1e3",
+                            "expr": "histogram_quantile(0.50, sum(rate(thanos_objstore_bucket_operation_duration_seconds_bucket{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"get_range\"}[$__rate_interval])) by (le)) * 1e3",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "50th Percentile",
-                            "refId": "B",
-                            "step": 10
+                            "refId": "B"
                         },
                         {
-                            "expr": "sum(rate(thanos_objstore_bucket_operation_duration_seconds_sum{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"upload\"}[$__rate_interval])) * 1e3 / sum(rate(thanos_objstore_bucket_operation_duration_seconds_count{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"upload\"}[$__rate_interval]))",
+                            "expr": "sum(rate(thanos_objstore_bucket_operation_duration_seconds_sum{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"get_range\"}[$__rate_interval])) * 1e3 / sum(rate(thanos_objstore_bucket_operation_duration_seconds_count{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"get_range\"}[$__rate_interval]))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "Average",
-                            "refId": "C",
-                            "step": 10
+                            "refId": "C"
                         }
                     ],
                     "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
-                    "title": "Latency of op: Upload",
+                    "title": "Latency of op: GetRange",
                     "tooltip": {
                         "shared": false,
                         "sort": 0,
@@ -1493,28 +1425,114 @@
                     "steppedLine": false,
                     "targets": [
                         {
+                            "expr": "histogram_quantile(0.99, sum(rate(thanos_objstore_bucket_operation_duration_seconds_bucket{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"upload\"}[$__rate_interval])) by (le)) * 1e3",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "legendFormat": "99th Percentile",
+                            "refId": "A"
+                        },
+                        {
+                            "expr": "histogram_quantile(0.50, sum(rate(thanos_objstore_bucket_operation_duration_seconds_bucket{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"upload\"}[$__rate_interval])) by (le)) * 1e3",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "legendFormat": "50th Percentile",
+                            "refId": "B"
+                        },
+                        {
+                            "expr": "sum(rate(thanos_objstore_bucket_operation_duration_seconds_sum{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"upload\"}[$__rate_interval])) * 1e3 / sum(rate(thanos_objstore_bucket_operation_duration_seconds_count{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"upload\"}[$__rate_interval]))",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "legendFormat": "Average",
+                            "refId": "C"
+                        }
+                    ],
+                    "thresholds": [],
+                    "timeFrom": null,
+                    "timeShift": null,
+                    "title": "Latency of op: Upload",
+                    "tooltip": {
+                        "shared": false,
+                        "sort": 0,
+                        "value_type": "individual"
+                    },
+                    "type": "graph",
+                    "xaxis": {
+                        "buckets": null,
+                        "mode": "time",
+                        "name": null,
+                        "show": true,
+                        "values": []
+                    },
+                    "yaxes": [
+                        {
+                            "format": "ms",
+                            "label": null,
+                            "logBase": 1,
+                            "max": null,
+                            "min": 0,
+                            "show": true
+                        },
+                        {
+                            "format": "short",
+                            "label": null,
+                            "logBase": 1,
+                            "max": null,
+                            "min": null,
+                            "show": false
+                        }
+                    ]
+                },
+                {
+                    "aliasColors": {},
+                    "bars": false,
+                    "dashLength": 10,
+                    "dashes": false,
+                    "datasource": "$datasource",
+                    "fill": 1,
+                    "id": 18,
+                    "legend": {
+                        "avg": false,
+                        "current": false,
+                        "max": false,
+                        "min": false,
+                        "show": true,
+                        "total": false,
+                        "values": false
+                    },
+                    "lines": true,
+                    "linewidth": 1,
+                    "links": [],
+                    "nullPointMode": "null as zero",
+                    "percentage": false,
+                    "pointradius": 5,
+                    "points": false,
+                    "renderer": "flot",
+                    "seriesOverrides": [],
+                    "spaceLength": 10,
+                    "span": 3,
+                    "stack": false,
+                    "steppedLine": false,
+                    "targets": [
+                        {
                             "expr": "histogram_quantile(0.99, sum(rate(thanos_objstore_bucket_operation_duration_seconds_bucket{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"delete\"}[$__rate_interval])) by (le)) * 1e3",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "99th Percentile",
-                            "refId": "A",
-                            "step": 10
+                            "refId": "A"
                         },
                         {
                             "expr": "histogram_quantile(0.50, sum(rate(thanos_objstore_bucket_operation_duration_seconds_bucket{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"delete\"}[$__rate_interval])) by (le)) * 1e3",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "50th Percentile",
-                            "refId": "B",
-                            "step": 10
+                            "refId": "B"
                         },
                         {
                             "expr": "sum(rate(thanos_objstore_bucket_operation_duration_seconds_sum{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"delete\"}[$__rate_interval])) * 1e3 / sum(rate(thanos_objstore_bucket_operation_duration_seconds_count{cluster=~\"$cluster\", namespace=~\"$namespace\",component=\"alertmanager-storage\",operation=\"delete\"}[$__rate_interval]))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "Average",
-                            "refId": "C",
-                            "step": 10
+                            "refId": "C"
                         }
                     ],
                     "thresholds": [],
@@ -1572,7 +1590,7 @@
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 10,
-                    "id": 18,
+                    "id": 19,
                     "legend": {
                         "avg": false,
                         "current": false,
@@ -1601,90 +1619,13 @@
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{pod}}",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         }
                     ],
                     "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Per pod tenants",
-                    "tooltip": {
-                        "shared": false,
-                        "sort": 0,
-                        "value_type": "individual"
-                    },
-                    "type": "graph",
-                    "xaxis": {
-                        "buckets": null,
-                        "mode": "time",
-                        "name": null,
-                        "show": true,
-                        "values": []
-                    },
-                    "yaxes": [
-                        {
-                            "format": "short",
-                            "label": null,
-                            "logBase": 1,
-                            "max": null,
-                            "min": 0,
-                            "show": true
-                        },
-                        {
-                            "format": "short",
-                            "label": null,
-                            "logBase": 1,
-                            "max": null,
-                            "min": null,
-                            "show": false
-                        }
-                    ]
-                },
-                {
-                    "aliasColors": {},
-                    "bars": false,
-                    "dashLength": 10,
-                    "dashes": false,
-                    "datasource": "$datasource",
-                    "fill": 10,
-                    "id": 19,
-                    "legend": {
-                        "avg": false,
-                        "current": false,
-                        "max": false,
-                        "min": false,
-                        "show": true,
-                        "total": false,
-                        "values": false
-                    },
-                    "lines": true,
-                    "linewidth": 0,
-                    "links": [],
-                    "nullPointMode": "null as zero",
-                    "percentage": false,
-                    "pointradius": 5,
-                    "points": false,
-                    "renderer": "flot",
-                    "seriesOverrides": [],
-                    "spaceLength": 10,
-                    "span": 4,
-                    "stack": true,
-                    "steppedLine": false,
-                    "targets": [
-                        {
-                            "expr": "sum by(pod) (cluster_job_pod:cortex_alertmanager_alerts:sum{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"})",
-                            "format": "time_series",
-                            "intervalFactor": 2,
-                            "legendFormat": "{{pod}}",
-                            "legendLink": null,
-                            "step": 10
-                        }
-                    ],
-                    "thresholds": [],
-                    "timeFrom": null,
-                    "timeShift": null,
-                    "title": "Per pod alerts",
                     "tooltip": {
                         "shared": false,
                         "sort": 0,
@@ -1749,12 +1690,86 @@
                     "steppedLine": false,
                     "targets": [
                         {
+                            "expr": "sum by(pod) (cluster_job_pod:cortex_alertmanager_alerts:sum{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"})",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "legendFormat": "{{pod}}",
+                            "legendLink": null
+                        }
+                    ],
+                    "thresholds": [],
+                    "timeFrom": null,
+                    "timeShift": null,
+                    "title": "Per pod alerts",
+                    "tooltip": {
+                        "shared": false,
+                        "sort": 0,
+                        "value_type": "individual"
+                    },
+                    "type": "graph",
+                    "xaxis": {
+                        "buckets": null,
+                        "mode": "time",
+                        "name": null,
+                        "show": true,
+                        "values": []
+                    },
+                    "yaxes": [
+                        {
+                            "format": "short",
+                            "label": null,
+                            "logBase": 1,
+                            "max": null,
+                            "min": 0,
+                            "show": true
+                        },
+                        {
+                            "format": "short",
+                            "label": null,
+                            "logBase": 1,
+                            "max": null,
+                            "min": null,
+                            "show": false
+                        }
+                    ]
+                },
+                {
+                    "aliasColors": {},
+                    "bars": false,
+                    "dashLength": 10,
+                    "dashes": false,
+                    "datasource": "$datasource",
+                    "fill": 10,
+                    "id": 21,
+                    "legend": {
+                        "avg": false,
+                        "current": false,
+                        "max": false,
+                        "min": false,
+                        "show": true,
+                        "total": false,
+                        "values": false
+                    },
+                    "lines": true,
+                    "linewidth": 0,
+                    "links": [],
+                    "nullPointMode": "null as zero",
+                    "percentage": false,
+                    "pointradius": 5,
+                    "points": false,
+                    "renderer": "flot",
+                    "seriesOverrides": [],
+                    "spaceLength": 10,
+                    "span": 4,
+                    "stack": true,
+                    "steppedLine": false,
+                    "targets": [
+                        {
                             "expr": "sum by(pod) (cluster_job_pod:cortex_alertmanager_silences:sum{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"})",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "{{pod}}",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         }
                     ],
                     "thresholds": [],
@@ -1815,7 +1830,7 @@
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "id": 21,
+                    "id": 22,
                     "legend": {
                         "avg": false,
                         "current": false,
@@ -1844,98 +1859,20 @@
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "successful",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         },
                         {
                             "expr": "sum(rate(cortex_alertmanager_sync_configs_failed_total{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"}[$__rate_interval]))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "failed",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         }
                     ],
                     "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Syncs/sec",
-                    "tooltip": {
-                        "shared": false,
-                        "sort": 0,
-                        "value_type": "individual"
-                    },
-                    "type": "graph",
-                    "xaxis": {
-                        "buckets": null,
-                        "mode": "time",
-                        "name": null,
-                        "show": true,
-                        "values": []
-                    },
-                    "yaxes": [
-                        {
-                            "format": "short",
-                            "label": null,
-                            "logBase": 1,
-                            "max": null,
-                            "min": 0,
-                            "show": true
-                        },
-                        {
-                            "format": "short",
-                            "label": null,
-                            "logBase": 1,
-                            "max": null,
-                            "min": null,
-                            "show": false
-                        }
-                    ]
-                },
-                {
-                    "aliasColors": {},
-                    "bars": false,
-                    "dashLength": 10,
-                    "dashes": false,
-                    "datasource": "$datasource",
-                    "fill": 1,
-                    "id": 22,
-                    "legend": {
-                        "avg": false,
-                        "current": false,
-                        "max": false,
-                        "min": false,
-                        "show": true,
-                        "total": false,
-                        "values": false
-                    },
-                    "lines": true,
-                    "linewidth": 1,
-                    "links": [],
-                    "nullPointMode": "null as zero",
-                    "percentage": false,
-                    "pointradius": 5,
-                    "points": false,
-                    "renderer": "flot",
-                    "seriesOverrides": [],
-                    "spaceLength": 10,
-                    "span": 4,
-                    "stack": false,
-                    "steppedLine": false,
-                    "targets": [
-                        {
-                            "expr": "sum by(reason) (rate(cortex_alertmanager_sync_configs_total{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"}[$__rate_interval]))",
-                            "format": "time_series",
-                            "intervalFactor": 2,
-                            "legendFormat": "{{reason}}",
-                            "legendLink": null,
-                            "step": 10
-                        }
-                    ],
-                    "thresholds": [],
-                    "timeFrom": null,
-                    "timeShift": null,
-                    "title": "Syncs/sec (by reason)",
                     "tooltip": {
                         "shared": false,
                         "sort": 0,
@@ -2000,12 +1937,86 @@
                     "steppedLine": false,
                     "targets": [
                         {
+                            "expr": "sum by(reason) (rate(cortex_alertmanager_sync_configs_total{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"}[$__rate_interval]))",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "legendFormat": "{{reason}}",
+                            "legendLink": null
+                        }
+                    ],
+                    "thresholds": [],
+                    "timeFrom": null,
+                    "timeShift": null,
+                    "title": "Syncs/sec (by reason)",
+                    "tooltip": {
+                        "shared": false,
+                        "sort": 0,
+                        "value_type": "individual"
+                    },
+                    "type": "graph",
+                    "xaxis": {
+                        "buckets": null,
+                        "mode": "time",
+                        "name": null,
+                        "show": true,
+                        "values": []
+                    },
+                    "yaxes": [
+                        {
+                            "format": "short",
+                            "label": null,
+                            "logBase": 1,
+                            "max": null,
+                            "min": 0,
+                            "show": true
+                        },
+                        {
+                            "format": "short",
+                            "label": null,
+                            "logBase": 1,
+                            "max": null,
+                            "min": null,
+                            "show": false
+                        }
+                    ]
+                },
+                {
+                    "aliasColors": {},
+                    "bars": false,
+                    "dashLength": 10,
+                    "dashes": false,
+                    "datasource": "$datasource",
+                    "fill": 1,
+                    "id": 24,
+                    "legend": {
+                        "avg": false,
+                        "current": false,
+                        "max": false,
+                        "min": false,
+                        "show": true,
+                        "total": false,
+                        "values": false
+                    },
+                    "lines": true,
+                    "linewidth": 1,
+                    "links": [],
+                    "nullPointMode": "null as zero",
+                    "percentage": false,
+                    "pointradius": 5,
+                    "points": false,
+                    "renderer": "flot",
+                    "seriesOverrides": [],
+                    "spaceLength": 10,
+                    "span": 4,
+                    "stack": false,
+                    "steppedLine": false,
+                    "targets": [
+                        {
                             "expr": "sum (rate(cortex_alertmanager_ring_check_errors_total{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"}[$__rate_interval]))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "errors",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         }
                     ],
                     "thresholds": [],
@@ -2063,7 +2074,7 @@
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "id": 24,
+                    "id": 25,
                     "legend": {
                         "avg": false,
                         "current": false,
@@ -2093,8 +2104,7 @@
                             "interval": "1m",
                             "intervalFactor": 2,
                             "legendFormat": "{{outcome}}",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         }
                     ],
                     "thresholds": [],
@@ -2140,7 +2150,7 @@
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "id": 25,
+                    "id": 26,
                     "legend": {
                         "avg": false,
                         "current": false,
@@ -2170,8 +2180,7 @@
                             "interval": "1m",
                             "intervalFactor": 2,
                             "legendFormat": "99th Percentile",
-                            "refId": "A",
-                            "step": 10
+                            "refId": "A"
                         },
                         {
                             "expr": "histogram_quantile(0.50, sum(rate(cortex_alertmanager_state_initial_sync_duration_seconds_bucket{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"}[$__rate_interval])) by (le)) * 1e3",
@@ -2179,8 +2188,7 @@
                             "interval": "1m",
                             "intervalFactor": 2,
                             "legendFormat": "50th Percentile",
-                            "refId": "B",
-                            "step": 10
+                            "refId": "B"
                         },
                         {
                             "expr": "sum(rate(cortex_alertmanager_state_initial_sync_duration_seconds_sum{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"}[$__rate_interval])) * 1e3 / sum(rate(cortex_alertmanager_state_initial_sync_duration_seconds_count{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"}[$__rate_interval]))",
@@ -2188,8 +2196,7 @@
                             "interval": "1m",
                             "intervalFactor": 2,
                             "legendFormat": "Average",
-                            "refId": "C",
-                            "step": 10
+                            "refId": "C"
                         }
                     ],
                     "thresholds": [],
@@ -2238,7 +2245,7 @@
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "id": 26,
+                    "id": 27,
                     "legend": {
                         "avg": false,
                         "current": false,
@@ -2268,8 +2275,7 @@
                             "interval": "1m",
                             "intervalFactor": 2,
                             "legendFormat": "successful",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         },
                         {
                             "expr": "sum(rate(cortex_alertmanager_state_fetch_replica_state_failed_total{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"}[$__rate_interval]))",
@@ -2277,8 +2283,7 @@
                             "interval": "1m",
                             "intervalFactor": 2,
                             "legendFormat": "failed",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         }
                     ],
                     "thresholds": [],
@@ -2339,7 +2344,7 @@
                     "dashes": false,
                     "datasource": "$datasource",
                     "fill": 1,
-                    "id": 27,
+                    "id": 28,
                     "legend": {
                         "avg": false,
                         "current": false,
@@ -2368,109 +2373,20 @@
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "successful",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         },
                         {
                             "expr": "sum(cluster_job:cortex_alertmanager_state_replication_failed_total:rate5m{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"})",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "failed",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         }
                     ],
                     "thresholds": [],
                     "timeFrom": null,
                     "timeShift": null,
                     "title": "Replicate state to other alertmanagers /sec",
-                    "tooltip": {
-                        "shared": false,
-                        "sort": 0,
-                        "value_type": "individual"
-                    },
-                    "type": "graph",
-                    "xaxis": {
-                        "buckets": null,
-                        "mode": "time",
-                        "name": null,
-                        "show": true,
-                        "values": []
-                    },
-                    "yaxes": [
-                        {
-                            "format": "short",
-                            "label": null,
-                            "logBase": 1,
-                            "max": null,
-                            "min": 0,
-                            "show": true
-                        },
-                        {
-                            "format": "short",
-                            "label": null,
-                            "logBase": 1,
-                            "max": null,
-                            "min": null,
-                            "show": false
-                        }
-                    ]
-                },
-                {
-                    "aliasColors": {
-                        "failed": "#E24D42",
-                        "successful": "#7EB26D"
-                    },
-                    "bars": false,
-                    "dashLength": 10,
-                    "dashes": false,
-                    "datasource": "$datasource",
-                    "fill": 1,
-                    "id": 28,
-                    "legend": {
-                        "avg": false,
-                        "current": false,
-                        "max": false,
-                        "min": false,
-                        "show": true,
-                        "total": false,
-                        "values": false
-                    },
-                    "lines": true,
-                    "linewidth": 1,
-                    "links": [],
-                    "nullPointMode": "null as zero",
-                    "percentage": false,
-                    "pointradius": 5,
-                    "points": false,
-                    "renderer": "flot",
-                    "seriesOverrides": [],
-                    "spaceLength": 10,
-                    "span": 4,
-                    "stack": false,
-                    "steppedLine": false,
-                    "targets": [
-                        {
-                            "expr": "sum(cluster_job:cortex_alertmanager_partial_state_merges_total:rate5m{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"})\n-\nsum(cluster_job:cortex_alertmanager_partial_state_merges_failed_total:rate5m{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"})\n",
-                            "format": "time_series",
-                            "intervalFactor": 2,
-                            "legendFormat": "successful",
-                            "legendLink": null,
-                            "step": 10
-                        },
-                        {
-                            "expr": "sum(cluster_job:cortex_alertmanager_partial_state_merges_failed_total:rate5m{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"})",
-                            "format": "time_series",
-                            "intervalFactor": 2,
-                            "legendFormat": "failed",
-                            "legendLink": null,
-                            "step": 10
-                        }
-                    ],
-                    "thresholds": [],
-                    "timeFrom": null,
-                    "timeShift": null,
-                    "title": "Merge state from other alertmanagers /sec",
                     "tooltip": {
                         "shared": false,
                         "sort": 0,
@@ -2538,20 +2454,103 @@
                     "steppedLine": false,
                     "targets": [
                         {
+                            "expr": "sum(cluster_job:cortex_alertmanager_partial_state_merges_total:rate5m{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"})\n-\nsum(cluster_job:cortex_alertmanager_partial_state_merges_failed_total:rate5m{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"})\n",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "legendFormat": "successful",
+                            "legendLink": null
+                        },
+                        {
+                            "expr": "sum(cluster_job:cortex_alertmanager_partial_state_merges_failed_total:rate5m{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"})",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "legendFormat": "failed",
+                            "legendLink": null
+                        }
+                    ],
+                    "thresholds": [],
+                    "timeFrom": null,
+                    "timeShift": null,
+                    "title": "Merge state from other alertmanagers /sec",
+                    "tooltip": {
+                        "shared": false,
+                        "sort": 0,
+                        "value_type": "individual"
+                    },
+                    "type": "graph",
+                    "xaxis": {
+                        "buckets": null,
+                        "mode": "time",
+                        "name": null,
+                        "show": true,
+                        "values": []
+                    },
+                    "yaxes": [
+                        {
+                            "format": "short",
+                            "label": null,
+                            "logBase": 1,
+                            "max": null,
+                            "min": 0,
+                            "show": true
+                        },
+                        {
+                            "format": "short",
+                            "label": null,
+                            "logBase": 1,
+                            "max": null,
+                            "min": null,
+                            "show": false
+                        }
+                    ]
+                },
+                {
+                    "aliasColors": {
+                        "failed": "#E24D42",
+                        "successful": "#7EB26D"
+                    },
+                    "bars": false,
+                    "dashLength": 10,
+                    "dashes": false,
+                    "datasource": "$datasource",
+                    "fill": 1,
+                    "id": 30,
+                    "legend": {
+                        "avg": false,
+                        "current": false,
+                        "max": false,
+                        "min": false,
+                        "show": true,
+                        "total": false,
+                        "values": false
+                    },
+                    "lines": true,
+                    "linewidth": 1,
+                    "links": [],
+                    "nullPointMode": "null as zero",
+                    "percentage": false,
+                    "pointradius": 5,
+                    "points": false,
+                    "renderer": "flot",
+                    "seriesOverrides": [],
+                    "spaceLength": 10,
+                    "span": 4,
+                    "stack": false,
+                    "steppedLine": false,
+                    "targets": [
+                        {
                             "expr": "sum(rate(cortex_alertmanager_state_persist_total{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"}[$__rate_interval]))\n-\nsum(rate(cortex_alertmanager_state_persist_failed_total{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"}[$__rate_interval]))\n",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "successful",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         },
                         {
                             "expr": "sum(rate(cortex_alertmanager_state_persist_failed_total{cluster=~\"$cluster\", job=~\"($namespace)/((alertmanager|cortex|mimir|mimir-backend.*))\"}[$__rate_interval]))",
                             "format": "time_series",
                             "intervalFactor": 2,
                             "legendFormat": "failed",
-                            "legendLink": null,
-                            "step": 10
+                            "legendLink": null
                         }
                     ],
                     "thresholds": [],
@@ -2603,7 +2602,7 @@
     "style": "dark",
     "tags": [
         "mimir-mixin",
-        "monitoring-mixins-v1.3.0",
+        "monitoring-mixins-v1.6.0",
         "portefaix"
     ],
     "templating": {
