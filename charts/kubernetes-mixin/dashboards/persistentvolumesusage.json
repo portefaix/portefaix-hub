@@ -389,12 +389,13 @@
       "style": "dark",
       "tags": [
          "kubernetes-mixin",
-         "monitoring-mixins-v1.3.0"
+         "monitoring-mixins-v1.6.0"
       ],
       "templating": {
          "list": [
             {
                "current": {
+                  "selected": true,
                   "text": "default",
                   "value": "default"
                },
