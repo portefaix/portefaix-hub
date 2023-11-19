@@ -31,12 +31,12 @@ keywords:
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 1.1.2
+version: 1.2.0
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
-appVersion: 0.32.0
+appVersion: master
 
 maintainers:
   - name: nlamirault
@@ -57,5 +57,5 @@ annotations:
     fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
-    - kind: fix
-      description: Normalise dashboards ConfigMaps using ConfigMapList
+    - kind: changed
+      description: fluxcd-mixin vmaster
