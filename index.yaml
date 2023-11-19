@@ -8553,6 +8553,46 @@ entries:
   pyroscope-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: pyroscope-mixin v1.2.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: pyroscope
+          url: https://grafana.com/oss/pyroscope
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.2.0
+    created: "2023-11-19T10:13:32.582386981Z"
+    description: A Helm chart for Grafana Pyroscope mixin
+    digest: f3154186e274d824eb87266c4d85981c9a76e77bb5c582b386b98cfee5b6bc0d
+    home: https://charts.portefaix.xyz
+    icon: https://grafana.com/static/img/pyroscope-logo.svg
+    keywords:
+    - pyroscope
+    - kubernetes
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: pyroscope-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kubernetes-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/pyroscope-mixin-1.3.0/pyroscope-mixin-1.3.0.tgz
+    version: 1.3.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: pyroscope-mixin v0.1.0
       artifacthub.io/license: Apache-2.0
@@ -10408,4 +10448,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-11-19T10:08:34.847028283Z"
+generated: "2023-11-19T10:13:32.582771835Z"
