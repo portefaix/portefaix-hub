@@ -30,13 +30,14 @@ helm-extra-args: --timeout 600s
 # excluded-charts:
   # If not running on GCE, will error: "Failed to get GCE config"
   # - xxxxxx
+  
 # check-version-increment: false
-debug: true
-release-notes-file: CHANGELOG.md
+# debug: true
+# release-notes-file: CHANGELOG.md
 
-# validate-maintainers: false
-# validate-chart-schema: true
-validate-yaml: true
-check-version-increment: true
-upgrade: true
-skip-missing-values: true
+# # validate-maintainers: false
+# # validate-chart-schema: true
+# validate-yaml: true
+# check-version-increment: true
+# upgrade: true
+# skip-missing-values: true
