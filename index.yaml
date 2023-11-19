@@ -3202,6 +3202,45 @@ entries:
         fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
         url: https://keybase.io/nlamirault/pgp_keys.asc
     apiVersion: v2
+    appVersion: master
+    created: "2023-11-19T14:34:42.331971994Z"
+    description: A Helm chart for Kubernetes Mixin
+    digest: 101dffa60835fab1770b6174c38f7efc75dacc5190600d049a9293725f3761d0
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.svg
+    keywords:
+    - kubernetes
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: kubernetes-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kubernetes-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/kubernetes-mixin-1.4.0/kubernetes-mixin-1.4.0.tgz
+    version: 1.4.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: kubernetes-mixin vmaster
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: kubernetes
+          url: https://kubernetes.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
     appVersion: 0.8.0
     created: "2023-04-06T10:41:52.275794385Z"
     description: A Helm chart for Kubernetes Mixin
@@ -10955,4 +10994,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-11-19T14:24:07.264868425Z"
+generated: "2023-11-19T14:34:42.332356447Z"
