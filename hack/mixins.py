@@ -200,7 +200,7 @@ def manage_mixin(mixin_directory, mixin):
     update_chart(mixin, mixin_version, chart_dst)
 
 
-def main(url, filename, chart, download_enabled):
+def main(url, filename, chart):
     download(url, filename)
     with zipfile.ZipFile(filename, "r") as zf:
         mixins_directory = pathlib.Path(filename).stem
