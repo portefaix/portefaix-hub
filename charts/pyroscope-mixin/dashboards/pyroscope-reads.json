@@ -13,7 +13,8 @@
             "includeVars": true,
             "keepTime": true,
             "tags": [
-               "pyroscope"
+               "pyroscope-mixin",
+               "monitoring-mixins-v1.5.0"
             ],
             "targetBlank": false,
             "title": "Pyroscope Dashboards",
@@ -33,6 +34,8 @@
                      "3xx": "#6ED0E0",
                      "4xx": "#EF843C",
                      "5xx": "#E24D42",
+                     "OK": "#7EB26D",
+                     "cancel": "#A9A9A9",
                      "error": "#E24D42",
                      "success": "#7EB26D"
                   },
@@ -66,12 +69,11 @@
                   "steppedLine": false,
                   "targets": [
                      {
-                        "expr": "sum by (status) (\n  label_replace(label_replace(rate(pyroscope_request_duration_seconds_count{cluster=~\"$cluster\",job=~\"($namespace)/(pyroscope|querier)\", route=~\".*merge.*|.*series.*|.*type.*\"}[$__rate_interval]),\n  \"status\", \"${1}xx\", \"status_code\", \"([0-9])..\"),\n  \"status\", \"${1}\", \"status_code\", \"([a-z]+)\"))\n",
+                        "expr": "sum by (status) (\n  label_replace(label_replace(rate(pyroscope_request_duration_seconds_count{cluster=~\"$cluster\",job=~\"($namespace)/(pyroscope|querier)\", route=~\".*merge.*|.*series.*|.*type.*\"}[$__rate_interval]),\n  \"status\", \"${1}xx\", \"status_code\", \"([0-9])..\"),\n  \"status\", \"${1}\", \"status_code\", \"([a-zA-Z]+)\"))\n",
                         "format": "time_series",
                         "intervalFactor": 2,
                         "legendFormat": "{{status}}",
-                        "refId": "A",
-                        "step": 10
+                        "refId": "A"
                      }
                   ],
                   "thresholds": [ ],
@@ -145,7 +147,7 @@
                         "expr": "histogram_quantile(0.99, sum by (le,route) (job_route_cluster:pyroscope_request_duration_seconds_bucket:sum_rate{job=~\"($namespace)/(pyroscope|querier)\", route=~\".*merge.*|.*series.*|.*type.*\", cluster=~\"$cluster\"})) * 1e3",
                         "format": "time_series",
                         "intervalFactor": 2,
-                        "legendFormat": "{{ route }} 99th Percentile",
+                        "legendFormat": "{{ route }} 99th percentile",
                         "refId": "A",
                         "step": 10
                      },
@@ -153,7 +155,7 @@
                         "expr": "histogram_quantile(0.50, sum by (le,route) (job_route_cluster:pyroscope_request_duration_seconds_bucket:sum_rate{job=~\"($namespace)/(pyroscope|querier)\", route=~\".*merge.*|.*series.*|.*type.*\", cluster=~\"$cluster\"})) * 1e3",
                         "format": "time_series",
                         "intervalFactor": 2,
-                        "legendFormat": "{{ route }} 50th Percentile",
+                        "legendFormat": "{{ route }} 50th percentile",
                         "refId": "B",
                         "step": 10
                      },
@@ -221,6 +223,8 @@
                      "3xx": "#6ED0E0",
                      "4xx": "#EF843C",
                      "5xx": "#E24D42",
+                     "OK": "#7EB26D",
+                     "cancel": "#A9A9A9",
                      "error": "#E24D42",
                      "success": "#7EB26D"
                   },
@@ -254,12 +258,11 @@
                   "steppedLine": false,
                   "targets": [
                      {
-                        "expr": "sum by (status) (\n  label_replace(label_replace(rate(pyroscope_request_duration_seconds_count{cluster=~\"$cluster\",job=~\"($namespace)/(pyroscope|ingester)\", route=~\".*merge.*|.*series.*|.*type.*\"}[$__rate_interval]),\n  \"status\", \"${1}xx\", \"status_code\", \"([0-9])..\"),\n  \"status\", \"${1}\", \"status_code\", \"([a-z]+)\"))\n",
+                        "expr": "sum by (status) (\n  label_replace(label_replace(rate(pyroscope_request_duration_seconds_count{cluster=~\"$cluster\",job=~\"($namespace)/(pyroscope|ingester)\", route=~\".*merge.*|.*series.*|.*type.*\"}[$__rate_interval]),\n  \"status\", \"${1}xx\", \"status_code\", \"([0-9])..\"),\n  \"status\", \"${1}\", \"status_code\", \"([a-zA-Z]+)\"))\n",
                         "format": "time_series",
                         "intervalFactor": 2,
                         "legendFormat": "{{status}}",
-                        "refId": "A",
-                        "step": 10
+                        "refId": "A"
                      }
                   ],
                   "thresholds": [ ],
@@ -333,7 +336,7 @@
                         "expr": "histogram_quantile(0.99, sum by (le,route) (job_route_cluster:pyroscope_request_duration_seconds_bucket:sum_rate{job=~\"($namespace)/(pyroscope|ingester)\", route=~\".*merge.*|.*series.*|.*type.*\", cluster=~\"$cluster\"})) * 1e3",
                         "format": "time_series",
                         "intervalFactor": 2,
-                        "legendFormat": "{{ route }} 99th Percentile",
+                        "legendFormat": "{{ route }} 99th percentile",
                         "refId": "A",
                         "step": 10
                      },
@@ -341,7 +344,7 @@
                         "expr": "histogram_quantile(0.50, sum by (le,route) (job_route_cluster:pyroscope_request_duration_seconds_bucket:sum_rate{job=~\"($namespace)/(pyroscope|ingester)\", route=~\".*merge.*|.*series.*|.*type.*\", cluster=~\"$cluster\"})) * 1e3",
                         "format": "time_series",
                         "intervalFactor": 2,
-                        "legendFormat": "{{ route }} 50th Percentile",
+                        "legendFormat": "{{ route }} 50th percentile",
                         "refId": "B",
                         "step": 10
                      },
@@ -402,8 +405,8 @@
       "schemaVersion": 14,
       "style": "dark",
       "tags": [
-         "pyroscope",
-         "portefaix"
+         "pyroscope-mixin",
+         "monitoring-mixins-v1.5.0"
       ],
       "templating": {
          "list": [

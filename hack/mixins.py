@@ -138,6 +138,7 @@ def update_chart(mixin, mixin_version, chart_dst):
     lines = infile.readlines()
     current_version = None
     next_version = None
+    app_version = None
     for line in lines:
         if re.match("^version:", line):
             # print(line)
@@ -147,6 +148,8 @@ def update_chart(mixin, mixin_version, chart_dst):
             chart_version = data[1]
             ver = semver.Version.parse(chart_version)
             next_version = ver.bump_minor()
+        elif re.match("^appVersion:", line):
+            app_version = line
     infile.close()
 
     if current_version and next_version and mixin_version:
@@ -154,6 +157,8 @@ def update_chart(mixin, mixin_version, chart_dst):
         with open(chart_file) as file:
             contents = file.read()
             new_chart_contents = contents.replace(current_version, "version: %s\n" % next_version)
+            if app_version:
+                new_chart_contents = new_chart_contents.replace(app_version, "appVersion: %s\n" % mixin_version)
         with open(chart_file, "w") as file:
             file.write(new_chart_contents)
         new_contents = open(chart_file, 'r')
@@ -195,7 +200,7 @@ def manage_mixin(mixin_directory, mixin):
     update_chart(mixin, mixin_version, chart_dst)
 
 
-def main(url, filename, chart):
+def main(url, filename, chart, download_enabled):
     download(url, filename)
     with zipfile.ZipFile(filename, "r") as zf:
         mixins_directory = pathlib.Path(filename).stem
@@ -203,13 +208,14 @@ def main(url, filename, chart):
         pathlib.Path(mixins_directory).mkdir(parents=True, exist_ok=True)
         zf.extractall(path=mixins_directory)
         logger.info("Extract monitoring mixins")
-        for mixin in os.listdir(path=mixins_directory):
-            if mixin == chart:
-                manage_mixin(mixins_directory, mixin)
-            else:
-                logger.debug("Not mixin: %s", mixin)
-        os.remove(filename)
-        shutil.rmtree(mixins_directory)
+
+    for mixin in os.listdir(path=mixins_directory):
+        if mixin == chart:
+            manage_mixin(mixins_directory, mixin)
+        else:
+            logger.debug("Not mixin: %s", mixin)
+    os.remove(filename)
+    shutil.rmtree(mixins_directory)
 
 
 if __name__ == "__main__":
