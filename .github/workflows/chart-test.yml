@@ -108,9 +108,9 @@ jobs:
       matrix:
         k8s:
           # from https://hub.docker.com/r/kindest/node/tags
-          - v1.22.0
-          - v1.23.0
-          - v1.24.0
+          - v1.28.0
+          - v1.27.0
+          - v1.26.0
           - v1.25.0
     steps:
       - name: Checkout
