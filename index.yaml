@@ -1614,6 +1614,42 @@ entries:
   fluxcd-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: fluxcd-mixin vmaster
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: fluxcd
+          url: https://fluxcd.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: master
+    created: "2023-11-19T14:23:53.246716651Z"
+    description: A Helm chart for FluxCD Mixin
+    digest: ae37b195f060250493c1c9e754d4e56730a1742d5d526ae74fd0a044c8bd2487
+    home: https://charts.portefaix.xyz
+    keywords:
+    - fluxcd
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: fluxcd-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/fluxcd-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/fluxcd-mixin-1.2.0/fluxcd-mixin-1.2.0.tgz
+    version: 1.2.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fix
           description: Normalise dashboards ConfigMaps using ConfigMapList
       artifacthub.io/license: Apache-2.0
@@ -10919,4 +10955,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-11-19T14:18:53.387428120Z"
+generated: "2023-11-19T14:23:53.24716126Z"
