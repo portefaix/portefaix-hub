@@ -3542,6 +3542,45 @@ entries:
   linkerd-edge-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: linkerd-edge-mixin vmaster
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: linkerd
+          url: https://linkerd.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: master
+    created: "2023-11-19T11:35:46.541326297Z"
+    description: A Helm chart for Linkerd Edge Mixin
+    digest: 13586432cc2e639157e34f277deb171cb253c33c8c6dc40afa1d0a8d999a78e5
+    home: https://charts.portefaix.xyz
+    icon: https://linkerd.io/images/logo-only-200h.png
+    keywords:
+    - linkerd
+    - linkerd-edge
+    - monitoring-mixin
+    - portefaix
+    kubeVersion: '>= 1.14.0-0'
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: linkerd-edge-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/linkerd-edge-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/linkerd-edge-mixin-1.2.0/linkerd-edge-mixin-1.2.0.tgz
+    version: 1.2.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fix
           description: Normalise dashboards ConfigMaps using ConfigMapList
       artifacthub.io/license: Apache-2.0
@@ -10448,4 +10487,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-11-19T10:13:46.117273349Z"
+generated: "2023-11-19T11:35:46.541688623Z"
