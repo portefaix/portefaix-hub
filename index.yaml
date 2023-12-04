@@ -731,6 +731,46 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: clean dashboards
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: coredns
+          url: https://coredns.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: master
+    created: "2023-12-04T10:50:42.276005311Z"
+    description: A Helm chart for CoreDNS Mixin
+    digest: c1079c4ac203f94cfd089d8bdb226bf5ec3c77295d59bc79b14b32b801e719ea
+    home: https://charts.portefaix.xyz
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/242px-Prometheus_software_logo.svg.png
+    keywords:
+    - coredns
+    - prometheus
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: coredns-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/coredns-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/coredns-mixin-1.4.1/coredns-mixin-1.4.1.tgz
+    version: 1.4.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: coredns-mixin vmaster
       artifacthub.io/license: Apache-2.0
       artifacthub.io/links: |
@@ -11072,4 +11112,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-11-19T14:36:16.680973751Z"
+generated: "2023-12-04T10:50:42.276456262Z"
