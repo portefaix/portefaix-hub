@@ -1,3 +1,4 @@
+{{- if .Values.prometheusRule.alerts.enabled }}
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
@@ -771,3 +772,4 @@ spec:
             for: 15m
             labels:
               severity: critical
+{{- end }}
