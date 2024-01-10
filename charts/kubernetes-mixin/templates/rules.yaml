@@ -1,4 +1,3 @@
-{{- if .Values.prometheusRule.rules.enabled }}
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
@@ -673,8 +672,8 @@ spec:
           - expr: |
               count by (cluster, node) (
                 node_cpu_seconds_total{mode="idle",job="node-exporter"}
-                * on (namespace, pod) group_left(node)
-                topk by(namespace, pod) (1, node_namespace_pod:kube_pod_info:)
+                * on (cluster, namespace, pod) group_left(node)
+                topk by(cluster, namespace, pod) (1, node_namespace_pod:kube_pod_info:)
               )
             record: node:node_num_cpu:sum
           - expr: |
@@ -717,4 +716,3 @@ spec:
             labels:
               quantile: "0.5"
             record: node_quantile:kubelet_pleg_relist_duration_seconds:histogram_quantile
-{{- end }}
