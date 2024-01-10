@@ -37,3 +37,11 @@ monitor:
 grafana:
   # Grafana folder in which to store the dashboards
   folder: kubernetes
+
+prometheusRule:
+  alerts:
+    # prometheusRule.alerts.enabled -- Enable by default PrometheusRule creation for alerts
+    enabled: enable
+  rules:
+    # prometheusRule.rules.enabled -- Enable by default PrometheusRule creation for rules
+    enabled: enable
