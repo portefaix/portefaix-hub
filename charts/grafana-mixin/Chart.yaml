@@ -27,8 +27,8 @@ keywords:
   - grafana
   - monitoring-mixin
   - portefaix
-version: 1.4.0
-appVersion: 10.2.1
+version: 1.5.0
+appVersion: 10.2.3
 
 maintainers:
   - name: nlamirault
@@ -52,4 +52,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: grafana-mixin v10.2.1
+      description: grafana-mixin v10.2.3
