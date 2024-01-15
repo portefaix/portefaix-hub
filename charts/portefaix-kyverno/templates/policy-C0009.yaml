@@ -17,7 +17,7 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: portefaix-c0001
+  name: portefaix-c0009
   annotations:
     policies.kyverno.io/title: Docker images used by control plane pods are correctly signed
     policies.kyverno.io/category: Security
