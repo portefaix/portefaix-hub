@@ -28,6 +28,12 @@ metadata:
       The Kubernetes cluster autoscaler does not evict pods that
       use hostPath or emptyDir volumes. To allow eviction of these pods, the annotation
       cluster-autoscaler.kubernetes.io/safe-to-evict=true must be added to the pods.
+    a8r.io/description: Kyverno policies for Portefaix
+    a8r.io/owner: portefaix
+    a8r.io/bugs: https://github.com/portefaix/portefaix/issues
+    a8r.io/documentation: https://github.com/portefaix/portefaix
+    a8r.io/repository: https://github.com/portefaix/portefaix
+    a8r.io/support: https://github.com/portefaix/portefaix/issues
 {{ include "portefaix-kyverno.annotations" . | indent 4 }}
   labels:
 {{ include "portefaix-kyverno.labels" . | indent 4 }}
