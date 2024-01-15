@@ -48,8 +48,8 @@ mixins: guard-CHART guard-LOG guard-RELEASE ## Install mixins
 	$(VENV)/bin/python3 ./hack/mixins.py $(CHART) --release $(RELEASE) --log $(LOG)
 
 .PHONY: policies
-policies: guard-CHART guard-LOG ## Install policies
-	$(VENV)/bin/python3 ./hack/policies.py $(CHART) --log $(LOG)
+policies: guard-CHART guard-RELEASE guard-LOG ## Install policies
+	$(VENV)/bin/python3 ./hack/policies.py $(CHART) --release $(RELEASE) --log $(LOG)
 
 # .PHONY: init ## Initialize environment
 # init:

@@ -29,15 +29,7 @@ import zipfile
 import coloredlogs
 import requests
 
-# datasource=github-tags depName=portefaix/portefaix-policies
-version = "v0.11.0"
-policies_archive = "portefaix-policies-%s.zip" % version
-policies_url = (
-    "https://github.com/portefaix/portefaix-policies/archive/refs/tags/%s.zip"
-    % version
-)
-policies_directory = "portefaix-policies-%s" % version.replace('v', '')
-
+POLICIES_REPO = "https://github.com/portefaix/portefaix-policies"
 
 logger = logging.getLogger(__name__)
 
@@ -96,7 +88,11 @@ def main(url, filename, directory, chart):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(prefix_chars="-")
     parser.add_argument("chart", type=str, help="Chart to update")
+    parser.add_argument("--release", type=str, help="Release of policies")
     parser.add_argument("--log", type=str, default="info", help="Log level")
     args = parser.parse_args()
     coloredlogs.install(level=args.log)
+    policies_archive = "portefaix-policies-%s.zip" % args.release
+    policies_url = "%s/archive/refs/tags/%s.zip" % (POLICIES_REPO, args.release)
+    policies_directory = "portefaix-policies-%s" % args.release.replace('v', '')
     main(policies_url, policies_archive, policies_directory, args.chart)
