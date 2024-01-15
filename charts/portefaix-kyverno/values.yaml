@@ -28,6 +28,6 @@ customLabels: {}
 # -- Additional annotations to add to the Prometheus rules
 customAnnotations: {}
 
-# -- Supported values- `audit`, `enforce`
+# -- Supported values- `Audit`, `Enforce`
 # For more info- https://kyverno.io/docs/writing-policies/validate/
-validationFailureAction: audit
+validationFailureAction: Audit
