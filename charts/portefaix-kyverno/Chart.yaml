@@ -51,7 +51,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: Bump Portefaix Kyverno policies to v0.11.0
-      links:
-    - kind: changed
       description: Bump Portefaix policies to v0.12.0
