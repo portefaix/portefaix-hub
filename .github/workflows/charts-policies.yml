@@ -19,9 +19,9 @@ name: Charts / Update policies
 on:
   workflow_dispatch:
     inputs:
-      # version:
-      #   description: "Policies version"
-      #   required: true
+      policies:
+        description: "Policies version"
+        required: true
       loglevel:
         description: "Log level"
         required: true
@@ -70,7 +70,7 @@ jobs:
     - name: Kyverno policies
       id: kyverno-policies
       run: |
-        poetry run ./hack/policies.py portefaix-kyverno --log ${{ github.event.inputs.loglevel }}
+        poetry run ./hack/policies.py portefaix-kyverno --release ${{ github.event.inputs.policies }} --log ${{ github.event.inputs.loglevel }}
     
     - name: Create pull request for charts updates
       id: cpr
