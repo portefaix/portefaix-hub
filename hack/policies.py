@@ -27,6 +27,7 @@ import shutil
 import zipfile
 
 import coloredlogs
+import semver
 import requests
 
 POLICIES_REPO = "https://github.com/portefaix/portefaix-policies"
@@ -67,6 +68,45 @@ def manage_kyverno_policies(policies_dir, chart):
                     else:
                         file.write(line)
 
+def manage_chart(chart, policies_version):
+    chart_file = "charts/%s/Chart.yaml" % chart
+    logger.debug("Chart to update: %s", chart_file)
+    infile = open(chart_file, 'r')
+    lines = infile.readlines()
+    current_version = None
+    next_version = None
+    app_version = None
+
+    for line in lines:
+        if re.match("^version:", line):
+            # print(line)
+            current_version = line
+            data = line.strip().split(": ")
+            logger.info("Current version: %s", data[1])
+            chart_version = data[1]
+            ver = semver.Version.parse(chart_version)
+            next_version = ver.bump_minor()
+        elif re.match("^appVersion:", line):
+            app_version = line
+    infile.close()
+
+    if current_version and next_version and policies_version:
+        logger.info("Next version: %s", next_version.finalize_version())
+        with open(chart_file) as file:
+            contents = file.read()
+            new_chart_contents = contents.replace(current_version, "version: %s\n" % next_version)
+            if app_version:
+                new_chart_contents = new_chart_contents.replace(app_version, "appVersion: %s\n" % policies_version)
+        with open(chart_file, "w") as file:
+            file.write(new_chart_contents)
+        new_contents = open(chart_file, 'r')
+        lines = new_contents.readlines()[:-2]
+        lines.append("    - kind: changed\n")
+        lines.append("      description: Bump Portefaix policies to %s\n" % policies_version)
+        new_contents.close()
+        outfile = open(chart_file, 'w')
+        outfile.writelines(lines)
+        outfile.close()
 
 def download(url, filename):
     logger.info("Download Policies : %s", url)
@@ -75,7 +115,7 @@ def download(url, filename):
         f.write(r.content)
 
 
-def main(url, filename, directory, chart):
+def main(url, filename, directory, chart, release):
     download(url, filename)
     with zipfile.ZipFile(filename, "r") as zf:
         logger.info("Extract policies")
@@ -83,6 +123,7 @@ def main(url, filename, directory, chart):
         manage_kyverno_policies("%s/kyverno" % directory, chart)
         os.remove(filename)
         shutil.rmtree(directory)
+    manage_chart(chart, release)
 
 
 if __name__ == "__main__":
@@ -95,4 +136,4 @@ if __name__ == "__main__":
     policies_archive = "portefaix-policies-%s.zip" % args.release
     policies_url = "%s/archive/refs/tags/%s.zip" % (POLICIES_REPO, args.release)
     policies_directory = "portefaix-policies-%s" % args.release.replace('v', '')
-    main(policies_url, policies_archive, policies_directory, args.chart)
+    main(policies_url, policies_archive, policies_directory, args.chart, args.release)
