@@ -1,0 +1,57 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  {{- if .Values.additionalAnnotations }}
+  annotations:
+  {{ toYaml .Values.additionalAnnotations | indent 4 }}
+  {{- end }}
+  labels:
+    {{- include "beyla.labels" . | indent 4 }}
+    app.kubernetes.io/component: workload
+  name: {{ template "beyla.fullname" . }}
+  namespace: {{ template "beyla.namespace" . }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "beyla.selectorLabels" . | indent 6 }}
+      app.kubernetes.io/component: workload
+  template:
+    metadata:
+      labels:
+        {{- include "beyla.labels" . | indent 8 }}
+        app.kubernetes.io/component: workload
+    spec:
+      serviceAccountName: {{ template "beyla.serviceAccountName" . }}
+      hostPID: true # mandatory!
+      {{- if .Values.image.pullSecrets }}
+      imagePullSecrets: {{- .Values.image.pullSecrets }}
+      {{- toYaml .Values.beyla.image.pullSecrets | nindent 8 }}
+      {{- end }}
+      containers:
+      - name: beyla
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        env:
+        - name: BEYLA_CONFIG_PATH
+          value: "/config/beyla-config.yml"
+        ports:
+        - name: metrics
+          containerPort: {{ .Values.beyla.config.prometheus_export.port }}
+        {{- with .Values.beyla.resources }}
+        resources:
+        {{- toYaml . | nindent 10 }}
+        {{- end }}
+        securityContext:
+          runAsUser: 0
+          privileged: true # mandatory!
+        volumeMounts:
+        - mountPath: /config
+          name: beyla-config
+      volumes:
+        - name: beyla-config
+          configMap:
+            {{- if not .Values.beyla.existingConfig }}
+            name: beyla-config
+            {{- else }}
+            name: {{ .Values.beyla.existingConfig }}
+            {{- end }}

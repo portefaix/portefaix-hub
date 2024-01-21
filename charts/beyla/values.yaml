@@ -1,0 +1,95 @@
+---
+# -- Additional labels to add to all resources
+additionalLabels: {}
+  # app: beyla
+
+# -- Additional annotations to add to all resources
+additionalAnnotations: {}
+
+# -- Docker image
+image:
+  repository: grafana/beyla
+  tag: 1.2.0
+  pullPolicy: IfNotPresent
+  pullSecrets:
+
+## For RBAC support:
+rbac:
+  # -- Specifies whether RBAC resources should be created
+  create: true
+
+serviceAccount:
+  # -- Specifies whether a ServiceAccount should be created
+  create: true
+
+  # The name of the ServiceAccount to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+# -- Container resources: requests and limits for CPU, Memory
+resources: {}
+  # limits:
+  #   memory: 300Mi
+  # requests:
+  #   memory: 50Mi
+
+service:
+  type: ClusterIP
+  port: 9090
+
+beyla:
+  # -- Specify an existing configMap containing Beyla configuration. If non-empty, overrides `beyla.config`
+  existingConfig: ""
+  config:
+    # # this is required to enable kubernetes discovery and metadata
+    attributes:
+      kubernetes:
+        enable: true
+
+    print_traces: true
+    log_level: debug
+
+    # this will provide automatic routes report while minimizing cardinality
+    routes:
+      unmatched: heuristic
+
+    # # let's instrument only Grafana
+    # discovery:
+    #   services:
+    #     - k8s_namespace: observability
+    #     - k8s_pod_name: grafana-0
+
+    #   # # Instrument any process using the ports from 8080 to 8089
+    #   # - open_ports: 8080-8089
+    #   # # Instrument any process whose executable contains "http"
+    #   # - exe_path: "http"
+    #   # # Instrument any process with an executable containing "nginx"
+    #   # # and using the port 443 (both conditions must be fulfilled)
+    #   # - open_ports: 443
+    #   #   exe_path: "nginx"
+
+    prometheus_export:
+      port: 9090
+      path: /metrics
+    internal_metrics:
+      port: 9090
+      path: /internal/metrics
+    # otel_metrics_export:
+    #   endpoint: ""
+    # otel_traces_export:
+    #   endpoint: ""
+
+serviceMonitor:
+  # -- Enable this if you're using https://github.com/coreos/prometheus-operator
+  enabled: true
+  # -- Namespace to deploy the ServiceMonitor
+  namespace: ""
+  # -- Fallback to the prometheus default unless specified
+  interval: 30s
+  # -- Add custom labels to the ServiceMonitor resource
+  additionalLabels: {}
+  honorLabels: false
+  # -- Path to scrape metrics
+  path: /metrics
+  # -- Timeout for scrape metrics request
+  scrapeTimeout: 10s

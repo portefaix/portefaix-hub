@@ -1,0 +1,31 @@
+{{- if .Values.serviceMonitor.enabled }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  {{- if .Values.additionalAnnotations }}
+  annotations:
+  {{ toYaml .Values.additionalAnnotations | indent 4 }}
+  {{- end }}
+  labels:
+    {{- include "beyla.labels" . | indent 4 }}
+    app.kubernetes.io/component: rbac
+    {{- if .Values.serviceMonitor.additionalLabels }}
+    {{ toYaml .Values.serviceMonitor.additionalLabels }}
+    {{- end }}
+  name: {{ template "beyla.fullname" .  }}
+  namespace: {{ template "beyla.namespace" . }}
+spec:
+  endpoints:
+  - path: /metrics
+    port: metrics
+  - path: /internal/metrics
+    port: metrics
+  namespaceSelector:
+    matchNames:
+    - {{ template "beyla.namespace" . }}
+  selector:
+    matchLabels:
+      {{- include "beyla.selectorLabels" . | indent 6 }}
+      app.kubernetes.io/component: workload
+{{- end }}

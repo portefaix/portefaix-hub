@@ -1,0 +1,34 @@
+---
+apiVersion: v2
+description: Beyla
+name: beyla
+version: 0.1.0
+appVersion: 1.2.0
+home: https://github.com/grafana/beyla
+sources:
+  - https://github.com/grafana/beyla
+keywords:
+  - grafana
+  - beyla
+  - ebpf
+
+maintainers:
+  - name: nlamirault
+    email: nicolas.lamirault@gmail.com
+    url: https://github.com/nlamirault
+
+# https://artifacthub.io/docs/topics/repositories/
+annotations:
+  artifacthub.io/license: Apache-2.0
+  artifacthub.io/links: |
+    - name: Beyla
+      url: https://github.com/grafana/beyla
+  artifacthub.io/maintainers: |
+    - name: nlamirault
+      email: nicolas.lamirault@gmail.com
+  artifacthub.io/signKey: |
+    fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+    url: https://keybase.io/nlamirault/pgp_keys.asc
+  artifacthub.io/changes: |
+    - kind: added
+      description: Init
