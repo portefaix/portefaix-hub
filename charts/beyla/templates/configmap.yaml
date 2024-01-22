@@ -11,7 +11,7 @@ metadata:
     {{- include "beyla.labels" . | indent 4 }}
     app.kubernetes.io/component: config
   name: {{ template "beyla.fullname" . }}
-  namespace: {{ template "beyla.namespace" . }}
+  namespace: {{ .Release.Namespace }}
 data:
   beyla-config.yml: |
     {{- toYaml .Values.beyla.config | nindent 4 }}

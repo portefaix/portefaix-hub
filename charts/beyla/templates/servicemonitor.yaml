@@ -14,7 +14,7 @@ metadata:
     {{ toYaml .Values.serviceMonitor.additionalLabels }}
     {{- end }}
   name: {{ template "beyla.fullname" .  }}
-  namespace: {{ template "beyla.namespace" . }}
+  namespace: {{ .Release.Namespace }}
 spec:
   endpoints:
   - path: /metrics
@@ -23,7 +23,7 @@ spec:
     port: metrics
   namespaceSelector:
     matchNames:
-    - {{ template "beyla.namespace" . }}
+    - {{ .Release.Namespace }}
   selector:
     matchLabels:
       {{- include "beyla.selectorLabels" . | indent 6 }}

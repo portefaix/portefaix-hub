@@ -10,7 +10,7 @@ metadata:
     {{- include "beyla.labels" . | indent 4 }}
     app.kubernetes.io/component: network
   name: {{ template "beyla.fullname" . }}
-  namespace: {{ template "beyla.namespace" . }}
+  namespace: {{ .Release.Namespace }}
 spec:
   ports:
   - name: metrics

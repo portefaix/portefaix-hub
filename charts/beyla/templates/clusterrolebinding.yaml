@@ -11,11 +11,11 @@ metadata:
     {{- include "beyla.labels" . | indent 4 }}
     app.kubernetes.io/component: rbac
   name: {{ template "beyla.fullname" . }}
-  namespace: {{ template "beyla.namespace" . }}
+  namespace: {{ .Release.Namespace }}
 subjects:
   - kind: ServiceAccount
     name: {{ template "beyla.serviceAccountName" . }}
-    namespace: {{ template "beyla.namespace" . }}
+    namespace: {{ .Release.Namespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
