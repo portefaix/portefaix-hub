@@ -1,0 +1,18 @@
+{{- if not .Values.beyla.existingConfig -}}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  {{- if .Values.additionalAnnotations }}
+  annotations:
+  {{ toYaml .Values.additionalAnnotations | indent 4 }}
+  {{- end }}
+  labels:
+    {{- include "beyla.labels" . | indent 4 }}
+    app.kubernetes.io/component: config
+  name: {{ template "beyla.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+data:
+  beyla-config.yml: |
+    {{- toYaml .Values.beyla.config | nindent 4 }}
+{{- end }}

@@ -1,0 +1,23 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  {{- if .Values.additionalAnnotations }}
+  annotations:
+  {{ toYaml .Values.additionalAnnotations | indent 4 }}
+  {{- end }}
+  labels:
+    {{- include "beyla.labels" . | indent 4 }}
+    app.kubernetes.io/component: network
+  name: {{ template "beyla.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  ports:
+  - name: metrics
+    port: {{ .Values.beyla.config.prometheus_export.port }}
+    protocol: TCP
+    targetPort: {{ .Values.beyla.config.prometheus_export.port }}
+  selector:
+    {{- include "beyla.selectorLabels" . | indent 4 }}
+    app.kubernetes.io/component: workload
+  type: ClusterIP

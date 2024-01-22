@@ -1,0 +1,23 @@
+{{- if .Values.rbac.create }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  {{- if .Values.additionalAnnotations }}
+  annotations:
+  {{ toYaml .Values.additionalAnnotations | indent 4 }}
+  {{- end }}
+  labels:
+    {{- include "beyla.labels" . | indent 4 }}
+    app.kubernetes.io/component: rbac
+  name: {{ template "beyla.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ template "beyla.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ template "beyla.fullname" . }}
+{{- end }}
