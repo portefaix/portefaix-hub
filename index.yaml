@@ -9849,6 +9849,47 @@ entries:
         - kind: fixed
           description: YAML indentation when additionalLabels are defined
         - kind: changed
+          description: tempo-mixin v2.3.1
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: tempo
+          url: https://grafana.com/oss/tempo
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.3.1
+    created: "2024-01-22T13:06:40.711313157Z"
+    description: A Helm chart for Grafana Tempo mixin
+    digest: 927ae4edc3fc222e8a288f16714b81f2499c4a8db5944a6b75bb02ecc70c49b6
+    home: https://charts.portefaix.xyz
+    icon: https://grafana.com/static/assets/img/logos/grafana-tempo.svg
+    keywords:
+    - tempo
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: tempo-mixin
+    sources:
+    - https://github.com/portefaix/portefaix-hub/tree/master/charts/tempo-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/tempo-mixin-1.6.0/tempo-mixin-1.6.0.tgz
+    version: 1.6.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
+          description: YAML indentation when additionalLabels are defined
+        - kind: changed
           description: tempo-mixin v2.3.0
       artifacthub.io/license: Apache-2.0
       artifacthub.io/links: |
@@ -11226,4 +11267,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2024-01-22T13:05:58.088502633Z"
+generated: "2024-01-22T13:06:40.711763399Z"
