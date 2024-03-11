@@ -35,8 +35,7 @@ spec:
   mutating: false
   settings:
     denied_annotations: []
-    # TODO: https://github.com/kubewarden/safe-annotations-policy/issues/1
-    # mandatory_annotations:
+    mandatory_annotations: []
     # - a8r.io/description
     # - a8r.io/owner
     # - a8r.io/bugs
