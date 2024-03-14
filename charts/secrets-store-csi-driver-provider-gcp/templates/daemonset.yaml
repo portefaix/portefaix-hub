@@ -37,10 +37,33 @@ spec:
         {{- include "secrets-store-csi-driver-provider-gcp.labels" . | indent 8 }}
     spec:
       serviceAccountName: {{ template "secrets-store-csi-driver-provider-gcp.serviceAccountName" . }}
+      initContainers:
+      - name: chown-provider-mount
+        image: busybox
+        command:
+        - chown
+        - "1000:1000"
+        - /etc/kubernetes/secrets-store-csi-providers
+        volumeMounts:
+        - mountPath: "/etc/kubernetes/secrets-store-csi-providers"
+          name: providervol
+      hostNetwork: false
+      hostPID: false
+      hostIPC: false
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            seccompProfile:
+              type: RuntimeDefault
+            capabilities:
+              drop:
+              - ALL
 {{- if .Values.resources }}
           resources:
 {{ toYaml .Values.resources | indent 12 }}
@@ -51,9 +74,8 @@ spec:
           volumeMounts:
             - mountPath: "/etc/kubernetes/secrets-store-csi-providers"
               name: providervol
-            - name: mountpoint-dir
-              mountPath: /var/lib/kubelet/pods
-              mountPropagation: HostToContainer
+              mountPropagation: None
+              readOnly: false
           livenessProbe:
             failureThreshold: 3
             httpGet:
@@ -62,6 +84,10 @@ spec:
             initialDelaySeconds: 5
             timeoutSeconds: 10
             periodSeconds: 30
+      volumes:
+        - name: providervol
+          hostPath:
+            path: /etc/kubernetes/secrets-store-csi-providers
 {{- if .Values.affinity }}
       affinity:
 {{ toYaml .Values.affinity | indent 8 }}
@@ -74,11 +100,3 @@ spec:
       tolerations:
 {{ toYaml .Values.tolerations | indent 8 }}
 {{- end }}
-      volumes:
-        - name: providervol
-          hostPath:
-              path: /etc/kubernetes/secrets-store-csi-providers
-        - name: mountpoint-dir
-          hostPath:
-            path: /var/lib/kubelet/pods
-            type: DirectoryOrCreate
