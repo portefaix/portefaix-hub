@@ -51,7 +51,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-    - uses: actions/setup-python@v5.0.0
+    - uses: actions/setup-python@v5.1.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -111,7 +111,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-    - uses: actions/setup-python@v5.0.0
+    - uses: actions/setup-python@v5.1.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -171,7 +171,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-    - uses: actions/setup-python@v5.0.0
+    - uses: actions/setup-python@v5.1.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -231,7 +231,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-    - uses: actions/setup-python@v5.0.0
+    - uses: actions/setup-python@v5.1.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -291,7 +291,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-    - uses: actions/setup-python@v5.0.0
+    - uses: actions/setup-python@v5.1.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -351,7 +351,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-    - uses: actions/setup-python@v5.0.0
+    - uses: actions/setup-python@v5.1.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -411,7 +411,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-    - uses: actions/setup-python@v5.0.0
+    - uses: actions/setup-python@v5.1.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -471,7 +471,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-    - uses: actions/setup-python@v5.0.0
+    - uses: actions/setup-python@v5.1.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -531,7 +531,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-    - uses: actions/setup-python@v5.0.0
+    - uses: actions/setup-python@v5.1.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -591,7 +591,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-    - uses: actions/setup-python@v5.0.0
+    - uses: actions/setup-python@v5.1.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -651,7 +651,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-    - uses: actions/setup-python@v5.0.0
+    - uses: actions/setup-python@v5.1.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -711,7 +711,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-    - uses: actions/setup-python@v5.0.0
+    - uses: actions/setup-python@v5.1.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -771,7 +771,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-    - uses: actions/setup-python@v5.0.0
+    - uses: actions/setup-python@v5.1.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -831,7 +831,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-    - uses: actions/setup-python@v5.0.0
+    - uses: actions/setup-python@v5.1.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -891,7 +891,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-    - uses: actions/setup-python@v5.0.0
+    - uses: actions/setup-python@v5.1.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -951,7 +951,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-    - uses: actions/setup-python@v5.0.0
+    - uses: actions/setup-python@v5.1.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -1011,7 +1011,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-    - uses: actions/setup-python@v5.0.0
+    - uses: actions/setup-python@v5.1.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
@@ -1071,7 +1071,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-    - uses: actions/setup-python@v5.0.0
+    - uses: actions/setup-python@v5.1.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
