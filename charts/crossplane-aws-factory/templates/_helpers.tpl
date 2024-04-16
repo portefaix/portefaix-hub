@@ -50,7 +50,6 @@ helm.sh/chart: {{ include "crossplane-aws-factory.chart" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
-app.kubernetes.io/component: crossplane-factory
 app.kubernetes.io/part-of: {{ include "crossplane-aws-factory.name" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 crossplane.io/version: {{ .Values.crossplane.version }}

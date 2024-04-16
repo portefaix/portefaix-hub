@@ -22,6 +22,7 @@ metadata:
   namespace: {{ template "crossplane-aws-factory.namespace" . }}
   labels:
     {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+    app.kubernetes.io/component: eks
 {{- with .Values.additionalAnnotations }}
   annotations:
 {{ toYaml . | indent 4 }}
@@ -67,6 +68,7 @@ metadata:
   namespace: {{ template "crossplane-aws-factory.namespace" . }}
   labels:
     {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+    app.kubernetes.io/component: eks
 {{- with .Values.additionalAnnotations }}
   annotations:
 {{ toYaml . | indent 4 }}
@@ -110,6 +112,7 @@ metadata:
   namespace: {{ template "crossplane-aws-factory.namespace" . }}
   labels:
     {{- include "crossplane-aws-factory.labels" . | nindent 4 }}
+    app.kubernetes.io/component: eks
 {{- with .Values.additionalAnnotations }}
   annotations:
 {{ toYaml . | indent 4 }}

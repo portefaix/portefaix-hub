@@ -53,4 +53,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: Additional labels and annotations
+      description: Cleanup labels
