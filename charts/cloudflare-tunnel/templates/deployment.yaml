@@ -6,6 +6,7 @@ metadata:
   name: {{ include "cloudflare-tunnel.fullname" . }}
   labels:
     {{- include "cloudflare-tunnel.labels" . | nindent 4 }}
+    app.kubernetes.io/component: workload
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
