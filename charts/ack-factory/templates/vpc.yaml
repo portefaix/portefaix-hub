@@ -18,6 +18,9 @@
 apiVersion: ec2.services.k8s.aws/v1alpha1
 kind: VPC
 metadata:
+  labels:
+    {{- include "ack-factory.labels" $ | nindent 4 }}
+    app.kubernetes.io/component: ec2
   name: {{ include "ack-factory.name" . }}
 spec:
   cidrBlocks:

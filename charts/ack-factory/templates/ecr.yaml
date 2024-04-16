@@ -28,6 +28,7 @@ metadata:
   {{- end }}
   labels:
     {{- include "ack-factory.labels" $ | nindent 4 }}
+    app.kubernetes.io/component: ecr
   name: {{ $repoName }}
   namespace: {{ $namespace }}
 spec:
