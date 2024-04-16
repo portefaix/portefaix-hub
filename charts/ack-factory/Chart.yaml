@@ -21,7 +21,7 @@ description: An AWS Factory using AWS Controllers for Kubernetes
 home: https://github.com/portefaix/portefaix-hub/charts/ack-factory
 icon: https://raw.githubusercontent.com/aws/eks-charts/master/docs/logo/aws.png
 type: application
-version: 0.3.0
+version: 0.4.0
 appVersion: 1.0.0
 keywords:
   - cloud
@@ -53,4 +53,4 @@ annotations:
   # added, changed, deprecated, removed, fixed and security.
   artifacthub.io/changes: |
     - kind: changed
-      description: Kubernetes v1.15 as default value for EKS
+      description: Cleanup labels

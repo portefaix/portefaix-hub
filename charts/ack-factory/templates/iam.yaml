@@ -24,6 +24,7 @@ metadata:
   {{- end }}
   labels:
     {{- include "ack-factory.labels" . | nindent 4 }}
+    app.kubernetes.io/component: iam
   name: {{ include "ack-factory.name" . }}-eks-cluster
   namespace: {{ template "ack-factory.namespace" . }}
 spec:

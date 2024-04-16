@@ -24,6 +24,7 @@ metadata:
   {{- end }}
   labels:
     {{- include "ack-factory.labels" . | nindent 4 }}
+    app.kubernetes.io/component: ec2
   name: {{ include "ack-factory.name" . }}-core
   namespace: {{ template "ack-factory.namespace" . }}
 spec:

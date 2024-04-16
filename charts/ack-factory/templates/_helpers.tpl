@@ -50,7 +50,6 @@ helm.sh/chart: {{ include "ack-factory.chart" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
-app.kubernetes.io/component: krm-controller
 app.kubernetes.io/part-of: {{ include "ack-factory.name" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }} 
 {{- if .Values.additionalLabels }}
