@@ -39,7 +39,6 @@ helm.sh/chart: {{ include "cloudflare-tunnel.chart" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
-app.kubernetes.io/component: tunnel
 app.kubernetes.io/part-of: {{ include "cloudflare-tunnel.name" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- if .Values.additionalLabels }}

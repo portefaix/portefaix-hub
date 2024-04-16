@@ -2,6 +2,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
+  labels:
+    {{- include "cloudflare-tunnel.labels" . | nindent 4 }}
+    app.kubernetes.io/component: config
   name: {{ include "cloudflare-tunnel.fullname" . }}
 data:
   config.yaml: |
