@@ -21,7 +21,7 @@ description: An AWS Factory using Crossplane
 home: https://github.com/portefaix/portefaix-hub/charts/crossplane-aws-factory
 icon: https://crossplane.io/images/favicon_192x192.png
 type: application
-version: 0.5.1
+version: 0.6.0
 appVersion: 1.0.0
 keywords:
   - cloud
@@ -53,4 +53,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: Additional labels and annotations
+      description: Cleanup labels

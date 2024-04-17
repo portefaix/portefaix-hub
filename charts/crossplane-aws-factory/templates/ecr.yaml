@@ -27,6 +27,7 @@ metadata:
   namespace: {{ $namespace }}
   labels:
     {{- include "crossplane-aws-factory.labels" $ | nindent 4 }}
+    app.kubernetes.io/component: ecr
   {{- with $.Values.additionalAnnotations }}
   annotations:
   {{ toYaml . | indent 4 }}
@@ -49,6 +50,8 @@ kind: RepositoryPolicy
 metadata:
   name: {{ $repoName }}
   labels:
+    {{- include "crossplane-aws-factory.labels" $ | nindent 4 }}
+    app.kubernetes.io/component: ecr
     region: {{ $region }}
 spec:
   forProvider:
@@ -71,6 +74,9 @@ spec:
 apiVersion: ecr.aws.crossplane.io/v1alpha1
 kind: LifecyclePolicy
 metadata:
+  labels:
+    {{- include "crossplane-aws-factory.labels" $ | nindent 4 }}
+    app.kubernetes.io/component: ecr
   name: {{ $repoName }}
 spec:
   forProvider:

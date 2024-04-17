@@ -27,6 +27,7 @@ metadata:
   namespace: {{ $namespace }}
   labels:
     {{- include "crossplane-aws-factory.labels" $ | nindent 4 }}
+    app.kubernetes.io/component: sns
   {{- with $.Values.additionalAnnotations }}
   annotations:
   {{ toYaml . | indent 4 }}
@@ -56,6 +57,7 @@ metadata:
   namespace: {{ $namespace }}
   labels:
     {{- include "crossplane-aws-factory.labels" $ | nindent 4 }}
+    app.kubernetes.io/component: sns
   {{- with $.Values.additionalAnnotations }}
   annotations:
   {{ toYaml . | indent 4 }}
