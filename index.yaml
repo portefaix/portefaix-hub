@@ -1243,6 +1243,48 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Cleanup labels
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Crossplane
+          url: https://crossplane.io
+        - name: Crossplane AWS provider
+          url: https://github.com/crossplane/provider-aws
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/recommendations: |
+        - url: https://artifacthub.io/packages/helm/crossplane/crossplane
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2024-04-17T12:06:36.42984432Z"
+    description: An AWS Factory using Crossplane
+    digest: 2bf2c4e16fe56a8176c202cb97b3d7f8297be78303fe20563f4f971a78e49637
+    home: https://github.com/portefaix/portefaix-hub/charts/crossplane-aws-factory
+    icon: https://crossplane.io/images/favicon_192x192.png
+    keywords:
+    - cloud
+    - infrastructure
+    - crossplane
+    - aws
+    - krm
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: crossplane-aws-factory
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/crossplane-aws-factory-0.6.0/crossplane-aws-factory-0.6.0.tgz
+    version: 0.6.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Additional labels and annotations
       artifacthub.io/license: Apache-2.0
       artifacthub.io/links: |
@@ -11502,4 +11544,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2024-04-16T21:19:26.705507988Z"
+generated: "2024-04-17T12:06:36.430275326Z"
