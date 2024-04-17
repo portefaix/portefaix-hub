@@ -147,7 +147,7 @@ aws:
       - name: poc
         tags:
           Service: SNS
-    # -- SNS Subscriptions
+    # -- SNS Subscriptions
     subscriptions:
       - name: poc
         topicName: poc
@@ -155,4 +155,3 @@ aws:
         endpoint: john.doe@gmail.com
         tags:
           Service: SNS
-  
