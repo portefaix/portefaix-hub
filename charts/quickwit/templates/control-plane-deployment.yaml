@@ -1,0 +1,108 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "quickwit.fullname" . }}-control-plane
+  labels:
+    {{- include "quickwit.labels" . | nindent 4 }}
+    {{- include "quickwit.control_plane.selectorLabels" . | nindent 4 }}
+  annotations:
+    {{- with .Values.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+    {{- with .Values.control_plane.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "quickwit.selectorLabels" . | nindent 6 }}
+      {{- include "quickwit.control_plane.selectorLabels" . | nindent 6 }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.control_plane.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "quickwit.labels" . | nindent 8 }}
+        {{- include "quickwit.control_plane.selectorLabels" . | nindent 8 }}
+        {{- include "quickwit.additionalLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "quickwit.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args: ["run", "--service", "control_plane"]
+          env:
+            {{- include "quickwit.environment" . | nindent 12 }}
+            {{- range $key, $value := .Values.control_plane.extraEnv }}
+            - name: "{{ $key }}"
+              value: "{{ $value }}"
+            {{- end }}
+          {{- with .Values.control_plane.extraEnvFrom }}
+          envFrom:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          ports:
+            {{- include "quickwit.ports" . | nindent 12 }}
+          startupProbe:
+            {{- toYaml .Values.control_plane.startupProbe | nindent 12 }}
+          livenessProbe:
+            {{- toYaml .Values.control_plane.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.control_plane.readinessProbe | nindent 12 }}
+          volumeMounts:
+            - name: config
+              mountPath: /quickwit/node.yaml
+              subPath: node.yaml
+            - name: data
+              mountPath: /quickwit/qwdata
+            {{- range .Values.configMaps }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+            {{- end }}
+          resources:
+            {{- toYaml .Values.control_plane.resources | nindent 14 }}
+      volumes:
+        - name: config
+          configMap:
+            name: {{ template "quickwit.fullname" . }}
+            items:
+              - key: node.yaml
+                path: node.yaml
+        - name: data
+          emptyDir: {}
+        {{- range .Values.configMaps }}
+        - name: {{ .name }}
+          configMap:
+            name: {{ .name }}
+        {{- end }}
+      {{- with .Values.control_plane.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.control_plane.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.control_plane.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
