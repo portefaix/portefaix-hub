@@ -9561,6 +9561,47 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/pyroscope-mixin-0.1.0/pyroscope-mixin-0.1.0.tgz
     version: 0.1.0
+  quickwit:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Quickwit deployment
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: quickwit
+          url: https://quickwit.io/
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v0.8.1
+    created: "2024-05-03T06:37:28.975651667Z"
+    description: Sub-second search & analytics engine on cloud storage.
+    digest: 6e52d0ead4ff34286e6640fa5cc5b36f0ee3785475c610e90922536b1dca8acc
+    home: https://quickwit.io/
+    icon: https://avatars.githubusercontent.com/u/98504233?s=200&v=4
+    keywords:
+    - quickwit
+    - search
+    - analytics
+    - tracing
+    - logs
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: quickwit
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/quickwit
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/quickwit-0.1.0/quickwit-0.1.0.tgz
+    version: 0.1.0
   secrets-store-csi-driver-provider-aws:
   - annotations:
       artifacthub.io/changes: |
@@ -11544,4 +11585,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2024-04-17T12:06:53.234760249Z"
+generated: "2024-05-03T06:37:28.976059318Z"
