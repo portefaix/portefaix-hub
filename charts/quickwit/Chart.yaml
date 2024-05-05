@@ -3,7 +3,7 @@ apiVersion: v2
 name: quickwit
 description: Sub-second search & analytics engine on cloud storage.
 type: application
-version: 0.1.0
+version: 0.1.1
 appVersion: "v0.8.1"
 keywords:
   - quickwit
@@ -35,5 +35,5 @@ annotations:
     fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
-    - kind: added
-      description: Quickwit deployment
+    - kind: fixed
+      description: Additional labels for all resources
