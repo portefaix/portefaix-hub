@@ -1,8 +1,10 @@
 # gateway-api-crds
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
-This chart brings Custom Resource Definitions (CRD) used by [Kubernetes Gateway API](https://github.com/kubernetes-sigs/gateway-api).
+Gateway API CRDs
+
+**Homepage:** <https:/https://gateway-api.sigs.k8s.io>
 
 ## Maintainers
 
