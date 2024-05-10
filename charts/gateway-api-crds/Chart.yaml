@@ -2,7 +2,7 @@
 apiVersion: v2
 description: Gateway API CRDs
 name: gateway-api-crds
-version: 0.1.0
+version: 1.0.0
 appVersion: 1.0.0
 home: https:/https://gateway-api.sigs.k8s.io
 icon: https://avatars.githubusercontent.com/u/36015203?s=400&v=4
