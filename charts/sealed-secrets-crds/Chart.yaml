@@ -1,7 +1,7 @@
 ---
 apiVersion: v2
 description: Sealed Secrets CRDs
-name: sealed-secret-crds
+name: sealed-secrets-crds
 version: 1.0.0
 appVersion: 0.26.2
 home: https://sealed-secrets.netlify.app/
