@@ -9810,6 +9810,49 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/sealed-secret-crds-1.0.0/sealed-secret-crds-1.0.0.tgz
     version: 1.0.0
+  sealed-secrets-crds:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Init chart
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Sealed Secrets
+          url: https://sealed-secrets.netlify.app/
+        - name: Portefaix Hub
+          url: https://github.com/portefaix/portefaix-hub
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.26.2
+    created: "2024-05-10T15:12:41.057102611Z"
+    dependencies:
+    - name: crds
+      repository: ""
+      version: 0.0.0
+    description: Sealed Secrets CRDs
+    digest: 1c073b4bd06c0c3e6cd7872cc5f62bf24537bbd81c395a4f836ac5d2e2081ad5
+    home: https://sealed-secrets.netlify.app/
+    icon: https://bitnami.com/assets/stacks/sealed-secrets/img/sealed-secrets-stack-220x234.png
+    keywords:
+    - secrets
+    - sealed-secrets
+    - crds
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: sealed-secrets-crds
+    sources:
+    - https://github.com/portefaix/portefaix-hub
+    - https://github.com/bitnami-labs/sealed-secrets
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/sealed-secrets-crds-1.0.0/sealed-secrets-crds-1.0.0.tgz
+    version: 1.0.0
   secrets-store-csi-driver-provider-aws:
   - annotations:
       artifacthub.io/changes: |
@@ -11793,4 +11836,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2024-05-10T14:38:02.803392736Z"
+generated: "2024-05-10T15:12:41.057867994Z"
