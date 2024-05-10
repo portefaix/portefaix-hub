@@ -4,7 +4,7 @@ description: Gateway API CRDs
 name: gateway-api-crds
 version: 1.1.0
 appVersion: 1.1.0
-home: https:/https://gateway-api.sigs.k8s.io
+home: https://gateway-api.sigs.k8s.io
 icon: https://avatars.githubusercontent.com/u/36015203?s=400&v=4
 sources:
   - https://github.com/kubernetes-sigs/gateway-api
@@ -27,7 +27,7 @@ annotations:
   artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: Kubernetes Gateway API
-      url: https:/https://gateway-api.sigs.k8s.io
+      url: https://gateway-api.sigs.k8s.io
     - name: Portefaix Hub
       url: https://github.com/portefaix/portefaix-hub
   artifacthub.io/maintainers: |
