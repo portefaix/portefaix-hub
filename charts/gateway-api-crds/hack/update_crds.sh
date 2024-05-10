@@ -5,6 +5,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 FILES=(
     "gateway.networking.k8s.io_gatewayclasses.yaml"
     "gateway.networking.k8s.io_gateways.yaml"
+    "gateway.networking.k8s.io_grpcroutes.yaml"
     "gateway.networking.k8s.io_httproutes.yaml"
     "gateway.networking.k8s.io_referencegrants.yaml"
 )
