@@ -2174,6 +2174,47 @@ entries:
       artifacthub.io/license: Apache-2.0
       artifacthub.io/links: |
         - name: Kubernetes Gateway API
+          url: https://gateway-api.sigs.k8s.io
+        - name: Portefaix Hub
+          url: https://github.com/portefaix/portefaix-hub
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.1.0
+    created: "2024-05-10T10:55:12.924524537Z"
+    dependencies:
+    - name: crds
+      repository: ""
+      version: 0.0.0
+    description: Gateway API CRDs
+    digest: c64a9d1b5f89c00a8798398cb1ffd82c2314d0b7ac0a6a3f21b11d0ccc914f55
+    home: https://gateway-api.sigs.k8s.io
+    icon: https://avatars.githubusercontent.com/u/36015203?s=400&v=4
+    keywords:
+    - kubernetes
+    - gateway-api
+    - crds
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: gateway-api-crds
+    sources:
+    - https://github.com/kubernetes-sigs/gateway-api
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/gateway-api-crds-1.1.0/gateway-api-crds-1.1.0.tgz
+    version: 1.1.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Init chart
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Kubernetes Gateway API
           url: https:/https://gateway-api.sigs.k8s.io
         - name: Portefaix Hub
           url: https://github.com/portefaix/portefaix-hub
@@ -11709,4 +11750,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2024-05-10T10:10:54.181917836Z"
+generated: "2024-05-10T10:55:12.924895642Z"
