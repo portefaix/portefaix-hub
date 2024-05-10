@@ -2166,6 +2166,48 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/fluxcd-mixin-0.1.0/fluxcd-mixin-0.1.0.tgz
     version: 0.1.0
+  gateway-api-crds:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Init chart
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Kubernetes Gateway API
+          url: https:/https://gateway-api.sigs.k8s.io
+        - name: Portefaix Hub
+          url: https://github.com/portefaix/portefaix-hub
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2024-05-10T10:09:47.720652471Z"
+    dependencies:
+    - name: crds
+      repository: ""
+      version: 0.0.0
+    description: Gateway API CRDs
+    digest: 57de3e5f32d52b706133127a1942beba1ee6b4e4fce6da492785d629f03acd8f
+    home: https:/https://gateway-api.sigs.k8s.io
+    icon: https://avatars.githubusercontent.com/u/36015203?s=400&v=4
+    keywords:
+    - kubernetes
+    - gateway-api
+    - crds
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: gateway-api-crds
+    sources:
+    - https://github.com/kubernetes-sigs/gateway-api
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/gateway-api-crds-1.0.0/gateway-api-crds-1.0.0.tgz
+    version: 1.0.0
   grafana-agent-flow-mixin:
   - annotations:
       artifacthub.io/changes: |
@@ -11667,4 +11709,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2024-05-07T16:52:43.924378963Z"
+generated: "2024-05-10T10:09:47.721450245Z"
