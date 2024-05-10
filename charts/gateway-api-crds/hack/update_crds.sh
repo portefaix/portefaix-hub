@@ -6,7 +6,7 @@ FILES=(
     "gateway.networking.k8s.io_gatewayclasses.yaml"
     "gateway.networking.k8s.io_gateways.yaml"
     "gateway.networking.k8s.io_httproutes.yaml"
-    gateway.networking.k8s.io_referencegrants.yaml
+    "gateway.networking.k8s.io_referencegrants.yaml"
 )
 
 VERSION=$(grep appVersion ${SCRIPT_DIR}/../Chart.yaml | awk -F" " '{ print $2 }')
