@@ -28,7 +28,7 @@ annotations:
   artifacthub.io/links: |
     - name: Kubernetes Gateway API
       url: https:/https://gateway-api.sigs.k8s.io
-    - name: Chart Source
+    - name: Portefaix Hub
       url: https://github.com/portefaix/portefaix-hub
   artifacthub.io/maintainers: |
     - name: nlamirault

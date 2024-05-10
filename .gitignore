@@ -4,7 +4,7 @@
 ### Helm ###
 # Chart dependencies
 **/charts/*.tgz
-/charts/**/charts/
+# /charts/**/charts/
 **/*test-values.y*ml
 
 ### vscode ###
