@@ -1,6 +1,6 @@
 # pyroscope-mixin
 
-![Version: 1.3.0](https://img.shields.io/badge/Version-1.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.0](https://img.shields.io/badge/AppVersion-1.2.0-informational?style=flat-square)
+![Version: 1.4.0](https://img.shields.io/badge/Version-1.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.0](https://img.shields.io/badge/AppVersion-1.2.0-informational?style=flat-square)
 
 A Helm chart for Grafana Pyroscope mixin
 
@@ -23,7 +23,11 @@ A Helm chart for Grafana Pyroscope mixin
 | additionalAnnotations | object | `{}` | Additional annotations to add to all resources |
 | additionalLabels | object | `{}` | Additional labels to add to all resources |
 | fullnameOverride | string | `""` | Provide a name to substitute for the full names of resources |
-| grafana.folder | string | `"profiling"` |  |
+| grafanaDashboard.enabled | bool | `true` |  |
+| grafanaDashboard.folder | string | `"profiling"` |  |
+| grafanaDashboard.grafanaOperator.allowCrossNamespaceImport | bool | `true` |  |
+| grafanaDashboard.grafanaOperator.enabled | bool | `false` |  |
+| grafanaDashboard.grafanaOperator.matchLabels | object | `{}` | Selected labels for Grafana instance |
 | monitor.additionalLabels | object | `{}` | Additional labels to add to resources managed by the Prometheus Operator |
 
 ----------------------------------------------

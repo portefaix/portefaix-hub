@@ -18,15 +18,13 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: {{ printf "%s-%s" (include "pyroscope-mixin.fullname" .) "rules" | trunc 63 | trimSuffix "-" }}
-  namespace: {{ include "pyroscope-mixin.namespace" . }}
-  annotations:
-    {{- include "pyroscope-mixin.annotations" . | indent 4 }}
   labels:
     {{- include "pyroscope-mixin.labels" . | indent 4 }}
     {{- if .Values.monitor.additionalLabels }}
     {{- toYaml .Values.monitor.additionalLabels | nindent 4 }}
     {{- end }}
+  name: {{ printf "%s-%s" (include "pyroscope-mixin.fullname" .) "rules" | trunc 63 | trimSuffix "-" }}
+  namespace: {{ include "pyroscope-mixin.namespace" . }}
 spec:
   groups:
       - name: pyroscope_rules

@@ -34,6 +34,12 @@ monitor:
   additionalLabels: {}
     # release: kube-prometheus-stack
 
-grafana:
+grafanaDashboard:
+  enabled: true
   # Grafana folder in which to store the dashboards
   folder: profiling
+  grafanaOperator:
+    enabled: false
+    allowCrossNamespaceImport: true
+    # -- Selected labels for Grafana instance
+    matchLabels: {}
