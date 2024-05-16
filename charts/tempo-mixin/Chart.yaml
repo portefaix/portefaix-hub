@@ -27,7 +27,7 @@ keywords:
   - tempo
   - monitoring-mixin
   - portefaix
-version: 1.6.0
+version: 1.7.0
 appVersion: 2.3.1
 
 maintainers:
@@ -51,7 +51,5 @@ annotations:
     fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
-    - kind: fixed
-      description: YAML indentation when additionalLabels are defined
-    - kind: changed
-      description: tempo-mixin v2.3.1
+    - kind: added
+      description: Grafana Operator support
