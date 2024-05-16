@@ -35,6 +35,12 @@ monitor:
   additionalLabels: {}
     # release: kube-prometheus-stack
 
-grafana:
+grafanaDashboard:
+  enabled: true
   # -- Grafana folder in which to store the dashboards
   folder: opentelemetry
+  grafanaOperator:
+    enabled: false
+    allowCrossNamespaceImport: true
+    # -- Selected labels for Grafana instance
+    matchLabels: {}
