@@ -39,7 +39,7 @@ grafanaDashboard:
   # Grafana folder in which to store the dashboards
   folder: profiling
   grafanaOperator:
-    enabled: true
+    enabled: false
     allowCrossNamespaceImport: true
     # -- Selected labels for Grafana instance
     matchLabels: {}
