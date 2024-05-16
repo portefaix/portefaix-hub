@@ -23,7 +23,11 @@ A Helm chart for Grafana Pyroscope mixin
 | additionalAnnotations | object | `{}` | Additional annotations to add to all resources |
 | additionalLabels | object | `{}` | Additional labels to add to all resources |
 | fullnameOverride | string | `""` | Provide a name to substitute for the full names of resources |
-| grafana.folder | string | `"profiling"` |  |
+| grafanaDashboard.enabled | bool | `true` |  |
+| grafanaDashboard.folder | string | `"profiling"` |  |
+| grafanaDashboard.grafanaOperator.allowCrossNamespaceImport | bool | `true` |  |
+| grafanaDashboard.grafanaOperator.enabled | bool | `true` |  |
+| grafanaDashboard.grafanaOperator.matchLabels | object | `{}` | Selected labels for Grafana instance |
 | monitor.additionalLabels | object | `{}` | Additional labels to add to resources managed by the Prometheus Operator |
 
 ----------------------------------------------
