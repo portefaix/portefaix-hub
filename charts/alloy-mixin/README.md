@@ -1,6 +1,6 @@
 # alloy-mixin
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 A Helm chart for Alloy mixin
 
@@ -23,7 +23,11 @@ A Helm chart for Alloy mixin
 | additionalAnnotations | object | `{}` | Additional annotations to add to all resources |
 | additionalLabels | object | `{}` | Additional labels to add to all resources |
 | fullnameOverride | string | `""` | Provide a name to substitute for the full names of resources |
-| grafana.folder | string | `"opentelemetry"` | Grafana folder in which to store the dashboards |
+| grafanaDashboard.enabled | bool | `true` |  |
+| grafanaDashboard.folder | string | `"opentelemetry"` | Grafana folder in which to store the dashboards |
+| grafanaDashboard.grafanaOperator.allowCrossNamespaceImport | bool | `true` |  |
+| grafanaDashboard.grafanaOperator.enabled | bool | `false` |  |
+| grafanaDashboard.grafanaOperator.matchLabels | object | `{}` | Selected labels for Grafana instance |
 | monitor.additionalLabels | object | `{}` | Additional labels to add to resources managed by the Prometheus Operator |
 
 ----------------------------------------------
