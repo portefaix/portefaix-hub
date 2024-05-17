@@ -4857,6 +4857,45 @@ entries:
   loki-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: Grafana Operator support
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: loki
+          url: https://grafana.com/oss/loki/
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.9.3
+    created: "2024-05-17T07:27:22.219275315Z"
+    description: A Helm chart for Loki Mixin
+    digest: 24f91a0829f211cf81a4157d20cfaf63b4a0bef0f4404ce7e2f0fe8efad89753
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    keywords:
+    - loki
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: loki-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/loki-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/loki-mixin-1.8.0/loki-mixin-1.8.0.tgz
+    version: 1.8.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: loki-mixin v2.9.3
       artifacthub.io/license: Apache-2.0
@@ -9649,6 +9688,46 @@ entries:
   pyroscope-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: ConfigMap dashboards naming
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: pyroscope
+          url: https://grafana.com/oss/pyroscope
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-05-17T07:27:22.33635733Z"
+    description: A Helm chart for Grafana Pyroscope mixin
+    digest: cba50147c33bfeca2613abbea1f73a9b1f49aabdfdbd703cdf9abe67471482fb
+    home: https://charts.portefaix.xyz
+    icon: https://grafana.com/static/img/pyroscope-logo.svg
+    keywords:
+    - pyroscope
+    - kubernetes
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: pyroscope-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kubernetes-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/pyroscope-mixin-1.4.1/pyroscope-mixin-1.4.1.tgz
+    version: 1.4.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Support for Grafana Operator
       artifacthub.io/license: Apache-2.0
@@ -10494,6 +10573,45 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/speedtest-exporter-0.1.0/speedtest-exporter-0.1.0.tgz
     version: 0.1.0
   tempo-mixin:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
+          description: ConfigMap names for dashboards
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: tempo
+          url: https://grafana.com/oss/tempo
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.3.1
+    created: "2024-05-17T07:27:22.450583693Z"
+    description: A Helm chart for Grafana Tempo mixin
+    digest: 770a1c500d3bf4eba863260d8114547a6914ad59a5422b29bf2efc528d02b804
+    home: https://charts.portefaix.xyz
+    icon: https://grafana.com/static/assets/img/logos/grafana-tempo.svg
+    keywords:
+    - tempo
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: tempo-mixin
+    sources:
+    - https://github.com/portefaix/portefaix-hub/tree/master/charts/tempo-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/tempo-mixin-1.7.1/tempo-mixin-1.7.1.tgz
+    version: 1.7.1
   - annotations:
       artifacthub.io/changes: |
         - kind: added
@@ -11956,4 +12074,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2024-05-17T05:44:52.417440251Z"
+generated: "2024-05-17T07:27:22.451543683Z"
