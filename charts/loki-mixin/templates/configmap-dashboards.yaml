@@ -1,6 +1,7 @@
----
+{{ if .Values.grafanaDashboard.enabled -}}
 {{- $files := .Files.Glob "dashboards/*.json" }}
 {{- if $files }}
+---
 apiVersion: v1
 kind: ConfigMapList
 items:
@@ -9,16 +10,38 @@ items:
 - apiVersion: v1
   kind: ConfigMap
   metadata:
-    name: {{ printf "dashboard-loki-mixin-%s" $dashboardName | trunc 63 | trimSuffix "-" }}
+    name: {{ printf "dashboard-%s" $dashboardName | trunc 63 | trimSuffix "-" }}
     namespace: {{ include "loki-mixin.namespace" $ }}
     annotations:
-      grafana-folder: {{ $.Values.grafana.folder }}
-      {{- include "loki-mixin.annotations" $ | indent 6 }}
+      grafana-folder: {{ $.Values.grafanaDashboard.folder }}
     labels:
       grafana-dashboard: {{ $dashboardName }}
       {{- include "loki-mixin.labels" $ | indent 6 }}
   data:
     {{ $dashboardName }}.json: |-
 {{ $.Files.Get $path | indent 6}}
+{{- end }}
+{{ if $.Values.grafanaDashboard.grafanaOperator.enabled -}}
+{{- range $path, $fileContents := $files }}
+{{- $dashboardName := regexReplaceAll "(^.*/)(.*)\\.json$" $path "${2}" }}
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  labels:
+    {{- include "loki-mixin.labels" $ | indent 4 }}
+  name: {{ printf "%s" $dashboardName | trunc 63 | trimSuffix "-" | lower }}
+  namespace: {{ $.Release.Namespace }}
+spec:
+  allowCrossNamespaceImport: {{ $.Values.grafanaDashboard.grafanaOperator.allowCrossNamespaceImport }}
+  folder: {{ $.Values.grafanaDashboard.folder }}
+  instanceSelector:
+    matchLabels:
+      {{- toYaml $.Values.grafanaDashboard.grafanaOperator.matchLabels | nindent 6 }}
+  configMapRef:
+    name: {{ printf "dashboard-%s" $dashboardName | trunc 63 | trimSuffix "-" }}
+    key: {{ $dashboardName }}.json
+{{- end }}
+{{- end }}
 {{- end }}
 {{- end }}
