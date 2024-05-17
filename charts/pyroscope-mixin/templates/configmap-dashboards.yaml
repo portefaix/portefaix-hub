@@ -31,7 +31,7 @@ items:
     labels:
       grafana-dashboard: {{ $dashboardName }}
       {{- include "pyroscope-mixin.labels" $ | indent 6 }}
-    name: {{ printf "dashboard-pyroscope-mixin-%s" $dashboardName | trunc 63 | trimSuffix "-" }}
+    name: {{ printf "dashboard-%s" $dashboardName | trunc 63 | trimSuffix "-" }}
     namespace: {{ include "pyroscope-mixin.namespace" $ }}
   data:
     {{ $dashboardName }}.json: |-
