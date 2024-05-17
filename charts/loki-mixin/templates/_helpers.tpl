@@ -35,7 +35,7 @@ Create chart name and version as used by the chart label.
 {{/*
 Selector labels
 */}}
-{{- define "loki-mixin.selectorLabels" }}
+{{- define "loki-mixin.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "loki-mixin.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
@@ -56,29 +56,6 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- toYaml .Values.additionalLabels }}
 {{- end }}
 {{- end }}
-
-{{/* See: https://ambassadorlabs.github.io/k8s-for-humans/ */}}
-{{/*
-Common annotations 
-*/}}
-{{- define "loki-mixin.annotations" }}
-a8r.io/description: Monitoring Mixin for Loki
-a8r.io/owner: portefaix
-a8r.io/bugs: https://github.com/portefaix/portefaix-hub/issues
-a8r.io/documentation: https://artifacthub.io/packages/helm/portefaix-hub/loki-mixin
-a8r.io/repository: https://github.com/portefaix/portefaix-hub
-a8r.io/support: https://github.com/portefaix/portefaix-hub/issues
-{{- if .Values.additionalAnnotations }}
-{{- toYaml .Values.additionalAnnotations }}
-{{- end }}
-{{- end }}
-
-{{/* a8r.io/logs: */}}
-{{/* a8r.io/runbook: */}}
-{{/* a8r.io/incidents:  */}}
-{{/* a8r.io/uptime */}}
-{{/* a8r.io/performance */}}
-{{/* a8r.io/dependencies */}}
 
 {{/*
 Allow the release namespace to be overridden
