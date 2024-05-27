@@ -1,3 +1,4 @@
+{{ if .Values.monitor.enabled -}}
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
@@ -8,6 +9,7 @@ metadata:
     {{- include "node-exporter-mixin.annotations" . | indent 4 }}
   labels:
     {{- include "node-exporter-mixin.labels" . | indent 4 }}
+    app.kubernetes.io/component: metrics
     {{- if .Values.monitor.additionalLabels }}
     {{- toYaml .Values.monitor.additionalLabels | nindent 4 }}
     {{- end }}
@@ -276,7 +278,7 @@ spec:
           - alert: NodeDiskIOSaturation
             annotations:
               description: |
-                  Disk IO queue (aqu-sq) is high on {{`{{`}} $labels.device {{`}}`}} at {{`{{`}} $labels.instance {{`}}`}}, has been above 10 for the last 15 minutes, is currently at {{`{{`}} printf "%.2f" $value {{`}}`}}.
+                  Disk IO queue (aqu-sq) is high on {{`{{`}} $labels.device {{`}}`}} at {{`{{`}} $labels.instance {{`}}`}}, has been above 10 for the last 30 minutes, is currently at {{`{{`}} printf "%.2f" $value {{`}}`}}.
                   This symptom might indicate disk saturation.
               summary: Disk IO queue is high.
             expr: |
@@ -302,3 +304,4 @@ spec:
             for: 5m
             labels:
               severity: warning
+{{- end }}

@@ -1,3 +1,4 @@
+{{ if .Values.monitor.enabled -}}
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
@@ -8,6 +9,7 @@ metadata:
     {{- include "node-exporter-mixin.annotations" . | indent 4 }}
   labels:
     {{- include "node-exporter-mixin.labels" . | indent 4 }}
+    app.kubernetes.io/component: metrics
     {{- if .Values.monitor.additionalLabels }}
     {{- toYaml .Values.monitor.additionalLabels | nindent 4 }}
     {{- end }}
@@ -80,3 +82,4 @@ spec:
                 rate(node_network_transmit_drop_total{job="node-exporter", device!="lo"}[5m])
               )
             record: instance:node_network_transmit_drop_excluding_lo:rate5m
+{{- end }}
