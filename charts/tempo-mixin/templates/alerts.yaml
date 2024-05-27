@@ -4,6 +4,8 @@ kind: PrometheusRule
 metadata:
   name: {{ printf "%s-%s" (include "tempo-mixin.fullname" .) "alerts" | trunc 63 | trimSuffix "-" }}
   namespace: {{ include "tempo-mixin.namespace" . }}
+  annotations:
+    {{- include "tempo-mixin.annotations" . | indent 4 }}
   labels:
     {{- include "tempo-mixin.labels" . | indent 4 }}
     {{- if .Values.monitor.additionalLabels }}
