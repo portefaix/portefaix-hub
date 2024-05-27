@@ -82,7 +82,9 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install
-      id: install-mixin
+
+    - name: Update mixin
+      id: update-mixin
       run: |
         poetry run ./hack/mixins.py ${{ matrix.mixin }} --release ${{ github.event.inputs.mixins }} --log ${{ github.event.inputs.loglevel }}
 
