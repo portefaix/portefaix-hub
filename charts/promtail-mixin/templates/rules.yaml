@@ -1,3 +1,4 @@
+{{ if .Values.monitor.enabled -}}
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
@@ -8,6 +9,7 @@ metadata:
     {{- include "promtail-mixin.annotations" . | indent 4 }}
   labels:
     {{- include "promtail-mixin.labels" . | indent 4 }}
+    app.kubernetes.io/component: metrics
     {{- if .Values.monitor.additionalLabels }}
     {{- toYaml .Values.monitor.additionalLabels | nindent 4 }}
     {{- end }}
@@ -51,3 +53,4 @@ spec:
             record: job_status_code_namespace:promtail_request_duration_seconds_sum:sum_rate
           - expr: sum(rate(promtail_request_duration_seconds_count[1m])) by (job, status_code, namespace)
             record: job_status_code_namespace:promtail_request_duration_seconds_count:sum_rate
+{{- end }}
