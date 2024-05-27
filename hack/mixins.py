@@ -76,6 +76,7 @@ def template(f, mixin, chart_dst, mixin_header):
         fin = open(orig, "rt")
         for line in fin:
             file.write("  %s" % escape(line))
+        file.write("{{- end }}\n")
 
 def update_dashboards_tags(orig, dashboard, new_tags):
     logger.info("Update dashboard: %s %s", orig, dashboard)
