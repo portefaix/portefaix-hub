@@ -27,7 +27,7 @@ keywords:
   - cilium
   - monitoring-mixin
   - portefaix
-version: 0.2.1
+version: 0.3.0
 appVersion: master
 
 maintainers:
@@ -52,5 +52,5 @@ annotations:
     fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
-    - kind: fixed
-      description: prometheus rule and dashboards templates
+    - kind: changed
+      description: cilium-mixin vmaster
