@@ -3,7 +3,6 @@
 
 {{ if .Values.grafanaDashboard.enabled -}}
   kubectl --namespace {{ template "cilium-mixin.namespace" . }} get configmap -l "app.kubernetes.io/name={{ include "cilium-mixin.name" . }}"
-{{- end }}
 {{ if $.Values.grafanaDashboard.grafanaOperator.enabled -}}
   kubectl --namespace {{ template "cilium-mixin.namespace" . }} get configmap -l "app.kubernetes.io/name={{ include "cilium-mixin.name" . }}"
 {{- end }}

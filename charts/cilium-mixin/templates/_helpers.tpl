@@ -57,6 +57,15 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
 {{/*
+Common annotations
+*/}}
+{{- define "cilium-mixin.annotations" }}
+{{- if .Values.additionalAnnotations }}
+{{ toYaml .Values.additionalAnnotations }}
+{{- end }}
+{{- end }}
+
+{{/*
 Allow the release namespace to be overridden
 */}}
 {{- define "cilium-mixin.namespace" -}}
