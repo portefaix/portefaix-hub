@@ -28,7 +28,7 @@ keywords:
   - monitoring-mixin
   - mimir
   - portefaix
-version: 1.6.0
+version: 1.7.0
 appVersion: 2.9.0
 
 maintainers:
