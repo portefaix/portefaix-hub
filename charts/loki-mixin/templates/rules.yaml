@@ -1,14 +1,18 @@
+{{ if .Values.monitor.enabled -}}
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
+  name: {{ printf "%s-%s" (include "loki-mixin.fullname" .) "rules" | trunc 63 | trimSuffix "-" }}
+  namespace: {{ include "loki-mixin.namespace" . }}
+  annotations:
+    {{- include "loki-mixin.annotations" . | indent 4 }}
   labels:
     {{- include "loki-mixin.labels" . | indent 4 }}
+    app.kubernetes.io/component: metrics
     {{- if .Values.monitor.additionalLabels }}
     {{- toYaml .Values.monitor.additionalLabels | nindent 4 }}
     {{- end }}
-  name: {{ printf "%s-%s" (include "loki-mixin.fullname" .) "rules" | trunc 63 | trimSuffix "-" }}
-  namespace: {{ include "loki-mixin.namespace" . }}
 spec:
   groups:
       - name: loki_rules
@@ -49,3 +53,4 @@ spec:
             record: cluster_namespace_job_route:loki_request_duration_seconds_sum:sum_rate
           - expr: sum(rate(loki_request_duration_seconds_count[1m])) by (cluster, namespace, job, route)
             record: cluster_namespace_job_route:loki_request_duration_seconds_count:sum_rate
+{{- end }}
