@@ -49,12 +49,17 @@ helm.sh/chart: {{ include "alloy-mixin.chart" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
-app.kubernetes.io/component: monitoring-mixin
 app.kubernetes.io/part-of: {{ include "alloy-mixin.name" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- if .Values.additionalLabels }}
 {{ toYaml .Values.additionalLabels }}
 {{- end }}
+{{- end }}
+
+{{/*
+Common annotations
+*/}}
+{{- define "alloy-mixin.annotations" }}
 {{- end }}
 
 {{/*

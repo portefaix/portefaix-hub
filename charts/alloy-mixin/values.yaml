@@ -31,6 +31,7 @@ additionalAnnotations: {}
   # role: opentelemetry
 
 monitor:
+  enabled: true
   # -- Additional labels to add to resources managed by the Prometheus Operator
   additionalLabels: {}
     # release: kube-prometheus-stack
