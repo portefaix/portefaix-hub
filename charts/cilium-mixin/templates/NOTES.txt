@@ -1,0 +1,12 @@
+{{ $.Chart.Name }} has been installed. Check its status by running:
+  kubectl --namespace {{ template "cilium-mixin.namespace" . }} get prometheusrules -l "app.kubernetes.io/name={{ include "cilium-mixin.name" . }}"
+
+{{ if .Values.grafanaDashboard.enabled -}}
+  kubectl --namespace {{ template "cilium-mixin.namespace" . }} get configmap -l "app.kubernetes.io/name={{ include "cilium-mixin.name" . }}"
+{{- end }}
+{{ if $.Values.grafanaDashboard.grafanaOperator.enabled -}}
+  kubectl --namespace {{ template "cilium-mixin.namespace" . }} get configmap -l "app.kubernetes.io/name={{ include "cilium-mixin.name" . }}"
+{{- end }}
+{{- end }}
+
+Visit https://github.com/nlamirault/portefaix-hub/charts/cilium-mixin.
