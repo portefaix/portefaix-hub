@@ -6,17 +6,19 @@ apiVersion: v1
 kind: ConfigMapList
 items:
 {{- range $path, $fileContents := $files }}
-{{- $dashboardName := regexReplaceAll "(^.*/)(.*)\\.json$" $path "${2}" }}
+{{- $dashboardName := regexReplaceAll "(^.*/)(.*)\\.json$" $path "${2}" | lower }}
 - apiVersion: v1
   kind: ConfigMap
   metadata:
-    name: {{ printf "dashboard-%s" $dashboardName | trunc 63 | trimSuffix "-" }}
-    namespace: {{ include "loki-mixin.namespace" $ }}
     annotations:
       grafana-folder: {{ $.Values.grafanaDashboard.folder }}
+      {{- include "loki-mixin.annotations" $ | indent 6 }}
     labels:
       grafana-dashboard: {{ $dashboardName }}
       {{- include "loki-mixin.labels" $ | indent 6 }}
+      app.kubernetes.io/component: dashboard
+    name: {{ printf "dashboard-%s" $dashboardName | trunc 63 | trimSuffix "-" }}
+    namespace: {{ include "loki-mixin.namespace" $ }}
   data:
     {{ $dashboardName }}.json: |-
 {{ $.Files.Get $path | indent 6}}
@@ -30,6 +32,7 @@ kind: GrafanaDashboard
 metadata:
   labels:
     {{- include "loki-mixin.labels" $ | indent 4 }}
+    app.kubernetes.io/component: dashboard
   name: {{ printf "%s" $dashboardName | trunc 63 | trimSuffix "-" | lower }}
   namespace: {{ $.Release.Namespace }}
 spec:
