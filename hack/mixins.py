@@ -76,6 +76,7 @@ def template(f, mixin, chart_dst, mixin_header):
         fin = open(orig, "rt")
         for line in fin:
             file.write("  %s" % escape(line))
+        file.write("{{- end }}\n")
 
 def update_dashboards_tags(orig, dashboard, new_tags):
     logger.info("Update dashboard: %s %s", orig, dashboard)
@@ -117,6 +118,14 @@ def manage_dashboards(f, mixin, chart_dst):
         update_dashboards_tags(orig, dashboard, ["portefaix"])
     elif mixin == "thanos-mixin":
         update_dashboards_tags(orig, dashboard, ["portefaix"])
+    elif mixin == "alloy-mixin":
+        update_dashboards_tags(orig, dashboard, ["portefaix", "opentelemetry", "alloy"])
+    elif mixin == "quickwit":
+        update_dashboards_tags(orig, dashboard, ["portefaix", "opentelemetry", "quickwit"])
+    elif mixin == "alloy-mixin":
+        update_dashboards_tags(orig, dashboard, ["portefaix", "opentelemetry", "beyla", "ebpf"])
+    elif mixin == "beyla":
+        update_dashboards_tags(orig, dashboard, ["portefaix", "cilium", "cilium-mixin", "cni", "ebpf"])
     else:
         logger.info("Copy %s => %s", orig, dashboard)
         shutil.copy(orig, dashboard)
