@@ -1,30 +1,18 @@
-# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-# SPDX-License-Identifier: Apache-2.0
-
+{{ if .Values.monitor.enabled -}}
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
+  name: {{ printf "%s-%s" (include "pyroscope-mixin.fullname" .) "rules" | trunc 63 | trimSuffix "-" }}
+  namespace: {{ include "pyroscope-mixin.namespace" . }}
+  annotations:
+    {{- include "pyroscope-mixin.annotations" . | indent 4 }}
   labels:
     {{- include "pyroscope-mixin.labels" . | indent 4 }}
+    app.kubernetes.io/component: metrics
     {{- if .Values.monitor.additionalLabels }}
     {{- toYaml .Values.monitor.additionalLabels | nindent 4 }}
     {{- end }}
-  name: {{ printf "%s-%s" (include "pyroscope-mixin.fullname" .) "rules" | trunc 63 | trimSuffix "-" }}
-  namespace: {{ include "pyroscope-mixin.namespace" . }}
 spec:
   groups:
       - name: pyroscope_rules
@@ -89,3 +77,4 @@ spec:
             record: job_type_cluster:pyroscope_distributor_received_samples_sum:sum_rate
           - expr: sum(rate(pyroscope_distributor_received_samples_count[1m])) by (job, type, cluster)
             record: job_type_cluster:pyroscope_distributor_received_samples_count:sum_rate
+{{- end }}
