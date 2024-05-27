@@ -1,3 +1,4 @@
+{{ if .Values.monitor.enabled -}}
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
@@ -8,6 +9,7 @@ metadata:
     {{- include "grafana-mixin.annotations" . | indent 4 }}
   labels:
     {{- include "grafana-mixin.labels" . | indent 4 }}
+    app.kubernetes.io/component: metrics
     {{- if .Values.monitor.additionalLabels }}
     {{- toYaml .Values.monitor.additionalLabels | nindent 4 }}
     {{- end }}
@@ -18,3 +20,4 @@ spec:
           - expr: |
               sum by (namespace, job, handler, status_code) (rate(grafana_http_request_duration_seconds_count[5m]))
             record: namespace_job_handler_statuscode:grafana_http_request_duration_seconds_count:rate5m
+{{- end }}
