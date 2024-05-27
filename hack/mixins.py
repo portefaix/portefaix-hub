@@ -122,9 +122,9 @@ def manage_dashboards(f, mixin, chart_dst):
         update_dashboards_tags(orig, dashboard, ["portefaix", "opentelemetry", "alloy"])
     elif mixin == "quickwit":
         update_dashboards_tags(orig, dashboard, ["portefaix", "opentelemetry", "quickwit"])
-    elif mixin == "alloy-mixin":
-        update_dashboards_tags(orig, dashboard, ["portefaix", "opentelemetry", "beyla", "ebpf"])
     elif mixin == "beyla":
+        update_dashboards_tags(orig, dashboard, ["portefaix", "opentelemetry", "beyla", "ebpf"])
+    elif mixin == "cilium-mixin":
         update_dashboards_tags(orig, dashboard, ["portefaix", "cilium", "cilium-mixin", "cni", "ebpf"])
     else:
         logger.info("Copy %s => %s", orig, dashboard)
