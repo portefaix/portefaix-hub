@@ -27,8 +27,8 @@ keywords:
   - alertmanager
   - monitoring-mixin
   - portefaix
-version: 1.9.0
-appVersion: 0.26.0
+version: 1.10.0
+appVersion: 0.27.0
 
 maintainers:
   - name: nlamirault
@@ -52,4 +52,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: alertmanager-mixin v0.26.0
+      description: alertmanager-mixin v0.27.0
