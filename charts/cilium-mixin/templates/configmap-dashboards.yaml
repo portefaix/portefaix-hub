@@ -6,7 +6,7 @@ apiVersion: v1
 kind: ConfigMapList
 items:
 {{- range $path, $fileContents := $files }}
-{{- $dashboardName := regexReplaceAll "(^.*/)(.*)\\.json$" $path "${2}" }}
+{{- $dashboardName := regexReplaceAll "(^.*/)(.*)\\.json$" $path "${2}" | lower }}
 - apiVersion: v1
   kind: ConfigMap
   metadata:

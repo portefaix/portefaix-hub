@@ -27,7 +27,7 @@ keywords:
   - cilium
   - monitoring-mixin
   - portefaix
-version: 0.2.2
+version: 0.3.1
 appVersion: master
 
 maintainers:
