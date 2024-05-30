@@ -17,7 +17,7 @@ items:
       grafana-dashboard: {{ $dashboardName }}
       {{- include "cilium-mixin.labels" $ | indent 6 }}
       app.kubernetes.io/component: dashboard
-    name: {{ printf "dashboard-%s" $dashboardName | trunc 63 | trimSuffix "-" }}
+    name: {{ printf "dashboard-%s" $dashboardName | trunc 63 | trimSuffix "-" | lower }}
     namespace: {{ include "cilium-mixin.namespace" $ }}
   data:
     {{ $dashboardName }}.json: |-
@@ -42,7 +42,7 @@ spec:
     matchLabels:
       {{- toYaml $.Values.grafanaDashboard.grafanaOperator.matchLabels | nindent 6 }}
   configMapRef:
-    name: {{ printf "dashboard-%s" $dashboardName | trunc 63 | trimSuffix "-" }}
+    name: {{ printf "dashboard-%s" $dashboardName | trunc 63 | trimSuffix "-" | lower }}
     key: {{ $dashboardName }}.json
 {{- end }}
 {{- end }}
