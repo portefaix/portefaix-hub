@@ -1,0 +1,122 @@
+---
+# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+ingress:
+  enabled: false
+
+## Additional labels to attach to all resources
+additionalLabels: {}
+
+## Docker container image
+##
+image:
+  repository: ghcr.io/grafana/quickpizza-local
+  # if not set appVersion field from Chart.yaml is used
+  tag: ""
+  # When digest is set to a non-empty value, images will be pulled by digest (regardless of tag value).
+  digest: ""
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 3333
+
+serviceMonitor:
+  enabled: true
+  additionalLabels:
+    prometheus.io/operator: portefaix
+
+frontend:
+  replicas: 1
+  resources: {}
+    # limits:
+    #   memory: 300Mi
+    # requests:
+    #   cpu: 50m
+    #   memory: 50Mi
+
+config:
+  replicas: 1
+  resources: {}
+    # limits:
+    #   memory: 300Mi
+    # requests:
+    #   memory: 50Mi
+
+ws:
+  replicas: 1
+  resources: {}
+    # limits:
+    #   memory: 300Mi
+    # requests:
+    #   cpu: 50m
+    #   memory: 50Mi
+
+catalog:
+  replicas: 1
+  resources: {}
+    # limits:
+    #   memory: 300Mi
+    # requests:
+    #   cpu: 50m
+    #   memory: 50Mi
+
+copy:
+  replicas: 1
+  resources: {}
+    # limits:
+    #   memory: 300Mi
+    # requests:
+    #   cpu: 50m
+    #   memory: 50Mi
+
+recs:
+  replicas: 1
+  resources: {}
+    # limits:
+    #   memory: 300Mi
+    # requests:
+    #   cpu: 50m
+    #   memory: 50Mi
+
+## Node tolerations for server scheduling to nodes with taints
+## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/
+##
+tolerations: []
+  # - key: "key"
+  #   operator: "Equal|Exists"
+  #   value: "value"
+  #   effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"
+
+## Node labels for Prometheus server pod assignment
+## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector
+##
+nodeSelector: {}
+
+## Pod affinity
+## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity
+##
+affinity: {}
+
+config:
+  # Log level
+  logLevel: debug
+  # OTLP endpoints
+  otlp: ""
+  # Grafana Faro endpoint
+  faro: ""
+  
