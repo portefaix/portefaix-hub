@@ -129,3 +129,8 @@ affinity: {}
 serviceMonitor:
   enabled: true
   additionalLabels: {}
+  path: "/metrics"
+  interval: 10s
+  scrapeTimeout: 10s
+  relabelings: []
+  metricRelabelings: []
