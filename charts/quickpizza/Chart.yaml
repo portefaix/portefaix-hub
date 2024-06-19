@@ -18,6 +18,36 @@
 apiVersion: v2
 type: application
 name: quickpizza
+description: The Grafana QuickPizza web application, used for demonstrations and workshops
 version: 1.0.0
 appVersion: 0.7.0
+keywords:
+  - opentelemetry
+  - portefaix
+home: https://github.com/grafana/quickpizza
+sources:
+  - https://github.com/grafana/quickpizza
+  - https://github.com/nlamirault/portefaix-hub/tree/master/charts/quickpizza
+maintainers:
+  - name: nlamirault
+    email: nicolas.lamirault@gmail.com
+
 dependencies: []
+
+# https://artifacthub.io/docs/topics/annotations/helm/
+annotations:
+  artifacthub.io/license: Apache-2.0
+  artifacthub.io/links: |
+    - name: quickpizza
+      url: https://github.com/grafana/quickpizza
+    - name: Portefaix
+      url: https://portefaix.xyz
+  artifacthub.io/maintainers: |
+    - name: nlamirault
+      email: nicolas.lamirault@gmail.com
+  artifacthub.io/signKey: |
+    fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+    url: https://keybase.io/nlamirault/pgp_keys.asc
+  artifacthub.io/changes: |
+    - kind: added
+      description: New chart
