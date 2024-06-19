@@ -10,18 +10,21 @@
 | affinity | object | `{}` | Pod affinity |
 | catalog.replicas | int | `1` | Number of replicas for the Catalog component |
 | catalog.resources | object | `{}` | Catalog resource requests and limits |
-| config.faro | string | `""` |  |
-| config.logLevel | string | `"debug"` |  |
-| config.otlp | string | `""` |  |
 | config.replicas | int | `1` | Number of replicas for the Config component |
 | config.resources | object | `{}` | Config resource requests and limits |
 | copy.replicas | int | `1` | Number of replicas for the Copy component |
 | copy.resources | object | `{}` | Copy resource requests and limits |
 | frontend.replicas | int | `1` | Number of replicas for the Frontend component |
 | frontend.resources | object | `{}` | Frontend resource requests and limits |
-| image | object | `{"digest":"","pullPolicy":"IfNotPresent","repository":"ghcr.io/grafana/quickpizza-local","tag":""}` | Docker container image |
+| image.digest | string | `""` |  |
+| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.repository | string | `"ghcr.io/grafana/quickpizza-local"` | Docker repository |
+| image.tag | string | `""` | Docker image tag. |
 | ingress.enabled | bool | `false` |  |
 | nodeSelector | object | `{}` | Node labels for Prometheus server pod assignment |
+| pizza.faro | string | `""` |  |
+| pizza.logLevel | string | `"debug"` |  |
+| pizza.otlp | string | `""` |  |
 | recs.replicas | int | `1` | Number of replicas for the Recs component |
 | recs.resources | object | `{}` | Recs resource requests and limits |
 | service.port | int | `3333` |  |
