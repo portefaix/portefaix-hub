@@ -15,8 +15,13 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-ingress:
-  enabled: false
+pizza:
+  # Log level
+  logLevel: debug
+  # OTLP endpoints
+  otlp: ""
+  # Grafana Faro endpoint
+  faro: ""
 
 # -- Additional labels to attach to all resources
 additionalLabels: {}
@@ -33,11 +38,6 @@ image:
 service:
   type: ClusterIP
   port: 3333
-
-serviceMonitor:
-  enabled: true
-  additionalLabels:
-    prometheus.io/operator: portefaix
 
 frontend:
   # -- Number of replicas for the Frontend component
@@ -126,11 +126,6 @@ nodeSelector: {}
 # -- Pod affinity
 affinity: {}
 
-pizza:
-  # Log level
-  logLevel: debug
-  # OTLP endpoints
-  otlp: ""
-  # Grafana Faro endpoint
-  faro: ""
-  
+serviceMonitor:
+  enabled: true
+  additionalLabels: {}
