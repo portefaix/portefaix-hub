@@ -35,6 +35,6 @@ metadata:
     {{- include "quickpizza.labels" . | indent 4 }}
     app.kubernetes.io/component: commons
 data:
-  QUICKPIZZA_LOG_LEVEL: {{ .Values.config.logLevel }}
-  QUICKPIZZA_OTLP_ENDPOINT: {{ .Values.config.otlp }}
-  QUICKPIZZA_CONF_FARO_URL: {{ .Values.config.faro }}
+  QUICKPIZZA_LOG_LEVEL: {{ .Values.pizza.logLevel }}
+  QUICKPIZZA_OTLP_ENDPOINT: {{ .Values.pizza.otlp }}
+  QUICKPIZZA_CONF_FARO_URL: {{ .Values.pizza.faro }}

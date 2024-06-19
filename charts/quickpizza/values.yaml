@@ -18,11 +18,10 @@
 ingress:
   enabled: false
 
-## Additional labels to attach to all resources
+# -- Additional labels to attach to all resources
 additionalLabels: {}
 
-## Docker container image
-##
+# -- Docker container image
 image:
   repository: ghcr.io/grafana/quickpizza-local
   # if not set appVersion field from Chart.yaml is used
@@ -41,7 +40,10 @@ serviceMonitor:
     prometheus.io/operator: portefaix
 
 frontend:
+  # -- Number of replicas for the Frontend component
   replicas: 1
+  ## Ref: http://kubernetes.io/docs/user-guide/compute-resources/
+  # -- Frontend resource requests and limits
   resources: {}
     # limits:
     #   memory: 300Mi
@@ -50,7 +52,10 @@ frontend:
     #   memory: 50Mi
 
 config:
+  # -- Number of replicas for the Config component
   replicas: 1
+  ## Ref: http://kubernetes.io/docs/user-guide/compute-resources/
+  # -- Config resource requests and limits
   resources: {}
     # limits:
     #   memory: 300Mi
@@ -58,7 +63,10 @@ config:
     #   memory: 50Mi
 
 ws:
+  # -- Number of replicas for the WS component
   replicas: 1
+  ## Ref: http://kubernetes.io/docs/user-guide/compute-resources/
+  # -- WS resource requests and limits
   resources: {}
     # limits:
     #   memory: 300Mi
@@ -67,7 +75,10 @@ ws:
     #   memory: 50Mi
 
 catalog:
+  # -- Number of replicas for the Catalog component
   replicas: 1
+  ## Ref: http://kubernetes.io/docs/user-guide/compute-resources/
+  # -- Catalog resource requests and limits
   resources: {}
     # limits:
     #   memory: 300Mi
@@ -76,7 +87,10 @@ catalog:
     #   memory: 50Mi
 
 copy:
+  # -- Number of replicas for the Copy component
   replicas: 1
+  ## Ref: http://kubernetes.io/docs/user-guide/compute-resources/
+  # -- Copy resource requests and limits
   resources: {}
     # limits:
     #   memory: 300Mi
@@ -85,7 +99,10 @@ copy:
     #   memory: 50Mi
 
 recs:
+  # -- Number of replicas for the Recs component
   replicas: 1
+  ## Ref: http://kubernetes.io/docs/user-guide/compute-resources/
+  # -- Recs resource requests and limits
   resources: {}
     # limits:
     #   memory: 300Mi
@@ -93,26 +110,23 @@ recs:
     #   cpu: 50m
     #   memory: 50Mi
 
-## Node tolerations for server scheduling to nodes with taints
 ## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/
-##
+# -- Node tolerations for server scheduling to nodes with taints
 tolerations: []
   # - key: "key"
   #   operator: "Equal|Exists"
   #   value: "value"
   #   effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"
 
-## Node labels for Prometheus server pod assignment
 ## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector
-##
+# -- Node labels for Prometheus server pod assignment
 nodeSelector: {}
 
-## Pod affinity
 ## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity
-##
+# -- Pod affinity
 affinity: {}
 
-config:
+pizza:
   # Log level
   logLevel: debug
   # OTLP endpoints
