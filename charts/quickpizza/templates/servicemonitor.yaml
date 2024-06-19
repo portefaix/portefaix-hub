@@ -48,7 +48,7 @@ spec:
   selector:
     matchLabels:
       {{- include "quickpizza.selectorLabels" . | indent 6 }}
-      {{- include "quickpizza.frontend.labels" . | nindent 4 }}
+      {{- include "quickpizza.frontend.labels" . | nindent 6 }}
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
@@ -82,7 +82,7 @@ spec:
   selector:
     matchLabels:
       {{- include "quickpizza.selectorLabels" . | indent 6 }}
-      {{- include "quickpizza.config.labels" . | nindent 4 }}
+      {{- include "quickpizza.config.labels" . | nindent 6 }}
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
@@ -116,7 +116,7 @@ spec:
   selector:
     matchLabels:
       {{- include "quickpizza.selectorLabels" . | indent 6 }}
-      {{- include "quickpizza.catalog.labels" . | nindent 4 }}
+      {{- include "quickpizza.catalog.labels" . | nindent 6 }}
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
@@ -150,7 +150,7 @@ spec:
   selector:
     matchLabels:
       {{- include "quickpizza.selectorLabels" . | indent 6 }}
-      {{- include "quickpizza.copy.labels" . | nindent 4 }}
+      {{- include "quickpizza.copy.labels" . | nindent 6 }}
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
@@ -184,5 +184,5 @@ spec:
   selector:
     matchLabels:
       {{- include "quickpizza.selectorLabels" . | indent 6 }}
-      {{- include "quickpizza.recs.labels" . | nindent 4 }}
+      {{- include "quickpizza.recs.labels" . | nindent 6 }}
 {{- end }}
