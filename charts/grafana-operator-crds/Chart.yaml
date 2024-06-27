@@ -1,6 +1,6 @@
 ---
 apiVersion: v2
-description: Gateway API CRDs
+description: Grafana Operator CRDs
 name: grafana-operator-crds
 version: 1.0.0
 appVersion: 5.9.2
