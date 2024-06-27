@@ -2,7 +2,7 @@
 
 ![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 5.9.2](https://img.shields.io/badge/AppVersion-5.9.2-informational?style=flat-square)
 
-Gateway API CRDs
+Grafana Operator CRDs
 
 **Homepage:** <https://grafana.github.io/grafana-operator/>
 
