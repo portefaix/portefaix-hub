@@ -3205,6 +3205,49 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/grafana-mixin-0.1.0/grafana-mixin-0.1.0.tgz
     version: 0.1.0
+  grafana-operator-crds:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Init chart
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Grafana Operator
+          url: https://grafana.github.io/grafana-operator/
+        - name: Portefaix Hub
+          url: https://github.com/portefaix/portefaix-hub
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 5.9.2
+    created: "2024-06-27T13:28:44.52022995Z"
+    dependencies:
+    - name: crds
+      repository: ""
+      version: 0.0.0
+    description: Grafana Operator CRDs
+    digest: d26b15563858b295b89538983f619b2830f48db83db9b1f2400d04c39a2f6928
+    home: https://grafana.github.io/grafana-operator/
+    icon: https://artifacthub.io/image/b4fed1a7-6c8f-4945-b99d-096efa3e4116
+    keywords:
+    - kubernetes
+    - operator
+    - grafana
+    - crds
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: grafana-operator-crds
+    sources:
+    - https://grafana.github.io/grafana-operator/
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/grafana-operator-crds-1.0.0/grafana-operator-crds-1.0.0.tgz
+    version: 1.0.0
   kcc-factory:
   - annotations:
       artifacthub.io/changes: |
@@ -12309,4 +12352,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2024-05-30T16:09:52.399243461Z"
+generated: "2024-06-27T13:28:44.520699577Z"
