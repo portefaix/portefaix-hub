@@ -1,0 +1,78 @@
+# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+---
+# Default values for portefaix-kyverno.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- Provide a name to substitute for the full names of resources
+fullnameOverride: ""
+
+# -- Additional labels to add to all resources
+additionalLabels: {}
+
+## For more info https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/#validation-actions
+policies:
+  # -- Container must not use latest image tag
+  c0001:
+    enabled: true
+    validationActions:
+    - Warn
+    - Audit
+  # -- Container must set liveness probe
+  c0002:
+    enabled: true
+    validationActions:
+    - Warn
+    - Audit
+  # -- Container must set readiness probe
+  c0003:
+    enabled: true
+    validationActions:
+    - Warn
+    - Audit
+  # -- Container resource constraints must be specified
+  c0008:
+    enabled: true
+    validationActions:
+    - Warn
+    - Audit
+  # -- Metadata must set recommanded Kubernetes labels
+  m0001:
+    enabled: true
+    validationActions:
+    - Warn
+    - Audit
+  # -- Metadata should have a8r.io annotations
+  m0002:
+    enabled: true
+    validationActions:
+    - Warn
+    - Audit
+  # -- Metadata should have portefaix.xyz labels
+  m0003:
+    enabled: true
+    validationActions:
+    - Warn
+    - Audit
+  # -- Disallow default namespace for all resources
+  n0001:
+    enabled: true
+    validationActions:
+    - Warn
+    - Audit
+

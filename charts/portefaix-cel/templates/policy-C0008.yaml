@@ -1,0 +1,85 @@
+# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+{{- if .Values.policies.c0008.enabled }}
+---
+apiVersion: admissionregistration.k8s.io/v1alpha1
+kind: ValidatingAdmissionPolicy
+metadata:
+  labels:
+    {{- include "portefaix-cel.labels" . | nindent 4 }}
+  name: c0008.container.portefaix.xyz
+spec:
+  failurePolicy: Fail
+  matchConstraints:
+    resourceRules:
+    - apiGroups:   [""]
+      apiVersions: ["v1"]
+      operations:  ["CREATE", "UPDATE"]
+      resources:   ["pods"]
+    - apiGroups:   ["apps"]
+      apiVersions: ["v1"]
+      operations:  ["CREATE", "UPDATE"]
+      resources:   ["deployments","replicasets","daemonsets","statefulsets"]
+    - apiGroups:   ["batch"]
+      apiVersions: ["v1"]
+      operations:  ["CREATE", "UPDATE"]
+      resources:   ["jobs","cronjobs"]
+  validations:
+    - expression: >
+        object.kind != 'Pod' || object.spec.containers.all(container,
+        has(container.resources) &&
+        has(container.resources.requests) &&
+        has(container.resources.requests.cpu) &&
+        has(container.resources.requests.memory) &&
+        has(container.resources.limits) &&
+        has(container.resources.limits.memory))
+      message: "CPU and memory resource requests and limits are required."
+
+    - expression: >
+        ['Deployment','ReplicaSet','DaemonSet','StatefulSet','Job'].all(kind, object.kind != kind) || object.spec.template.spec.containers.all(container,
+        has(container.resources) &&
+        has(container.resources.requests) &&
+        has(container.resources.requests.cpu) &&
+        has(container.resources.requests.memory) &&
+        has(container.resources.limits) &&
+        has(container.resources.limits.memory))
+      message: "CPU and memory resource requests and limits are required."
+
+    - expression: >
+        object.kind != 'CronJob' || object.spec.jobTemplate.spec.containers.all(container,
+        has(container.resources) &&
+        has(container.resources.requests) &&
+        has(container.resources.requests.cpu) &&
+        has(container.resources.requests.memory) &&
+        has(container.resources.limits) &&
+        has(container.resources.limits.memory))
+      message: "CPU and memory resource requests and limits are required."
+  auditAnnotations:
+  - key: "container-resources-requests-limits"
+    valueExpression: "CPU and Memory resource requests and limits are required"
+---
+apiVersion: admissionregistration.k8s.io/v1alpha1
+kind: ValidatingAdmissionPolicyBinding
+metadata:
+  labels:
+    {{- include "portefaix-cel.labels" . | nindent 4 }}
+  name: c0008.container.portefaix.xyz
+spec:
+  policyName: c0008.container.portefaix.xyz
+  validationActions:
+  {{- toYaml .Values.policies.c0008.validationActions | nindent 2 }}
+{{- end }}

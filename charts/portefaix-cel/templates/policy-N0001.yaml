@@ -1,0 +1,58 @@
+# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+{{- if .Values.policies.n0001.enabled }}
+---
+apiVersion: admissionregistration.k8s.io/v1alpha1
+kind: ValidatingAdmissionPolicy
+metadata:
+  labels:
+    {{- include "portefaix-cel.labels" . | nindent 4 }}
+  name: n0001.namespace.portefaix.xyz
+spec:
+  failurePolicy: Fail
+  matchConstraints:
+    resourceRules:
+    - apiGroups:   [""]
+      apiVersions: ["v1"]
+      operations:  ["CREATE", "UPDATE"]
+      resources:   ["pods"]
+    - apiGroups:   ["apps"]
+      apiVersions: ["v1"]
+      operations:  ["CREATE", "UPDATE"]
+      resources:   ["deployments","replicasets","daemonsets","statefulsets"]
+    - apiGroups:   ["batch"]
+      apiVersions: ["v1"]
+      operations:  ["CREATE", "UPDATE"]
+      resources:   ["jobs","cronjobs"]
+  validations:
+    - expression: "['Pod','Deployment','ReplicaSet','DaemonSet','StatefulSet','Job', 'CronJob'].all(kind, object.kind != kind) || (has(object.metadata.namespace) && object.metadata.namespace != 'default')"
+      message: "Resources in default namespace are not allowed"
+  auditAnnotations:
+  - key: "default-namespace-not-allowed"
+    valueExpression: "Resources in default namespace are not allowed"
+---
+apiVersion: admissionregistration.k8s.io/v1alpha1
+kind: ValidatingAdmissionPolicyBinding
+metadata:
+  labels:
+    {{- include "portefaix-cel.labels" . | nindent 4 }}
+  name: n0001.container.portefaix.xyz
+spec:
+  policyName: n0001.container.portefaix.xyz
+  validationActions:
+  {{- toYaml .Values.policies.n0001.validationActions | nindent 2 }}
+{{- end }}
