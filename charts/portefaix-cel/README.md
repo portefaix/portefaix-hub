@@ -22,7 +22,6 @@ A Helm chart for validating admission policies use the Common Expression Languag
 |-----|------|---------|-------------|
 | additionalLabels | object | `{}` | Additional labels to add to all resources |
 | fullnameOverride | string | `""` | Provide a name to substitute for the full names of resources |
-| policies | object | `{"c0001":{"enabled":true,"validationActions":["Warn","Audit"]},"c0002":{"enabled":true,"validationActions":["Warn","Audit"]},"c0003":{"enabled":true,"validationActions":["Warn","Audit"]},"c0008":{"enabled":true,"validationActions":["Warn","Audit"]},"m0001":{"enabled":true,"validationActions":["Warn","Audit"]},"m0002":{"enabled":true,"validationActions":["Warn","Audit"]},"m0003":{"enabled":true,"validationActions":["Warn","Audit"]},"n0001":{"enabled":true,"validationActions":["Warn","Audit"]}}` | Declare how validations of a policy are enforced validationActions: - Warn - Audit |
 | policies.c0001 | object | `{"enabled":true,"validationActions":["Warn","Audit"]}` | Container must not use latest image tag |
 | policies.c0002 | object | `{"enabled":true,"validationActions":["Warn","Audit"]}` | Container must set liveness probe |
 | policies.c0003 | object | `{"enabled":true,"validationActions":["Warn","Audit"]}` | Container must set readiness probe |
