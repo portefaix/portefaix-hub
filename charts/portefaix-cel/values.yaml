@@ -27,6 +27,49 @@ additionalLabels: {}
 
 ## For more info https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/#validation-actions
 # -- Declare how validations of a policy are enforced
-validationActions:
-- Warn
-- Audit
+# validationActions:
+# - Warn
+# - Audit
+
+policies:
+  c0001:
+    enabled: true
+    validationActions:
+    - Warn
+    - Audit
+  c0002:
+    enabled: true
+    validationActions:
+    - Warn
+    - Audit
+  c0003:
+    enabled: true
+    validationActions:
+    - Warn
+    - Audit
+  c0008:
+    enabled: true
+    validationActions:
+    - Warn
+    - Audit
+  m0001:
+    enabled: true
+    validationActions:
+    - Warn
+    - Audit
+  m0002:
+    enabled: true
+    validationActions:
+    - Warn
+    - Audit
+  m0003:
+    enabled: true
+    validationActions:
+    - Warn
+    - Audit
+  n0001:
+    enabled: true
+    validationActions:
+    - Warn
+    - Audit
+

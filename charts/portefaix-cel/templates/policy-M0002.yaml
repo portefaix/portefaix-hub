@@ -14,6 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+{{- if .Values.policies.m0002.enabled }}
 ---
 apiVersion: admissionregistration.k8s.io/v1alpha1
 kind: ValidatingAdmissionPolicy
@@ -63,4 +64,5 @@ metadata:
 spec:
   policyName: m0002.container.portefaix.xyz
   validationActions:
-  {{- toYaml .Values.validationActions | nindent 2 }}
+  {{- toYaml .Values.policies.m0002.validationActions | nindent 2 }}
+{{- end }}
