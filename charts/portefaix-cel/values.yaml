@@ -26,47 +26,50 @@ fullnameOverride: ""
 additionalLabels: {}
 
 ## For more info https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/#validation-actions
-# -- Declare how validations of a policy are enforced
-# validationActions:
-# - Warn
-# - Audit
-
 policies:
+  # -- Container must not use latest image tag
   c0001:
     enabled: true
     validationActions:
     - Warn
     - Audit
+  # -- Container must set liveness probe
   c0002:
     enabled: true
     validationActions:
     - Warn
     - Audit
+  # -- Container must set readiness probe
   c0003:
     enabled: true
     validationActions:
     - Warn
     - Audit
+  # -- Container resource constraints must be specified
   c0008:
     enabled: true
     validationActions:
     - Warn
     - Audit
+  # -- Metadata must set recommanded Kubernetes labels
   m0001:
     enabled: true
     validationActions:
     - Warn
     - Audit
+  # -- Metadata should have a8r.io annotations
   m0002:
     enabled: true
     validationActions:
     - Warn
     - Audit
+  # -- Metadata should have portefaix.xyz labels
   m0003:
     enabled: true
     validationActions:
     - Warn
     - Audit
+  # -- Disallow default namespace for all resources
   n0001:
     enabled: true
     validationActions:
