@@ -16,7 +16,7 @@
 
 {{- if .Values.policies.m0003.enabled }}
 ---
-apiVersion: admissionregistration.k8s.io/v1alpha1
+apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingAdmissionPolicy
 metadata:
   labels:
@@ -50,7 +50,7 @@ spec:
   - key: "metadata-portefaix-recommended-labels"
     valueExpression: "Portefaix recommended labels is required"
 ---
-apiVersion: admissionregistration.k8s.io/v1alpha1
+apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingAdmissionPolicyBinding
 metadata:
   labels:

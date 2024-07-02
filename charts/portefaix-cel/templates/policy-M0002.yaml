@@ -16,7 +16,7 @@
 
 {{- if .Values.policies.m0002.enabled }}
 ---
-apiVersion: admissionregistration.k8s.io/v1alpha1
+apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingAdmissionPolicy
 metadata:
   labels:
@@ -55,7 +55,7 @@ spec:
   - key: "metadata-a8r-io-recommended-annotations"
     valueExpression: "a8r.io annotations is required"
 ---
-apiVersion: admissionregistration.k8s.io/v1alpha1
+apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingAdmissionPolicyBinding
 metadata:
   labels:

@@ -16,7 +16,7 @@
 
 {{- if .Values.policies.c0002.enabled }}
 ---
-apiVersion: admissionregistration.k8s.io/v1alpha1
+apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingAdmissionPolicy
 metadata:
   labels:
@@ -49,7 +49,7 @@ spec:
   - key: "container-liveness-probe"
     valueExpression: "Liveness probe is required"
 ---
-apiVersion: admissionregistration.k8s.io/v1alpha1
+apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingAdmissionPolicyBinding
 metadata:
   labels:
