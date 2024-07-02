@@ -1,0 +1,4 @@
+{{ $.Chart.Name }} has been installed. Check its status by running:
+  kubectl --namespace {{ template "portefaix-cel.namespace" . }} get validatingadmissionpolicies -l "app.kubernetes.io/part-of={{ include "portefaix-cel.name" . }}"
+
+Visit https://github.com/nlamirault/portefaix-hub/charts/portefaix-cel.

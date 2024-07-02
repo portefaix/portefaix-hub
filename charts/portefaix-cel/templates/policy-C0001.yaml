@@ -1,0 +1,57 @@
+# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+---
+apiVersion: admissionregistration.k8s.io/v1alpha1
+kind: ValidatingAdmissionPolicy
+metadata:
+  labels:
+    {{- include "portefaix-cel.labels" . | nindent 4 }}
+  name: c0001.container.portefaix.xyz
+spec:
+  matchConstraints:
+    resourceRules:
+    - apiGroups:   ["apps"]
+      apiVersions: ["v1"]
+      operations:  ["CREATE", "UPDATE"]
+      resources:   ["deployments","replicasets","daemonsets","statefulsets"]
+    - apiGroups:   [""]
+      apiVersions: ["v1"]
+      operations:  ["CREATE", "UPDATE"]
+      resources:   ["pods"]
+    - apiGroups:   ["batch"]
+      apiVersions: ["v1"]
+      operations:  ["CREATE", "UPDATE"]
+      resources:   ["jobs","cronjobs"]
+  validations:
+  - expression: "object.spec.template.spec.containers.all(c, !c.image.contains(':latest'))"
+    message: "Cannot use the latest tag"
+  - expression: 'object.spec.containers.all(c, c.image.matches("[0-9]+\\.[0-9]+\\.[0-9]$"))'
+    message: "Container images have a SemVer version"
+  auditAnnotations:
+  - key: "container-invalid-image-tag"
+    valueExpression: "Container image must have a SemVer version and not lastest tag"
+---
+apiVersion: admissionregistration.k8s.io/v1alpha1
+kind: ValidatingAdmissionPolicyBinding
+metadata:
+  labels:
+    {{- include "portefaix-cel.labels" . | nindent 4 }}
+  name: c0001.container.portefaix.xyz
+spec:
+  policyName: c0001.container.portefaix.xyz
+  validationActions:
+  {{- toYaml .Values.validationActions | nindent 2 }}
