@@ -16,7 +16,7 @@
 
 {{- if .Values.policies.c0001.enabled }}
 ---
-apiVersion: admissionregistration.k8s.io/v1alpha1
+apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingAdmissionPolicy
 metadata:
   labels:
@@ -46,7 +46,7 @@ spec:
   - key: "container-invalid-image-tag"
     valueExpression: "Container image must have a SemVer version and not lastest tag"
 ---
-apiVersion: admissionregistration.k8s.io/v1alpha1
+apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingAdmissionPolicyBinding
 metadata:
   labels:

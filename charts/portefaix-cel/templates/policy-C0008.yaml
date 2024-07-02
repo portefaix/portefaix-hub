@@ -16,7 +16,7 @@
 
 {{- if .Values.policies.c0008.enabled }}
 ---
-apiVersion: admissionregistration.k8s.io/v1alpha1
+apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingAdmissionPolicy
 metadata:
   labels:
@@ -72,7 +72,7 @@ spec:
   - key: "container-resources-requests-limits"
     valueExpression: "CPU and Memory resource requests and limits are required"
 ---
-apiVersion: admissionregistration.k8s.io/v1alpha1
+apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingAdmissionPolicyBinding
 metadata:
   labels:
