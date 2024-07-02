@@ -7375,6 +7375,42 @@ entries:
   portefaix-cel:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: use v1 for ValidatingAdmissionPolicy and ValidatingAdmissionPolicyBinding
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v1.30.0
+    created: "2024-07-02T14:43:22.156215216Z"
+    description: A Helm chart for validating admission policies use the Common Expression
+      Language
+    digest: cd8481e94518cb5f296d899262d1fb9117e93a53bdbe07f0676c75406ca72019
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.svg
+    keywords:
+    - cel
+    - policies
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: portefaix-cel
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/portefaix-cel
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/portefaix-cel-2.0.0/portefaix-cel-2.0.0.tgz
+    version: 2.0.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: New chart for Validating admission policies use the Common Expression Language
       artifacthub.io/license: Apache-2.0
@@ -12389,4 +12425,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2024-07-02T14:15:41.566666374Z"
+generated: "2024-07-02T14:43:22.156701825Z"
