@@ -60,18 +60,21 @@ spec:
   - expression: >
       object.kind != 'Pod' ||
       !(
+        has(object.spec.initContainers) &&
         object.spec.initContainers.all(container, container.image.contains(':latest'))
       )
     message: "Pods contains initcontainer/s image with latest tag"
   - expression: >
       ['Deployment','ReplicaSet','DaemonSet','StatefulSet','Job'].all(kind, object.kind != kind) ||
       !(
+        has(object.spec.template.spec.initContainers) &&
         object.spec.template.spec.initContainers.all(container, container.image.contains(':latest'))
       )
     message: "Workload contains initcontainer/s image with latest tag"
   - expression: >
       object.kind != 'CronJob' ||
       !(
+        has(object.spec.jobTemplate.spec.template.spec.initContainers) &&
         object.spec.jobTemplate.spec.template.spec.initContainers.all(container, container.image.contains(':latest'))
       )
     message: "CronJob contains initcontainer/s image with latest tag"
