@@ -26,35 +26,73 @@ spec:
   failurePolicy: Fail
   matchConstraints:
     resourceRules:
-    # - apiGroups:   [""]
-    #   apiVersions: ["v1"]
-    #   operations:  ["CREATE", "UPDATE"]
-    #   resources:   ["namespaces"]
-    - apiGroups:   [""]
-      apiVersions: ["v1"]
-      operations:  ["CREATE", "UPDATE"]
-      resources:   ["pods"]
-    - apiGroups:   ["apps"]
-      apiVersions: ["v1"]
-      operations:  ["CREATE", "UPDATE"]
-      resources:   ["deployments","replicasets","daemonsets","statefulsets"]
-    - apiGroups:   ["batch"]
-      apiVersions: ["v1"]
-      operations:  ["CREATE", "UPDATE"]
-      resources:   ["jobs","cronjobs"]
+    - apiGroups:
+      - ""
+      apiVersions:
+      - v1
+      operations:
+      - CREATE
+      - UPDATE
+      resources:
+      - pods
+    - apiGroups:
+      - apps
+      apiVersions:
+      - v1
+      operations:
+      - CREATE
+      - UPDATE
+      resources:
+      - deployments
+      - replicasets
+      - daemonsets
+      - statefulsets
+    - apiGroups:
+      - batch
+      apiVersions:
+      - v1
+      operations:
+      - CREATE
+      - UPDATE
+      resources:
+      - jobs
+      - cronjobs
   validations:
   - expression: >
-      has(object.metadata.labels) &&
-      'app.kubernetes.io/name' in object.metadata.labels &&
-      'app.kubernetes.io/instance' in object.metadata.labels &&
-      'app.kubernetes.io/version' in object.metadata.labels &&
-      'app.kubernetes.io/component' in object.metadata.labels &&
-      'app.kubernetes.io/part-of' in object.metadata.labels &&
-      'app.kubernetes.io/managed-by' in object.metadata.labels
-    message: "Kubernetes recommended labels is required."
+      object.kind != 'Pod' ||
+      (
+        has(object.metadata.labels) &&
+        'app.kubernetes.io/name' in object.metadata.labels &&
+        'app.kubernetes.io/instance' in object.metadata.labels &&
+        'app.kubernetes.io/version' in object.metadata.labels &&
+        'app.kubernetes.io/component' in object.metadata.labels &&
+        'app.kubernetes.io/part-of' in object.metadata.labels &&
+        'app.kubernetes.io/managed-by' in object.metadata.labels
+      )
+    message: "Pods doesn't have Kubernetes recommended labels"
+  - expression: >
+      ['Deployment','ReplicaSet','DaemonSet','StatefulSet','Job'].all(kind, object.kind != kind) ||
+      (
+        has(object.metadata.labels) &&
+        'app.kubernetes.io/name' in object.metadata.labels &&
+        'app.kubernetes.io/instance' in object.metadata.labels &&
+        'app.kubernetes.io/version' in object.metadata.labels &&
+        'app.kubernetes.io/component' in object.metadata.labels &&
+        'app.kubernetes.io/part-of' in object.metadata.labels &&
+        'app.kubernetes.io/managed-by' in object.metadata.labels &&
+        has(object.spec.template.metadata) &&
+        has(object.spec.template.metadata.labels) &&
+        'app.kubernetes.io/name' in object.metadata.labels &&
+        'app.kubernetes.io/instance' in object.metadata.labels &&
+        'app.kubernetes.io/version' in object.metadata.labels &&
+        'app.kubernetes.io/component' in object.metadata.labels &&
+        'app.kubernetes.io/part-of' in object.metadata.labels &&
+        'app.kubernetes.io/managed-by' in object.metadata.labels
+      )
+    message: "Workload or Pod in workload doesn't have Kubernetes recommended labels"
   auditAnnotations:
   - key: "metadata-kubernetes-recommended-labels"
-    valueExpression: "Kubernetes recommended labels is required"
+    valueExpression: "'Kubernetes recommended labels is required'"
 ---
 apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingAdmissionPolicyBinding

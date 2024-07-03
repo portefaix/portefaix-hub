@@ -25,26 +25,113 @@ metadata:
 spec:
   matchConstraints:
     resourceRules:
-    - apiGroups:   ["apps"]
-      apiVersions: ["v1"]
-      operations:  ["CREATE", "UPDATE"]
-      resources:   ["deployments","replicasets","daemonsets","statefulsets"]
-    - apiGroups:   [""]
-      apiVersions: ["v1"]
-      operations:  ["CREATE", "UPDATE"]
-      resources:   ["pods"]
-    - apiGroups:   ["batch"]
-      apiVersions: ["v1"]
-      operations:  ["CREATE", "UPDATE"]
-      resources:   ["jobs","cronjobs"]
+    - apiGroups:
+      - ""
+      apiVersions:
+      - v1
+      operations:
+      - CREATE
+      - UPDATE
+      resources:
+      - pods
+    - apiGroups:
+      - apps
+      apiVersions:
+      - v1
+      operations:
+      - CREATE
+      - UPDATE
+      resources:
+      - deployments
+      - replicasets
+      - daemonsets
+      - statefulsets
+    - apiGroups:
+      - batch
+      apiVersions:
+      - v1
+      operations:
+      - CREATE
+      - UPDATE
+      resources:
+      - jobs
+      - cronjobs
   validations:
-  - expression: "object.spec.template.spec.containers.all(c, !c.image.contains(':latest'))"
-    message: "Cannot use the latest tag"
-  - expression: 'object.spec.containers.all(c, c.image.matches("[0-9]+\\.[0-9]+\\.[0-9]$"))'
-    message: "Container images have a SemVer version"
+  - expression: >
+      object.kind != 'Pod' ||
+      !(
+        object.spec.initContainers.all(container, container.image.contains(':latest'))
+      )
+    message: "Pods contains initcontainer/s image with latest tag"
+  - expression: >
+      ['Deployment','ReplicaSet','DaemonSet','StatefulSet','Job'].all(kind, object.kind != kind) ||
+      !(
+        object.spec.template.spec.initContainers.all(container, container.image.contains(':latest'))
+      )
+    message: "Workload contains initcontainer/s image with latest tag"
+  - expression: >
+      object.kind != 'CronJob' ||
+      !(
+        object.spec.jobTemplate.spec.template.spec.initContainers.all(container, container.image.contains(':latest'))
+      )
+    message: "CronJob contains initcontainer/s image with latest tag"
+  - expression: >
+      object.kind != 'Pod' ||
+      (
+        object.spec.initContainers.all(container, container.image.matches("[0-9]+\\.[0-9]+\\.[0-9]$"))
+      )
+    message: "Pod contains container/s image without SemVer version"
+  - expression: >
+      ['Deployment','ReplicaSet','DaemonSet','StatefulSet','Job'].all(kind, object.kind != kind) ||
+      (
+        object.spec.template.spec.containers.all(container, container.image.matches("[0-9]+\\.[0-9]+\\.[0-9]$"))
+      )
+    message: "Workload contains container/s image without SemVer version"
+  - expression: >
+      object.kind != 'CronJob' ||
+      (
+        object.spec.jobTemplate.spec.template.spec.containers.all(container, container.image.matches("[0-9]+\\.[0-9]+\\.[0-9]$"))
+      )
+    message: "CronJob contains container/s image without SemVer version"
+  - expression: >
+      object.kind != 'Pod' ||
+      !(
+        object.spec.containers.all(container, container.image.contains(':latest'))
+      )
+    message: "Pod contains container/s image with latest tag"
+  - expression: >
+      ['Deployment','ReplicaSet','DaemonSet','StatefulSet','Job'].all(kind, object.kind != kind) ||
+      !(
+        object.spec.template.spec.containers.all(container, container.image.contains(':latest'))
+      )
+    message: "Workload contains container/s image with latest tag"
+  - expression: >
+      object.kind != 'CronJob' ||
+      !(
+        object.spec.jobTemplate.spec.template.spec.containers.all(container, container.image.contains(':latest'))
+      )
+    message: "CronJob contains container/s image with latest tag"
+  - expression: >
+      object.kind != 'Pod' ||
+      (
+        object.spec.containers.all(container, container.image.matches("[0-9]+\\.[0-9]+\\.[0-9]$"))
+      )
+    message: "Pod contains container/s image without SemVer version"
+  - expression: >
+      ['Deployment','ReplicaSet','DaemonSet','StatefulSet','Job'].all(kind, object.kind != kind) ||
+      (
+        object.spec.template.spec.containers.all(container, container.image.matches("[0-9]+\\.[0-9]+\\.[0-9]$"))
+      )
+    message: "Workload contains container/s image without SemVer version"
+  - expression: >
+      object.kind != 'CronJob' ||
+      (
+        object.spec.jobTemplate.spec.template.spec.containers.all(container, container.image.matches("[0-9]+\\.[0-9]+\\.[0-9]$"))
+      )
+    message: "CronJob contains container/s image without SemVer version"
   auditAnnotations:
   - key: "container-invalid-image-tag"
-    valueExpression: "Container image must have a SemVer version and not lastest tag"
+    valueExpression: "'Container image must have a SemVer version and not lastest tag'"
 ---
 apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingAdmissionPolicyBinding

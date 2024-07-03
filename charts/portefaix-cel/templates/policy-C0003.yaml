@@ -26,28 +26,60 @@ spec:
   failurePolicy: Fail
   matchConstraints:
     resourceRules:
-    - apiGroups:   [""]
-      apiVersions: ["v1"]
-      operations:  ["CREATE", "UPDATE"]
-      resources:   ["pods"]
-    - apiGroups:   ["apps"]
-      apiVersions: ["v1"]
-      operations:  ["CREATE", "UPDATE"]
-      resources:   ["deployments","replicasets","daemonsets","statefulsets"]
-    - apiGroups:   ["batch"]
-      apiVersions: ["v1"]
-      operations:  ["CREATE", "UPDATE"]
-      resources:   ["jobs","cronjobs"]
+    - apiGroups:
+      - ""
+      apiVersions:
+      - v1
+      operations:
+      - CREATE
+      - UPDATE
+      resources:
+      - pods
+    - apiGroups:
+      - apps
+      apiVersions:
+      - v1
+      operations:
+      - CREATE
+      - UPDATE
+      resources:
+      - deployments
+      - replicasets
+      - daemonsets
+      - statefulsets
+    - apiGroups:
+      - batch
+      apiVersions:
+      - v1
+      operations:
+      - CREATE
+      - UPDATE
+      resources:
+      - jobs
+      - cronjobs
   validations:
-    - expression: "object.kind != 'Pod' || object.spec.containers.all(container, has(container.readinessProbe))"
-      message: "Readiness probe is required"
-    - expression: "['Deployment','ReplicaSet','DaemonSet','StatefulSet','Job'].all(kind, object.kind != kind) || object.spec.template.spec.containers.all(container, has(container.readinessProbe))"
-      message: "Readiness probe is required"
-    - expression: "object.kind != 'CronJob' || object.spec.jobTemplate.spec.template.spec.containers.all(container, has(container.readinessProbe))"
-      message: "Readiness probe is required"
+  - expression: >
+      object.kind != 'Pod' ||
+      (
+        object.spec.containers.all(container, has(container.readinessProbe))"
+      )
+    message: "Pods must have Readiness probe set up"
+  - expression: >
+      ['Deployment','ReplicaSet','DaemonSet','StatefulSet','Job'].all(kind, object.kind != kind) ||
+      (
+        object.spec.template.spec.containers.all(container, has(container.readinessProbe))"
+      )
+    message: "Workloads must have Readiness probe set up"
+  - expression: >
+      object.kind != 'CronJob' || 
+      (
+        object.spec.jobTemplate.spec.template.spec.containers.all(container, has(container.readinessProbe))"
+      )
+    message: "CronJob must have Readiness probe set up"
   auditAnnotations:
   - key: "container-readiness-probe"
-    valueExpression: "Readiness probe is required"
+    valueExpression: "'Readiness probe is required'"
+
 ---
 apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingAdmissionPolicyBinding
