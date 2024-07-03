@@ -8,7 +8,7 @@
 ![Version: 2.1.0](https://img.shields.io/badge/Version-2.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v1.30.0](https://img.shields.io/badge/AppVersion-v1.30.0-informational?style=flat-square)
 
 [![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/portefaix-hub)](https://artifacthub.io/packages/search?repo=portefaix-hub)
-[![Helm Chart](https://img.shields.io/endpoint?url=https://artifacthub.io/packages/helm/portefaix-hub/portefaix-cel)](https://artifacthub.io/packages/search?repo=portefaix-hub)
+[![Helm Chart](https://img.shields.io/badge/helm-portefaix--cel-blue?logo=helm)](https://img.shields.io/endpoint?url=https://artifacthub.io/packages/helm/portefaix/portefaix-cel)
 
 A Helm chart for validating admission policies use the Common Expression Language
 
