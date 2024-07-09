@@ -1,24 +1,11 @@
 - action: Terminate Pod
   actionner: kubernetes:terminate
 
-- action: Disable outbound connections with Calico
-  actionner: calico:networkpolicy
-
 - action: Label Pod as Suspicious
   actionner: kubernetes:label
   parameters:
     labels:
-      suspicious: "true"
-
-- rule: Suspicious outbound connection
-  match:
-    rules:
-      - Outbound Connection to Suspicious IPs
-  actions:
-    - action: Disable outbound connections with Calico
-    - action: Terminate Pod
-      parameters:
-        grace_period_seconds: 20
+      falco-talon.org/suspicious: "true"
 
 - rule: Terminal shell in container 
   match:

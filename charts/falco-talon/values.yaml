@@ -110,8 +110,8 @@ config:
   watchRules: true # reload if the rules file changes (default: true)
 
   rulesFiles: # list of locale rules files to use, they will be concatenated into a single config map
-    - rules.yaml
-    - rules_override.yaml
+  - rules/rules.yaml
+  - rules/rules_override.yaml
 
   deduplication:
     leaderElection: true # enable the leader election for cluster mode
