@@ -118,7 +118,7 @@ helm-lint-custom: guard-CHART ## Lint Helm chart
 
 .PHONY: helm-lint-docker
 helm-lint-docker: guard-CHART ## Lint Helm chart
-	@docker run -it --rm --name ct --volume $$(pwd):/data quay.io/helmpack/chart-testing sh -c "cd /data; ct lint --config .github/ct.yaml"
+	@docker run -it --rm -v ${HOME}:/root/ -v ${PWD}:/work -w /work --net host quay.io/helmpack/chart-testing ct lint --charts=charts/falco-talon --config .github/ct.yaml
 
 .PHONY: helm-install
 helm-install: guard-CHART guard-RELEASE ## Install a Helm chart
