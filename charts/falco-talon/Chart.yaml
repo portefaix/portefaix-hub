@@ -1,0 +1,40 @@
+---
+apiVersion: v1
+appVersion: 0.1.0
+description: React to events from Falco
+name: falco-talon
+version: 1.0.0
+keywords:
+  - falco
+  - monitoring
+  - security
+  - response-engine
+  - portefaix
+home: https://github.com/falco-talon/falco-talon
+icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/falco/horizontal/color/falco-horizontal-color.svg
+sources:
+  - https://github.com/falco-talon/falco-talon
+  - https://github.com/nlamirault/portefaix-hub/tree/master/charts/falco-talon
+maintainers:
+  - name: nlamirault
+    email: nicolas.lamirault@gmail.com
+
+# https://artifacthub.io/docs/topics/annotations/helm/
+annotations:
+  artifacthub.io/license: Apache-2.0
+  artifacthub.io/links: |
+    - name: Falco
+      url: https://falco.org/
+    - name: Falco Talon
+      url: https://docs.falco-talon.org/
+    - name: Portefaix
+      url: https://portefaix.xyz
+  artifacthub.io/maintainers: |
+    - name: nlamirault
+      email: nicolas.lamirault@gmail.com
+  artifacthub.io/signKey: |
+    fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+    url: https://keybase.io/nlamirault/pgp_keys.asc
+  artifacthub.io/changes: |
+    - kind: added
+      description: new chart
