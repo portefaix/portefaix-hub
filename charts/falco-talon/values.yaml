@@ -119,21 +119,27 @@ config:
 # listenAddress: 0.0.0.0
 # listenPort: 2803
 
-  defaultNotifiers: # these notifiers will be enabled for all rules
+  # these notifiers will be enabled for all rules
+  defaultNotifiers: 
     #  - slack
   - k8sevents
 
-  watchRules: true # reload if the rules file changes (default: true)
+  # reload if the rules file changes (default: true)
+  watchRules: true 
 
-  rulesFiles: # list of locale rules files to use, they will be concatenated into a single config map
+  # list of locale rules files to use, they will be concatenated into a single config map
+  rulesFiles: 
   - rules/rules.yaml
   - rules/rules_override.yaml
 
   deduplication:
-    leaderElection: true # enable the leader election for cluster mode
-    timeWindowSeconds: 5 # duration in seconds for the deduplication time window
+    # enable the leader election for cluster mode
+    leaderElection: true 
+    # duration in seconds for the deduplication time window
+    timeWindowSeconds: 5
 
-  printAllEvents: false # print in stdout all received events, not only those which match a rule
+  # print in stdout all received events, not only those which match a rule
+  printAllEvents: false
 
   # See https://docs.falco-talon.org/docs/notifiers/list/ for the settings
   notifiers:
@@ -168,16 +174,19 @@ config:
   aws:
     roleArn: ""
     externalId: ""
-    region: "" # if not specified, default region from provider credential chain will be used
-    accesKey: "" # if not specified, default access_key from provider credential chain will be used
-    secretKey: "" # if not specified, default secret_key from provider credential chain will be used
+    # if not specified, default region from provider credential chain will be used
+    region: ""
+    # if not specified, default access_key from provider credential chain will be used
+    accesKey: "" 
+    # if not specified, default secret_key from provider credential chain will be used
+    secretKey: "" 
 
   minio:
-    endpoint: "" # endpoint
-    accessKy: "" # access key
-    secretKey: "" # secret key
-    useSsl: false # Use SSL
-
+    endpoint: ""
+    accessKy: ""
+    secretKey: ""
+    useSsl: false
+    
 # -- serviceMonitor holds the configuration for the ServiceMonitor CRD.
 serviceMonitor:
   # -- enable the deployment of a Service Monitor for the Prometheus Operator.
