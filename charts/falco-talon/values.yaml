@@ -120,21 +120,21 @@ config:
 # listenPort: 2803
 
   # these notifiers will be enabled for all rules
-  defaultNotifiers: 
-    # - slack
+  defaultNotifiers:
+  # - slack
   - k8sevents
 
   # reload if the rules file changes (default: true)
-  watchRules: true 
+  watchRules: true
 
   # list of locale rules files to use, they will be concatenated into a single config map
-  rulesFiles: 
+  rulesFiles:
   - rules/rules.yaml
   - rules/rules_override.yaml
 
   deduplication:
     # enable the leader election for cluster mode
-    leaderElection: true 
+    leaderElection: true
     # duration in seconds for the deduplication time window
     timeWindowSeconds: 5
 
@@ -177,16 +177,16 @@ config:
     # if not specified, default region from provider credential chain will be used
     region: ""
     # if not specified, default access_key from provider credential chain will be used
-    accesKey: "" 
+    accesKey: ""
     # if not specified, default secret_key from provider credential chain will be used
-    secretKey: "" 
+    secretKey: ""
 
   minio:
     endpoint: ""
     accessKy: ""
     secretKey: ""
     useSsl: false
-    
+
 # -- serviceMonitor holds the configuration for the ServiceMonitor CRD.
 serviceMonitor:
   # -- enable the deployment of a Service Monitor for the Prometheus Operator.
