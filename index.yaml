@@ -2122,6 +2122,48 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/crossplane-gcp-factory-0.1.0/crossplane-gcp-factory-0.1.0.tgz
     version: 0.1.0
+  falco-talon:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: new chart
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Falco
+          url: https://falco.org/
+        - name: Falco Talon
+          url: https://docs.falco-talon.org/
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v1
+    appVersion: 0.1.0
+    created: "2024-07-09T14:47:46.011697505Z"
+    description: React to events from Falco
+    digest: 364556f5b3bc1f568273146a377e4a48d391415854c12810a6ddde43eec7a61f
+    home: https://github.com/falco-talon/falco-talon
+    icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/falco/horizontal/color/falco-horizontal-color.svg
+    keywords:
+    - falco
+    - monitoring
+    - security
+    - response-engine
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: falco-talon
+    sources:
+    - https://github.com/falco-talon/falco-talon
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/falco-talon
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/falco-talon-1.0.0/falco-talon-1.0.0.tgz
+    version: 1.0.0
   fluxcd-mixin:
   - annotations:
       artifacthub.io/changes: |
@@ -12425,4 +12467,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2024-07-02T14:43:33.513984237Z"
+generated: "2024-07-09T14:47:46.012213368Z"
