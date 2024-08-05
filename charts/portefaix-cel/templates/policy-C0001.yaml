@@ -25,26 +25,56 @@ metadata:
 spec:
   matchConstraints:
     resourceRules:
-    - apiGroups:   ["apps"]
-      apiVersions: ["v1"]
-      operations:  ["CREATE", "UPDATE"]
-      resources:   ["deployments","replicasets","daemonsets","statefulsets"]
-    - apiGroups:   [""]
-      apiVersions: ["v1"]
-      operations:  ["CREATE", "UPDATE"]
-      resources:   ["pods"]
-    - apiGroups:   ["batch"]
-      apiVersions: ["v1"]
-      operations:  ["CREATE", "UPDATE"]
-      resources:   ["jobs","cronjobs"]
+    - apiGroups:
+      - ""
+      apiVersions:
+      - v1
+      operations:
+      - CREATE
+      - UPDATE
+      resources:
+      - pods
+    - apiGroups:
+      - apps
+      apiVersions:
+      - v1
+      operations:
+      - CREATE
+      - UPDATE
+      resources:
+      - deployments
+      - replicasets
+      - daemonsets
+      - statefulsets
+    - apiGroups:
+      - batch
+      apiVersions:
+      - v1
+      operations:
+      - CREATE
+      - UPDATE
+      resources:
+      - jobs
+      - cronjobs
+  variables:
+    - name: pod_containers
+      expression: object.spec.?initContainers.orValue([]) + object.spec.?containers.orValue([])
+    - name: workload_containers
+      expression: object.spec.template.spec.?initContainers.orValue([]) + object.spec.template.spec.?containers.orValue([])
+    - name: cronjob_containers
+      expression: object.spec.?jobTemplate.spec.template.spec.initContainers.orValue([]) + object.spec.?jobTemplate.spec.template.spec.containers.orValue([])
+    - name: containers
+      expression: variables.pod_containers + variables.workload_containers + variables.cronjob_containers
   validations:
-  - expression: "object.spec.template.spec.containers.all(c, !c.image.contains(':latest'))"
-    message: "Cannot use the latest tag"
-  - expression: 'object.spec.containers.all(c, c.image.matches("[0-9]+\\.[0-9]+\\.[0-9]$"))'
-    message: "Container images have a SemVer version"
+  - expression: >
+      !variables.containers.exists(container, container.image.endsWith(':latest'))
+    message: "Images should not use latest tag"
+  - expression: >
+      variables.containers.all(container, container.image.matches("[0-9]+\\.[0-9]+\\.[0-9]$"))
+    message: "Images should use semantic versioning"
   auditAnnotations:
   - key: "container-invalid-image-tag"
-    valueExpression: "Container image must have a SemVer version and not lastest tag"
+    valueExpression: "'Validation passed, no latest tags and all have semantic versions'"
 ---
 apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingAdmissionPolicyBinding
