@@ -57,25 +57,19 @@ spec:
       resources:
       - jobs
       - cronjobs
+  variables:
+    - name: pod_containers
+      expression: object.spec.?initContainers.orValue([]) + object.spec.?containers.orValue([])
+    - name: workload_containers
+      expression: object.spec.template.spec.?initContainers.orValue([]) + object.spec.template.spec.?containers.orValue([])
+    - name: cronjob_containers
+      expression: object.spec.?jobTemplate.spec.template.spec.initContainers.orValue([]) + object.spec.?jobTemplate.spec.template.spec.containers.orValue([])
+    - name: containers
+      expression: variables.pod_containers + variables.workload_containers + variables.cronjob_containers
   validations:
-  - expression: >
-      object.kind != 'Pod' ||
-      (
-        object.spec.containers.all(container, has(container.readinessProbe))"
-      )
-    message: "Pods must have Readiness probe set up"
-  - expression: >
-      ['Deployment','ReplicaSet','DaemonSet','StatefulSet','Job'].all(kind, object.kind != kind) ||
-      (
-        object.spec.template.spec.containers.all(container, has(container.readinessProbe))"
-      )
-    message: "Workloads must have Readiness probe set up"
-  - expression: >
-      object.kind != 'CronJob' || 
-      (
-        object.spec.jobTemplate.spec.template.spec.containers.all(container, has(container.readinessProbe))"
-      )
-    message: "CronJob must have Readiness probe set up"
+    - expression: >
+        variables.containers.all(container, has(container.readinessProbe))"
+      message: "Container must have Readiness probe set up"
   auditAnnotations:
   - key: "container-readiness-probe"
     valueExpression: "'Readiness probe is required'"

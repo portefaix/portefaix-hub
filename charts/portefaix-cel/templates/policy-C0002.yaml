@@ -57,25 +57,19 @@ spec:
       resources:
       - jobs
       - cronjobs
+  variables:
+    - name: pod_containers
+      expression: object.spec.?initContainers.orValue([]) + object.spec.?containers.orValue([])
+    - name: workload_containers
+      expression: object.spec.template.spec.?initContainers.orValue([]) + object.spec.template.spec.?containers.orValue([])
+    - name: cronjob_containers
+      expression: object.spec.?jobTemplate.spec.template.spec.initContainers.orValue([]) + object.spec.?jobTemplate.spec.template.spec.containers.orValue([])
+    - name: containers
+      expression: variables.pod_containers + variables.workload_containers + variables.cronjob_containers
   validations:
     - expression: >
-        object.kind != 'Pod' ||
-        (
-          object.spec.containers.all(container, has(container.livenessProbe))"
-        )
-      message: "Pods must have Liveness probe set up"
-    - expression: >
-        ['Deployment','ReplicaSet','DaemonSet','StatefulSet','Job'].all(kind, object.kind != kind) ||
-        (
-          object.spec.template.spec.containers.all(container, has(container.livenessProbe))"
-        )
-      message: "Workloads must have Liveness probe set up"
-    - expression: >
-        object.kind != 'CronJob' || 
-        (
-          object.spec.jobTemplate.spec.template.spec.containers.all(container, has(container.livenessProbe))"
-        )
-      message: "CronJob must have Liveness probe set up"
+        variables.containers.all(container, has(container.livenessProbe))"
+      message: "Container must have Liveness probe set up"
   auditAnnotations:
   - key: "container-liveness-probe"
     valueExpression: "'Liveness probe is required'"
