@@ -3,7 +3,7 @@ apiVersion: v2
 description: Beyla
 name: beyla
 version: 0.1.0
-appVersion: 1.2.0
+appVersion: 1.8.0
 home: https://github.com/grafana/beyla
 sources:
   - https://github.com/grafana/beyla
@@ -31,4 +31,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: added
-      description: Init
+      description: Bump to v1.8.0
