@@ -1013,6 +1013,42 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Bump to v2024.8.3
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Cloudflare Tunnel
+          url: https://github.com/cloudflare/cloudflared
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2024.8.3
+    created: "2024-09-06T06:08:09.908083027Z"
+    description: Creation of a cloudflared deployment - a reverse tunnel for an environment
+    digest: 7ac824c609d60ca30e4a6d22fc03f3aa08b4b3945082da47d89e518725ec5457
+    home: https://github.com/nlamirault/portefaix-hub
+    icon: https://www.vectorlogo.zone/logos/cloudflare/cloudflare-icon.svg
+    keywords:
+    - cloudflare
+    - cloudflared
+    - tunnel
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: cloudflare-tunnel
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/cloudflare-tunnel
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/cloudflare-tunnel-0.4.0/cloudflare-tunnel-0.4.0.tgz
+    version: 0.4.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Cleanup labels
       artifacthub.io/license: Apache-2.0
       artifacthub.io/links: |
@@ -12552,4 +12588,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2024-08-06T10:42:24.461908633Z"
+generated: "2024-09-06T06:08:09.908493771Z"
