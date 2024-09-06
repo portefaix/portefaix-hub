@@ -35,9 +35,7 @@ import requests
 
 MIXIN_REPOSITORY = "https://github.com/nlamirault/monitoring-mixins"
 
-
 logger = logging.getLogger(__name__)
-
 
 def escape(s):
     return (
@@ -199,8 +197,8 @@ def manage_mixin(mixin_directory, mixin):
         logger.warning("Header for dashboards not found: %s", dashboard_header)
         return
     for f in glob.glob("%s/%s/dashboards/*.json" % (mixin_directory, mixin)):
-        manage_dashboards(f, mixin, chart_dst)    
-    
+        manage_dashboards(f, mixin, chart_dst)
+
     template_configmap(mixin, chart_dst, dashboard_header)
 
     mixin_version_file = open("%s/%s/.version" % (mixin_directory, mixin), 'r')
