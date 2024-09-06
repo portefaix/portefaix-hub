@@ -70,7 +70,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4.1.6
 
-    - uses: actions/setup-python@v5.0.0
+    - uses: actions/setup-python@v5.2.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
