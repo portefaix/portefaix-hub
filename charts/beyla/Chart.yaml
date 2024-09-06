@@ -2,7 +2,7 @@
 apiVersion: v2
 description: Beyla
 name: beyla
-version: 0.1.0
+version: 1.0.0
 appVersion: 1.8.0
 home: https://github.com/grafana/beyla
 sources:
