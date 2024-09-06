@@ -4,7 +4,7 @@ name: cloudflare-tunnel
 description: Creation of a cloudflared deployment - a reverse tunnel for an environment
 type: application
 version: 0.3.0
-appVersion: "2023.5.1"
+appVersion: "2024.8.3"
 icon: https://www.vectorlogo.zone/logos/cloudflare/cloudflare-icon.svg
 home: https://github.com/nlamirault/portefaix-hub
 sources:
@@ -33,4 +33,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: Cleanup labels
+      description: Bump to v2024.8.3
