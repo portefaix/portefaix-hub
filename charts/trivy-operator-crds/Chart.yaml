@@ -2,7 +2,7 @@
 apiVersion: v2
 description: Trivy Operator CRDs
 name: trivy-operator-crds
-version: 1.0.0
+version: 1.0.1
 appVersion: v0.22.0
 home: https://github.com/aquasecurity/trivy-operator
 icon: https://github.com/devopstales/helm-charts/raw/main/icons/trivy.png
@@ -38,5 +38,5 @@ annotations:
     fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
-    - kind: added
-      description: Init chart
+    - kind: fixed
+      description: Missing CRD
