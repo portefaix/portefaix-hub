@@ -7,7 +7,7 @@ FILES=(
     "aquasecurity.github.io_clusterconfigauditreports.yaml"
     "aquasecurity.github.io_clusterinfraassessmentreports.yaml"
     "aquasecurity.github.io_clusterrbacassessmentreports.yaml"
-    "aquasecurity.github.io_clusterrbacassessmentreports.yaml"
+    "aquasecurity.github.io_clustersbomreports.yaml"
     "aquasecurity.github.io_clustervulnerabilityreports.yaml"
     "aquasecurity.github.io_configauditreports.yaml"
     "aquasecurity.github.io_exposedsecretreports.yaml"
