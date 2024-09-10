@@ -12550,6 +12550,49 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/traefik-hub-crds-1.0.0/traefik-hub-crds-1.0.0.tgz
     version: 1.0.0
+  trivy-operator-crds:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Init chart
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Trivy Operator
+          url: https://github.com/aquasecurity/trivy-operator
+        - name: Portefaix Hub
+          url: https://github.com/portefaix/portefaix-hub
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v0.22.0
+    created: "2024-09-10T11:44:53.704542887Z"
+    dependencies:
+    - name: crds
+      repository: ""
+      version: 0.0.0
+    description: Trivy Operator CRDs
+    digest: a92aa4d8fee6c31953f53f0508ee8b3e6b396bcc9de968403a06d11ef295bd86
+    home: https://github.com/aquasecurity/trivy-operator
+    icon: https://github.com/devopstales/helm-charts/raw/main/icons/trivy.png
+    keywords:
+    - trivy
+    - operator
+    - crds
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: trivy-operator-crds
+    sources:
+    - https://github.com/portefaix/portefaix-hub
+    - hthttps://github.com/aquasecurity/trivy-operator
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/trivy-operator-crds-1.0.0/trivy-operator-crds-1.0.0.tgz
+    version: 1.0.0
   unifi-poller:
   - annotations:
       artifacthub.io/changes: |
@@ -12588,4 +12631,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2024-09-06T06:08:27.170675939Z"
+generated: "2024-09-10T11:44:53.70500947Z"
