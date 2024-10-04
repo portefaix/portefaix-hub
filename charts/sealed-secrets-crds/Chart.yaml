@@ -3,25 +3,26 @@ apiVersion: v2
 description: Sealed Secrets CRDs
 name: sealed-secrets-crds
 version: 1.0.0
+# renovate: datasource=github-tags depName=bitnami-labs/sealed-secrets
 appVersion: 0.26.2
 home: https://sealed-secrets.netlify.app/
 icon: https://bitnami.com/assets/stacks/sealed-secrets/img/sealed-secrets-stack-220x234.png
 sources:
-  - https://github.com/portefaix/portefaix-hub
-  - https://github.com/bitnami-labs/sealed-secrets
+- https://github.com/portefaix/portefaix-hub
+- https://github.com/bitnami-labs/sealed-secrets
 keywords:
-  - secrets
-  - sealed-secrets
-  - crds
+- secrets
+- sealed-secrets
+- crds
 
 dependencies:
-  - name: crds
-    version: "0.0.0"
+- name: crds
+  version: "0.0.0"
 
 maintainers:
-  - name: nlamirault
-    email: nicolas.lamirault@gmail.com
-    url: https://github.com/nlamirault
+- name: nlamirault
+  email: nicolas.lamirault@gmail.com
+  url: https://github.com/nlamirault
 
 # https://artifacthub.io/docs/topics/repositories/
 annotations:
