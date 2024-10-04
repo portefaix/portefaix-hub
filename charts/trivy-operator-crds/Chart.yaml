@@ -3,25 +3,26 @@ apiVersion: v2
 description: Trivy Operator CRDs
 name: trivy-operator-crds
 version: 1.0.1
+# renovate: datasource=github-tags depName=aquasecurity/trivy-operator
 appVersion: v0.22.0
 home: https://github.com/aquasecurity/trivy-operator
 icon: https://github.com/devopstales/helm-charts/raw/main/icons/trivy.png
 sources:
-  - https://github.com/portefaix/portefaix-hub
-  - hthttps://github.com/aquasecurity/trivy-operator
+- https://github.com/portefaix/portefaix-hub
+- hthttps://github.com/aquasecurity/trivy-operator
 keywords:
-  - trivy
-  - operator
-  - crds
+- trivy
+- operator
+- crds
 
 dependencies:
-  - name: crds
-    version: "0.0.0"
+- name: crds
+  version: "0.0.0"
 
 maintainers:
-  - name: nlamirault
-    email: nicolas.lamirault@gmail.com
-    url: https://github.com/nlamirault
+- name: nlamirault
+  email: nicolas.lamirault@gmail.com
+  url: https://github.com/nlamirault
 
 # https://artifacthub.io/docs/topics/repositories/
 annotations:

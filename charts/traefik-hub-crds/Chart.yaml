@@ -3,25 +3,26 @@ apiVersion: v2
 description: Traefik HUB CRDs
 name: traefik-hub-crds
 version: 1.0.0
+# renovate: datasource=github-tags depName=traefik/traefik
 appVersion: v30.0.2
 home: https://traefik.io/
 icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
 sources:
-  - https://github.com/portefaix/portefaix-hub
-  - https://github.com/traefik/traefik
+- https://github.com/portefaix/portefaix-hub
+- https://github.com/traefik/traefik
 keywords:
-  - traefik
-  - traefik-hub
-  - crds
+- traefik
+- traefik-hub
+- crds
 
 dependencies:
-  - name: crds
-    version: "0.0.0"
+- name: crds
+  version: "0.0.0"
 
 maintainers:
-  - name: nlamirault
-    email: nicolas.lamirault@gmail.com
-    url: https://github.com/nlamirault
+- name: nlamirault
+  email: nicolas.lamirault@gmail.com
+  url: https://github.com/nlamirault
 
 # https://artifacthub.io/docs/topics/repositories/
 annotations:

@@ -3,25 +3,26 @@ apiVersion: v2
 description: Grafana Operator CRDs
 name: grafana-operator-crds
 version: 1.0.0
+# renovate: datasource=github-tags depName=grafana/grafana-operator
 appVersion: 5.9.2
 home: https://grafana.github.io/grafana-operator/
 icon: https://artifacthub.io/image/b4fed1a7-6c8f-4945-b99d-096efa3e4116
 sources:
-  - https://grafana.github.io/grafana-operator/
+- https://grafana.github.io/grafana-operator/
 keywords:
-  - kubernetes
-  - operator
-  - grafana
-  - crds
+- kubernetes
+- operator
+- grafana
+- crds
 
 dependencies:
-  - name: crds
-    version: "0.0.0"
+- name: crds
+  version: "0.0.0"
 
 maintainers:
-  - name: nlamirault
-    email: nicolas.lamirault@gmail.com
-    url: https://github.com/nlamirault
+- name: nlamirault
+  email: nicolas.lamirault@gmail.com
+  url: https://github.com/nlamirault
 
 # https://artifacthub.io/docs/topics/repositories/
 annotations:
