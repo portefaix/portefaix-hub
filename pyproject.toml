@@ -22,7 +22,7 @@ authors = ["Nicolas Lamirault <nicolas.lamirault@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-pre-commit = "^3.0.0"
+pre-commit = "^4.0.0"
 requests = "^2.27.1"
 coloredlogs = "^15.0.1"
 black = "^23.0.0"
