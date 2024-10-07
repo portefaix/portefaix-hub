@@ -1,0 +1,42 @@
+---
+apiVersion: v2
+description: External Secrets CRDs
+name: external-secrets-crds
+version: 1.0.0
+# renovate: datasource=github-tags depName=external-secrets/external-secrets
+appVersion: 0.10.4
+home: https://external-secrets.io/
+icon: https://raw.githubusercontent.com/external-secrets/external-secrets/main/assets/eso-logo-large.png
+sources:
+- https://github.com/external-secrets/external-secrets
+keywords:
+- kubernetes
+- external-secrets
+- crds
+
+dependencies:
+- name: crds
+  version: "0.0.0"
+
+maintainers:
+- name: nlamirault
+  email: nicolas.lamirault@gmail.com
+  url: https://github.com/nlamirault
+
+# https://artifacthub.io/docs/topics/repositories/
+annotations:
+  artifacthub.io/license: Apache-2.0
+  artifacthub.io/links: |
+    - name: External Secrets
+      url: https://github.com/external-secrets/external-secrets
+    - name: Portefaix Hub
+      url: https://github.com/portefaix/portefaix-hub
+  artifacthub.io/maintainers: |
+    - name: nlamirault
+      email: nicolas.lamirault@gmail.com
+  artifacthub.io/signKey: |
+    fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+    url: https://keybase.io/nlamirault/pgp_keys.asc
+  artifacthub.io/changes: |
+    - kind: added
+      description: Init chart
