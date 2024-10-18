@@ -1,0 +1,68 @@
+---
+# Default values for slo.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- Additional labels to add to all resources
+additionalLabels: {}
+
+pyrra:
+  enabled: true
+  labels: {}
+    # pyrra.dev/xxx: xxx
+  slos:
+    # -- Latency SLOs
+    latency: []
+    # - name: ""
+    #   service: ""
+    #   dashboard: ""
+    #   runbook: ""
+    #   message: ""
+    #   team: ""
+    #   extraLabels: {}
+    #   metric: ""
+    #   metricTotal: ""
+    #   groupBy: []
+    #   - controller
+    #   alerting:
+    #     name: ErrorBudgetBurning
+    #     absent: true
+    #     burnrates: true
+    #     disabled: false
+
+    # -- Ration SLOs
+    ratio: []
+    # - name: ""
+    #   service: ""
+    #   dashboard: ""
+    #   runbook: ""
+    #   message: ""
+    #   team: ""
+    #   extraLabels: {}
+    #   metric: ""
+    #   metricTotal: ""
+    #   groupBy: []
+    #   target: "99.5"
+    #   window: 1w
+    #   alerting:
+    #     name: ErrorBudgetBurning
+    #     absent: true
+    #     burnrates: true
+    #     disabled: false
+
+    # -- Bool SLOs
+    bool: []
+    # - name: bool
+    #   service: ""
+    #   dashboard: ""
+    #   runbook: ""
+    #   message: ""
+    #   team: ""
+    #   extraLabels: {}
+    #   metric: http_requests{status="500"} > 0
+    #   target: 0.01
+    #   alerting:
+    #     name: ErrorBudgetBurn
+    #     absent: true
+    #     burnrates: true
+    #     disabled: false

@@ -1,0 +1,43 @@
+{{- if .Values.pyrra.enabled -}}
+{{- range .Values.pyrra.slos.bool }}
+---
+apiVersion: pyrra.dev/v1alpha1
+kind: ServiceLevelObjective
+metadata:
+  annotations:
+    pyrra.dev/dashboard: {{ .dashboard }}
+    pyrra.dev/runbook: {{ .runbook }}
+    pyrra.dev/message: {{ .message }}
+  labels:
+    {{- include "pyrraServiceLevels.labels" $ | nindent 4 }}
+    {{- include "pyrraServiceLevels.sloLabels" $ | nindent 4 }}
+    {{- with $.Values.pyrra.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+    pyrra.dev/service: {{ .service }}
+    pyrra.dev/team: {{ .team }}
+    {{- with .extraLabels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+    role: alert-rules
+  name: {{ .name }}-bool
+  namespace: {{ $.Release.Namespace }}
+spec:
+  {{- $alerting := .alerting | default (dict) }}
+  alerting:
+    name: {{ $alerting.name | default "ErrorBudgetBurn" }}
+    absent: {{ $alerting.absent | default true }}
+    burnrates: {{ $alerting.burnrates | default true }}
+    disabled: {{ $alerting.disabled | default false }}
+  description: "{{ .message | default "" }}"
+  indicator:
+    bool_gauge:
+      metric: {{ .metric | required "slos.metric is required." }}
+      {{- with .groupBy }}
+      grouping:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  target: "{{ .target | default 99 }}"
+  window: "{{ .window | default "4w" }}"
+{{ end }}
+{{- end }}

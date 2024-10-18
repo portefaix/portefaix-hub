@@ -3,14 +3,11 @@
 (      To make changes, please modify README.md.gotmpl and run `helm-docs`)
 -->
 
-{{ template "chart.header" . }}
-{{ template "chart.deprecationWarning" . }}
+# pyrra-service-levels
 
-{{ template "chart.badgesSection" . }}
+![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
-{{ template "chart.description" . }}
-
-{{ template "chart.homepageLine" . }}
+A Helm chart for Service Level Objective by Pyrra
 
 ## Breaking change announcements
 
@@ -43,8 +40,6 @@ Install one of the available charts:
 $ helm upgrade -i oci://ghcr.io/portefaix/portefaix-hub/pyrra-service-levels --version=<version>
 ```
 
-
-
 ### Install chart
 
 To install the chart with the release name `my-release`:
@@ -52,21 +47,26 @@ To install the chart with the release name `my-release`:
 ```bash
 cat >> values.yaml << EOF
 additionalLabels:
-  app: pyrra-service-levels
+  app: my-service-levels
 
 EOF
-helm install pyrra-service-levels --atomic --timeout 300s  portefaix-hub/{{ template "chart.name" . }} --values values.yaml
+helm install pyrra-service-levels --atomic --timeout 300s  portefaix-hub/pyrra-service-levels --values values.yaml
 ```
 
-{{ template "chart.maintainersSection" . }}
-
-{{ template "chart.sourcesSection" . }}
-
 <!-- markdownlint-disable no-bare-urls -->
-{{ template "chart.requirementsSection" . }}
+
 <!-- markdownlint-enable no-bare-urls -->
 
-{{ template "chart.valuesSection" . }}
+## Values
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| additionalLabels | object | `{}` | Additional labels to add to all resources |
+| pyrra.enabled | bool | `true` |  |
+| pyrra.labels | object | `{}` |  |
+| pyrra.slos.bool | list | `[]` | Bool SLOs |
+| pyrra.slos.latency | list | `[]` | Latency SLOs |
+| pyrra.slos.ratio | list | `[]` | Ration SLOs |
 
 ## Customizing the configuration
 

@@ -43,8 +43,6 @@ Install one of the available charts:
 $ helm upgrade -i oci://ghcr.io/portefaix/portefaix-hub/pyrra-service-levels --version=<version>
 ```
 
-
-
 ### Install chart
 
 To install the chart with the release name `my-release`:
@@ -52,7 +50,7 @@ To install the chart with the release name `my-release`:
 ```bash
 cat >> values.yaml << EOF
 additionalLabels:
-  app: pyrra-service-levels
+  app: my-service-levels
 
 EOF
 helm install pyrra-service-levels --atomic --timeout 300s  portefaix-hub/{{ template "chart.name" . }} --values values.yaml
