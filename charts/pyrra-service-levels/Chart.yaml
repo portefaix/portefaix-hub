@@ -3,7 +3,7 @@ apiVersion: v2
 name: pyrra-service-levels
 description: A Helm chart for Service Level Objective by Pyrra
 type: application
-version: 0.1.0
+version: 1.0.0
 appVersion: "1.0.0"
 keywords:
   - service-levels
@@ -34,4 +34,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: added
-      description: New chart
+      description: Notes to retrieve SLO
