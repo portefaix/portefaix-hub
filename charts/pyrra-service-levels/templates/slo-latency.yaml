@@ -1,0 +1,51 @@
+{{- if .Values.pyrra.enabled -}}
+{{- range .Values.pyrra.slos.latency }}
+---
+apiVersion: pyrra.dev/v1alpha1
+kind: ServiceLevelObjective
+metadata:
+  annotations:
+    pyrra.dev/dashboard: {{ .dashboard }}
+    pyrra.dev/runbook: {{ .runbook }}
+    pyrra.dev/message: {{ .message }}
+  labels:
+    {{- include "pyrraServiceLevels.labels" $ | nindent 4 }}
+    {{- include "pyrraServiceLevels.sloLabels" $ | nindent 4 }}
+    {{- with $.Values.pyrra.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+    pyrra.dev/service: {{ .service }}
+    pyrra.dev/team: {{ .team }}
+    {{- with .extraLabels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+    role: alert-rules
+  name: {{ .name }}-latency
+  namespace: {{ $.Release.Namespace }}
+spec:
+  {{- $alerting := .alerting | default (dict) }}
+  alerting:
+    name: {{ $alerting.name | default "ErrorBudgetBurn" }}
+    absent: {{ $alerting.absent | default true }}
+    burnrates: {{ $alerting.burnrates | default true }}
+    disabled: {{ $alerting.disabled | default false }}
+  description: "{{ .description | default "" }}"
+  indicator:
+    {{- if .latency }}
+    latencyNative:
+      latency: {{ .latency | required "slos.latency is required." }}
+    {{- else }}
+    latency:
+      success:
+        metric: {{ .metric | required "slos.metrics is required." }}
+    {{- end }}
+      total:
+        metric: {{ .metricTotal | required "slos.metricTotal is required." }}
+      {{- with .groupBy }}
+      grouping:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  target: "{{ .target | default 99 }}"
+  window: "{{ .window | default "4w" }}"
+{{ end }}
+{{- end }}

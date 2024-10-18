@@ -1,0 +1,2 @@
+Get the SLO running these commands:
+  kubectl --namespace {{ .Release.Namespace }} get servicelevelobjective -l app.kubernetes.io/name={{ include "slo.name" . }}

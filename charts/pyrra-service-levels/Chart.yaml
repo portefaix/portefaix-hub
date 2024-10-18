@@ -1,0 +1,7 @@
+---
+apiVersion: v2
+name: pyrra-service-levels
+description: A Helm chart for Service Level Objective by Pyrra
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
