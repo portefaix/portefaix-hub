@@ -10275,6 +10275,45 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/pyroscope-mixin-0.1.0/pyroscope-mixin-0.1.0.tgz
     version: 0.1.0
+  pyrra-service-levels:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: New chart
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: pyrra
+          url: https://pyrra.dev/
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2024-10-18T06:10:26.753084182Z"
+    description: A Helm chart for Service Level Objective by Pyrra
+    digest: e2b0bee479ff916314836fd67dcf7cdba226301fc49ce370565979f40ecf12e7
+    home: https://pyrra.dev/
+    icon: https://avatars.githubusercontent.com/u/98504233?s=200&v=4
+    keywords:
+    - service-levels
+    - slo
+    - pyrra
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: pyrra-service-levels
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/pyrra-service-levels
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/pyrra-service-levels-0.1.0/pyrra-service-levels-0.1.0.tgz
+    version: 0.1.0
   quickwit:
   - annotations:
       artifacthub.io/changes: |
@@ -12673,4 +12712,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2024-09-10T12:21:19.504587476Z"
+generated: "2024-10-18T06:10:26.753457986Z"
