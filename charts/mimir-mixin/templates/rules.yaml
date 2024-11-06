@@ -11,6 +11,9 @@ metadata:
     {{- if .Values.monitor.additionalLabels }}
     {{- toYaml .Values.monitor.additionalLabels | nindent 4 }}
     {{- end }}
+    {{- if .Values.recordings.additionalLabels }}
+    {{- toYaml .Values.recordings.additionalLabels | nindent 4 }}
+    {{- end }}
 spec:
   groups:
       - name: mimir_api_1

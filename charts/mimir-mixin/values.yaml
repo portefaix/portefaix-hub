@@ -34,6 +34,16 @@ monitor:
   additionalLabels: {}
     # release: kube-prometheus-stack
 
+alerts:
+  # -- Additional labels to add to alert resources managed by the Prometheus Operator
+  additionalLabels: {}
+    # release: kube-prometheus-stack
+
+recordings:
+  # -- Additional labels to add to recording rule resources managed by the Prometheus Operator
+  additionalLabels: {}
+    # release: kube-prometheus-stack
+
 grafana:
   # Grafana folder in which to store the dashboards
   folder: monitoring
