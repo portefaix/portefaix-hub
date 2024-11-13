@@ -11,6 +11,9 @@ metadata:
     {{- if .Values.monitor.additionalLabels }}
     {{- toYaml .Values.monitor.additionalLabels | nindent 4 }}
     {{- end }}
+    {{- if .Values.alerts.additionalLabels }}
+    {{- toYaml .Values.alerts.additionalLabels | nindent 4 }}
+    {{- end }}
 spec:
   groups:
       - name: mimir_alerts
