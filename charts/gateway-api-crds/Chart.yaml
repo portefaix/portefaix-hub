@@ -2,7 +2,7 @@
 apiVersion: v2
 description: Gateway API CRDs
 name: gateway-api-crds
-version: 1.1.0
+version: 1.2.0
 # renovate: datasource=github-tags depName=kubernetes-sigs/gateway-api
 appVersion: 1.2.0
 home: https://gateway-api.sigs.k8s.io
