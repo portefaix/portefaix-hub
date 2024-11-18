@@ -2,9 +2,9 @@
 apiVersion: v2
 description: Gateway API CRDs
 name: gateway-api-crds
-version: 1.1.0
+version: 1.2.0
 # renovate: datasource=github-tags depName=kubernetes-sigs/gateway-api
-appVersion: 1.1.0
+appVersion: 1.2.0
 home: https://gateway-api.sigs.k8s.io
 icon: https://avatars.githubusercontent.com/u/36015203?s=400&v=4
 sources:
@@ -38,5 +38,5 @@ annotations:
     fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
-    - kind: added
-      description: Init chart
+    - kind: changed
+      description: Bump to Gateway API v1.2.0

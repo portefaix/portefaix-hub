@@ -15,5 +15,4 @@
 # Repository_name=Repository_URL
 prometheus-community=https://prometheus-community.github.io/helm-charts
 bitnami=https://charts.bitnami.com/bitnami
-banzaicloud=https://kubernetes-charts.banzaicloud.com
 kyverno=https://kyverno.github.io/kyverno/
