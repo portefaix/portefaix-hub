@@ -38,5 +38,5 @@ annotations:
     fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
-    - kind: added
-      description: Init chart
+    - kind: changed
+      description: Bump to Gateway API v1.2.0
