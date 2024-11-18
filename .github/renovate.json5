@@ -34,6 +34,13 @@
       ],
       "datasourceTemplate": "github-tags"
     },
+    {
+      "fileMatch": [".yaml$"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\sappVersion=(?<currentValue>.*)"
+      ],
+      "datasourceTemplate": "github-tags"
+    }
   ],
   "customManagers": [
     {
