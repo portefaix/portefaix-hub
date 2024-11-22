@@ -22,14 +22,18 @@ home: https://charts.portefaix.xyz
 icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.svg
 sources:
   - https://github.com/nlamirault/portefaix-hub/tree/master/charts/portefaix-cel
-# kubeVersion: ">=1.30.0-0"
 type: application
 keywords:
+  - vap
   - cel
   - policies
   - portefaix
-version: 2.0.0
+version: 2.1.0
 appVersion: v1.30.0
+
+dependencies:
+- name: crds
+  version: "0.0.0"
 
 maintainers:
   - name: nlamirault

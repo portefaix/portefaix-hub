@@ -14,7 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-{{- if .Values.policies.m0003.enabled }}
+{{- if .Values.policies.p0001.enabled }}
 ---
 apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingAdmissionPolicy
@@ -22,15 +22,14 @@ metadata:
   labels:
     {{- include "portefaix-cel.labels" . | nindent 4 }}
     app.kubernetes.io/component: policy
-  name: m0003.metadata.portefaix.xyz
+  name: p0001.pod.portefaix.xyz
 spec:
   failurePolicy: Fail
+  paramKind:
+    apiVersion: kubescape.io/v1
+    kind: ControlConfiguration
   matchConstraints:
     resourceRules:
-    # - apiGroups:   [""]
-    #   apiVersions: ["v1"]
-    #   operations:  ["CREATE", "UPDATE"]
-    #   resources:   ["namespaces"]
     - apiGroups:   [""]
       apiVersions: ["v1"]
       operations:  ["CREATE", "UPDATE"]
@@ -44,12 +43,15 @@ spec:
       operations:  ["CREATE", "UPDATE"]
       resources:   ["jobs","cronjobs"]
   validations:
-  - expression: >
-      'portefaix.xyz/version' in object.metadata.labels
-    message: "Portefaix recommended labels is required."
+  - expression: "object.kind != 'Pod' || object.spec.containers.all(container, params.settings.untrustedRegistries.all(registry,!container.image.startsWith(registry)))"
+    message: "Pods uses an image from a forbidden registry"
+  - expression: "['Deployment','ReplicaSet','DaemonSet','StatefulSet','Job'].all(kind, object.kind != kind) || object.spec.template.spec.containers.all(container, params.settings.untrustedRegistries.all(registry,!container.image.startsWith(registry)))"
+    message: "Workloads uses an image from a forbidden registry"
+  - expression: "object.kind != 'CronJob' || object.spec.jobTemplate.spec.containers.all(container, params.settings.untrustedRegistries.all(registry,!container.image.startsWith(registry)))"
+    message: "CronJob uses an image from a forbidden registry"
   auditAnnotations:
-  - key: "metadata-portefaix-recommended-labels"
-    valueExpression: "Portefaix recommended labels is required"
+  - key: "container-forbidden-registry"
+    valueExpression: "Trust registry is required"
 ---
 apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingAdmissionPolicyBinding
@@ -57,9 +59,19 @@ metadata:
   labels:
     {{- include "portefaix-cel.labels" . | nindent 4 }}
     app.kubernetes.io/component: policy
-  name: m0003.container.portefaix.xyz
+  name: p0001.pod.portefaix.xyz
 spec:
-  policyName: m0003.container.portefaix.xyz
+  policyName: p0001.container.portefaix.xyz
   validationActions:
-  {{- toYaml .Values.policies.m0003.validationActions | nindent 2 }}
+  {{- toYaml .Values.policies.p0001.validationActions | nindent 2 }}
 {{- end }}
+---
+apiVersion: policy.portefaix.xyz/v1
+kind: RegistryConfiguration
+metadata:
+  labels:
+    {{- include "portefaix-cel.labels" . | nindent 4 }}
+    app.kubernetes.io/component: policy
+  name: parameters-p0001
+spec:
+  {{- toYaml .Values.policies.p0001.params | nindent 2 }}

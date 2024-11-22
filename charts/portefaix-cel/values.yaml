@@ -75,4 +75,16 @@ policies:
     validationActions:
     - Warn
     - Audit
-
+  # -- Authorized registry
+  p0001:
+    enabled: true
+    validationActions:
+    - Warn
+    - Audit
+    params:
+      publicRegistries:
+      - ghcr.io
+      - public.ecr.aws
+      - docker.io
+      untrustedRegistries:
+      - quay.io

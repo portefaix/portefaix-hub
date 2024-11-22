@@ -1,0 +1,45 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    admission.kubernetes.io/is-policy-configuration-definition: "true"
+    {{- with .Values.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  name: registryconfiguration.policy.portefaix.xyz
+spec:
+  group: policy.portefaix.xyz
+  names:
+    kind: RegistryConfiguration
+    plural: registryconfigurations
+    singular: registryconfiguration
+  versions:
+  - name: v1
+    schema:
+      openAPIV3Schema:
+        description: |-
+          RegistryConfiguration configures the Portefaix policy concerning public registries and untrusted registries
+        type: object
+        properties:
+          spec:
+            description: |-
+              RegistryConfigurationSpec is a specification of the desired behavior of the
+              Registry Configuration configuration.
+            type: object
+            properties:
+              publicRegistries:
+                description: |-
+                  List of authorized public registries
+                items:
+                  type: string
+                type: array
+              untrustedRegistries:
+                description: |-
+                  List of untrusted registries
+                items:
+                  type: string
+                type: array
+    served: true
+    storage: true
+  scope: Cluster
