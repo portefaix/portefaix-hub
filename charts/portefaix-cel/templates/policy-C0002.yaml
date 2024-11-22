@@ -21,6 +21,7 @@ kind: ValidatingAdmissionPolicy
 metadata:
   labels:
     {{- include "portefaix-cel.labels" . | nindent 4 }}
+    app.kubernetes.io/component: policy
   name: c0002.container.portefaix.xyz
 spec:
   failurePolicy: Fail
@@ -54,6 +55,7 @@ kind: ValidatingAdmissionPolicyBinding
 metadata:
   labels:
     {{- include "portefaix-cel.labels" . | nindent 4 }}
+    app.kubernetes.io/component: policy
   name: c0002.container.portefaix.xyz
 spec:
   policyName: c0002.container.portefaix.xyz
