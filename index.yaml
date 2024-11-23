@@ -817,6 +817,45 @@ entries:
     version: 0.1.0
   cilium-mixin:
   - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: cilium-mixin vmaster
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Grafana cilium
+          url: https://github.com/grafana/cilium
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: master
+    created: "2024-11-23T15:04:38.407154663Z"
+    description: A Helm chart for Cilium mixin
+    digest: bae8c4ec014d096045d72fb907132398b8efbe788dc298692c69be865388a5ad
+    home: https://charts.portefaix.xyz
+    icon: https://cdn.jsdelivr.net/gh/cilium/cilium@main/Documentation/images/logo-solo.svg
+    keywords:
+    - cilium
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: cilium-mixin
+    sources:
+    - https://github.com/portefaix/portefaix-hub/tree/master/charts/cilium-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/cilium-mixin-0.4.0/cilium-mixin-0.4.0.tgz
+    version: 0.4.0
+  - annotations:
       artifacthub.io/changes: |-
         - kind: fixed
           description: key for dashboard json file in lowercase
@@ -13234,4 +13273,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2024-11-23T15:04:29.304180825Z"
+generated: "2024-11-23T15:04:38.40759064Z"
