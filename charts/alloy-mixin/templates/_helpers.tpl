@@ -58,6 +58,15 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
 {{/*
+Common annotations
+*/}}
+{{- define "alloy-mixin.annotations" }}
+{{ if .Values.additionalAnnotations -}}
+{{ toYaml .Values.additionalAnnotations -}}
+{{ end -}}
+{{- end }}
+
+{{/*
 Allow the release namespace to be overridden
 */}}
 {{- define "alloy-mixin.namespace" -}}

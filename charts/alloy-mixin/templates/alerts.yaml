@@ -5,8 +5,6 @@ kind: PrometheusRule
 metadata:
   name: {{ printf "%s-%s" (include "alloy-mixin.fullname" .) "alerts" | trunc 63 | trimSuffix "-" }}
   namespace: {{ include "alloy-mixin.namespace" . }}
-  annotations:
-    {{- include "alloy-mixin.annotations" . | indent 4 }}
   labels:
     {{- include "alloy-mixin.labels" . | indent 4 }}
     app.kubernetes.io/component: metrics
