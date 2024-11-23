@@ -27,8 +27,8 @@ keywords:
   - loki
   - monitoring-mixin
   - portefaix
-version: 1.8.0
-appVersion: 2.9.3
+version: 1.9.0
+appVersion: 3.3.0
 
 maintainers:
   - name: nlamirault
@@ -51,5 +51,5 @@ annotations:
     fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
-    - kind: added
-      description: Grafana Operator support
+    - kind: changed
+      description: loki-mixin v3.3.0
