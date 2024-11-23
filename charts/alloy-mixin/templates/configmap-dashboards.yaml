@@ -12,6 +12,7 @@ items:
   metadata:
     annotations:
       grafana-folder: {{ $.Values.grafanaDashboard.folder }}
+      {{- include "alloy-mixin.annotations" $ | indent 6 }}
     labels:
       grafana-dashboard: {{ $dashboardName }}
       {{- include "alloy-mixin.labels" $ | indent 6 }}
