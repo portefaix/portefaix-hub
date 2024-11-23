@@ -9,7 +9,7 @@ additionalAnnotations: {}
 # -- Docker image
 image:
   repository: grafana/beyla
-  tag: 1.8.0
+  tag: 1.8.8
   pullPolicy: IfNotPresent
   pullSecrets:
 
