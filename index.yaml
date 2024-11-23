@@ -11486,6 +11486,45 @@ entries:
   tempo-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: tempo-mixin v2.6.1
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: tempo
+          url: https://grafana.com/oss/tempo
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.6.1
+    created: "2024-11-23T15:03:19.981764424Z"
+    description: A Helm chart for Grafana Tempo mixin
+    digest: 52fc722beea8a701ad6f99a4fab6e1e43f7cf0415a3089b7be56b4becb051bb9
+    home: https://charts.portefaix.xyz
+    icon: https://grafana.com/static/assets/img/logos/grafana-tempo.svg
+    keywords:
+    - tempo
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: tempo-mixin
+    sources:
+    - https://github.com/portefaix/portefaix-hub/tree/master/charts/tempo-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/tempo-mixin-1.8.0/tempo-mixin-1.8.0.tgz
+    version: 1.8.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: ConfigMap names for dashboards
       artifacthub.io/license: Apache-2.0
@@ -13155,4 +13194,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2024-11-23T15:00:51.131793322Z"
+generated: "2024-11-23T15:03:19.98226151Z"
