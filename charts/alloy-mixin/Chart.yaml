@@ -29,8 +29,8 @@ keywords:
   - prometheus
   - monitoring-mixin
   - portefaix
-version: 0.2.0
-appVersion: 1.0.0
+version: 0.3.0
+appVersion: 1.5.0
 
 maintainers:
   - name: nlamirault
@@ -55,4 +55,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: alloy-mixin v1.0.0
+      description: alloy-mixin v1.5.0
