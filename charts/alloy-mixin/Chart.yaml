@@ -29,7 +29,7 @@ keywords:
   - prometheus
   - monitoring-mixin
   - portefaix
-version: 0.3.0
+version: 0.3.1
 appVersion: 1.5.0
 
 maintainers:
@@ -54,5 +54,5 @@ annotations:
     fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
-    - kind: changed
-      description: alloy-mixin v1.5.0
+    - kind: fixed
+      description: annotations for resources
