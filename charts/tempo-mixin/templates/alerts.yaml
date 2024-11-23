@@ -1,11 +1,15 @@
+{{ if .Values.monitor.enabled -}}
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   name: {{ printf "%s-%s" (include "tempo-mixin.fullname" .) "alerts" | trunc 63 | trimSuffix "-" }}
   namespace: {{ include "tempo-mixin.namespace" . }}
+  annotations:
+    {{- include "tempo-mixin.annotations" . | indent 4 }}
   labels:
     {{- include "tempo-mixin.labels" . | indent 4 }}
+    app.kubernetes.io/component: metrics
     {{- if .Values.monitor.additionalLabels }}
     {{- toYaml .Values.monitor.additionalLabels | nindent 4 }}
     {{- end }}
@@ -140,7 +144,7 @@ spec:
               message: Ingesters in {{`{{`}} $labels.cluster {{`}}`}}/{{`{{`}} $labels.namespace {{`}}`}} are receiving more data/second than desired, add more ingesters.
               runbook_url: https://github.com/grafana/tempo/tree/main/operations/tempo-mixin/runbook.md#TempoProvisioningTooManyWrites
             expr: |
-              avg by (cluster, namespace) (rate(tempo_ingester_bytes_received_total{job=~".+/ingester"}[1m])) / 1024 / 1024 > 30
+              avg by (cluster, namespace) (rate(tempo_ingester_bytes_received_total{job=~".+/ingester"}[5m])) / 1024 / 1024 > 30
             for: 15m
             labels:
               severity: warning
@@ -171,3 +175,4 @@ spec:
             for: 5m
             labels:
               severity: critical
+{{- end }}
