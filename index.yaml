@@ -6464,6 +6464,46 @@ entries:
         url: https://keybase.io/nlamirault/pgp_keys.asc
     apiVersion: v2
     appVersion: 2.9.0
+    created: "2024-11-23T15:06:14.326478976Z"
+    description: A Helm chart for Grafana Mimir mixin
+    digest: 31b237662e25c4e9d19be8fb5a787864d3af84d3f3954be7f368a23b4d7a4615
+    home: https://charts.portefaix.xyz
+    icon: https://grafana.com/static/img/logos/logo-mimir.svg
+    keywords:
+    - kubernetes
+    - monitoring-mixin
+    - mimir
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: mimir-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kubernetes-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/mimir-mixin-1.7.0/mimir-mixin-1.7.0.tgz
+    version: 1.7.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: mimir-mixin v2.9.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: mimir
+          url: https://grafana.com/oss/mimir
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.9.0
     created: "2024-11-13T09:41:16.823987802Z"
     description: A Helm chart for Grafana Mimir mixin
     digest: 4ff9e986bfb93056e4a0a04245e04c868cbe280b90786bbd8488c3cc8d9d7274
@@ -13312,4 +13352,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2024-11-23T15:06:08.988450771Z"
+generated: "2024-11-23T15:06:14.326928117Z"
