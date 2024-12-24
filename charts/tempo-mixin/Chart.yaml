@@ -27,7 +27,7 @@ keywords:
   - tempo
   - monitoring-mixin
   - portefaix
-version: 1.8.0
+version: 1.9.0
 appVersion: 2.6.1
 
 maintainers:
@@ -52,4 +52,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: tempo-mixin v2.6.1
+      description: Refactoring Kubernetes manifests annotations
