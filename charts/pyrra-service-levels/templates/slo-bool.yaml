@@ -20,7 +20,7 @@ metadata:
     {{- toYaml . | nindent 4 }}
     {{- end }}
     role: alert-rules
-  name: {{ .name }}-bool
+  name: {{ .name }}
   namespace: {{ $.Release.Namespace }}
 spec:
   {{- $alerting := .alerting | default (dict) }}

@@ -20,7 +20,7 @@ pyrra:
     #   message: ""
     #   team: ""
     #   extraLabels: {}
-    #   metric: ""
+    #   metricSuccess: ""
     #   metricTotal: ""
     #   groupBy: []
     #   - controller
@@ -39,7 +39,7 @@ pyrra:
     #   message: ""
     #   team: ""
     #   extraLabels: {}
-    #   metric: ""
+    #   metricError: ""
     #   metricTotal: ""
     #   groupBy: []
     #   target: "99.5"
