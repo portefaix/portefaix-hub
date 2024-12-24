@@ -17,21 +17,19 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import argparse
-
-# import fileinput
 import glob
 import json
 import logging
 import os
-from os import path
 import pathlib
 import re
 import shutil
 import zipfile
+from os import path
 
 import coloredlogs
-import semver
 import requests
+import semver
 
 MIXIN_REPOSITORY = "https://github.com/nlamirault/monitoring-mixins"
 
@@ -102,11 +100,15 @@ def manage_dashboards(f, mixin, chart_dst):
         update_dashboards_tags(orig, dashboard, ["grafana", "grafana-mixin", "portefaix"])
     elif mixin == "linkerd-edge-mixin":
         update_dashboards_tags(
-            orig, dashboard, ["linkerd", "linkerd-edge-mixin", "service-mesh", "portefaix"]
+            orig,
+            dashboard,
+            ["linkerd", "linkerd-edge-mixin", "service-mesh", "portefaix"],
         )
     elif mixin == "linkerd-stable-mixin":
         update_dashboards_tags(
-            orig, dashboard, ["linkerd", "linkerd-stable-mixin", "service-mesh", "portefaix"]
+            orig,
+            dashboard,
+            ["linkerd", "linkerd-stable-mixin", "service-mesh", "portefaix"],
         )
     elif mixin == "loki-mixin":
         update_dashboards_tags(orig, dashboard, ["portefaix"])
@@ -246,5 +248,9 @@ if __name__ == "__main__":
     # archive = mixin_archive % args.mixins
     # main(mixin_url % (args.mixins, archive), archive, args.chart)
     mixin_archive = "monitoring-mixins-%s.zip" % args.release
-    mixin_url = "%s/releases/download/%s/%s" % (MIXIN_REPOSITORY, args.release, mixin_archive)
+    mixin_url = "%s/releases/download/%s/%s" % (
+        MIXIN_REPOSITORY,
+        args.release,
+        mixin_archive,
+    )
     main(mixin_url, mixin_archive, args.chart)
