@@ -36,7 +36,7 @@ repos:
     rev: v1.5.5
     hooks:
     -   id: insert-license
-        stages: [pre-commit]
+        # stages: [pre-commit]
         files: (Makefile|\.mk|\.yaml|\.yml|\.toml)
         args:
         - --license-filepath
