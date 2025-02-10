@@ -40,7 +40,7 @@ repos:
         files: (Makefile|\.mk|\.yaml|\.yml|\.toml)
         args:
         - --license-filepath
-        - LICENSE
+        - hack/config/LICENSE
         - --remove-header
 - repo: https://github.com/spinergie/pre-commit-dprint
   rev: v0.45.0
