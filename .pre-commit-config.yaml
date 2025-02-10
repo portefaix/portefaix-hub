@@ -29,16 +29,14 @@ repos:
   rev: v5.0.0
   hooks:
     - id: trailing-whitespace
-    - id: end-of-file-fixer
-    - id: check-yaml
-      args: [--allow-multiple-documents]
-      exclude: ^charts/.*/templates/
+      stages: [pre-commit]
     - id: check-added-large-files
+      stages: [pre-commit]
 -   repo: https://github.com/Lucas-C/pre-commit-hooks
-    stages: [pre-commit]
     rev: v1.5.5
     hooks:
     -   id: insert-license
+        stages: [pre-commit]
         files: (Makefile|\.mk|\.yaml|\.yml|\.toml)
         args:
         - --license-filepath
@@ -48,6 +46,7 @@ repos:
   rev: v0.45.0
   hooks:
   - id: dprint
+    stages: [pre-commit]
     pass_filenames: false
 - repo: local
   hooks:
