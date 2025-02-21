@@ -57,13 +57,13 @@ helm install portefaix-cel --atomic --timeout 300s  portefaix-hub/portefaix-cel 
 
 ## Maintainers
 
-| Name | Email | Url |
-| ---- | ------ | --- |
-| nlamirault | <nicolas.lamirault@gmail.com> |  |
+| Name       | Email                         | Url |
+| ---------- | ----------------------------- | --- |
+| nlamirault | <nicolas.lamirault@gmail.com> |     |
 
 ## Source Code
 
-* <https://github.com/nlamirault/portefaix-hub/tree/master/charts/portefaix-cel>
+- <https://github.com/nlamirault/portefaix-hub/tree/master/charts/portefaix-cel>
 
 <!-- markdownlint-disable no-bare-urls -->
 
@@ -71,18 +71,18 @@ helm install portefaix-cel --atomic --timeout 300s  portefaix-hub/portefaix-cel 
 
 ## Values
 
-| Key | Type | Default | Description |
-|-----|------|---------|-------------|
-| additionalLabels | object | `{}` | Additional labels to add to all resources |
-| fullnameOverride | string | `""` | Provide a name to substitute for the full names of resources |
-| policies.c0001 | object | `{"enabled":true,"validationActions":["Warn","Audit"]}` | Container must not use latest image tag |
-| policies.c0002 | object | `{"enabled":true,"validationActions":["Warn","Audit"]}` | Container must set liveness probe |
-| policies.c0003 | object | `{"enabled":true,"validationActions":["Warn","Audit"]}` | Container must set readiness probe |
-| policies.c0008 | object | `{"enabled":true,"validationActions":["Warn","Audit"]}` | Container resource constraints must be specified |
-| policies.m0001 | object | `{"enabled":true,"validationActions":["Warn","Audit"]}` | Metadata must set recommanded Kubernetes labels |
-| policies.m0002 | object | `{"enabled":true,"validationActions":["Warn","Audit"]}` | Metadata should have a8r.io annotations |
-| policies.m0003 | object | `{"enabled":true,"validationActions":["Warn","Audit"]}` | Metadata should have portefaix.xyz labels |
-| policies.n0001 | object | `{"enabled":true,"validationActions":["Warn","Audit"]}` | Disallow default namespace for all resources |
+| Key              | Type   | Default                                                 | Description                                                  |
+| ---------------- | ------ | ------------------------------------------------------- | ------------------------------------------------------------ |
+| additionalLabels | object | `{}`                                                    | Additional labels to add to all resources                    |
+| fullnameOverride | string | `""`                                                    | Provide a name to substitute for the full names of resources |
+| policies.c0001   | object | `{"enabled":true,"validationActions":["Warn","Audit"]}` | Container must not use latest image tag                      |
+| policies.c0002   | object | `{"enabled":true,"validationActions":["Warn","Audit"]}` | Container must set liveness probe                            |
+| policies.c0003   | object | `{"enabled":true,"validationActions":["Warn","Audit"]}` | Container must set readiness probe                           |
+| policies.c0008   | object | `{"enabled":true,"validationActions":["Warn","Audit"]}` | Container resource constraints must be specified             |
+| policies.m0001   | object | `{"enabled":true,"validationActions":["Warn","Audit"]}` | Metadata must set recommanded Kubernetes labels              |
+| policies.m0002   | object | `{"enabled":true,"validationActions":["Warn","Audit"]}` | Metadata should have a8r.io annotations                      |
+| policies.m0003   | object | `{"enabled":true,"validationActions":["Warn","Audit"]}` | Metadata should have portefaix.xyz labels                    |
+| policies.n0001   | object | `{"enabled":true,"validationActions":["Warn","Audit"]}` | Disallow default namespace for all resources                 |
 
 ## Customizing the configuration
 

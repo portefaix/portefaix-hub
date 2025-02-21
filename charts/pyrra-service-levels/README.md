@@ -59,14 +59,14 @@ helm install pyrra-service-levels --atomic --timeout 300s  portefaix-hub/pyrra-s
 
 ## Values
 
-| Key | Type | Default | Description |
-|-----|------|---------|-------------|
-| additionalLabels | object | `{}` | Additional labels to add to all resources |
-| pyrra.enabled | bool | `true` |  |
-| pyrra.labels | object | `{}` |  |
-| pyrra.slos.bool | list | `[]` | Bool SLOs |
-| pyrra.slos.latency | list | `[]` | Latency SLOs |
-| pyrra.slos.ratio | list | `[]` | Ration SLOs |
+| Key                | Type   | Default | Description                               |
+| ------------------ | ------ | ------- | ----------------------------------------- |
+| additionalLabels   | object | `{}`    | Additional labels to add to all resources |
+| pyrra.enabled      | bool   | `true`  |                                           |
+| pyrra.labels       | object | `{}`    |                                           |
+| pyrra.slos.bool    | list   | `[]`    | Bool SLOs                                 |
+| pyrra.slos.latency | list   | `[]`    | Latency SLOs                              |
+| pyrra.slos.ratio   | list   | `[]`    | Ration SLOs                               |
 
 ## Customizing the configuration
 
