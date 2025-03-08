@@ -57,6 +57,16 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 {{- end }}
 
+{{/* See: https://ambassadorlabs.github.io/k8s-for-humans/ */}}
+{{/*
+Common annotations
+*/}}
+{{- define "pyroscope-mixin.annotations" }}
+{{- if .Values.additionalAnnotations }}
+{{ toYaml .Values.additionalAnnotations }}
+{{- end }}
+{{- end }}
+
 {{/*
 Allow the release namespace to be overridden
 */}}
