@@ -70,6 +70,7 @@ jobs:
           config: .github/ct.yaml
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CR_SKIP_EXISTING: true
           CR_GENERATE_RELEASE_NOTES: true
 
       - name: Login to GitHub Container Registry
