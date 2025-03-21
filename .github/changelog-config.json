@@ -2,7 +2,7 @@
   "categories": [
     {
       "title": "## Breaking Changes",
-      "labels": [ "breaking-change" ]
+      "labels": ["breaking-change"]
     }
   ],
   "ignore_labels": [
@@ -18,8 +18,8 @@
       "pattern": "trino-(.+)"
     },
     "transformer": {
-        "pattern": "trino-(.+)",
-        "target": "$1"
+      "pattern": "trino-(.+)",
+      "target": "$1"
     }
   }
 }

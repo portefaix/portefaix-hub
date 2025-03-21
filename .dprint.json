@@ -10,8 +10,10 @@
     "arrowFunction.useParentheses": "preferNone"
   },
   "excludes": [
-    "charts/**/dashboards/*.json",
     "deprecated/**/dashboards/*.json",
+    "deprecated/**/values.schema.json",
+    "charts/**/values.schema.json",
+    "charts/**/dashboards/*.json",
     "charts/**/README.md"
   ],
   "plugins": [

@@ -1,22 +1,22 @@
 {
-    "$schema": "http://json-schema.org/schema#",
-    "title": "Kyverno Portefaix Chart JSON Schema",
-    "type": "object",
-    "properties": {
-        "fullnameOverride": {
-            "type": "string",
-            "default": ""
-        },
-        "additionalLabels": {
-            "title": "Additional labels to add to the Kyverno policies",
-            "type": "object",
-            "default": {}
-        },
-        "additionalAnnotations": {
-            "title": "Additional annotations to add to the Kyverno policies",
-            "type": "object",
-            "default": {}
-        }
+  "$schema": "http://json-schema.org/schema#",
+  "title": "Kyverno Portefaix Chart JSON Schema",
+  "type": "object",
+  "properties": {
+    "fullnameOverride": {
+      "type": "string",
+      "default": ""
     },
-    "required": []
+    "additionalLabels": {
+      "title": "Additional labels to add to the Kyverno policies",
+      "type": "object",
+      "default": {}
+    },
+    "additionalAnnotations": {
+      "title": "Additional annotations to add to the Kyverno policies",
+      "type": "object",
+      "default": {}
+    }
+  },
+  "required": []
 }
