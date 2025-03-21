@@ -19,7 +19,6 @@ apiVersion: v2
 name: secrets-store-csi-driver-provider-gcp
 description: A Helm chart for Google Secret Manager Provider for Secret Store CSI Driver
 home: https://charts.portefaix.xyz
-icon:
 sources:
   - https://github.com/portefaix/portefaix-hub/tree/master/charts/secrets-store-csi-driver-provider-gcp
 type: application
@@ -27,15 +26,7 @@ keywords:
   - secrets-store-csi-driver-provider-gcp
   - secrets-store-csi-driver
   - portefaix
-
-# This is the chart version. This version number should be incremented each time you make changes
-# to the chart and its templates, including the app version.
-# Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.6.0
-
-# This is the version number of the application being deployed. This version number should be
-# incremented each time you make changes to the application. Versions are not expected to
-# follow Semantic Versioning. They should reflect the version the application is using.
+version: 0.6.1
 appVersion: 1.5.0
 
 maintainers:
@@ -62,11 +53,5 @@ annotations:
     fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
-    - kind: added
-      description: Sigstore support
-      links:
-        - name: Github Issue
-          url: https://github.com/portefaix/portefaix-hub/pull/129
-
-
-
+    - kind: changed
+      description: documentation

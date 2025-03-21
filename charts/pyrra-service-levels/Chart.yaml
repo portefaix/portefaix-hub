@@ -3,7 +3,7 @@ apiVersion: v2
 name: pyrra-service-levels
 description: A Helm chart for Service Level Objective by Pyrra
 type: application
-version: 1.1.0
+version: 1.1.1
 appVersion: "0.8.1"
 keywords:
 - service-levels
@@ -34,4 +34,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: Remove service levels suffixes
+      description: documentation

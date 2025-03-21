@@ -2,7 +2,7 @@
 apiVersion: v2
 description: Sealed Secrets CRDs
 name: sealed-secrets-crds
-version: 1.0.0
+version: 1.0.1
 # renovate: datasource=github-tags depName=bitnami-labs/sealed-secrets
 appVersion: 0.26.2
 home: https://sealed-secrets.netlify.app/
@@ -39,5 +39,5 @@ annotations:
     fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
-    - kind: added
-      description: Init chart
+    - kind: changed
+      description: documentation
