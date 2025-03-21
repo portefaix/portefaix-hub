@@ -75,7 +75,7 @@ jobs:
         python-version: ${{ github.event.inputs.python-version }}
 
     - name: Run image
-      uses: abatilo/actions-poetry@v3.0.0
+      uses: abatilo/actions-poetry@v4.0.0
       with:
         poetry-version: ${{ github.event.inputs.poetry-version }}
 
