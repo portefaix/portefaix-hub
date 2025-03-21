@@ -698,6 +698,47 @@ entries:
   alloy-mixin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: documentation
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Grafana Alloy
+          url: https://github.com/grafana/alloy
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.5.0
+    created: "2025-03-21T06:57:55.109120445Z"
+    description: A Helm chart for Alloy mixin
+    digest: 094144c600d2a9fb2f0d3bababf29901a56f4d0100ef88c5d3a1a98fce4182fb
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/grafana/alloy/main/docs/sources/assets/alloy_icon_orange.svg
+    keywords:
+    - alloy
+    - grafana-alloy
+    - prometheus
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: alloy-mixin
+    sources:
+    - https://github.com/portefaix/portefaix-hub/tree/master/charts/alloy-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/alloy-mixin-0.3.2/alloy-mixin-0.3.2.tgz
+    version: 0.3.2
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: annotations for resources
       artifacthub.io/license: Apache-2.0
@@ -896,6 +937,45 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/beyla-0.1.0/beyla-0.1.0.tgz
     version: 0.1.0
   cilium-mixin:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: documentation
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Grafana cilium
+          url: https://github.com/grafana/cilium
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: master
+    created: "2025-03-21T06:57:55.289506728Z"
+    description: A Helm chart for Cilium mixin
+    digest: 7c9c93504df3fcc541f93cdd2d43418aa01bd28c1e8bfd5ee1e113b09fcff3d6
+    home: https://charts.portefaix.xyz
+    icon: https://cdn.jsdelivr.net/gh/cilium/cilium@main/Documentation/images/logo-solo.svg
+    keywords:
+    - cilium
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: cilium-mixin
+    sources:
+    - https://github.com/portefaix/portefaix-hub/tree/master/charts/cilium-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/cilium-mixin-0.4.1/cilium-mixin-0.4.1.tgz
+    version: 0.4.1
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
@@ -2358,7 +2438,90 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/crossplane-gcp-factory-0.1.0/crossplane-gcp-factory-0.1.0.tgz
     version: 0.1.0
+  external-secrets-crds:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: documentation
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: External Secrets
+          url: https://github.com/external-secrets/external-secrets
+        - name: Portefaix Hub
+          url: https://github.com/portefaix/portefaix-hub
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.10.5
+    created: "2025-03-21T06:57:56.876082571Z"
+    dependencies:
+    - name: crds
+      repository: ""
+      version: 0.0.0
+    description: External Secrets CRDs
+    digest: 44008fdf6e8806e05d2aa34ab9062e70bd4904eb06c558b3ad8c58023b40aa2a
+    home: https://external-secrets.io/
+    icon: https://raw.githubusercontent.com/external-secrets/external-secrets/main/assets/eso-logo-large.png
+    keywords:
+    - kubernetes
+    - external-secrets
+    - crds
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: external-secrets-crds
+    sources:
+    - https://github.com/external-secrets/external-secrets
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/external-secrets-crds-1.0.0/external-secrets-crds-1.0.0.tgz
+    version: 1.0.0
   falco-talon:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: documentation
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Falco
+          url: https://falco.org/
+        - name: Falco Talon
+          url: https://docs.falco-talon.org/
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v1
+    appVersion: 0.1.0
+    created: "2025-03-21T06:57:57.034423097Z"
+    description: React to events from Falco
+    digest: 9ff1806d22c97c2940789c05619ad9eae0b43c606f0e7946414bee1c34deaf67
+    home: https://github.com/falco-talon/falco-talon
+    icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/falco/horizontal/color/falco-horizontal-color.svg
+    keywords:
+    - falco
+    - monitoring
+    - security
+    - response-engine
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: falco-talon
+    sources:
+    - https://github.com/falco-talon/falco-talon
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/falco-talon
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/falco-talon-1.0.1/falco-talon-1.0.1.tgz
+    version: 1.0.1
   - annotations:
       artifacthub.io/changes: |
         - kind: added
@@ -2721,6 +2884,47 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/fluxcd-mixin-0.1.0/fluxcd-mixin-0.1.0.tgz
     version: 0.1.0
   gateway-api-crds:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: documentation
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Kubernetes Gateway API
+          url: https://gateway-api.sigs.k8s.io
+        - name: Portefaix Hub
+          url: https://github.com/portefaix/portefaix-hub
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.2.0
+    created: "2025-03-21T06:57:57.523776671Z"
+    dependencies:
+    - name: crds
+      repository: ""
+      version: 0.0.0
+    description: Gateway API CRDs
+    digest: bf9011d782ac2ff2be700a092782a71abe8d48229a54300de84596c10b53d303
+    home: https://gateway-api.sigs.k8s.io
+    icon: https://avatars.githubusercontent.com/u/36015203?s=400&v=4
+    keywords:
+    - kubernetes
+    - gateway-api
+    - crds
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: gateway-api-crds
+    sources:
+    - https://github.com/kubernetes-sigs/gateway-api
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/gateway-api-crds-1.2.1/gateway-api-crds-1.2.1.tgz
+    version: 1.2.1
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
@@ -4220,6 +4424,45 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: documentation
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: kubernetes
+          url: https://kubernetes.io
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: master
+    created: "2025-03-21T06:57:58.460352121Z"
+    description: A Helm chart for Kubernetes Mixin
+    digest: 574e87af4504173c79fe0b83851b4ebcddcb44f5df11a151dc927dfed552b79f
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.svg
+    keywords:
+    - kubernetes
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: kubernetes-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kubernetes-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/kubernetes-mixin-1.5.1/kubernetes-mixin-1.5.1.tgz
+    version: 1.5.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: kubernetes-mixin vmaster
       artifacthub.io/license: Apache-2.0
       artifacthub.io/links: |
@@ -5550,6 +5793,45 @@ entries:
         url: https://keybase.io/nlamirault/pgp_keys.asc
     apiVersion: v2
     appVersion: 3.3.0
+    created: "2025-03-21T06:57:58.653744024Z"
+    description: A Helm chart for Loki Mixin
+    digest: eb4d6b808629d5efaeb63f58d0eed843407e7636775faa51bd0aaddc288e9677
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    keywords:
+    - loki
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: loki-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/loki-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/loki-mixin-1.10.0/loki-mixin-1.10.0.tgz
+    version: 1.10.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: loki-mixin v3.3.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: loki
+          url: https://grafana.com/oss/loki/
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 3.3.0
     created: "2024-11-23T14:41:32.860572234Z"
     description: A Helm chart for Loki Mixin
     digest: 0edf4bc4f780161b28b20d14c14b3791551e4e9af727cb1da72bce91e2c6ffe0
@@ -6485,6 +6767,46 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/loki-mixin-0.1.0/loki-mixin-0.1.0.tgz
     version: 0.1.0
   mimir-mixin:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: documentation
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: mimir
+          url: https://grafana.com/oss/mimir
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.9.0
+    created: "2025-03-21T06:57:58.852634818Z"
+    description: A Helm chart for Grafana Mimir mixin
+    digest: 799b4e795e0885a89d61bfc05243a81e61c5c448e424669071b56c58e135f135
+    home: https://charts.portefaix.xyz
+    icon: https://grafana.com/static/img/logos/logo-mimir.svg
+    keywords:
+    - kubernetes
+    - monitoring-mixin
+    - mimir
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: mimir-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kubernetes-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/mimir-mixin-1.7.1/mimir-mixin-1.7.1.tgz
+    version: 1.7.1
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
@@ -7889,6 +8211,54 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/podtato-head-0.1.0/podtato-head-0.1.0.tgz
     version: 0.1.0
   portefaix-cel:
+  - annotations:
+      artifacthub.io/category: security
+      artifacthub.io/changes: |
+        - kind: changed
+          description: documentation
+      artifacthub.io/crds: |
+        - kind: RegistryConfiguration
+          version: v1
+          name: registryconfiguration.policy.portefaix.xyz
+          displayName: RegistryConfiguration
+          description: Resource for authorized registries
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v1.30.0
+    created: "2025-03-21T06:57:59.370994919Z"
+    dependencies:
+    - name: crds
+      repository: ""
+      version: 0.0.0
+    description: A Helm chart for validating admission policies use the Common Expression
+      Language
+    digest: da233a216e6d35060db593376a5b7f1ba3eb7ab84cb8aeb4338c2d6729ebae80
+    home: https://charts.portefaix.xyz
+    icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.svg
+    keywords:
+    - vap
+    - cel
+    - policies
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: portefaix-cel
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/portefaix-cel
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/portefaix-cel-2.1.1/portefaix-cel-2.1.1.tgz
+    version: 2.1.1
   - annotations:
       artifacthub.io/category: security
       artifacthub.io/changes: |
@@ -10699,6 +11069,46 @@ entries:
         url: https://keybase.io/nlamirault/pgp_keys.asc
     apiVersion: v2
     appVersion: 1.10.0
+    created: "2025-03-21T06:58:00.819849469Z"
+    description: A Helm chart for Grafana Pyroscope mixin
+    digest: b54ba269390b6063a180d204bc5edb3c439750de155d8b6f960bee1f7a27a135
+    home: https://charts.portefaix.xyz
+    icon: https://grafana.com/static/img/pyroscope-logo.svg
+    keywords:
+    - pyroscope
+    - kubernetes
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: pyroscope-mixin
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/kubernetes-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/pyroscope-mixin-1.6.0/pyroscope-mixin-1.6.0.tgz
+    version: 1.6.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: pyroscope-mixin v1.10.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: pyroscope
+          url: https://grafana.com/oss/pyroscope
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.10.0
     created: "2024-11-23T14:59:11.627289425Z"
     description: A Helm chart for Grafana Pyroscope mixin
     digest: 0e6f1d1da8ab021d985ccee61dac92298073ef1e16fcb87ab8862c6ed6bf9c95
@@ -10880,6 +11290,44 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/pyroscope-mixin-0.1.0/pyroscope-mixin-0.1.0.tgz
     version: 0.1.0
   pyrra-service-levels:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: documentation
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: pyrra
+          url: https://pyrra.dev/
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.8.1
+    created: "2025-03-21T06:58:01.004404878Z"
+    description: A Helm chart for Service Level Objective by Pyrra
+    digest: 1d923326810ac2653ee8d63a533aa547ebdf9484c3a50778fecd804db8ac5747
+    home: https://github.com/nlamirault/portefaix-hub
+    icon: https://avatars.githubusercontent.com/u/98504233?s=200&v=4
+    keywords:
+    - service-levels
+    - slo
+    - pyrra
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: pyrra-service-levels
+    sources:
+    - https://github.com/nlamirault/portefaix-hub/tree/master/charts/pyrra-service-levels
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/pyrra-service-levels-1.1.1/pyrra-service-levels-1.1.1.tgz
+    version: 1.1.1
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
@@ -11121,6 +11569,48 @@ entries:
   sealed-secrets-crds:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: documentation
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Sealed Secrets
+          url: https://sealed-secrets.netlify.app/
+        - name: Portefaix Hub
+          url: https://github.com/portefaix/portefaix-hub
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.26.2
+    created: "2025-03-21T06:58:01.168458794Z"
+    dependencies:
+    - name: crds
+      repository: ""
+      version: 0.0.0
+    description: Sealed Secrets CRDs
+    digest: 3b797aeb94aed82c3f2f4eb6e757e9fa37161c105394ac8bf300242d04533b79
+    home: https://sealed-secrets.netlify.app/
+    icon: https://bitnami.com/assets/stacks/sealed-secrets/img/sealed-secrets-stack-220x234.png
+    keywords:
+    - secrets
+    - sealed-secrets
+    - crds
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: sealed-secrets-crds
+    sources:
+    - https://github.com/portefaix/portefaix-hub
+    - https://github.com/bitnami-labs/sealed-secrets
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/sealed-secrets-crds-1.0.1/sealed-secrets-crds-1.0.1.tgz
+    version: 1.0.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Init chart
       artifacthub.io/license: Apache-2.0
@@ -11359,6 +11849,48 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/secrets-store-csi-driver-provider-aws-0.1.0/secrets-store-csi-driver-provider-aws-0.1.0.tgz
     version: 0.1.0
   secrets-store-csi-driver-provider-gcp:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: documentation
+      artifacthub.io/images: |
+        - name: secrets-store-csi-driver-provider-gcp
+          image: us-docker.pkg.dev/secretmanager-csi/secrets-store-csi-driver-provider-gcp/plugin:v1.0.0
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: secrets-store-csi-driver
+          url: https://github.com/kubernetes-sigs/secrets-store-csi-driver
+        - name: secrets-store-csi-driver-provider-gcp
+          url: https://github.com/GoogleCloudPlatform/secrets-store-csi-driver-provider-gcp
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.5.0
+    created: "2025-03-21T06:58:01.584775068Z"
+    description: A Helm chart for Google Secret Manager Provider for Secret Store
+      CSI Driver
+    digest: 1118d936ef320bad100a783ae6f63e6b4a219eea922b8d6dfb058e9e767028eb
+    home: https://charts.portefaix.xyz
+    keywords:
+    - secrets-store-csi-driver-provider-gcp
+    - secrets-store-csi-driver
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: secrets-store-csi-driver-provider-gcp
+    sources:
+    - https://github.com/portefaix/portefaix-hub/tree/master/charts/secrets-store-csi-driver-provider-gcp
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/secrets-store-csi-driver-provider-gcp-0.6.1/secrets-store-csi-driver-provider-gcp-0.6.1.tgz
+    version: 0.6.1
   - annotations:
       artifacthub.io/changes: |
         - kind: added
@@ -11721,6 +12253,45 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/speedtest-exporter-0.1.0/speedtest-exporter-0.1.0.tgz
     version: 0.1.0
   tempo-mixin:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: documentation
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: tempo
+          url: https://grafana.com/oss/tempo
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Monitoring mixins
+          url: https://github.com/nlamirault/monitoring-mixins
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 2.6.1
+    created: "2025-03-21T06:58:01.958266779Z"
+    description: A Helm chart for Grafana Tempo mixin
+    digest: 62ec7dec4edd97399027aae49f5f6c2e8587e214bd17e7c20af2f3c153afac02
+    home: https://charts.portefaix.xyz
+    icon: https://grafana.com/static/assets/img/logos/grafana-tempo.svg
+    keywords:
+    - tempo
+    - monitoring-mixin
+    - portefaix
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+    name: tempo-mixin
+    sources:
+    - https://github.com/portefaix/portefaix-hub/tree/master/charts/tempo-mixin
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/tempo-mixin-1.9.1/tempo-mixin-1.9.1.tgz
+    version: 1.9.1
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
@@ -13470,4 +14041,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2025-02-04T17:28:57.897116474Z"
+generated: "2025-03-21T06:58:02.525489723Z"
