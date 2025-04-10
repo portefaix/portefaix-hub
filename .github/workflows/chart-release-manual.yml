@@ -70,7 +70,7 @@ jobs:
 
       - name: Push charts to GHCR
         run: |
-          helm push ${{ github.ref_name }}.tgz oci://${{ env.REGISTRY }}/${GITHUB_REPOSITORY_OWNER}/charts
+          helm push ${{ github.event.inputs.release_name }}-${{ github.event.inputs.release_version }}.tgz oci://${{ env.REGISTRY }}/${GITHUB_REPOSITORY_OWNER}/charts
 
 
       - name: Setup Crane

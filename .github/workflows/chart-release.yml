@@ -84,7 +84,6 @@ jobs:
         run: |
           helm push ${{ github.ref_name }}.tgz oci://${{ env.REGISTRY }}/${GITHUB_REPOSITORY_OWNER}/charts
 
-
       - name: Setup Crane
         uses: imjasonh/setup-crane@31b88efe9de28ae0ffa220711af4b60be9435f6e # v0.4
 
