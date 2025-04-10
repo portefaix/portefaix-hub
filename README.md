@@ -24,11 +24,7 @@ See [Artifact Hub](https://artifacthub.io/packages/search?repo=portefaix-hub) fo
 
 ## SLSA
 
-<div align="center">
-
 [![slsa-badge-level3][slsa-badge-full-level3]][slsa-level3]
-
-</div>
 
 All _artifacts_ provided by this repository meet [SLSA L3][slsa-level3].
 
