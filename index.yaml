@@ -2480,6 +2480,17 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/external-secrets-crds-1.0.0/external-secrets-crds-1.0.0.tgz
     version: 1.0.0
+  fake:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2025-04-10T16:36:38.16189414Z"
+    description: A Helm chart for Kubernetes
+    digest: 5687aa57bb09e8adfbc43b3c4b30daa4b52597132f17f430ef04c87f9b7aca6b
+    name: fake
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/fake-0.4.0/fake-0.4.0.tgz
+    version: 0.4.0
   falco-talon:
   - annotations:
       artifacthub.io/changes: |
@@ -14041,4 +14052,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2025-03-21T06:59:16.765068259Z"
+generated: "2025-04-10T16:36:38.162421003Z"
