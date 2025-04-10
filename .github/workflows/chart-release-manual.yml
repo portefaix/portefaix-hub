@@ -58,13 +58,32 @@ jobs:
           helm repo add grafana https://grafana.github.io/helm-charts
           helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 
+      - name: Install sigstore Helm plugin
+        run: |
+          helm plugin install https://github.com/sigstore/helm-sigstore
+
+      - name: Install GPG Keys
+        run: |
+          cat <(echo -e "${{ secrets.GPG_PRIVATE_KEY }}") | gpg --import --batch
+          gpg --export > /home/runner/.gnupg/pubring.gpg
+          gpg --export-secret-keys > /home/runner/.gnupg/secring.gpg
+
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.7.0
         with:
           config: .github/ct.yaml
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CR_SIGN: "true"
+          CR_KEY: "${{ secrets.GPG_KEY_NAME }}"
+          CR_KEYRING: "/home/runner/.gnupg/secring.gpg"
           CR_GENERATE_RELEASE_NOTES: true
+
+      - name: Upload Helm Charts to Rekor
+        run: |
+          for chart in `find .cr-release-packages -name '*.tgz' -print`; do
+            helm sigstore upload --keyring=/home/runner/.gnupg/secring.gpg ${chart}
+          done
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
@@ -73,42 +92,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Push charts to GHCR
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v3.8.1
+
+      - name: Publish and Sign OCI Charts
         run: |
-          shopt -s nullglob
-          for pkg in .cr-release-packages/*; do
-            if [ -z "${pkg:-}" ]; then
-              break
-            fi
-            helm push "${pkg}" "oci://ghcr.io/${GITHUB_REPOSITORY_OWNER}/charts"
+          for chart in `find .cr-release-packages -name '*.tgz' -print`; do
+            helm push ${chart} oci://ghcr.io/${GITHUB_REPOSITORY_OWNER}/charts |& tee helm-push-output.log
+            file_name=${chart##*/}
+            chart_name=${file_name%-*}
+            digest=$(awk -F "[, ]+" '/Digest/{print $NF}' < helm-push-output.log)
+            cosign sign "ghcr.io/${GITHUB_REPOSITORY_OWNER}/charts/${chart_name}@${digest}"
           done
-
-  # Update the generated timestamp in the index.yaml
-  # needed until https://github.com/helm/chart-releaser/issues/90
-  # or helm/chart-releaser-action supports this
-  post-release:
-    permissions:
-      contents: write  # for Git to git push
-    needs: release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-        with:
-          ref: "gh-pages"
-          fetch-depth: 0
-
-      - name: Configure Git
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-
-      - name: Commit and push timestamp updates
-        run: |
-          if [[ -f index.yaml ]]; then
-            export generated_date=$(date --utc +%FT%T.%9NZ)
-            sed -i -e "s/^generated:.*/generated: \"$generated_date\"/" index.yaml
-            git add index.yaml
-            git commit -sm "Update generated timestamp [ci-skip]" || exit 0
-            git push
-          fi
+        env:
+          COSIGN_YES: true
