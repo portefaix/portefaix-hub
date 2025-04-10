@@ -19,8 +19,11 @@ name: Charts / Release manual
 on:
   workflow_dispatch:
     inputs:
-      chart:
+      release_name:
         description: "Chart"
+        required: true
+      release_version:
+        description: "Version"
         required: true
 
 permissions:
@@ -29,23 +32,19 @@ permissions:
 jobs:
   release:
     permissions:
-      contents: write # to push chart release and create a release (helm/chart-releaser-action)
-      packages: write # needed for ghcr access
-      id-token: write # needed for keyless signing
+      attestations: write # need for Artifact Attestations
+      contents: write     # to push chart release and create a release (helm/chart-releaser-action)
+      id-token: write     # needed for keyless signing
+      packages: write     # needed for ghcr access
+
+    env:
+      REGISTRY: ghcr.io
 
     runs-on: ubuntu-latest
-    # container: ghcr.io/chgl/kube-powertools:v2.1.20
+
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-
-      - name: Fetch history
-        run: git fetch --prune --unshallow
-
-      - name: Configure Git
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
       - name: Set up Helm
         uses: azure/setup-helm@v3.5
@@ -58,32 +57,9 @@ jobs:
           helm repo add grafana https://grafana.github.io/helm-charts
           helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 
-      - name: Install sigstore Helm plugin
+      - name: Package Helm chart
         run: |
-          helm plugin install https://github.com/sigstore/helm-sigstore
-
-      - name: Install GPG Keys
-        run: |
-          cat <(echo -e "${{ secrets.GPG_PRIVATE_KEY }}") | gpg --import --batch
-          gpg --export > /home/runner/.gnupg/pubring.gpg
-          gpg --export-secret-keys > /home/runner/.gnupg/secring.gpg
-
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.7.0
-        with:
-          config: .github/ct.yaml
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          CR_SIGN: "true"
-          CR_KEY: "${{ secrets.GPG_KEY_NAME }}"
-          CR_KEYRING: "/home/runner/.gnupg/secring.gpg"
-          CR_GENERATE_RELEASE_NOTES: true
-
-      - name: Upload Helm Charts to Rekor
-        run: |
-          for chart in `find .cr-release-packages -name '*.tgz' -print`; do
-            helm sigstore upload --keyring=/home/runner/.gnupg/secring.gpg ${chart}
-          done
+          helm package charts/${{ github.event.inputs.release_name }}
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
@@ -92,17 +68,23 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Install Cosign
-        uses: sigstore/cosign-installer@v3.8.1
-
-      - name: Publish and Sign OCI Charts
+      - name: Push charts to GHCR
         run: |
-          for chart in `find .cr-release-packages -name '*.tgz' -print`; do
-            helm push ${chart} oci://ghcr.io/${GITHUB_REPOSITORY_OWNER}/charts |& tee helm-push-output.log
-            file_name=${chart##*/}
-            chart_name=${file_name%-*}
-            digest=$(awk -F "[, ]+" '/Digest/{print $NF}' < helm-push-output.log)
-            cosign sign "ghcr.io/${GITHUB_REPOSITORY_OWNER}/charts/${chart_name}@${digest}"
-          done
-        env:
-          COSIGN_YES: true
+          helm push ${{ github.ref_name }}.tgz oci://${{ env.REGISTRY }}/${GITHUB_REPOSITORY_OWNER}/charts
+
+
+      - name: Setup Crane
+        uses: imjasonh/setup-crane@31b88efe9de28ae0ffa220711af4b60be9435f6e # v0.4
+
+      - name: Get pushed chart digest
+        id: get-digest
+        run: |
+          digest=$(crane digest ${{ env.REGISTRY }}/${GITHUB_REPOSITORY_OWNER}/charts/${{ github.event.inputs.release_name }}:${{ github.event.inputs.release_version }})
+          echo digest=$digest >> $GITHUB_OUTPUT
+
+      - name: Attest
+        uses: actions/attest-build-provenance@c074443f1aee8d4aeeae555aebba3282517141b2 # v2.2.3
+        with:
+          subject-name: ${{ env.REGISTRY }}/${GITHUB_REPOSITORY_OWNER}/charts/${{ github.event.inputs.release_name }}
+          subject-digest: ${{ steps.get-digest.outputs.digest }}
+          push-to-registry: true
