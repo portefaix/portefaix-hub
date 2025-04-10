@@ -70,7 +70,7 @@ jobs:
 
       - name: Push charts to GHCR
         run: |
-          helm push ${{ github.event.inputs.release_name }}-${{ github.event.inputs.release_version }}.tgz oci://${{ env.REGISTRY }}/${GITHUB_REPOSITORY_OWNER}/charts
+          helm push ${{ github.event.inputs.release_name }}-${{ github.event.inputs.release_version }}.tgz oci://${{ env.REGISTRY }}/${{ github.repository_owner }}/charts
 
 
       - name: Setup Crane
@@ -79,12 +79,12 @@ jobs:
       - name: Get pushed chart digest
         id: get-digest
         run: |
-          digest=$(crane digest ${{ env.REGISTRY }}/${GITHUB_REPOSITORY_OWNER}/charts/${{ github.event.inputs.release_name }}:${{ github.event.inputs.release_version }})
+          digest=$(crane digest ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ github.event.inputs.release_name }}:${{ github.event.inputs.release_version }})
           echo digest=$digest >> $GITHUB_OUTPUT
 
       - name: Attest
         uses: actions/attest-build-provenance@c074443f1aee8d4aeeae555aebba3282517141b2 # v2.2.3
         with:
-          subject-name: ${{ env.REGISTRY }}/${GITHUB_REPOSITORY_OWNER}/charts/${{ github.event.inputs.release_name }}
+          subject-name: ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ github.event.inputs.release_name }}
           subject-digest: ${{ steps.get-digest.outputs.digest }}
           push-to-registry: true
