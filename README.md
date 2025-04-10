@@ -41,14 +41,6 @@ REPO                     PREDICATE_TYPE                  WORKFLOW
 portefaix/portefaix-hub  https://slsa.dev/provenance/v1  .github/workflows/chart-release-manual.yml@refs/heads/feat/sign
 ```
 
-Or install `slsa-verifier` from [slsa-verifier](https://github.com/slsa-framework/slsa-verifier) project and:
-
-```bash
-slsa-verifier verify-image \
-     --source-uri=github.com/portefaix/portefaix-hub ghcr.io/portefaix/charts/fake:0.1.0@sha256:84440dd6e696ed153a43490bdfdf9190d640d041fb4201f326578a4be829e811
-FAILED: SLSA verification failed: no matching attestations:
-```
-
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md)

@@ -87,19 +87,19 @@ jobs:
             helm push "${pkg}" "oci://${{ env.REGISTRY }}/${{ github.repository_owner }}/charts"
           done
 
-      - name: Setup cosign
-        uses: sigstore/cosign-installer@dc72c7d5c4d10cd6bcb8cf6e3fd625a9e5e537da # v3
+    #   - name: Setup cosign
+    #     uses: sigstore/cosign-installer@dc72c7d5c4d10cd6bcb8cf6e3fd625a9e5e537da # v3
 
-      - name: Cosign sign packaged chart and generate hashs
-        shell: bash
-        id: hash
-        run: |
-          packaged_charts=$(ls .cr-release-packages/*.tgz | xargs)
-          for chart in ${packaged_charts}; do
-            cosign sign-blob --yes ${chart}
-          done
+    #   - name: Cosign sign packaged chart and generate hashs
+    #     shell: bash
+    #     id: hash
+    #     run: |
+    #       packaged_charts=$(ls .cr-release-packages/*.tgz | xargs)
+    #       for chart in ${packaged_charts}; do
+    #         cosign sign-blob --yes ${chart}
+    #       done
 
-          echo "hashes=$(sha256sum ${packaged_charts} | base64 -w0)" >> "$GITHUB_OUTPUT"
+    #       echo "hashes=$(sha256sum ${packaged_charts} | base64 -w0)" >> "$GITHUB_OUTPUT"
 
-    outputs:
-      hashes: ${{ steps.hash.outputs.hashes }}
+    # outputs:
+    #   hashes: ${{ steps.hash.outputs.hashes }}
