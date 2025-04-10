@@ -89,7 +89,7 @@ jobs:
           push-to-registry: true
 
       - name: Install cosign
-        uses: sigstore/cosign-installer@v3.0.1
+        uses: sigstore/cosign-installer@v3.8.1
 
       - name: Check Cosign
         run: |
