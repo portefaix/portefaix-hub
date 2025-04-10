@@ -17,17 +17,14 @@
 name: Charts / Release
 
 on:
-  push:
-    branches:
-      - master
-    paths:
-      - "charts/**"
-  # pull_request:
+  # push:
   #   branches:
   #     - master
-    # paths:
-    #   - "charts/**"
-
+  #   paths:
+  #     - "charts/**"
+  release:
+    types:
+     - published
 
 permissions:
   contents: read
@@ -35,23 +32,31 @@ permissions:
 jobs:
   release:
     permissions:
-      contents: write # to push chart release and create a release (helm/chart-releaser-action)
-      packages: write # needed for ghcr access
-      id-token: write # needed for keyless signing
+      attestations: write # need for Artifact Attestations
+      contents: write     # to push chart release and create a release (helm/chart-releaser-action)
+      id-token: write     # needed for keyless signing
+      packages: write     # needed for ghcr access
+
+    env:
+      REGISTRY: ghcr.io
 
     runs-on: ubuntu-latest
-    # container: ghcr.io/chgl/kube-powertools:v2.1.20
+
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
-      - name: Fetch history
-        run: git fetch --prune --unshallow
-
-      - name: Configure Git
+      - name: Extract Helm chart name and version
+        id: release-details
         run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          # tag names are in the format <chart-name>-<semantic-version>
+          # so we need to extract the chart name
+          release_name=$(echo -n ${{ github.ref_name }} | awk -F'-[0-9]' '{print $1}')
+          echo release_name=$release_name >> $GITHUB_OUTPUT
+
+          # extract the version from the tag name
+          version=$(echo -n ${{ github.ref_name }} | sed "s/^$release_name-//")
+          echo release_version=$version >> $GITHUB_OUTPUT
 
       - name: Set up Helm
         uses: azure/setup-helm@v3.5
@@ -64,14 +69,9 @@ jobs:
           helm repo add grafana https://grafana.github.io/helm-charts
           helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.7.0
-        with:
-          config: .github/ct.yaml
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          CR_SKIP_EXISTING: true
-          CR_GENERATE_RELEASE_NOTES: true
+      - name: Package Helm chart
+        run: |
+          helm package charts/${{ steps.release-details.outputs.release_name }}
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
@@ -82,70 +82,20 @@ jobs:
 
       - name: Push charts to GHCR
         run: |
-          shopt -s nullglob
-          for pkg in .cr-release-packages/*; do
-            if [ -z "${pkg:-}" ]; then
-              break
-            fi
-            helm push "${pkg}" "oci://ghcr.io/${GITHUB_REPOSITORY_OWNER}/charts"
-          done
+          helm push ${{ github.ref_name }}.tgz oci://${{ env.REGISTRY }}/${{ github.repository_owner }}/charts
 
-  # Update the generated timestamp in the index.yaml
-  # needed until https://github.com/helm/chart-releaser/issues/90
-  # or helm/chart-releaser-action supports this
-  post-release:
-    permissions:
-      contents: write  # for Git to git push
-    needs: release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Setup Crane
+        uses: imjasonh/setup-crane@31b88efe9de28ae0ffa220711af4b60be9435f6e # v0.4
+
+      - name: Get pushed chart digest
+        id: get-digest
+        run: |
+          digest=$(crane digest ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ steps.release-details.outputs.release_name }}:${{ steps.release-details.outputs.release_version }})
+          echo digest=$digest >> $GITHUB_OUTPUT
+
+      - name: Attest
+        uses: actions/attest-build-provenance@c074443f1aee8d4aeeae555aebba3282517141b2 # v2.2.3
         with:
-          ref: "gh-pages"
-          fetch-depth: 0
-
-      - name: Configure Git
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-
-      - name: Commit and push timestamp updates
-        run: |
-          if [[ -f index.yaml ]]; then
-            export generated_date=$(date --utc +%FT%T.%9NZ)
-            sed -i -e "s/^generated:.*/generated: \"$generated_date\"/" index.yaml
-            git add index.yaml
-            git commit -sm "Update generated timestamp [ci-skip]" || exit 0
-            git push
-          fi
-
-  # update-website:
-  #   permissions:
-  #     contents: write  # for Git to git push
-  #   needs: post-release
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
-  #       with:
-  #         ref: "gh-pages"
-  #         fetch-depth: 0
-
-  #     - name: Configure Git
-  #       run: |
-  #         git config user.name "$GITHUB_ACTOR"
-  #         git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-
-  #     - name: Use Node.js 14.x
-  #       uses: actions/setup-node@v3.8.1
-  #       with:
-  #         node-version: 14.x
-
-  #     - run: npx js-yaml index.yaml | npx hbs-cli .github/templates/index.hbs -i - -e md
-
-  #     - name: Commit and push website
-  #       run: |
-  #         git add index.md
-  #         git commit -sm "Update website [ci-skip]" || exit 0
-  #         git push
+          subject-name: ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ steps.release-details.outputs.release_name }}
+          subject-digest: ${{ steps.get-digest.outputs.digest }}
+          push-to-registry: true
