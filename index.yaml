@@ -2483,6 +2483,16 @@ entries:
   fake:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2025-04-10T21:04:58.653422994Z"
+    description: A Helm chart for Kubernetes
+    digest: 51247252488a2beee83083b489e0f7cf95667c355aa89d996b2ff85febc49d2f
+    name: fake
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/fake-0.8.0/fake-0.8.0.tgz
+    version: 0.8.0
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2025-04-10T20:49:14.043921771Z"
     description: A Helm chart for Kubernetes
     digest: 3bf3afa2af157c195e9072f8431df2dd52525b170019437888fb8dedc2784de3
@@ -14082,4 +14092,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2025-04-10T20:49:14.045115694Z"
+generated: "2025-04-10T21:04:58.653919969Z"
