@@ -48,7 +48,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
-    - uses: actions/setup-python@v5.5.0
+    - uses: actions/setup-python@v5.6.0
       with:
         python-version: ${{ github.event.inputs.python-version }}
 
