@@ -3945,6 +3945,52 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/kcc-factory-0.1.0/kcc-factory-0.1.0.tgz
     version: 0.1.0
+  kro-factory:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Initialization
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: AWS Controllers for Kubernetes
+          url: https://aws-controllers-k8s.github.io/community/
+        - name: GCP Config Connector
+          url: https://cloud.google.com/config-connector/docs/overview
+        - name: Azure Service Operator
+          url: https://azure.github.io/azure-service-operator/
+        - name: Portefaix
+          url: https://portefaix.xyz
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/recommendations: |
+        - url: https://aws-controllers-k8s.github.io/community/
+        - url: https://cloud.google.com/config-connector/docs/overview
+        - url: https://azure.github.io/azure-service-operator/
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2025-05-22T07:33:34.298938084Z"
+    description: A resources factory using Kro
+    digest: a54ff639cb9c522a3b18758a4ec279d137851b757179937624a0b0711c783611
+    home: https://github.com/portefaix/portefaix-hub/charts/kro-factory
+    keywords:
+    - krm
+    - kro
+    - ack
+    - kcc
+    - aso
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: kro-factory
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/kro-factory-0.1.0/kro-factory-0.1.0.tgz
+    version: 0.1.0
   kube-state-metrics-mixin:
   - annotations:
       artifacthub.io/changes: |
@@ -14134,4 +14180,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2025-05-22T06:23:46.05428724Z"
+generated: "2025-05-22T07:33:34.299523335Z"
