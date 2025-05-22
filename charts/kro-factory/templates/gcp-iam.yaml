@@ -1,0 +1,104 @@
+{{- if .Values.gcp.enabled }}
+---
+apiVersion: kro.run/v1alpha1
+kind: ResourceGraphDefinition
+metadata:
+  name: workloadidentity.gcp.kro.run
+  namespace: {{ template "kro-factory.namespace" . }}
+  labels:
+    {{- include "kro-factory.labels" . | nindent 4 }}
+    {{- include "kro.gcp.labels" . | nindent 4 }}
+    {{- with .Values.additionalAnnotations }}
+  annotations:
+  {{ toYaml . | indent 4 }}
+  {{- end }}
+spec:
+  schema:
+    apiVersion: v1alpha1
+    kind: WorkloadIdentity
+    spec:
+      name: string
+      namespace: string
+      metadata:
+        labels: 'map[string]string'
+        annotations: 'map[string]string'
+      project: string
+      serviceAccount: string
+    status:
+      podidentityassociation: ${podidentityassociation.metadata.name}
+
+  resources:
+
+  - id: project
+    externalRef:
+      apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+      kind: Project
+      metadata:
+        name: ${schema.spec.project}
+        namespace: ${schema.spec.namespace}
+
+  - id: serviceaccount
+    template:
+      apiVersion: iam.cnrm.cloud.google.com/v1beta1
+      kind: IAMServiceAccount
+      metadata:
+        name: ${schema.spec.serviceAccount}
+        namespace: ${schema.spec.namespace}
+        annotations: ${schema.spec.metadata.annotations}
+        labels: ${schema.spec.metadata.labels}
+      spec:
+        displayName: ${schema.spec.serviceAccount}
+
+  - id: objectuserbinding
+    template:
+      apiVersion: iam.cnrm.cloud.google.com/v1beta1
+      kind: IAMPolicyMember
+      metadata:
+        name: ${schema.spec.name}
+        namespace: ${schema.spec.namespace}
+        annotations: ${schema.spec.metadata.annotations}
+        labels: ${schema.spec.metadata.labels}
+      spec:
+        member: serviceAccount:${serviceaccount.status.email}
+        role: roles/storage.objectUser
+        resourceRef:
+          apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+          kind: Project
+          name: ${schema.spec.project}
+
+  - id: objectinsightsbinding
+    template:
+      apiVersion: iam.cnrm.cloud.google.com/v1beta1
+      kind: IAMPolicyMember
+      metadata:
+        name: ${schema.spec.name}
+        namespace: ${schema.spec.namespace}
+        annotations: ${schema.spec.metadata.annotations}
+        labels: ${schema.spec.metadata.labels}
+      spec:
+        member: serviceAccount:${serviceaccount.status.email}
+        role: roles/storage.insightsCollectorService
+        resourceRef:
+          apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+          kind: Project
+          name: ${schema.spec.project}
+
+  - id: workloadidentitybinding
+    template:
+      apiVersion: iam.cnrm.cloud.google.com/v1beta1
+      kind: IAMPartialPolicy
+      metadata:
+        name: ${schema.spec.name}
+        namespace: ${schema.spec.namespace}
+        annotations: ${schema.spec.metadata.annotations}
+        labels: ${schema.spec.metadata.labels}
+      spec:
+        resourceRef:
+          apiVersion: iam.cnrm.cloud.google.com/v1beta1
+          kind: IAMServiceAccount
+          name: ${schema.spec.serviceAccount}
+        bindings:
+          - role: roles/iam.workloadIdentityUser
+            members:
+              - member: serviceAccount:${project.spec.resourceID}.svc.id.goog[${schema.spec.namespace}/default]
+{{- end }}

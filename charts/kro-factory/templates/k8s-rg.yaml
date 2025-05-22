@@ -1,0 +1,137 @@
+---
+apiVersion: kro.run/v1alpha1
+kind: ResourceGraphDefinition
+metadata:
+  name: stack.k8s.kro.run
+  namespace: {{ template "kro-factory.namespace" . }}
+  labels:
+    {{- include "kro-factory.labels" . | nindent 4 }}
+    {{- include "kro.k8s.labels" . | nindent 4 }}
+    {{- with .Values.additionalAnnotations }}
+  annotations:
+  {{ toYaml . | indent 4 }}
+  {{- end }}
+spec:
+  schema:
+    apiVersion: v1alpha1
+    kind: Stack
+    spec:
+      name: string
+      namespace: string
+      metadata:
+        labels: 'map[string]string'
+        selectorLabels: 'map[string]string'
+        annotations: 'map[string]string'
+      workload:
+        replicas: integer | default=1
+        image: string
+        port: integer | default=8080
+        resources:
+          limits:
+            cpu: string | default=100m
+            memory: string | default=128Mi
+          requests:
+            cpu: string | default=100m
+            memory: string | default=128Mi
+      networking:
+        service:
+          enabled: boolean | default=true
+          annotations: 'map[string]string'
+          port: integer | default=8080
+        ingress:
+          enabled: boolean | default=false
+      rbac:
+        enabled: boolean | default=true
+        serviceAccount:
+          name: string | default=default
+          annotations: 'map[string]string'
+    status:
+      deploymentConditions: ${deployment.status.conditions}
+      availableReplicas: ${deployment.status.availableReplicas}
+      url: ${ingress.status.loadBalancer.ingress[0].hostname}
+
+  resources:
+
+  - id: deployment
+    readyWhen:
+      - ${deployment.spec.replicas == deployment.status.availableReplicas}
+    template:
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: ${schema.spec.name}
+        namespace: ${schema.spec.namespace}
+        annotations: ${schema.spec.metadata.annotations}
+        labels: ${schema.spec.metadata.labels}
+      spec:
+        replicas: ${schema.spec.workload.replicas}
+        selector:
+          matchLabels: ${schema.spec.metadata.selectorLabels}
+        template:
+          metadata:
+            labels: ${schema.spec.metadata.labels}
+          spec:
+            serviceAccountName: ${schema.spec.rbac.serviceAccount.name}
+            containers:
+            - name: portefaix-stack
+              image: ${schema.spec.workload.image}
+              imagePullPolicy: Always
+              ports:
+              - containerPort: ${schema.spec.workload.port}
+              resources: ${schema.spec.workload.resources}
+            restartPolicy: Always
+
+  - id: service
+    includeWhen:
+    - ${schema.spec.networking.service.enabled}
+    template:
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: ${deployment.metadata.name}
+        namespace: ${deployment.metadata.namespace}
+        annotations: ${schema.spec.metadata.annotations}
+        labels: ${schema.spec.metadata.labels}
+      spec:
+        selector:
+          matchLabels: ${schema.spec.metadata.selectorLabels}
+        ports:
+        - name: http
+          protocol: TCP
+          port: ${schema.spec.networking.service.port}
+          targetPort: ${schema.spec.workload.port}
+
+  - id: ingress
+    includeWhen:
+    - ${schema.spec.networking.ingress.enabled}
+    template:
+      apiVersion: networking.k8s.io/v1
+      kind: Ingress
+      metadata:
+        name: ${deployment.metadata.name}
+        namespace: ${deployment.metadata.namespace}
+        annotations: ${schema.spec.metadata.annotations}
+        labels: ${schema.spec.metadata.labels}
+      spec:
+        rules:
+        - http:
+            paths:
+            - path: "/"
+              pathType: Prefix
+              backend:
+                service:
+                  name: ${service.metadata.name}
+                  port:
+                    number: ${schema.spec.networking.service.port}
+
+  - id: serviceAccount
+    includeWhen:
+    - ${schema.spec.rbac.enabled}
+    template:
+      apiVersion: v1
+      kind: ServiceAccount
+      metadata:
+        name: ${schema.spec.name}
+        namespace: ${schema.spec.namespace}
+        annotations: ${schema.spec.metadata.annotations}
+        labels: ${schema.spec.metadata.labels}
