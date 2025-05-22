@@ -180,6 +180,11 @@ jobs:
             oci://public.ecr.aws/aws-controllers-k8s/s3-chart --version=${ACK_S3_VERSION}
           sleep 10
 
+          # KRO
+          helm upgrade --install kro oci://ghcr.io/kro-run/kro/kro \
+            --namespace kro \
+            --create-namespace
+
       - name: Run chart-testing (install)
         run: |
           ct install --config .github/ct.yaml
