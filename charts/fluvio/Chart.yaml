@@ -1,0 +1,43 @@
+---
+apiVersion: v2
+description: Fluvio
+name: fluvio
+version: 1.0.0
+# renovate: datasource=github-tags depName=infinyon/fluvio
+appVersion: 0.17.3
+home: https://github.com/infinyon/fluvio
+# icon:
+sources:
+- https://github.com/infinyon/fluvio
+- https://github.com/portefaix/portefaix-hub
+keywords:
+- event
+- streaming
+- processing
+
+dependencies:
+- name: crds
+  version: "0.0.0"
+
+maintainers:
+- name: nlamirault
+  email: nicolas.lamirault@gmail.com
+  url: https://github.com/nlamirault
+
+# https://artifacthub.io/docs/topics/repositories/
+annotations:
+  artifacthub.io/license: Apache-2.0
+  artifacthub.io/links: |
+    - name: Fluvio
+      url: https://github.com/infinyon/fluvio
+    - name: Portefaix Hub
+      url: https://github.com/portefaix/portefaix-hub
+  artifacthub.io/maintainers: |
+    - name: nlamirault
+      email: nicolas.lamirault@gmail.com
+  artifacthub.io/signKey: |
+    fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+    url: https://keybase.io/nlamirault/pgp_keys.asc
+  artifacthub.io/changes: |
+    - kind: added
+      description: initialization

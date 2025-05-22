@@ -1,0 +1,119 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    {{- include "fluvio.labels" . | nindent 4 }}
+    {{- include "fluvio.sc.labels" . | nindent 4 }}
+  name: fluvio-sc
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "fluvio.selectorLabels" . | nindent 6 }}
+      {{- include "fluvio.sc.labels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "fluvio.labels" . | nindent 8 }}
+        {{- include "fluvio.sc.labels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      {{- if .Values.nodeSelector }}
+      nodeSelector:
+      {{ toYaml .Values.nodeSelector | indent 8 }}
+      {{- end }}
+      {{- if .Values.affinity }}
+      affinity:
+      {{ toYaml .Values.affinity | indent 8 }}
+      {{- end }}
+      {{- if .Values.tolerations }}
+      tolerations:
+      {{ toYaml .Values.tolerations | indent 8 }}
+      {{- end }}
+      {{- with .Values.securityContext }}
+      securityContext:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: fluvio-sc
+          image: {{ .Values.image.registry }}/fluvio:{{ .Values.image.tag | default .Chart.AppVersion }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.resources }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- end }}
+          ports:
+            - containerPort: {{ .Values.fluvio.sc.port }}
+              name: api
+          env:
+            - name: RUST_LOG
+              value: {{ .Values.fluvio.sc.log }}
+            {{ if .Values.extraEnv }}
+            {{- toYaml .Values.extraEnv | nindent 12 }}
+            {{ end }}
+          command: ["/fluvio-run", "sc"]
+          args:
+            - --k8
+        {{ if .Values.tls }}
+            - --tls
+            - --enable-client-cert
+            - --ca-cert
+            - /var/certs/ca/ca.crt
+            - --server-cert
+            - /var/certs/tls/tls.crt
+            - --server-key
+            - /var/certs/tls/tls.key
+            - --secret-name
+            - {{ .Values.cert.tls }}
+            - --bind-non-tls-public
+            - 0.0.0.0:9005
+            {{ if .Values.authorizationConfigMap }}
+            - --authorization-policy
+            - /etc/fluvio/authorization/policy.json
+            - --authorization-scopes
+            - /etc/fluvio/authorization/scopes.json
+            {{ end }}
+          volumeMounts:
+            - name: cacert
+              mountPath: /var/certs/ca
+              readOnly: true
+            - name: tls
+              mountPath: /var/certs/tls
+            {{ if .Values.authorizationConfigMap }}
+            - name: authorization-config
+              mountPath: /etc/fluvio/authorization
+            {{ end }}
+            {{ if .Values.extraVolumeMounts }}
+            {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
+            {{ end }}
+        {{ else if .Values.extraVolumeMounts }}
+          volumeMounts:
+            {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
+        {{ end }}
+        {{ if .Values.extraContainers }}
+        {{- toYaml .Values.extraContainers | nindent 8 }}
+        {{ end }}
+      volumes:
+      {{ if .Values.tls }}
+        - name: cacert
+          secret:
+            secretName: {{ .Values.cert.caCert }}
+        - name: tls
+          secret:
+            secretName: {{ .Values.cert.tls }}
+        {{ if .Values.authorizationConfigMap }}
+        - name: authorization-config
+          configMap:
+            name: {{ .Values.authorizationConfigMap }}
+            items:
+            - key: POLICY
+              path: policy.json
+            - key: SCOPES
+              path: scopes.json
+        {{ end }}
+      {{ end }}
+        {{ if .Values.extraVolumes }}
+        {{- toYaml .Values.extraVolumes | nindent 8 }}
+        {{ end }}

@@ -1,0 +1,171 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: partitions.fluvio.infinyon.com
+spec:
+  group: fluvio.infinyon.com
+  scope: Namespaced
+  names:
+    kind: Partition
+    plural: partitions
+    singular: partition
+  versions:
+    - name: v1
+      served: true
+      storage:  true
+      schema:
+        openAPIV3Schema:
+          type: object
+          required: ["spec"]
+          properties:
+            spec:
+              type: object
+              required: ["leader"]
+              properties:
+                leader:
+                  type: integer
+                replicas:
+                  type: array
+                  items:
+                    type: integer
+                mirror:
+                  type: object
+                  oneOf:
+                    - required: ["home"]
+                    - required: ["remote"]
+                  properties:
+                    home:
+                      type: object
+                      required: ["remoteCluster","remoteReplica"]
+                      properties:
+                        remoteReplica:
+                          type: string
+                        remoteCluster:
+                          type: string
+                        source:
+                          type: boolean
+                    remote:
+                      type: object
+                      required: ["homeCluster","homeSpuKey","homeSpuEndpoint","homeSpu"]
+                      properties:
+                        homeCluster:
+                          type: string
+                        homeSpuKey:
+                          type: string
+                        homeSpuEndpoint:
+                          type: string
+                        homeSpuId:
+                          type: integer
+                          minimum: 0
+                        target:
+                          type: boolean
+                cleanupPolicy:
+                  type: object
+                  properties:
+                    segment:
+                      type: object
+                      properties:
+                        timeInSeconds:
+                          type: integer
+                          minimum: 10
+                storage:
+                  type: object
+                  properties:
+                    segmentSize:
+                      type: integer
+                      minimum: 1024
+                    maxPartitionSize:
+                      type: integer
+                      minimum: 2048
+                compressionType:
+                  type: string
+                  enum:
+                    - Any
+                    - Gzip
+                    - Snappy
+                    - Lz4
+                    - Zstd
+                deduplication:
+                  type: object
+                  nullable: true  
+                  properties:
+                    filter: 
+                      type: object
+                      nullable: false   
+                      properties:
+                        transform:
+                          type: object
+                          properties:
+                            uses:
+                              type: string
+                              nullable: false  
+                            with:
+                              type: object
+                              x-kubernetes-preserve-unknown-fields: true
+                    bounds: 
+                      type: object
+                      nullable: false   
+                      properties:
+                        count:
+                          type: integer
+                          minimum: 0
+                        age:
+                          type: string
+                          nullable: true
+                system:
+                  type: boolean
+            status:
+              type: object
+              x-kubernetes-preserve-unknown-fields: true
+      subresources:
+        status: {}
+      additionalPrinterColumns:
+      - name: Leader
+        type: integer
+        format: int32
+        description: Spu Id
+        jsonPath: .spec.leader
+      - name: Followers
+        type: string
+        description: Followers
+        jsonPath: .spec.replicas
+      - name: Status
+        type: string
+        description: Partition Status
+        jsonPath: .status.resolution
+      - name: Deleting
+        type: boolean
+        description: Being deleted
+        jsonPath: .status.isBeingDeleted
+      - name: LSR
+        type: integer
+        format: int32
+        description: Live Replicas
+        jsonPath: .status.lsr
+      - name: HW
+        type: integer
+        format: int64
+        description: Leader High Watermark
+        jsonPath: .status.leader.hw
+      - name: Base Offset
+        type: integer
+        format: int64
+        description: Base Offset
+        jsonPath: .status.baseOffset
+      - name: EOF
+        type: integer
+        format: int64
+        description: Leader End Offset
+        jsonPath: .status.leader.leo
+      - name: Follower Offsets
+        type: string
+        description: Follower Offsets
+        jsonPath: .status.replicas
+      - name: Size
+        type: string
+        description: Size
+        jsonPath: .status.size
+      - name: Deduplication Filter
+        type: string
+        description: Deduplication
+        jsonPath: .spec.deduplication.filter.transform.uses
