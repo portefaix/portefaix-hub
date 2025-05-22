@@ -2614,6 +2614,48 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/falco-talon-1.0.0/falco-talon-1.0.0.tgz
     version: 1.0.0
+  fluvio:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: initialization
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Fluvio
+          url: https://github.com/infinyon/fluvio
+        - name: Portefaix Hub
+          url: https://github.com/portefaix/portefaix-hub
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.17.3
+    created: "2025-05-22T06:23:46.053827238Z"
+    dependencies:
+    - name: crds
+      repository: ""
+      version: 0.0.0
+    description: Fluvio
+    digest: 755ceadf4cec1473b707c0def8f3d6d9ef39c823560c10a0d4b41318a63388ea
+    home: https://github.com/infinyon/fluvio
+    keywords:
+    - event
+    - streaming
+    - processing
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: fluvio
+    sources:
+    - https://github.com/infinyon/fluvio
+    - https://github.com/portefaix/portefaix-hub
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/fluvio-1.0.0/fluvio-1.0.0.tgz
+    version: 1.0.0
   fluxcd-mixin:
   - annotations:
       artifacthub.io/changes: |
@@ -14092,4 +14134,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2025-04-10T21:04:58.653919969Z"
+generated: "2025-05-22T06:23:46.05428724Z"
