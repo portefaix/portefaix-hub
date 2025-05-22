@@ -81,13 +81,6 @@ jobs:
           digest=$(crane digest ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ github.event.inputs.release_name }}:${{ github.event.inputs.release_version }})
           echo digest=$digest >> $GITHUB_OUTPUT
 
-      - name: Attest Build
-        uses: actions/attest-build-provenance@db473fddc028af60658334401dc6fa3ffd8669fd # v2.3.0
-        with:
-          subject-name: ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ github.event.inputs.release_name }}
-          subject-digest: ${{ steps.get-digest.outputs.digest }}
-          push-to-registry: true
-
       - name: Install cosign
         uses: sigstore/cosign-installer@v3.8.2
 
@@ -98,6 +91,13 @@ jobs:
           cosign verify "${artifact_digest_uri}" \
               --certificate-identity-regexp "https://github.com/${{ github.repository }}/*" \
               --certificate-oidc-issuer https://token.actions.githubusercontent.com
+
+      - name: Attest Build
+        uses: actions/attest-build-provenance@db473fddc028af60658334401dc6fa3ffd8669fd # v2.3.0
+        with:
+          subject-name: ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ github.event.inputs.release_name }}
+          subject-digest: ${{ steps.get-digest.outputs.digest }}
+          push-to-registry: true
 
       - name: Install sigstore Helm plugin
         run: |
