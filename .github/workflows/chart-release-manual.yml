@@ -81,20 +81,28 @@ jobs:
           digest=$(crane digest ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ github.event.inputs.release_name }}:${{ github.event.inputs.release_version }})
           echo digest=$digest >> $GITHUB_OUTPUT
 
-      # - name: Setup cosign
-      #   uses: sigstore/cosign-installer@dc72c7d5c4d10cd6bcb8cf6e3fd625a9e5e537da # v3
-
-      # - name: Use Cosign
-      #   run: |
-      #     artifact_digest_uri="${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ github.event.inputs.release_name }}@${{ steps.get-digest.outputs.digest }}"
-      #     cosign sign --yes "${artifact_digest_uri}"
-      #     cosign verify "${artifact_digest_uri}" \
-      #         --certificate-identity-regexp "https://github.com/${{ github.repository }}/*" \
-      #         --certificate-oidc-issuer https://token.actions.githubusercontent.com
-
       - name: Attest Build
-        uses: actions/attest-build-provenance@c074443f1aee8d4aeeae555aebba3282517141b2 # v2.2.3
+        uses: actions/attest-build-provenance@db473fddc028af60658334401dc6fa3ffd8669fd # v2.3.0
         with:
           subject-name: ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ github.event.inputs.release_name }}
           subject-digest: ${{ steps.get-digest.outputs.digest }}
           push-to-registry: true
+
+      - name: Install cosign
+        uses: sigstore/cosign-installer@v3.8.2
+
+      - name: Use Cosign
+        run: |
+          artifact_digest_uri="${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ github.event.inputs.release_name }}@${{ steps.get-digest.outputs.digest }}"
+          cosign sign --yes "${artifact_digest_uri}"
+          cosign verify "${artifact_digest_uri}" \
+              --certificate-identity-regexp "https://github.com/${{ github.repository }}/*" \
+              --certificate-oidc-issuer https://token.actions.githubusercontent.com
+
+      - name: Install sigstore Helm plugin
+        run: |
+          helm plugin install https://github.com/sigstore/helm-sigstore
+
+      - name: Upload Helm Charts to Rekor
+        run: |
+          helm sigstore upload ${{ github.event.inputs.release_name }}-${{ github.event.inputs.release_version }}.tgz
