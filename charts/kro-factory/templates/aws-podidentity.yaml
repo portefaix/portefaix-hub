@@ -1,0 +1,77 @@
+{{- if .Values.aws.enabled }}
+---
+apiVersion: kro.run/v1alpha1
+kind: ResourceGraphDefinition
+metadata:
+  name: podidentity.aws.kro.run
+  namespace: {{ template "kro-factory.namespace" . }}
+  labels:
+    {{- include "kro-factory.labels" . | nindent 4 }}
+    {{- include "kro.aws.labels" . | nindent 4 }}
+    {{- with .Values.additionalAnnotations }}
+  annotations:
+  {{ toYaml . | indent 4 }}
+  {{- end }}
+spec:
+  schema:
+    apiVersion: v1alpha1
+    kind: PodIdentity
+    spec:
+      name: string
+      namespace: string
+      metadata:
+        labels: 'map[string]string'
+        annotations: 'map[string]string'
+      serviceAccount: string
+      clusterName: string | default="kro"
+      policyARN: string | default=""
+    status:
+      podidentityassociation: ${podidentityassociation.metadata.name}
+
+  resources:
+
+  - id: role
+    template:
+      apiVersion: iam.services.k8s.aws/v1alpha1
+      kind: Role
+      metadata:
+        name: ${schema.spec.name}
+        namespace: ${schema.spec.namespace}
+        annotations: ${schema.spec.metadata.annotations}
+        labels: ${schema.spec.metadata.labels}
+      spec:
+        name: ${schema.spec.name}
+        policies:
+        - ${schema.spec.policyARN}
+        assumeRolePolicyDocument: |
+          {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Principal": {
+                  "Service": "pods.eks.amazonaws.com"
+                },
+                "Action": [
+                  "sts:AssumeRole",
+                  "sts:TagSession"
+                ]
+              }
+            ]
+          }
+
+  - id: podidentityassociation
+    template:
+      apiVersion: eks.services.k8s.aws/v1alpha1
+      kind: PodIdentityAssociation
+      metadata:
+        name: ${schema.spec.name}
+        namespace: ${schema.spec.namespace}
+        annotations: ${schema.spec.metadata.annotations}
+        labels: ${schema.spec.metadata.labels}
+      spec:
+        namespace: ${schema.metadata.namespace}
+        clusterName: ${schema.spec.clusterName}
+        serviceAccount: ${schema.spec..serviceAccount}
+        roleARN: ${role.status.ackResourceMetadata.arn}
+{{- end }}
