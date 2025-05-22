@@ -1,13 +1,17 @@
 ---
 apiVersion: v2
 name: kro-factory
-description: A stack using Kro
+description: A resources factory using Kro
 home: https://github.com/portefaix/portefaix-hub/charts/kro-factory
 type: application
 version: 0.1.0
 appVersion: 1.0.0
 keywords:
 - krm
+- kro
+- ack
+- kcc
+- aso
 maintainers:
 - name: nlamirault
   email: nicolas.lamirault@gmail.com
@@ -18,10 +22,16 @@ annotations:
   artifacthub.io/links: |
     - name: AWS Controllers for Kubernetes
       url: https://aws-controllers-k8s.github.io/community/
+    - name: GCP Config Connector
+      url: https://cloud.google.com/config-connector/docs/overview
+    - name: Azure Service Operator
+      url: https://azure.github.io/azure-service-operator/
     - name: Portefaix
       url: https://portefaix.xyz
   artifacthub.io/recommendations: |
     - url: https://aws-controllers-k8s.github.io/community/
+    - url: https://cloud.google.com/config-connector/docs/overview
+    - url: https://azure.github.io/azure-service-operator/
   artifacthub.io/maintainers: |
     - name: nlamirault
       email: nicolas.lamirault@gmail.com
