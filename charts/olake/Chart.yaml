@@ -1,0 +1,20 @@
+apiVersion: v2
+name: olake
+description: A Helm chart for OLake data synchronization
+type: application
+version: 0.1.0
+appVersion: "latest"
+keywords:
+  - olake
+  - data
+  - sync
+  - mongodb
+  - postgres
+  - mysql
+  - iceberg
+home: https://olake.io/
+sources:
+  - https://github.com/datazip-inc/olake-docs
+maintainers:
+  - name: DataZip Inc.
+    url: https://olake.io/

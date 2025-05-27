@@ -1,0 +1,115 @@
+---
+# Default values for olake Helm chart
+# This is a YAML-formatted file.
+namespace: olake
+
+# CronJob configuration
+cronJob:
+  name: olake-sync
+  schedule: "*/5 * * * *"  # Run every 5 minutes
+  suspend: true  # Set to false in production
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 5
+  backoffLimit: 5
+
+  # -- Affinity for pod assignment
+  # Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+  affinity: {}
+
+  # -- Tolerations for pod assignment
+  # Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+  tolerations: []
+
+  # -- Node labels for pod assignment
+  # Ref: https://kubernetes.io/docs/user-guide/node-selection/
+  nodeSelector: {}
+
+  securityContext: {}
+    # runAsUser: 65534
+    # fsGroup: 65534
+
+# Main container configuration
+container:
+  image:
+    repository: olakego/source-mongodb  # Change this based on your source DB
+    tag: latest
+    pullPolicy: Always
+
+  resources:
+    requests:
+      cpu: "20"
+      memory: "80Gi"
+    limits:
+      cpu: "30"
+      memory: "122Gi"
+
+# Init container for config setup
+initContainer:
+  image:
+    repository: busybox
+    tag: latest
+    pullPolicy: IfNotPresent
+
+# Persistent volume claim for config
+persistentVolumeClaim:
+  name: olake-config
+  storageClassName: standard  # Change based on your cluster
+  accessModes:
+  - ReadWriteMany
+  storage: 1Gi
+
+# Source database configuration
+source:
+  configMapName: olake-source
+  config:
+    hosts:
+      - host1:27017
+      - host2:27017
+      - host3:27017
+    username: "test"
+    password: "test"
+    authdb: "admin"
+    replicaSet: "rs0"
+    readPreference: "secondaryPreferred"
+    srv: true
+    serverRam: 16
+    database: "database"
+    maxThreads: 5
+    defaultMode: "cdc"
+    backoffRetryCount: 4
+    partitionStrategy: ""
+
+# Destination configuration
+destination:
+  # Set to false to use an existing secret instead of creating a new one
+  createSecret: true
+  # Name of the secret to use or create
+  secretName: olake-destination
+  config:
+    type: "ICEBERG"
+    writer:
+      catalog_type: "glue"
+      normalization: false
+      grpc_port: 50051
+      server_host: "localhost"
+  # These values should be provided externally, not stored in values.yaml
+  # For example, use --set-file or a separate secret values file that's gitignored
+  # Only used when createSecret is true
+  secrets:
+    iceberg_s3_path: ""
+    aws_region: ""
+    aws_access_key: ""
+    aws_secret_key: ""
+    iceberg_db: ""
+
+# Streams configuration
+streams:
+  configMapName: olake-streams
+  config:
+    selected_streams:
+      otter_db:
+        - partition_regex: "{now(),2025,YY}-{now(),06,MM}-{now(),13,DD}/{string_change_language,,}"
+          stream_name: "stream_0"
+        - partition_regex: "{,1999,YY}-{,09,MM}-{,31,DD}/{latest_revision,,}"
+          stream_name: "stream_8"

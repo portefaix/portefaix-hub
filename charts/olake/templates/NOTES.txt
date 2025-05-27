@@ -1,0 +1,31 @@
+Your OLake synchronization job has been deployed with the following configuration:
+
+  CronJob name: {{ .Values.cronJob.name }}
+  Namespace: {{ .Release.namespace }}
+  Schedule: {{ .Values.cronJob.schedule }}
+  Suspended: {{ .Values.cronJob.suspend }}
+
+IMPORTANT NOTES ABOUT SECRETS:
+
+  This chart uses a Kubernetes Secret for storing sensitive destination configuration.
+  The secret name is: {{ .Values.destination.secretName }}
+  
+  {{- if .Values.destination.createSecret }}
+  A new secret has been created. For security, you should NOT store these values in your values.yaml file.
+  Instead, use one of these approaches:
+
+  1. Set values on helm install/upgrade:
+     --set destination.secrets.aws_access_key=YOUR_ACCESS_KEY
+     --set destination.secrets.aws_secret_key=YOUR_SECRET_KEY
+     
+  2. Use a separate values file that is excluded from version control:
+     --values destination-secrets.yaml
+  {{- else }}
+  You're using an existing secret named: {{ .Values.destination.secretName }}
+  
+  If you need to switch to a chart-managed secret, set:
+     --set destination.createSecret=true
+  {{- end }}
+  
+  3. To use an existing secret instead of creating a new one:
+     --set destination.createSecret=false --set destination.secretName=my-existing-secret

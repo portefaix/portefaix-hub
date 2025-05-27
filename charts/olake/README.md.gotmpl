@@ -1,0 +1,89 @@
+<!--
+(NOTE: Do not edit README.md directly. It is a generated file!)
+(      To make changes, please modify README.md.gotmpl and run `helm-docs`)
+-->
+
+** WAITING FOR OFFICIEL CHART **
+
+This Helm chart deploys OLake data synchronization as a Kubernetes CronJob. OLake enables efficient data
+synchronization from various source databases (MongoDB, MySQL, PostgreSQL) to destination data warehouses.
+
+OLake is a data integration tool that helps automate recurring data synchronization operations using a pre-generated
+streams file. This chart sets up the necessary components for running OLake sync jobs on Kubernetes.
+
+{{ template "chart.header" . }}
+{{ template "chart.deprecationWarning" . }}
+
+{{ template "chart.badgesSection" . }}
+
+{{ template "chart.description" . }}
+
+{{ template "chart.homepageLine" . }}
+
+## Breaking change announcements
+
+### **v1.0.0**
+
+WIP
+
+## Usage
+
+### Setup Portefaix chart repository
+
+```shell
+helm repo add portefaix-hub https://charts.portefaix.xyz/
+helm repo update
+```
+
+Once the chart has been added, install one of the available charts:
+
+```shell
+helm upgrade -i <release_name> portefaix-hub/olake
+```
+
+### Installing from an OCI Registry
+
+Charts are also available in OCI format. The list of available charts can be found [here](https://github.com/orgs/portefaix/packages).
+
+Install one of the available charts:
+
+```shell
+$ helm upgrade -i oci://ghcr.io/portefaix/portefaix-hub/olake --version=<version>
+```
+
+### Install chart
+
+To install the chart with the release name `my-release`:
+
+```bash
+cat >> values.yaml << EOF
+additionalLabels:
+  app: olake
+
+EOF
+helm install olake --atomic --timeout 300s  portefaix-hub/{{ template "chart.name" . }} --values values.yaml
+```
+
+### Uninstalling the Chart
+
+To uninstall/delete the `olake` deployment:
+
+```bash
+helm uninstall olake -n olake
+```
+
+{{ template "chart.maintainersSection" . }}
+
+{{ template "chart.sourcesSection" . }}
+
+<!-- markdownlint-disable no-bare-urls -->
+{{ template "chart.requirementsSection" . }}
+<!-- markdownlint-enable no-bare-urls -->
+
+{{ template "chart.valuesSection" . }}
+
+## Additional Information
+
+For more information about OLake, please visit:
+- [OLake Website](https://olake.io/)
+- [OLake Documentation](https://olake.io/docs/)

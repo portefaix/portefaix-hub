@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.source.configMapName }}
+  namespace: {{ .Release.namespace }}
+  labels:
+    {{- include "olake.labels" . | nindent 4 }}
+    app.kubernetes.io/managed-by: configuration
+data:
+  source.json: |
+  {{ tpl (.Values.source.config | toJson) . }}
