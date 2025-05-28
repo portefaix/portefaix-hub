@@ -32,17 +32,17 @@ cronJob:
 # Main container configuration
 container:
   image:
-    repository: olakego/source-mongodb  # Change this based on your source DB
+    repository: olakego/source-mongodb  # Change this based on your source DB https://hub.docker.com/u/olakego
     tag: latest
     pullPolicy: Always
 
-  resources:
-    requests:
-      cpu: "20"
-      memory: "80Gi"
-    limits:
-      cpu: "30"
-      memory: "122Gi"
+  resources: {}
+    # requests:
+    #   cpu: "20"
+    #   memory: "80Gi"
+    # limits:
+    #   cpu: "30"
+    #   memory: "122Gi"
 
 # Init container for config setup
 initContainer:
