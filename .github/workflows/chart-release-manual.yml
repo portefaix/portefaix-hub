@@ -82,7 +82,7 @@ jobs:
           echo digest=$digest >> $GITHUB_OUTPUT
 
       - name: Install cosign
-        uses: sigstore/cosign-installer@v3.9.0
+        uses: sigstore/cosign-installer@v3.9.1
 
       - name: Use Cosign
         run: |
