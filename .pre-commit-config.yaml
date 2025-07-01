@@ -43,7 +43,7 @@ repos:
         - hack/config/LICENSE
         - --remove-header
 - repo: https://github.com/spinergie/pre-commit-dprint
-  rev: v0.50.0
+  rev: v0.50.1
   hooks:
   - id: dprint
     stages: [pre-commit]
