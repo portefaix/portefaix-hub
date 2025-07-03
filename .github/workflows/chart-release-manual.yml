@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      chart-digest: ${{ steps.get-digest.outputs.digest }}
+      digest: ${{ steps.get-digest.outputs.digest }}
       image: ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ github.event.inputs.release_name }}
 
     steps:
