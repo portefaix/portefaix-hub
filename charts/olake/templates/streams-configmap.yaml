@@ -6,7 +6,7 @@ metadata:
   namespace: {{ .Release.namespace }}
   labels:
     {{- include "olake.labels" . | nindent 4 }}
-    app.kubernetes.io/managed-by: configuration
+    {{- include "olake.cron.labels" . | nindent 4 }}
 data:
   streams.json: |
     {{ tpl (.Values.streams.config | toJson) . }}

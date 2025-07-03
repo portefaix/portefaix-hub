@@ -6,7 +6,7 @@ metadata:
   namespace: {{ .Release.namespace }}
   labels:
     {{- include "olake.labels" . | nindent 4 }}
-    app.kubernetes.io/managed-by: schedule
+    {{- include "olake.cron.labels" . | nindent 4 }}
 spec:
   schedule: {{ .Values.cronJob.schedule | quote }}
   suspend: {{ .Values.cronJob.suspend }}
@@ -19,7 +19,8 @@ spec:
       template:
         metadata:
           labels:
-            {{- include "olake.selectorLabels" . | nindent 12 }}
+            {{- include "olake.labels" . | nindent 12 }}
+            {{- include "olake.cron.labels" . | nindent 12 }}
         spec:
           {{- if .Values.cronJob.nodeSelector }}
           nodeSelector:
@@ -39,8 +40,8 @@ spec:
           {{- end }}
           containers:
             - name: olake
-              image: {{ .Values.container.image.repository }}:{{ .Values.container.image.tag }}
-              imagePullPolicy: {{ .Values.container.image.pullPolicy }}
+              image: {{ .Values.cronJob.container.image.repository }}:{{ .Values.cronJob.container.image.tag }}
+              imagePullPolicy: {{ .Values.cronJob.container.image.pullPolicy }}
               args:
                 - 'sync'
                 - '--config'
@@ -52,14 +53,14 @@ spec:
               volumeMounts:
                 - name: config-volume
                   mountPath: /mnt/config
-              {{- if .Values.container.resources }}
+              {{- if .Values.cronJob.container.resources }}
               resources:
-              {{- toYaml .Values.container.resources | nindent 16 }}
+              {{- toYaml .Values.cronJob.container.resources | nindent 16 }}
               {{- end }}
           initContainers:
             - name: init-config
-              image: {{ .Values.initContainer.image.repository }}:{{ .Values.initContainer.image.tag }}
-              imagePullPolicy: {{ .Values.initContainer.image.pullPolicy }}
+              image: {{ .Values.cronJob.initContainer.image.repository }}:{{ .Values.cronJob.initContainer.image.tag }}
+              imagePullPolicy: {{ .Values.cronJob.initContainer.image.pullPolicy }}
               command: ['sh', '-c']
               args:
                 - |
@@ -99,5 +100,5 @@ spec:
                     path: destination.json
             - name: config-volume
               persistentVolumeClaim:
-                claimName: {{ .Values.persistentVolumeClaim.name }}
+                claimName: {{ .Values.cronJob.persistentVolumeClaim.name }}
           restartPolicy: Never

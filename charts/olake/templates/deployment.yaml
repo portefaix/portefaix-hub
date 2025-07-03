@@ -1,0 +1,68 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.ui.name }}
+  namespace: {{ .Release.namespace }}
+  labels:
+    {{- include "olake.labels" . | nindent 4 }}
+    {{- include "olake.ui.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "olake.selectorLabels" . | nindent 6 }}
+      {{- include "olake.ui.labels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "olake.labels" . | nindent 8 }}
+        {{- include "olake.ui.labels" . | nindent 8 }}
+  spec:
+    serviceAccountName: {{ .Values.serviceAccount.name }}
+    {{- if .Values.ui.nodeSelector }}
+    nodeSelector:
+    {{ toYaml .Values.ui.nodeSelector | indent 8 }}
+    {{- end }}
+    {{- if .Values.ui.affinity }}
+    affinity:
+    {{ toYaml .Values.ui.affinity | indent 8 }}
+    {{- end }}
+    {{- if .Values.ui.tolerations }}
+    tolerations:
+    {{ toYaml .Values.ui.tolerations | indent 8 }}
+    {{- end }}
+    {{- if .Values.ui.securityContext }}
+    securityContext:
+    {{- toYaml .Values.ui.securityContext | nindent 8 }}
+    {{- end }}
+    containers:
+    - name: olake-ui
+      image: {{ .Values.ui.container.image.repository }}:{{ .Values.ui.container.image.tag }}
+      imagePullPolicy: {{ .Values.ui.container.image.pullPolicy }}
+      envFrom:
+      - secretRef:
+          name: {{ .Values.ui.secret.name }}
+      livenessProbe:
+        httpGet:
+          path: /live
+          port: {{ .Values.ui.ports.ui }}
+        failureThreshold: 1
+        initialDelaySeconds: 10
+        periodSeconds: 10
+      readinessProbe:
+        httpGet:
+          path: /ready
+          port: {{ .Values.ui.ports.ui }}
+        failureThreshold: 1
+        initialDelaySeconds: 10
+        periodSeconds: 10
+      ports:
+      - containerPort: {{ .Values.ui.ports.ui }}
+        name: ui
+      - containerPort: {{ .Values.ui.ports.backend }}
+        name: backend
+      {{- if .Values.ui.container.resources }}
+      resources:
+      {{- toYaml .Values.ui.container.resources | nindent 8 }}
+      {{- end }}

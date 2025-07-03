@@ -53,3 +53,18 @@ Selector labels
 app.kubernetes.io/name: {{ include "olake.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
+
+{{/*
+Cron labels
+*/}}
+{{- define "olake.cron.labels" -}}
+app.kubernetes.io/component: scheduling
+{{- end }}
+
+
+{{/*
+UI labels
+*/}}
+{{- define "olake.ui.labels" -}}
+app.kubernetes.io/workload: ui
+{{- end }}
