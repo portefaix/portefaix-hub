@@ -18,12 +18,12 @@ name: Charts / Release
 
 on:
   push:
-    # branches:
-    #   - master
-    # paths:
-    #   - "charts/**"
-    tags:
-      - '*-v*'
+    branches:
+      - master
+    paths:
+      - "charts/**"
+    # tags:
+    #   - '*-v*'
 
 permissions:
   contents: read
