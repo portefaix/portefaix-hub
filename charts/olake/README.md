@@ -92,10 +92,7 @@ helm uninstall olake -n olake
 | container.image.pullPolicy | string | `"Always"` |  |
 | container.image.repository | string | `"olakego/source-mongodb"` |  |
 | container.image.tag | string | `"latest"` |  |
-| container.resources.limits.cpu | string | `"30"` |  |
-| container.resources.limits.memory | string | `"122Gi"` |  |
-| container.resources.requests.cpu | string | `"20"` |  |
-| container.resources.requests.memory | string | `"80Gi"` |  |
+| container.resources | object | `{}` |  |
 | cronJob.affinity | object | `{}` | Affinity for pod assignment Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity |
 | cronJob.backoffLimit | int | `5` |  |
 | cronJob.concurrencyPolicy | string | `"Forbid"` |  |
@@ -127,6 +124,10 @@ helm uninstall olake -n olake
 | persistentVolumeClaim.name | string | `"olake-config"` |  |
 | persistentVolumeClaim.storage | string | `"1Gi"` |  |
 | persistentVolumeClaim.storageClassName | string | `"standard"` |  |
+| serviceAccount.annotations | object | `{}` |  |
+| serviceAccount.automountServiceAccountToken | bool | `false` |  |
+| serviceAccount.create | bool | `true` | Specifies whether a ServiceAccount should be created |
+| serviceAccount.name | string | `nil` |  |
 | source.config.authdb | string | `"admin"` |  |
 | source.config.backoffRetryCount | int | `4` |  |
 | source.config.database | string | `"database"` |  |

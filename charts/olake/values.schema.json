@@ -1,0 +1,268 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+        "container": {
+            "type": "object",
+            "properties": {
+                "image": {
+                    "type": "object",
+                    "properties": {
+                        "pullPolicy": {
+                            "type": "string"
+                        },
+                        "repository": {
+                            "type": "string"
+                        },
+                        "tag": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "resources": {
+                    "type": "object"
+                }
+            }
+        },
+        "cronJob": {
+            "type": "object",
+            "properties": {
+                "affinity": {
+                    "type": "object"
+                },
+                "backoffLimit": {
+                    "type": "integer"
+                },
+                "concurrencyPolicy": {
+                    "type": "string"
+                },
+                "failedJobsHistoryLimit": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "nodeSelector": {
+                    "type": "object"
+                },
+                "schedule": {
+                    "type": "string"
+                },
+                "securityContext": {
+                    "type": "object"
+                },
+                "successfulJobsHistoryLimit": {
+                    "type": "integer"
+                },
+                "suspend": {
+                    "type": "boolean"
+                },
+                "tolerations": {
+                    "type": "array"
+                }
+            }
+        },
+        "destination": {
+            "type": "object",
+            "properties": {
+                "config": {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        },
+                        "writer": {
+                            "type": "object",
+                            "properties": {
+                                "catalog_type": {
+                                    "type": "string"
+                                },
+                                "grpc_port": {
+                                    "type": "integer"
+                                },
+                                "normalization": {
+                                    "type": "boolean"
+                                },
+                                "server_host": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "createSecret": {
+                    "type": "boolean"
+                },
+                "secretName": {
+                    "type": "string"
+                },
+                "secrets": {
+                    "type": "object",
+                    "properties": {
+                        "aws_access_key": {
+                            "type": "string"
+                        },
+                        "aws_region": {
+                            "type": "string"
+                        },
+                        "aws_secret_key": {
+                            "type": "string"
+                        },
+                        "iceberg_db": {
+                            "type": "string"
+                        },
+                        "iceberg_s3_path": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "initContainer": {
+            "type": "object",
+            "properties": {
+                "image": {
+                    "type": "object",
+                    "properties": {
+                        "pullPolicy": {
+                            "type": "string"
+                        },
+                        "repository": {
+                            "type": "string"
+                        },
+                        "tag": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "namespace": {
+            "type": "string"
+        },
+        "persistentVolumeClaim": {
+            "type": "object",
+            "properties": {
+                "accessModes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "storage": {
+                    "type": "string"
+                },
+                "storageClassName": {
+                    "type": "string"
+                }
+            }
+        },
+        "serviceAccount": {
+            "type": "object",
+            "properties": {
+                "annotations": {
+                    "type": "object"
+                },
+                "automountServiceAccountToken": {
+                    "type": "boolean"
+                },
+                "create": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "null"
+                }
+            }
+        },
+        "source": {
+            "type": "object",
+            "properties": {
+                "config": {
+                    "type": "object",
+                    "properties": {
+                        "authdb": {
+                            "type": "string"
+                        },
+                        "backoffRetryCount": {
+                            "type": "integer"
+                        },
+                        "database": {
+                            "type": "string"
+                        },
+                        "defaultMode": {
+                            "type": "string"
+                        },
+                        "hosts": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "maxThreads": {
+                            "type": "integer"
+                        },
+                        "partitionStrategy": {
+                            "type": "string"
+                        },
+                        "password": {
+                            "type": "string"
+                        },
+                        "readPreference": {
+                            "type": "string"
+                        },
+                        "replicaSet": {
+                            "type": "string"
+                        },
+                        "serverRam": {
+                            "type": "integer"
+                        },
+                        "srv": {
+                            "type": "boolean"
+                        },
+                        "username": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "configMapName": {
+                    "type": "string"
+                }
+            }
+        },
+        "streams": {
+            "type": "object",
+            "properties": {
+                "config": {
+                    "type": "object",
+                    "properties": {
+                        "selected_streams": {
+                            "type": "object",
+                            "properties": {
+                                "otter_db": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "partition_regex": {
+                                                "type": "string"
+                                            },
+                                            "stream_name": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "configMapName": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
