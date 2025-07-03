@@ -41,7 +41,8 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      chart-digest: ${{ steps.get-digest.outputs.digest }}
+      digest: ${{ steps.get-digest.outputs.digest }}
+      image: ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ steps.release-details.outputs.release_name }}
 
     steps:
       - name: Checkout
@@ -88,7 +89,7 @@ jobs:
           echo digest=$digest >> $GITHUB_OUTPUT
 
       - name: Install cosign
-        uses: sigstore/cosign-installer@v3.9.1
+        uses: sigstore/cosign-installer@398d4b0eeef1380460a10c8013a76f728fb906ac # v3.9.1
 
       - name: Use Cosign
         run: |
@@ -121,8 +122,8 @@ jobs:
       actions: read     # To read the workflow path.
     uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v2.1.0
     with:
-      image: ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ steps.release-details.outputs.release_name }}:${{ steps.release-details.outputs.release_version }}
-      digest: "${{ needs.publish-oci.outputs.chart-digest }}"
+      digest: "${{ needs.publish-oci.outputs.digest }}"
+      image: "${{ needs.publish-oci.outputs.image }}"
       registry-username: ${{ github.actor }}
     secrets:
       registry-password: ${{ secrets.GITHUB_TOKEN }}
