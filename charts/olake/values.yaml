@@ -103,15 +103,15 @@ destination:
       normalization: false
       grpc_port: 50051
       server_host: "localhost"
-  # These values should be provided externally, not stored in values.yaml
-  # For example, use --set-file or a separate secret values file that's gitignored
-  # Only used when createSecret is true
-  secrets:
-    iceberg_s3_path: ""
-    aws_region: ""
-    aws_access_key: ""
-    aws_secret_key: ""
-    iceberg_db: ""
+    # These values should be provided externally, not stored in values.yaml
+    # For example, use --set-file or a separate secret values file that's gitignored
+    # Only used when createSecret is true
+    secrets:
+      iceberg_s3_path: ""
+      aws_region: ""
+      aws_access_key: ""
+      aws_secret_key: ""
+      iceberg_db: ""
 
 # Streams configuration
 streams:
