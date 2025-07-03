@@ -86,7 +86,8 @@ jobs:
         id: get-digest
         run: |
           digest=$(crane digest ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ steps.release-details.outputs.release_name }}:${{ steps.release-details.outputs.release_version }})
-          echo digest=$digest >> $GITHUB_OUTPUT
+          echo digest=$digest >> "$GITHUB_OUTPUT"
+          echo $digest
 
       - name: Install cosign
         uses: sigstore/cosign-installer@398d4b0eeef1380460a10c8013a76f728fb906ac # v3.9.1
@@ -117,6 +118,7 @@ jobs:
   helm-provenance:
     needs:
       - publish-oci
+      - helm-provenance
     permissions:
       actions: read     # To read the workflow path.
       id-token: write   # To sign the provenance.
