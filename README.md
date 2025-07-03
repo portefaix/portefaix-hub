@@ -31,7 +31,7 @@ All _artifacts_ provided by this repository meet [SLSA L3](https://slsa.dev/spec
 Using the [Github CLI]():
 
 ```shell
-$  gh attestation verify oci://ghcr.io/portefaix/charts/fake:0.9.2 --repo portefaix/portefaix-hub
+$ gh attestation verify oci://ghcr.io/portefaix/charts/fake:0.9.2 --repo portefaix/portefaix-hub
 Loaded digest sha256:050ae335cba168d6bdd7ebca33c1fb6be6ae34c1af083dd30eab03af5ce58a6e for oci://ghcr.io/portefaix/charts/fake:0.9.2
 Loaded 1 attestation from GitHub API
 ✓ Verification succeeded!
@@ -44,7 +44,7 @@ portefaix/portefaix-hub  https://slsa.dev/provenance/v1  .github/workflows/chart
 Using [Cosign]():
 
 ```shell
-cosign verify-attestation \
+$ cosign verify-attestation \
               --type slsaprovenance \
               --certificate-oidc-issuer https://token.actions.githubusercontent.com \
               --certificate-identity-regexp '^https://github.com/slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v[0-9]+.[0-9]+.[0-9]+$' \
