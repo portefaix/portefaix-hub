@@ -115,9 +115,9 @@ jobs:
     needs:
       - publish-oci
     permissions:
-      actions: read # To read the workflow path.
-      id-token: write # To sign the provenance.
-      contents: write # To add assets to a release.
+      actions: read     # To read the workflow path.
+      id-token: write   # To sign the provenance.
+      packages: write   # To upload assets to release.
     uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v2.1.0
     with:
       digest: "${{ needs.publish-oci.outputs.digest }}"
