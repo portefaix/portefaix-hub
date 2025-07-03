@@ -33,7 +33,7 @@ env:
   REGISTRY: "ghcr.io"
 
 jobs:
-  release:
+  publish-oci:
     permissions:
       attestations: write # need for Artifact Attestations
       contents: write     # to push chart release and create a release (helm/chart-releaser-action)
