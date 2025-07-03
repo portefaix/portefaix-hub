@@ -29,6 +29,9 @@ on:
 permissions:
   contents: read
 
+env:
+  REGISTRY: ghcr.io
+
 jobs:
   release:
     permissions:
@@ -37,8 +40,6 @@ jobs:
       id-token: write     # needed for keyless signing
       packages: write     # needed for ghcr access
 
-    env:
-      REGISTRY: ghcr.io
 
     runs-on: ubuntu-latest
 

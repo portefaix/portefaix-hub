@@ -28,15 +28,15 @@ on:
 permissions:
   contents: read
 
+env:
+  REGISTRY: ghcr.io
+
 jobs:
   publish-oci:
     permissions:
       contents: write # to push chart release and create a release (helm/chart-releaser-action)
       packages: write # needed for ghcr access
       id-token: write # needed for keyless signing
-
-    env:
-      REGISTRY: ghcr.io
 
     runs-on: ubuntu-latest
 
