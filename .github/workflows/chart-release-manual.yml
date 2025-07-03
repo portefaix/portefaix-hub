@@ -120,8 +120,9 @@ jobs:
       contents: write # To add assets to a release.
     uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v2.1.0
     with:
-      image: ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ steps.release-details.outputs.release_name }}:${{ steps.release-details.outputs.release_version }}
-      digest: ${{ needs.publish-oci.outputs.digest }}
+      digest: "${{ needs.publish-oci.outputs.digest }}"
+      image: "${{ needs.publish-oci.outputs.image }}"
+      registry-username: ${{ github.actor }}
     secrets:
       registry-password: ${{ secrets.GITHUB_TOKEN }}
 
@@ -143,7 +144,7 @@ jobs:
 
       - name: Verify image
         env:
-          IMAGE: ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ steps.release-details.outputs.release_name }}:${{ steps.release-details.outputs.release_version }}
+          IMAGE: "${{ needs.publish-oci.outputs.image }}"
           DIGEST: ${{ needs.publish-oci.outputs.digest }}
         run: |
           cosign verify-attestation \
