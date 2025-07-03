@@ -1,8 +1,10 @@
 # Portefaix Hub
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![](https://github.com/portefaix-hub/charts/workflows/Release%20Charts/badge.svg?branch=master)](https://github.com/portefaix-hub/charts/actions)
 [![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/portefaix-hub)](https://artifacthub.io/packages/search?repo=portefaix-hub)
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/10860/badge)](https://www.bestpractices.dev/en/projects/10860)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/portefaix/portefaix-hub/badge)](https://securityscorecards.dev/viewer/?uri=github.com/portefaix/portefaix-hub)
+[![SLSA 3](https://slsa.dev/images/gh-badge-level3.svg)](https://slsa.dev)
 
 Charts are available in the following formats:
 
