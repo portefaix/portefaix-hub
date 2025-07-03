@@ -26,9 +26,7 @@ See [Artifact Hub](https://artifacthub.io/packages/search?repo=portefaix-hub) fo
 
 All _artifacts_ provided by this repository meet [SLSA L3](https://slsa.dev/spec/v1.0/levels#build-l3)
 
-### Verify SLSA provenance
-
-Using the [Github CLI]():
+### Verify SLSA provenance using the Github CLI
 
 ```shell
 $ gh attestation verify oci://ghcr.io/portefaix/charts/fake:0.9.2 --repo portefaix/portefaix-hub
@@ -41,7 +39,7 @@ REPO                     PREDICATE_TYPE                  WORKFLOW
 portefaix/portefaix-hub  https://slsa.dev/provenance/v1  .github/workflows/chart-release-manual.yml@refs/heads/master
 ```
 
-Using [Cosign]():
+### Verify SLSA provenance using Cosign
 
 ```shell
 $ cosign verify-attestation \
