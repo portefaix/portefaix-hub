@@ -45,10 +45,10 @@ portefaix/portefaix-hub  https://slsa.dev/provenance/v1  .github/workflows/chart
 
 ```shell
 $ cosign verify-attestation \
-              --type slsaprovenance \
-              --certificate-oidc-issuer https://token.actions.githubusercontent.com \
-              --certificate-identity-regexp '^https://github.com/slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v[0-9]+.[0-9]+.[0-9]+$' \
-              ghcr.io/portefaix/charts/fake:0.9.2@sha256:050ae335cba168d6bdd7ebca33c1fb6be6ae34c1af083dd30eab03af5ce58a6e
+  --type slsaprovenance \
+  --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+  --certificate-identity-regexp '^https://github.com/slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v[0-9]+.[0-9]+.[0-9]+$' \
+  ghcr.io/portefaix/charts/fake:0.9.2@sha256:050ae335cba168d6bdd7ebca33c1fb6be6ae34c1af083dd30eab03af5ce58a6e
 
 Verification for ghcr.io/portefaix/charts/fake:0.9.2@sha256:050ae335cba168d6bdd7ebca33c1fb6be6ae34c1af083dd30eab03af5ce58a6e --
 The following checks were performed on each of these signatures:
