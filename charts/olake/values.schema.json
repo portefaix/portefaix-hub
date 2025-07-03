@@ -68,6 +68,26 @@
                 "config": {
                     "type": "object",
                     "properties": {
+                        "secrets": {
+                            "type": "object",
+                            "properties": {
+                                "aws_access_key": {
+                                    "type": "string"
+                                },
+                                "aws_region": {
+                                    "type": "string"
+                                },
+                                "aws_secret_key": {
+                                    "type": "string"
+                                },
+                                "iceberg_db": {
+                                    "type": "string"
+                                },
+                                "iceberg_s3_path": {
+                                    "type": "string"
+                                }
+                            }
+                        },
                         "type": {
                             "type": "string"
                         },
@@ -90,28 +110,13 @@
                         }
                     }
                 },
-                "createSecret": {
-                    "type": "boolean"
-                },
-                "secretName": {
-                    "type": "string"
-                },
-                "secrets": {
+                "secret": {
                     "type": "object",
                     "properties": {
-                        "aws_access_key": {
-                            "type": "string"
+                        "create": {
+                            "type": "boolean"
                         },
-                        "aws_region": {
-                            "type": "string"
-                        },
-                        "aws_secret_key": {
-                            "type": "string"
-                        },
-                        "iceberg_db": {
-                            "type": "string"
-                        },
-                        "iceberg_s3_path": {
+                        "name": {
                             "type": "string"
                         }
                     }
@@ -227,8 +232,16 @@
                         }
                     }
                 },
-                "configMapName": {
-                    "type": "string"
+                "secret": {
+                    "type": "object",
+                    "properties": {
+                        "create": {
+                            "type": "boolean"
+                        },
+                        "name": {
+                            "type": "string"
+                        }
+                    }
                 }
             }
         },

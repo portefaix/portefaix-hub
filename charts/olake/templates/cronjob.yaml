@@ -52,13 +52,10 @@ spec:
               volumeMounts:
                 - name: config-volume
                   mountPath: /mnt/config
+              {{- if .Values.container.resources }}
               resources:
-                requests:
-                  cpu: {{ .Values.container.resources.requests.cpu | quote }}
-                  memory: {{ .Values.container.resources.requests.memory | quote }}
-                limits:
-                  cpu: {{ .Values.container.resources.limits.cpu | quote }}
-                  memory: {{ .Values.container.resources.limits.memory | quote }}
+              {{- toYaml .Values.container.resources | nindent 16 }}
+              {{- end }}
           initContainers:
             - name: init-config
               image: {{ .Values.initContainer.image.repository }}:{{ .Values.initContainer.image.tag }}
@@ -83,8 +80,8 @@ spec:
                   mountPath: /mnt/shared
           volumes:
             - name: source-config-volume
-              configMap:
-                name: {{ .Values.source.configMapName }}
+              secret:
+                secretName: {{ .Values.source.secret.name }}
                 items:
                   - key: source.json
                     path: source.json
@@ -96,7 +93,7 @@ spec:
                     path: streams.json
             - name: destination-config-volume
               secret:
-                secretName: {{ .Values.destination.secretName }}
+                secretName: {{ .Values.destination.secret.name }}
                 items:
                   - key: destination.json
                     path: destination.json

@@ -104,18 +104,18 @@ helm uninstall olake -n olake
 | cronJob.successfulJobsHistoryLimit | int | `3` |  |
 | cronJob.suspend | bool | `true` |  |
 | cronJob.tolerations | list | `[]` | Tolerations for pod assignment Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ |
+| destination.config.secrets.aws_access_key | string | `""` |  |
+| destination.config.secrets.aws_region | string | `""` |  |
+| destination.config.secrets.aws_secret_key | string | `""` |  |
+| destination.config.secrets.iceberg_db | string | `""` |  |
+| destination.config.secrets.iceberg_s3_path | string | `""` |  |
 | destination.config.type | string | `"ICEBERG"` |  |
 | destination.config.writer.catalog_type | string | `"glue"` |  |
 | destination.config.writer.grpc_port | int | `50051` |  |
 | destination.config.writer.normalization | bool | `false` |  |
 | destination.config.writer.server_host | string | `"localhost"` |  |
-| destination.createSecret | bool | `true` |  |
-| destination.secretName | string | `"olake-destination"` |  |
-| destination.secrets.aws_access_key | string | `""` |  |
-| destination.secrets.aws_region | string | `""` |  |
-| destination.secrets.aws_secret_key | string | `""` |  |
-| destination.secrets.iceberg_db | string | `""` |  |
-| destination.secrets.iceberg_s3_path | string | `""` |  |
+| destination.secret.create | bool | `true` |  |
+| destination.secret.name | string | `"olake-destination"` |  |
 | initContainer.image.pullPolicy | string | `"IfNotPresent"` |  |
 | initContainer.image.repository | string | `"busybox"` |  |
 | initContainer.image.tag | string | `"latest"` |  |
@@ -143,7 +143,8 @@ helm uninstall olake -n olake
 | source.config.serverRam | int | `16` |  |
 | source.config.srv | bool | `true` |  |
 | source.config.username | string | `"test"` |  |
-| source.configMapName | string | `"olake-source"` |  |
+| source.secret.create | bool | `true` |  |
+| source.secret.name | string | `"olake-source"` |  |
 | streams.config.selected_streams.otter_db[0].partition_regex | string | `"{now(),2025,YY}-{now(),06,MM}-{now(),13,DD}/{string_change_language,,}"` |  |
 | streams.config.selected_streams.otter_db[0].stream_name | string | `"stream_0"` |  |
 | streams.config.selected_streams.otter_db[1].partition_regex | string | `"{,1999,YY}-{,09,MM}-{,31,DD}/{latest_revision,,}"` |  |

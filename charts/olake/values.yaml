@@ -46,13 +46,13 @@ container:
     tag: latest
     pullPolicy: Always
 
-  resources: {}
-    # requests:
-    #   cpu: "20"
-    #   memory: "80Gi"
-    # limits:
-    #   cpu: "30"
-    #   memory: "122Gi"
+  resources: #{}
+    requests:
+      cpu: "20"
+      memory: "80Gi"
+    limits:
+      cpu: "30"
+      memory: "122Gi"
 
 # Init container for config setup
 initContainer:
@@ -71,7 +71,10 @@ persistentVolumeClaim:
 
 # Source database configuration
 source:
-  configMapName: olake-source
+  secret:
+    # Set to false to use an existing secret instead of creating a new one
+    create: true
+    name: olake-source
   config:
     hosts:
       - host1:27017
@@ -92,10 +95,11 @@ source:
 
 # Destination configuration
 destination:
-  # Set to false to use an existing secret instead of creating a new one
-  createSecret: true
-  # Name of the secret to use or create
-  secretName: olake-destination
+  secret:
+    # Set to false to use an existing secret instead of creating a new one
+    create: true
+    # Name of the secret to use or create
+    name: olake-destination
   config:
     type: "ICEBERG"
     writer:
