@@ -34,9 +34,11 @@ env:
 jobs:
   publish-oci:
     permissions:
-      contents: write # to push chart release and create a release (helm/chart-releaser-action)
-      packages: write # needed for ghcr access
-      id-token: write # needed for keyless signing
+      attestations: write # need for Artifact Attestations
+      contents: write     # to push chart release and create a release (helm/chart-releaser-action)
+      id-token: write     # needed for keyless signing
+      packages: write     # needed for ghcr access
+
 
     runs-on: ubuntu-latest
 
@@ -80,7 +82,8 @@ jobs:
         run: |
           helm push ${{ github.ref_name }}.tgz "oci://${{ env.REGISTRY }}/${{ github.repository }}${{ github.repository_owner }}/charts"
 
-      - uses: imjasonh/setup-crane@31b88efe9de28ae0ffa220711af4b60be9435f6e # v0.4
+      - name: Setup Crane
+        uses: imjasonh/setup-crane@31b88efe9de28ae0ffa220711af4b60be9435f6e # v0.4
 
       - name: Get pushed chart digest
         id: get-digest
@@ -94,7 +97,7 @@ jobs:
 
       - name: Use Cosign
         run: |
-          artifact_digest_uri="${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ github.event.inputs.release_name }}@${{ steps.get-digest.outputs.digest }}"
+          artifact_digest_uri="${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ steps.release-details.outputs.release_name }}@${{ steps.get-digest.outputs.digest }}"
           cosign sign --yes "${artifact_digest_uri}"
           cosign verify "${artifact_digest_uri}" \
               --certificate-identity-regexp "https://github.com/${{ github.repository }}/*" \
@@ -113,12 +116,11 @@ jobs:
 
       # - name: Upload Helm Charts to Rekor
       #   run: |
-      #     helm sigstore upload ${{ github.event.inputs.release_name }}-${{ github.event.inputs.release_version }}.tgz
+      #     helm sigstore upload ${{ steps.release-details.outputs.release_name }}-${{ steps.release-details.outputs.release_version }}.tgz
 
   helm-provenance:
     needs:
       - publish-oci
-      - helm-provenance
     permissions:
       actions: read     # To read the workflow path.
       id-token: write   # To sign the provenance.
@@ -130,3 +132,31 @@ jobs:
       registry-username: ${{ github.actor }}
     secrets:
       registry-password: ${{ secrets.GITHUB_TOKEN }}
+
+  verification-with-cosign:
+    needs:
+      - publish-oci
+      - helm-provenance
+    runs-on: ubuntu-latest
+    permissions: read-all
+    steps:
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@398d4b0eeef1380460a10c8013a76f728fb906ac # v3.9.1
+
+      - name: Verify image
+        env:
+          IMAGE: "${{ needs.publish-oci.outputs.image }}"
+          DIGEST: ${{ needs.publish-oci.outputs.digest }}
+        run: |
+          cosign verify-attestation \
+              --type slsaprovenance \
+              --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+              --certificate-identity-regexp '^https://github.com/slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v[0-9]+.[0-9]+.[0-9]+$' \
+              $IMAGE@$DIGEST
