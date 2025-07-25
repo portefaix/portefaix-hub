@@ -1,0 +1,14 @@
+Your OLake synchronization job has been deployed with the following configuration:
+
+  CronJob name: {{ .Values.cronJob.name }}
+  Namespace: {{ .Release.namespace }}
+  Schedule: {{ .Values.cronJob.schedule }}
+  Suspended: {{ .Values.cronJob.suspend }}
+
+IMPORTANT NOTES ABOUT SECRETS:
+
+  This chart uses a Kubernetes Secret for storing sensitive destination and source configuration.
+  The secret name are:
+
+  destination: {{ .Values.destination.secret.name }}
+  source: {{ .Values.source.secret.name }}
