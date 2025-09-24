@@ -1,54 +1,33 @@
 {
   extends: [
-    "config:base",
-    ":enablePreCommit",
-    ":gitSignOff",
-    "github>portefaix/.github//.github/renovate/autoMerge.json5",
-    "github>portefaix/.github//.github/renovate/commitMessage.json5",
-    "github>portefaix/.github//.github/renovate/labels.json5",
+    'config:recommended',
+    ':enablePreCommit',
+    ':gitSignOff',
+    'github>portefaix/.github//.github/renovate/autoMerge.json5',
+    'github>portefaix/.github//.github/renovate/commitMessage.json5',
+    'github>portefaix/.github//.github/renovate/labels.json5',
   ],
   enabled: true,
-  timezone: "Europe/Paris",
+  timezone: 'Europe/Paris',
   dependencyDashboard: true,
-  dependencyDashboardTitle: "Renovate Dashboard",
-  // "gitAuthor": "Nicolas Lamirault <nlamirault@users.noreply.github.com>",
-  // "commitBody": "Signed-off-by: Nicolas Lamirault <nlamirault@users.noreply.github.com>",
-  // Do not notify on closed unmerged PRs
-  suppressNotifications: ["prIgnoreNotification"],
-  // Do not rebase PRs
-  rebaseWhen: "conflicted",
-  assignees: ["@nlamirault"],
-  reviewersFromCodeOwners: true,
-  // "labels": ["kind/renovate", "lifecycle/active", "status/review_needed"],
-  regexManagers: [
-    {
-      fileMatch: [".py$"],
-      matchStrings: [
-        "datasource=(?<datasource>.*)\\sdepName=(?<depName>.*)\\n.*version:\\s(?<currentValue>.*)",
-      ],
-    },
-    {
-      fileMatch: [".yml$"],
-      matchStrings: [
-        "datasource=(?<datasource>.*)\\sdepName=(?<depName>.*)\\n.*_VERSION\\s=\\s(?<currentValue>.*)",
-      ],
-      datasourceTemplate: "github-tags",
-    },
-    {
-      fileMatch: [".yaml$"],
-      matchStrings: [
-        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\sappVersion=(?<currentValue>.*)",
-      ],
-      datasourceTemplate: "github-tags",
-    },
+  dependencyDashboardTitle: 'Renovate Dashboard',
+  suppressNotifications: [
+    'prIgnoreNotification',
   ],
+  rebaseWhen: 'conflicted',
+  assignees: [
+    '@nlamirault',
+  ],
+  reviewersFromCodeOwners: true,
   customManagers: [
     {
-      customType: "regex",
-      description: "Update Chart.yaml appVersion",
-      managerFilePatterns: ["Chart.yaml"],
+      customType: 'regex',
+      description: 'Update Chart.yaml appVersion',
+      managerFilePatterns: [
+        'Chart.yaml',
+      ],
       matchStrings: [
-        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\sappVersion=(?<currentValue>.*)",
+        '# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\sappVersion=(?<currentValue>.*)',
       ],
     },
   ],
