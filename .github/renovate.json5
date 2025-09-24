@@ -1,33 +1,27 @@
 {
   extends: [
-    'config:recommended',
-    ':enablePreCommit',
-    ':gitSignOff',
-    'github>portefaix/.github//.github/renovate/autoMerge.json5',
-    'github>portefaix/.github//.github/renovate/commitMessage.json5',
-    'github>portefaix/.github//.github/renovate/labels.json5',
+    "config:recommended",
+    ":enablePreCommit",
+    ":gitSignOff",
+    "github>portefaix/.github//.github/renovate/autoMerge.json5",
+    "github>portefaix/.github//.github/renovate/commitMessage.json5",
+    "github>portefaix/.github//.github/renovate/labels.json5",
   ],
   enabled: true,
-  timezone: 'Europe/Paris',
+  timezone: "Europe/Paris",
   dependencyDashboard: true,
-  dependencyDashboardTitle: 'Renovate Dashboard',
-  suppressNotifications: [
-    'prIgnoreNotification',
-  ],
-  rebaseWhen: 'conflicted',
-  assignees: [
-    '@nlamirault',
-  ],
+  dependencyDashboardTitle: "Renovate Dashboard",
+  suppressNotifications: ["prIgnoreNotification"],
+  rebaseWhen: "conflicted",
+  assignees: ["@nlamirault"],
   reviewersFromCodeOwners: true,
   customManagers: [
     {
-      customType: 'regex',
-      description: 'Update Chart.yaml appVersion',
-      managerFilePatterns: [
-        'Chart.yaml',
-      ],
+      customType: "regex",
+      description: "Update Chart.yaml appVersion",
+      managerFilePatterns: ["charts/**/Chart.yaml"],
       matchStrings: [
-        '# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\sappVersion=(?<currentValue>.*)',
+        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\sappVersion=(?<currentValue>.*)",
       ],
     },
   ],
