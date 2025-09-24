@@ -18,12 +18,12 @@ name: Charts / Release
 
 on:
   push:
-    branches:
-      - master
-    paths:
-      - "charts/**"
-    # tags:
-    #   - '*-v*'
+    # branches:
+    #   - master
+    # paths:
+    #   - "charts/**"
+    tags:
+      - '*-v*'
 
 permissions:
   contents: read
@@ -57,10 +57,12 @@ jobs:
           # so we need to extract the chart name
           release_name=$(echo -n ${{ github.ref_name }} | awk -F'-v' '{print $1}')
           echo release_name=$release_name >> $GITHUB_OUTPUT
+          echo $release_name
 
           # extract the version from the tag name
           version=$(echo -n ${{ github.ref_name }} | sed "s/^$release_name-//")
           echo release_version=$version >> $GITHUB_OUTPUT
+          echo $release_version
 
       - name: Add dependency chart repos
         run: |
@@ -69,7 +71,8 @@ jobs:
           helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 
       - name: Package Helm chart
-        run: helm package charts/${{ steps.release-details.outputs.release_name }}
+        run: |
+          helm package charts/${{ steps.release-details.outputs.release_name }}
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@184bdaa0721073962dff0199f1fb9940f07167d1 # v3.5.0
