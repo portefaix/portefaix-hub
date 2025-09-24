@@ -15,9 +15,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-#  yaml-language-server:https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/ec2.services.k8s.aws/securitygroup_v1alpha1.json
-apiVersion: ec2.services.k8s.aws/v1alpha1
-kind: SecurityGroup
+#  yaml-language-server:https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/eks.services.k8s.aws/cluster_v1alpha1.json
+apiVersion: eks.services.k8s.aws/v1alpha1
+kind: Cluster
 metadata:
   {{- with .Values.additionalAnnotations }}
   annotations:
@@ -25,14 +25,21 @@ metadata:
   {{- end }}
   labels:
     {{- include "ack-factory.labels" . | nindent 4 }}
-    app.kubernetes.io/component: ec2
-  name: {{ include "ack-factory.name" . }}-core
+    app.kubernetes.io/component: eks
+  name: {{ include "ack-factory.name" . }}-eks-cluster
   namespace: {{ template "ack-factory.namespace" . }}
 spec:
-  description: Portefaix Core
-  name: {{ include "ack-factory.name" . }}-core
-  vpcRef:
+  name: {{ include "ack-factory.name" . }}-eks-cluster
+  roleRef:
     from:
-      name: {{ include "ack-factory.name" . }}
-  tags:
-  {{- toYaml .Values.ack.tags | nindent 4 }}
+      name: {{ include "ack-factory.name" . }}-eks-cluster
+  resourcesVPCConfig:
+    endpointPrivateAccess: true
+    endpointPublicAccess: false
+    securityGroupRefs:
+      - from:
+          name: {{ include "ack-factory.name" . }}-core
+    subnetRefs:
+      - from:
+          name: {{ include "ack-factory.name" . }}-{{ .Values.ack.eks.subnet.cluster }}
+  version: {{ .Values.ack.eks.version | quote }}
