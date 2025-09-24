@@ -1,136 +1,52 @@
 {
-  "extends": [
+  extends: [
     "config:base",
     ":enablePreCommit",
     ":gitSignOff",
     "github>portefaix/.github//.github/renovate/autoMerge.json5",
     "github>portefaix/.github//.github/renovate/commitMessage.json5",
-    "github>portefaix/.github//.github/renovate/labels.json5"
+    "github>portefaix/.github//.github/renovate/labels.json5",
   ],
-  "enabled": true,
-  "timezone": "Europe/Paris",
-  "dependencyDashboard": true,
-  "dependencyDashboardTitle": "Renovate Dashboard",
+  enabled: true,
+  timezone: "Europe/Paris",
+  dependencyDashboard: true,
+  dependencyDashboardTitle: "Renovate Dashboard",
   // "gitAuthor": "Nicolas Lamirault <nlamirault@users.noreply.github.com>",
   // "commitBody": "Signed-off-by: Nicolas Lamirault <nlamirault@users.noreply.github.com>",
   // Do not notify on closed unmerged PRs
-  "suppressNotifications": ["prIgnoreNotification"],
+  suppressNotifications: ["prIgnoreNotification"],
   // Do not rebase PRs
-  "rebaseWhen": "conflicted",
-  "assignees": ["@nlamirault"],
-  "reviewersFromCodeOwners": true,
+  rebaseWhen: "conflicted",
+  assignees: ["@nlamirault"],
+  reviewersFromCodeOwners: true,
   // "labels": ["kind/renovate", "lifecycle/active", "status/review_needed"],
-  "regexManagers": [
+  regexManagers: [
     {
-      "fileMatch": [".py$"],
-      "matchStrings": [
-        "datasource=(?<datasource>.*)\\sdepName=(?<depName>.*)\\n.*version:\\s(?<currentValue>.*)"
-      ]
+      fileMatch: [".py$"],
+      matchStrings: [
+        "datasource=(?<datasource>.*)\\sdepName=(?<depName>.*)\\n.*version:\\s(?<currentValue>.*)",
+      ],
     },
     {
-      "fileMatch": [".yml$"],
-      "matchStrings": [
-        "datasource=(?<datasource>.*)\\sdepName=(?<depName>.*)\\n.*_VERSION\\s=\\s(?<currentValue>.*)"
+      fileMatch: [".yml$"],
+      matchStrings: [
+        "datasource=(?<datasource>.*)\\sdepName=(?<depName>.*)\\n.*_VERSION\\s=\\s(?<currentValue>.*)",
       ],
-      "datasourceTemplate": "github-tags"
+      datasourceTemplate: "github-tags",
     },
     {
-      "fileMatch": [".yaml$"],
-      "matchStrings": [
-        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\sappVersion=(?<currentValue>.*)"
+      fileMatch: [".yaml$"],
+      matchStrings: [
+        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\sappVersion=(?<currentValue>.*)",
       ],
-      "datasourceTemplate": "github-tags"
-    }
-  ],
-  "customManagers": [
+      datasourceTemplate: "github-tags",
+    },
     {
-      "customType": "regex",
-      "fileMatch": [
-        "Chart.yaml"
+      fileMatch: ["Chart.yaml"],
+      matchStrings: [
+        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\sappVersion=(?<currentValue>.*)",
       ],
-      "matchStrings": [
-        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\s.*appVersion=(?<currentValue>.*)"
-      ],
-    }
+      datasourceTemplate: "github-tags",
+    },
   ],
-  // "packageRules": [
-  //   // Labels for Docker
-  //   {
-  //     "datasources": ["docker"],
-  //     "updateTypes": ["major"],
-  //     "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "dependency/docker", "priority/high", "size/xs"]
-  //   },
-  //   {
-  //     "datasources": ["docker"],
-  //     "updateTypes": ["minor"],
-  //     "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "dependency/docker", "priority/medium", "size/xs"]
-  //   },
-  //   {
-  //     "datasources": ["docker"],
-  //     "updateTypes": ["patch"],
-  //     "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "dependency/docker", "priority/low", "size/xs"]
-  //   },
-  //   // Labels for Helm
-  //   {
-  //     "datasources": ["helm"],
-  //     "updateTypes": ["major"],
-  //     "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/kubernetes", "dependency/helm", "priority/high", "size/xs"]
-  //   },
-  //   {
-  //     "datasources": ["helm"],
-  //     "updateTypes": ["minor"],
-  //     "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/kubernetes", "dependency/helm", "priority/medium", "size/xs"]
-  //   },
-  //   {
-  //     "datasources": ["helm"],
-  //     "updateTypes": ["patch"],
-  //     "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/kubernetes", "dependency/helm", "priority/low", "size/xs"]
-  //   },
-  //   // Labels for Github Actions
-  //   {
-  //     "datasources": ["action"],
-  //     "updateTypes": ["major"],
-  //     "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/github", "dependency/github", "priority/high", "size/xs"]
-  //   },
-  //   {
-  //     "datasources": ["action"],
-  //     "updateTypes": ["minor"],
-  //     "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/github", "dependency/github", "priority/medium", "size/xs"]
-  //   },
-  //   {
-  //     "datasources": ["action"],
-  //     "updateTypes": ["patch"],
-  //     "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/github", "dependency/github", "priority/low", "size/xs"]
-  //   },
-  //   // Labels for Github Tags
-  //   {
-  //     "datasources": ["github-tags"],
-  //     "updateTypes": ["major"],
-  //     "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "dependency/github", "priority/high", "size/xs"]
-  //   },
-  //   {
-  //     "datasources": ["github-tags"],
-  //     "updateTypes": ["minor"],
-  //     "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "dependency/github", "priority/medium", "size/xs"]
-  //   },
-  //   {
-  //     "datasources": ["github-tags"],
-  //     "updateTypes": ["patch"],
-  //     "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "dependency/github", "priority/low", "size/xs"]
-  //   },
-  //   // Enable auto-merge docker
-  //   // {
-  //   //   "datasources": ["docker"],
-  //   //   "automerge": true,
-  //   //   "requiredStatusChecks": null,
-  //   //   "updateTypes": ["minor", "patch"],
-  //   // },
-  //   // Enable auto-merge helm
-  //   // {
-  //   //   "datasources": ["helm"],
-  //   //   "automerge": true,
-  //   //   "requiredStatusChecks": null,
-  //   //   "updateTypes": ["patch"],
-  //   // }
-  // ]
 }
