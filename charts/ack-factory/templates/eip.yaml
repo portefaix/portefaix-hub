@@ -15,6 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+#  yaml-language-server:https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/ec2.services.k8s.aws/elasticipaddress_v1alpha1.json
 apiVersion: ec2.services.k8s.aws/v1alpha1
 kind: ElasticIPAddress
 metadata:

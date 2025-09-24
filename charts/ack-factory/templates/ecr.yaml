@@ -19,6 +19,7 @@
 {{ range .Values.ack.ecr }}
 {{- $repoName := printf "%s-%s" $baseName .name -}}
 ---
+#  yaml-language-server:https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/ecr.services.k8s.aws/repository_v1alpha1.json
 apiVersion: ecr.services.k8s.aws/v1alpha1
 kind: Repository
 metadata:

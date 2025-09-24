@@ -15,47 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-apiVersion: ec2.services.k8s.aws/v1alpha1
-kind: InternetGateway
-metadata:
-  {{- with .Values.additionalAnnotations }}
-  annotations:
-  {{ toYaml . | indent 4 }}
-  {{- end }}
-  labels:
-    {{- include "ack-factory.labels" . | nindent 4 }}
-    app.kubernetes.io/component: ec2
-  name: {{ include "ack-factory.name" . }}
-  namespace: {{ template "ack-factory.namespace" . }}
-spec:
-  vpcRef:
-    from:
-      name: {{ include "ack-factory.name" . }}
-  tags:
-  {{- toYaml .Values.ack.tags | nindent 4 }}
----
-apiVersion: ec2.services.k8s.aws/v1alpha1
-kind: NATGateway
-metadata:
-  {{- with .Values.additionalAnnotations }}
-  annotations:
-  {{ toYaml . | indent 4 }}
-  {{- end }}
-  labels:
-    {{- include "ack-factory.labels" . | nindent 4 }}
-  name: {{ include "ack-factory.name" . }}
-  namespace: {{ template "ack-factory.namespace" . }}
-spec:
-  allocationRef: # Elastic IP Address
-    from:
-      name: {{ include "ack-factory.name" . }}
-  subnetRef:
-    from:
-      name: {{ include "ack-factory.name" . }}-{{ .Values.ack.gateway.subnet }}
-  connectivityType: "public"
-  tags:
-  {{- toYaml .Values.ack.tags | nindent 4 }}
----
+# yaml-language-server:https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/ec2.services.k8s.aws/routetable_v1alpha1.json
 apiVersion: ec2.services.k8s.aws/v1alpha1
 kind: RouteTable
 metadata:

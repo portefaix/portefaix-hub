@@ -14,20 +14,14 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
----
-#  yaml-language-server:https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/ec2.services.k8s.aws/vpc_v1alpha1.json
-apiVersion: ec2.services.k8s.aws/v1alpha1
-kind: VPC
-metadata:
-  labels:
-    {{- include "ack-factory.labels" $ | nindent 4 }}
-    app.kubernetes.io/component: ec2
-  name: {{ include "ack-factory.name" . }}
-spec:
-  cidrBlocks:
-    - {{ .Values.ack.vpc.cidr }}
-  enableDNSSupport: true
-  enableDNSHostnames: true
-  instanceTenancy: "default"
-  tags:
-  {{- toYaml .Values.ack.tags | nindent 4 }}
+# ---
+#  yaml-language-server:https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/eks.services.k8s.aws/addon_v1alpha1.json
+# apiVersion: eks.services.k8s.aws/v1alpha1
+# kind: Addon
+# metadata:
+#   name: $ADDON_NAME
+# spec:
+#   name: $ADDON_NAME
+#   addonVersion: $ADDON_VERSION
+#   #https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonVersions.html
+#   clusterName: $CLUSTER_NAME
