@@ -2,7 +2,7 @@
 apiVersion: v2
 description: Grafana Operator CRDs
 name: grafana-operator-crds
-version: 1.0.0
+version: 1.1.0
 # renovate: datasource=github-tags depName=grafana/grafana-operator
 appVersion: v5.19.4
 home: https://grafana.github.io/grafana-operator/
