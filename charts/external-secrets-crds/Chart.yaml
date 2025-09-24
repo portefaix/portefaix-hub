@@ -2,7 +2,7 @@
 apiVersion: v2
 description: External Secrets CRDs
 name: external-secrets-crds
-version: 1.0.0
+version: 1.1.0
 # renovate: datasource=github-tags depName=external-secrets/external-secrets
 appVersion: 0.20.1
 home: https://external-secrets.io/
