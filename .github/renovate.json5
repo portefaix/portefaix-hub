@@ -41,12 +41,15 @@
       ],
       datasourceTemplate: "github-tags",
     },
+  ],
+  customManagers: [
     {
-      fileMatch: ["Chart.yaml"],
+      customType: "regex",
+      description: "Update Chart.yaml appVersion",
+      managerFilePatterns: ["Chart.yaml"],
       matchStrings: [
         "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\sappVersion=(?<currentValue>.*)",
       ],
-      datasourceTemplate: "github-tags",
     },
   ],
 }
