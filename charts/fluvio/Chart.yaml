@@ -4,7 +4,7 @@ description: Fluvio
 name: fluvio
 version: 1.0.0
 # renovate: datasource=github-tags depName=infinyon/fluvio
-appVersion: 0.17.3
+appVersion: 0.18.1
 home: https://github.com/infinyon/fluvio
 # icon:
 sources:
