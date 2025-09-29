@@ -5,15 +5,15 @@ metadata:
   labels:
     {{- include "fluvio.labels" . | nindent 4 }}
     {{- include "fluvio.sc.labels" . | nindent 4 }}
-  name: fluvio-config-map
+  name: fluvio
   namespace: {{ .Release.Namespace }}
 data:
   fluvioClientConfig: |
     version = "2.0"
-    current_profile = "k8-config-map-deployment"
+    current_profile = "k8s"
 
     [profile.k8-config-map-deployment]
-    cluster = "k8-config-map-deployment"
+    cluster = "k8s"
 
     [cluster.k8-config-map-deployment]
     endpoint = "fluvio-sc:{{ .Values.service.port }}"
@@ -21,11 +21,11 @@ data:
 
     {{ if .Values.tls }}
 
-    [cluster.k8-config-map-deployment.tls]
+    [cluster.k8s.tls]
     tls_policy = "verified"
     tls_source = "files"
 
-    [cluster.k8-config-map-deployment.tls.certs]
+    [cluster.k8s.tls.certs]
     domain = "{{ .Values.cert.domain }}"
     key = "/var/certs/client-tls/tls.key"
     cert = "/var/certs/client-tls/tls.crt"
@@ -33,7 +33,7 @@ data:
 
     {{else}}
 
-    [cluster.k8-config-map-deployment.tls]
+    [cluster.k8s.tls]
     tls_policy = "disabled"
 
     {{end}}
