@@ -29,3 +29,28 @@ spec:
   - protocol: TCP
     port: {{ .Values.service.port }}
     targetPort: {{ .Values.fluvio.sc.port }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  {{- if or .Values.service.annotations .Values.additionalAnnotations }}
+  annotations:
+    {{- toYaml .Values.service.annotations | indent 4 }}
+    {{- if .Values.additionalAnnotations }}
+    {{ toYaml .Values.additionalAnnotations | indent 4 }}
+    {{- end }}
+  {{- end }}
+  labels:
+    {{- include "fluvio.labels" . | nindent 4 }}
+    {{- include "fluvio.sc.labels" . | nindent 4 }}
+  name: fluvio-sc-internal
+  namespace: {{ .Release.Namespace }}
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    {{- include "fluvio.selectorLabels" . | nindent 4 }}
+    {{- include "fluvio.sc.labels" . | nindent 4 }}
+  ports:
+  - protocol: TCP
+    port: 9004
+    targetPort: 9004
