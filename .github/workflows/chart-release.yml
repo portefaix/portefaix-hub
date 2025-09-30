@@ -67,6 +67,7 @@ jobs:
           helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 
       - name: Run chart-releaser
+        id: chart-releaser
         uses: helm/chart-releaser-action@v1.6.0
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
@@ -76,9 +77,12 @@ jobs:
       - name: Get released chart details
         id: chart-details
         run: |
-          # Extract chart name and version from tag
-          release_name=$(echo -n ${{ github.ref_name }} | awk -F'-v' '{print $1}')
-          version=$(echo -n ${{ github.ref_name }} | sed "s/^$release_name-//")
+          # Get the latest release created by chart-releaser
+          latest_release=$(gh release list --limit 1 --json tagName,name | jq -r '.[0].tagName')
+          
+          # Extract chart name and version from release tag
+          release_name=$(echo -n "$latest_release" | awk -F'-v' '{print $1}')
+          version=$(echo -n "$latest_release" | sed "s/^$release_name-v//")
 
           # Get the chart package created by chart-releaser
           chart_package="${release_name}-${version}.tgz"
@@ -86,6 +90,8 @@ jobs:
           echo "release_name=$release_name" >> $GITHUB_OUTPUT
           echo "version=$version" >> $GITHUB_OUTPUT
           echo "chart_package=$chart_package" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
