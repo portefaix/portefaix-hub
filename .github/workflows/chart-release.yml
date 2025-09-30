@@ -18,12 +18,12 @@ name: Charts / Release
 
 on:
   push:
-    # branches:
-    #   - master
-    # paths:
-    #   - "charts/**"
-    tags:
-      - '*-v*'
+    branches:
+      - master
+    paths:
+      - "charts/**"
+    # tags:
+    #   - '*-v*'
 
 permissions:
   contents: read
@@ -33,6 +33,9 @@ env:
 
 jobs:
   release:
+    outputs:
+      image: ${{ steps.oci-push.outputs.image }}
+      digest: ${{ steps.oci-push.outputs.digest }}
     permissions:
       attestations: write # need for Artifact Attestations
       contents: write     # to push chart release and create a release (helm/chart-releaser-action)
@@ -76,13 +79,51 @@ jobs:
           # Extract chart name and version from tag
           release_name=$(echo -n ${{ github.ref_name }} | awk -F'-v' '{print $1}')
           version=$(echo -n ${{ github.ref_name }} | sed "s/^$release_name-//")
-          
+
           # Get the chart package created by chart-releaser
           chart_package="${release_name}-${version}.tgz"
-          
+
           echo "release_name=$release_name" >> $GITHUB_OUTPUT
           echo "version=$version" >> $GITHUB_OUTPUT
           echo "chart_package=$chart_package" >> $GITHUB_OUTPUT
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push chart to GHCR as OCI artifact
+        id: oci-push
+        run: |
+          chart_name="${{ steps.chart-details.outputs.release_name }}"
+          version="${{ steps.chart-details.outputs.version }}"
+          chart_package="${{ steps.chart-details.outputs.chart_package }}"
+
+          # Push chart as OCI artifact to GHCR
+          helm push .cr-release-packages/${chart_package} oci://${{ env.REGISTRY }}/${{ github.repository_owner }}/charts
+
+          # Calculate digest for attestation
+          oci_ref="${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${chart_name}:${version}"
+          digest=$(helm show chart oci://${oci_ref} --version ${version} | sha256sum | cut -d' ' -f1)
+
+          echo "image=${oci_ref}" >> $GITHUB_OUTPUT
+          echo "digest=sha256:${digest}" >> $GITHUB_OUTPUT
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@d7543c93d881b35a8faa02e8e3605f69b7a1ce62 # v3.10.0
+
+      - name: Verify OCI artifact with Cosign
+        env:
+          IMAGE: ${{ steps.oci-push.outputs.image }}
+          DIGEST: ${{ steps.oci-push.outputs.digest }}
+        run: |
+          # Verify the OCI artifact signature (keyless verification)
+          cosign verify \
+            --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+            --certificate-identity-regexp '^https://github.com/${{ github.repository }}/.github/workflows/.*@refs/.*$' \
+            $IMAGE@$DIGEST || echo "No signature found, proceeding with attestation"
 
       - name: Attest Build Provenance
         uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a # v3.0.0
@@ -99,22 +140,22 @@ jobs:
 
   helm-provenance:
     needs:
-      - publish-oci
+      - release
     permissions:
       actions: read     # To read the workflow path.
       id-token: write   # To sign the provenance.
       packages: write   # To upload assets to release.
     uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v2.1.0
     with:
-      digest: "${{ needs.publish-oci.outputs.digest }}"
-      image: "${{ needs.publish-oci.outputs.image }}"
+      digest: "${{ needs.release.outputs.digest }}"
+      image: "${{ needs.release.outputs.image }}"
       registry-username: ${{ github.actor }}
     secrets:
       registry-password: ${{ secrets.GITHUB_TOKEN }}
 
   verification-with-cosign:
     needs:
-      - publish-oci
+      - release
       - helm-provenance
     runs-on: ubuntu-latest
     permissions: read-all
@@ -131,8 +172,8 @@ jobs:
 
       - name: Verify image
         env:
-          IMAGE: "${{ needs.publish-oci.outputs.image }}"
-          DIGEST: ${{ needs.publish-oci.outputs.digest }}
+          IMAGE: "${{ needs.release.outputs.image }}"
+          DIGEST: ${{ needs.release.outputs.digest }}
         run: |
           cosign verify-attestation \
               --type slsaprovenance \
