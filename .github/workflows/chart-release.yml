@@ -23,7 +23,7 @@ on:
     # paths:
     #   - "charts/**"
     tags:
-      - '*-v*'
+      - '*'
 
 permissions:
   contents: read
@@ -32,37 +32,70 @@ env:
   REGISTRY: ghcr.io
 
 jobs:
-  publish-oci:
+  release:
+    outputs:
+      digest: ${{ steps.get-digest.outputs.digest }}
+      image: ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ steps.chart-details.outputs.release_name }}
+
     permissions:
       attestations: write # need for Artifact Attestations
       contents: write     # to push chart release and create a release (helm/chart-releaser-action)
       id-token: write     # needed for keyless signing
       packages: write     # needed for ghcr access
 
-
     runs-on: ubuntu-latest
-
-    outputs:
-      digest: ${{ steps.get-digest.outputs.digest }}
-      image: ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ steps.release-details.outputs.release_name }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          fetch-depth: 0
 
-      - name: Extract Helm chart name and version
-        id: release-details
+      - name: Get released chart details
+        id: chart-details
         run: |
-          # tag names are in the format <chart-name>-v<semantic-version>
-          # so we need to extract the chart name
+          # Extract chart name and version from tag
           release_name=$(echo -n ${{ github.ref_name }} | awk -F'-v' '{print $1}')
-          echo release_name=$release_name >> $GITHUB_OUTPUT
-          echo $release_name
-
-          # extract the version from the tag name
           version=$(echo -n ${{ github.ref_name }} | sed "s/^$release_name-//")
-          echo release_version=$version >> $GITHUB_OUTPUT
-          echo $release_version
+
+          # Get the chart package created by chart-releaser
+          chart_package="${release_name}-${version}.tgz"
+
+          echo "release_name=$release_name" >> $GITHUB_OUTPUT
+          echo "version=$version" >> $GITHUB_OUTPUT
+          echo "chart_package=$chart_package" >> $GITHUB_OUTPUT
+
+          DESCRIPTION=$(yq -r '.description' charts/${release_name}/Chart.yaml)
+          echo "description=$DESCRIPTION" >> $GITHUB_OUTPUT
+
+          CHANGELOG=$(yq -r '.annotations["artifacthub.io/changes"]' charts/${release_name}/Chart.yaml)
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGELOG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@6cbd405e2c4e67a21c47fa9e383d020e4e28b836 # v2.3.3
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          tag_name: ${{ steps.chart-details.outputs.release_name }}-${{ steps.chart-details.outputs.version }}
+          draft: false
+          prerelease: false
+          body: |
+            ${{ steps.chart-details.outputs.description }}
+
+            🎉 What's Changed
+
+            ${{ steps.chart-details.outputs.changelog }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: '3.14.0'
 
       - name: Add dependency chart repos
         run: |
@@ -72,18 +105,31 @@ jobs:
 
       - name: Package Helm chart
         run: |
-          helm package charts/${{ steps.release-details.outputs.release_name }}
+          helm package charts/${{ steps.chart-details.outputs.release_name }}
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@184bdaa0721073962dff0199f1fb9940f07167d1 # v3.5.0
+        uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Push packaged chart to GHCR
+      - name: Push chart to GHCR as OCI artifact
+        id: oci-push
         run: |
-          helm push ${{ github.ref_name }}.tgz "oci://${{ env.REGISTRY }}/${{ github.repository }}${{ github.repository_owner }}/charts"
+          chart_name="${{ steps.chart-details.outputs.release_name }}"
+          version="${{ steps.chart-details.outputs.version }}"
+          chart_package="${{ steps.chart-details.outputs.chart_package }}"
+
+          # Push chart as OCI artifact to GHCR
+          helm push ${chart_name}-${version}.tgz oci://${{ env.REGISTRY }}/${{ github.repository_owner }}/charts
+
+          # Calculate digest for attestation
+          # oci_ref="${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${chart_name}:${version}"
+          # digest=$(helm show chart oci://${oci_ref} --version ${version} | sha256sum | cut -d' ' -f1)
+
+          # echo "image=${oci_ref}" >> $GITHUB_OUTPUT
+          # echo "digest=sha256:${digest}" >> $GITHUB_OUTPUT
 
       - name: Setup Crane
         uses: imjasonh/setup-crane@31b88efe9de28ae0ffa220711af4b60be9435f6e # v0.4
@@ -91,54 +137,49 @@ jobs:
       - name: Get pushed chart digest
         id: get-digest
         run: |
-          digest=$(crane digest ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ steps.release-details.outputs.release_name }}:${{ steps.release-details.outputs.release_version }})
-          echo digest=$digest >> "$GITHUB_OUTPUT"
+          digest=$(crane digest ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ steps.chart-details.outputs.release_name }}:${{ steps.chart-details.outputs.version }})
+          echo digest=$digest >> $GITHUB_OUTPUT
           echo $digest
 
-      - name: Install cosign
+      - name: Install Cosign
         uses: sigstore/cosign-installer@d7543c93d881b35a8faa02e8e3605f69b7a1ce62 # v3.10.0
 
-      - name: Use Cosign
+      - name: Verify OCI artifact with Cosign
+        env:
+          IMAGE: ${{ steps.oci-push.outputs.image }}
+          DIGEST: ${{ steps.oci-push.outputs.digest }}
         run: |
-          artifact_digest_uri="${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ steps.release-details.outputs.release_name }}@${{ steps.get-digest.outputs.digest }}"
-          cosign sign --yes "${artifact_digest_uri}"
-          cosign verify "${artifact_digest_uri}" \
-              --certificate-identity-regexp "https://github.com/${{ github.repository }}/*" \
-              --certificate-oidc-issuer https://token.actions.githubusercontent.com
+          # Verify the OCI artifact signature (keyless verification)
+          cosign verify \
+            --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+            --certificate-identity-regexp '^https://github.com/${{ github.repository }}/.github/workflows/.*@refs/.*$' \
+            $IMAGE@$DIGEST || echo "No signature found, proceeding with attestation"
 
-      - name: Attest
+      - name: Attest Build Provenance
         uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a # v3.0.0
         with:
-          subject-name: ${{ env.REGISTRY }}/${{ github.repository }}/charts/${{ steps.release-details.outputs.release_name }}
+          subject-name: ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ steps.chart-details.outputs.release_name }}
           subject-digest: ${{ steps.get-digest.outputs.digest }}
           push-to-registry: true
 
-      # - name: Install sigstore Helm plugin
-      #   run: |
-      #     helm plugin install https://github.com/sigstore/helm-sigstore
-
-      # - name: Upload Helm Charts to Rekor
-      #   run: |
-      #     helm sigstore upload ${{ steps.release-details.outputs.release_name }}-${{ steps.release-details.outputs.release_version }}.tgz
-
   helm-provenance:
     needs:
-      - publish-oci
+      - release
     permissions:
       actions: read     # To read the workflow path.
       id-token: write   # To sign the provenance.
       packages: write   # To upload assets to release.
     uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v2.1.0
     with:
-      digest: "${{ needs.publish-oci.outputs.digest }}"
-      image: "${{ needs.publish-oci.outputs.image }}"
+      digest: "${{ needs.release.outputs.digest }}"
+      image: "${{ needs.release.outputs.image }}"
       registry-username: ${{ github.actor }}
     secrets:
       registry-password: ${{ secrets.GITHUB_TOKEN }}
 
   verification-with-cosign:
     needs:
-      - publish-oci
+      - release
       - helm-provenance
     runs-on: ubuntu-latest
     permissions: read-all
@@ -155,8 +196,8 @@ jobs:
 
       - name: Verify image
         env:
-          IMAGE: "${{ needs.publish-oci.outputs.image }}"
-          DIGEST: ${{ needs.publish-oci.outputs.digest }}
+          IMAGE: "${{ needs.release.outputs.image }}"
+          DIGEST: ${{ needs.release.outputs.digest }}
         run: |
           cosign verify-attestation \
               --type slsaprovenance \

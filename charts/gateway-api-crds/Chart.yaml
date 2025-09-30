@@ -39,4 +39,4 @@ annotations:
     url: https://keybase.io/nlamirault/pgp_keys.asc
   artifacthub.io/changes: |
     - kind: changed
-      description: documentation
+      description: Update to Gateway API v1.3.0
