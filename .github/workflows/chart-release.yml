@@ -34,8 +34,9 @@ env:
 jobs:
   release:
     outputs:
-      image: ${{ steps.oci-push.outputs.image }}
-      digest: ${{ steps.oci-push.outputs.digest }}
+      digest: ${{ steps.get-digest.outputs.digest }}
+      image: ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ steps.chart-details.outputs.release_name }}
+
     permissions:
       attestations: write # need for Artifact Attestations
       contents: write     # to push chart release and create a release (helm/chart-releaser-action)
@@ -160,14 +161,6 @@ jobs:
           subject-name: ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ steps.chart-details.outputs.release_name }}
           subject-digest: ${{ steps.get-digest.outputs.digest }}
           push-to-registry: true
-
-      # - name: Install sigstore Helm plugin
-      #   run: |
-      #     helm plugin install https://github.com/sigstore/helm-sigstore
-
-      # - name: Upload Helm Charts to Rekor
-      #   run: |
-      #     helm sigstore upload ${{ steps.release-details.outputs.release_name }}-${{ steps.release-details.outputs.release_version }}.tgz
 
   helm-provenance:
     needs:
