@@ -14,29 +14,25 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-{{- $baseName := include "ack-factory.name" $ }}
-{{- $namespace := include "ack-factory.namespace" . }}
-{{ range .Values.ack.subnets }}
-{{- $subnetName := printf "%s-%s" $baseName .name -}}
 ---
-#  yaml-language-server:
-apiVersion: ec2.services.k8s.aws/v1alpha1
-kind: Subnet
+#  yaml-language-server:https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/eks.services.k8s.aws/fargateprofile_v1alpha1.json
+apiVersion: eks.services.k8s.aws/v1alpha1
+kind: FargateProfile
 metadata:
-  {{- with $.Values.additionalAnnotations }}
+  {{- with .Values.additionalAnnotations }}
   annotations:
   {{ toYaml . | indent 4 }}
   {{- end }}
   labels:
-    {{- include "ack-factory.labels" $ | nindent 4 }}
-    app.kubernetes.io/component: ec2
-  name: {{ $subnetName }}
-  namespace: {{ $namespace }}
+    {{- include "ack-factory.labels" . | nindent 4 }}
+  name: {{ include "ack-factory.name" . }}
+  namespace: {{ template "ack-factory.namespace" . }}
 spec:
-  cidrBlock: {{ .cidrBlock }}
-  vpcRef:
-    from:
-      name: {{ include "ack-factory.name" $ }}
-  tags:
-  {{- toYaml $.Values.ack.tags | nindent 4 }}
-{{ end }}
+  name: {{ include "ack-factory.name" . }}
+  clusterName: {{ include "ack-factory.name" . }}-eks-cluster
+  # podExecutionRoleARN: $FARGATE_POD_ROLE
+  subnetRefs:
+    - from:
+        name: {{ include "ack-factory.name" . }}-{{ .Values.ack.eks.subnet.node }}
+  selectors:
+    - namespace: {{ template "ack-factory.namespace" . }}
