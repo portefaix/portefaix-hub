@@ -2456,6 +2456,47 @@ entries:
         fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
         url: https://keybase.io/nlamirault/pgp_keys.asc
     apiVersion: v2
+    appVersion: 0.20.1
+    created: "2025-09-30T03:30:28.322658435Z"
+    dependencies:
+    - name: crds
+      repository: ""
+      version: 0.0.0
+    description: External Secrets CRDs
+    digest: 7e32d24aa9645e7f56ab59e2baedadb52b5b00896b8870790ca76f93af705670
+    home: https://external-secrets.io/
+    icon: https://raw.githubusercontent.com/external-secrets/external-secrets/main/assets/eso-logo-large.png
+    keywords:
+    - kubernetes
+    - external-secrets
+    - crds
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: external-secrets-crds
+    sources:
+    - https://github.com/external-secrets/external-secrets
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/external-secrets-crds-1.1.0/external-secrets-crds-1.1.0.tgz
+    version: 1.1.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: documentation
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: External Secrets
+          url: https://github.com/external-secrets/external-secrets
+        - name: Portefaix Hub
+          url: https://github.com/portefaix/portefaix-hub
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
     appVersion: 0.10.5
     created: "2025-03-21T06:57:56.876082571Z"
     dependencies:
@@ -2481,6 +2522,49 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/external-secrets-crds-1.0.0/external-secrets-crds-1.0.0.tgz
     version: 1.0.0
   fake:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: OCI support
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Chart source
+          url: https://github.com/portefaix/portefaix-hub
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+      org.opencontainers.image.authors: Nicolas Lamirault <nicolas.lamirault@gmail.com>
+      org.opencontainers.image.documentation: https://github.com/portefaix/portefaix-hub
+      org.opencontainers.image.issue-tracker: https://github.com/portefaix/portefaix-hub/issues
+      org.opencontainers.image.licenses: Apache-2.0
+      org.opencontainers.image.ref.name: fake
+      org.opencontainers.image.source: https://github.com/portefaix/portefaix-hub
+      org.opencontainers.image.vendor: Portefaix
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2025-09-30T03:30:28.527116525Z"
+    description: A Helm chart for Kubernetes
+    digest: f11df6a748fd22802513b89ca5d385a485b60627d929d3922cd73a3de6ea186f
+    home: https://github.com/portefaix/portefaix-hub
+    keywords:
+    - fake
+    - oci
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: fake
+    sources:
+    - https://github.com/portefaix/portefaix-hub
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/fake-0.9.4/fake-0.9.4.tgz
+    version: 0.9.4
   - apiVersion: v2
     appVersion: 1.0.0
     created: "2025-04-10T21:04:58.653422994Z"
@@ -2615,6 +2699,47 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/falco-talon-1.0.0/falco-talon-1.0.0.tgz
     version: 1.0.0
   fluvio:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: Update to Fluvio v0.18.1
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Fluvio
+          url: https://github.com/infinyon/fluvio
+        - name: Portefaix Hub
+          url: https://github.com/portefaix/portefaix-hub
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 0.18.1
+    created: "2025-09-30T03:30:28.730968852Z"
+    dependencies:
+    - name: crds
+      repository: ""
+      version: 0.0.0
+    description: Fluvio
+    digest: 0db7acc51b927107f4edfeae99bd12858e0216595c39b0a6ad0597d7b3463dca
+    home: https://github.com/infinyon/fluvio
+    keywords:
+    - event
+    - streaming
+    - processing
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: fluvio
+    sources:
+    - https://github.com/infinyon/fluvio
+    - https://github.com/portefaix/portefaix-hub
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/fluvio-1.2.0/fluvio-1.2.0.tgz
+    version: 1.2.0
   - annotations:
       artifacthub.io/changes: |
         - kind: added
@@ -3861,6 +3986,48 @@ entries:
     - https://github.com/portefaix/portefaix-hub/releases/download/grafana-mixin-0.1.0/grafana-mixin-0.1.0.tgz
     version: 0.1.0
   grafana-operator-crds:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: documentation
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Grafana Operator
+          url: https://grafana.github.io/grafana-operator/
+        - name: Portefaix Hub
+          url: https://github.com/portefaix/portefaix-hub
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v5.19.4
+    created: "2025-09-30T03:30:28.957675199Z"
+    dependencies:
+    - name: crds
+      repository: ""
+      version: 0.0.0
+    description: Grafana Operator CRDs
+    digest: 45240b2cf0343d57f1d7c4943b92b321c28d774847d9b41624bb04e30a045e2a
+    home: https://grafana.github.io/grafana-operator/
+    icon: https://artifacthub.io/image/b4fed1a7-6c8f-4945-b99d-096efa3e4116
+    keywords:
+    - kubernetes
+    - operator
+    - grafana
+    - crds
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: grafana-operator-crds
+    sources:
+    - https://grafana.github.io/grafana-operator/
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/grafana-operator-crds-1.1.0/grafana-operator-crds-1.1.0.tgz
+    version: 1.1.0
   - annotations:
       artifacthub.io/changes: |
         - kind: added
@@ -14180,4 +14347,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2025-05-22T07:33:34.299523335Z"
+generated: "2025-09-30T03:30:28.958233284Z"
