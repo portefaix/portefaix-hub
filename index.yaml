@@ -2547,6 +2547,49 @@ entries:
       org.opencontainers.image.vendor: Portefaix
     apiVersion: v2
     appVersion: 1.0.0
+    created: "2025-09-30T03:56:26.953670414Z"
+    description: A Helm chart for Kubernetes
+    digest: 79fb251b071ab647b36dbebadb54ba83cc7cecfce636b3993282d77c963fd867
+    home: https://github.com/portefaix/portefaix-hub
+    keywords:
+    - fake
+    - oci
+    maintainers:
+    - email: nicolas.lamirault@gmail.com
+      name: nlamirault
+      url: https://github.com/nlamirault
+    name: fake
+    sources:
+    - https://github.com/portefaix/portefaix-hub
+    type: application
+    urls:
+    - https://github.com/portefaix/portefaix-hub/releases/download/fake-0.9.5/fake-0.9.5.tgz
+    version: 0.9.5
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: OCI support
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Portefaix
+          url: https://portefaix.xyz
+        - name: Chart source
+          url: https://github.com/portefaix/portefaix-hub
+      artifacthub.io/maintainers: |
+        - name: nlamirault
+          email: nicolas.lamirault@gmail.com
+      artifacthub.io/signKey: |
+        fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+        url: https://keybase.io/nlamirault/pgp_keys.asc
+      org.opencontainers.image.authors: Nicolas Lamirault <nicolas.lamirault@gmail.com>
+      org.opencontainers.image.documentation: https://github.com/portefaix/portefaix-hub
+      org.opencontainers.image.issue-tracker: https://github.com/portefaix/portefaix-hub/issues
+      org.opencontainers.image.licenses: Apache-2.0
+      org.opencontainers.image.ref.name: fake
+      org.opencontainers.image.source: https://github.com/portefaix/portefaix-hub
+      org.opencontainers.image.vendor: Portefaix
+    apiVersion: v2
+    appVersion: 1.0.0
     created: "2025-09-30T03:30:28.527116525Z"
     description: A Helm chart for Kubernetes
     digest: f11df6a748fd22802513b89ca5d385a485b60627d929d3922cd73a3de6ea186f
@@ -14347,4 +14390,4 @@ entries:
     urls:
     - https://github.com/portefaix/portefaix-hub/releases/download/unifi-poller-0.1.0/unifi-poller-0.1.0.tgz
     version: 0.1.0
-generated: "2025-09-30T03:30:28.958233284Z"
+generated: "2025-09-30T03:56:26.954220209Z"
