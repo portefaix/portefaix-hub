@@ -23,7 +23,7 @@ on:
     # paths:
     #   - "charts/**"
     tags:
-      - '*-v*'
+      - '*'
 
 permissions:
   contents: read
