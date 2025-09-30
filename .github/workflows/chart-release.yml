@@ -64,6 +64,9 @@ jobs:
           echo "version=$version" >> $GITHUB_OUTPUT
           echo "chart_package=$chart_package" >> $GITHUB_OUTPUT
 
+          DESCRIPTION=$(yq -r '.description' charts/${release_name}/Chart.yaml)
+          echo "description=$DESCRIPTION" >> $GITHUB_OUTPUT
+
           CHANGELOG=$(yq -r '.annotations["artifacthub.io/changes"]' charts/${release_name}/Chart.yaml)
           echo "changelog<<EOF" >> $GITHUB_OUTPUT
           echo "$CHANGELOG" >> $GITHUB_OUTPUT
@@ -77,7 +80,7 @@ jobs:
           draft: false
           prerelease: false
           body: |
-            🎉 ${{ steps.chart-details.outputs.release_name }} ${{ steps.chart-details.outputs.version }}
+            🎉 What's Changed
 
             ${{ steps.chart-details.outputs.changelog }}
 
