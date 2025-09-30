@@ -50,13 +50,24 @@ jobs:
         with:
           fetch-depth: 0
 
-      # - name: Generate changelog
-      #   id: changelog
-      #   run: |
-      #     CHANGELOG=$(yq -r '.annotations["artifacthub.io/changes"]' charts/<CHART NAME>/Chart.yaml)
-      #     echo "changelog<<EOF" >> $GITHUB_OUTPUT
-      #     echo "$CHANGELOG" >> $GITHUB_OUTPUT
-      #     echo "EOF" >> $GITHUB_OUTPUT
+      - name: Get released chart details
+        id: chart-details
+        run: |
+          # Extract chart name and version from tag
+          release_name=$(echo -n ${{ github.ref_name }} | awk -F'-v' '{print $1}')
+          version=$(echo -n ${{ github.ref_name }} | sed "s/^$release_name-//")
+
+          # Get the chart package created by chart-releaser
+          chart_package="${release_name}-${version}.tgz"
+
+          echo "release_name=$release_name" >> $GITHUB_OUTPUT
+          echo "version=$version" >> $GITHUB_OUTPUT
+          echo "chart_package=$chart_package" >> $GITHUB_OUTPUT
+
+          CHANGELOG=$(yq -r '.annotations["artifacthub.io/changes"]' charts/${release_name}/Chart.yaml)
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGELOG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@6cbd405e2c4e67a21c47fa9e383d020e4e28b836 # v2.3.3
@@ -66,9 +77,9 @@ jobs:
           draft: false
           prerelease: false
           body: |
-            🎉 ${{ github.ref }}
+            🎉 ${{ steps.chart-details.outputs.release_name }} ${{ steps.chart-details.outputs.version }}
 
-      # ${{ steps.changelog.outputs.changelog }}
+            ${{ steps.chart-details.outputs.changelog }}
 
       - name: Configure Git
         run: |
@@ -85,27 +96,6 @@ jobs:
           helm repo add bitnami https://charts.bitnami.com/bitnami
           helm repo add grafana https://grafana.github.io/helm-charts
           helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.6.0
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          CR_GENERATE_RELEASE_NOTES: true
-          CR_MAKE_RELEASE_LATEST: true
-
-      - name: Get released chart details
-        id: chart-details
-        run: |
-          # Extract chart name and version from tag
-          release_name=$(echo -n ${{ github.ref_name }} | awk -F'-v' '{print $1}')
-          version=$(echo -n ${{ github.ref_name }} | sed "s/^$release_name-//")
-
-          # Get the chart package created by chart-releaser
-          chart_package="${release_name}-${version}.tgz"
-
-          echo "release_name=$release_name" >> $GITHUB_OUTPUT
-          echo "version=$version" >> $GITHUB_OUTPUT
-          echo "chart_package=$chart_package" >> $GITHUB_OUTPUT
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
