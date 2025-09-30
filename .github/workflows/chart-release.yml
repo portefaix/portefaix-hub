@@ -119,11 +119,21 @@ jobs:
           helm push ${chart_name}-${version}.tgz oci://${{ env.REGISTRY }}/${{ github.repository_owner }}/charts
 
           # Calculate digest for attestation
-          oci_ref="${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${chart_name}:${version}"
-          digest=$(helm show chart oci://${oci_ref} --version ${version} | sha256sum | cut -d' ' -f1)
+          # oci_ref="${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${chart_name}:${version}"
+          # digest=$(helm show chart oci://${oci_ref} --version ${version} | sha256sum | cut -d' ' -f1)
 
-          echo "image=${oci_ref}" >> $GITHUB_OUTPUT
-          echo "digest=sha256:${digest}" >> $GITHUB_OUTPUT
+          # echo "image=${oci_ref}" >> $GITHUB_OUTPUT
+          # echo "digest=sha256:${digest}" >> $GITHUB_OUTPUT
+
+      - name: Setup Crane
+        uses: imjasonh/setup-crane@31b88efe9de28ae0ffa220711af4b60be9435f6e # v0.4
+
+      - name: Get pushed chart digest
+        id: get-digest
+        run: |
+          digest=$(crane digest ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ steps.chart-details.outputs.release_name }}:${{ steps.chart-details.outputs.version }})
+          echo digest=$digest >> $GITHUB_OUTPUT
+          echo $digest
 
       - name: Install Cosign
         uses: sigstore/cosign-installer@d7543c93d881b35a8faa02e8e3605f69b7a1ce62 # v3.10.0
@@ -142,7 +152,9 @@ jobs:
       - name: Attest Build Provenance
         uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a # v3.0.0
         with:
-          subject-path: .cr-release-packages/${{ steps.chart-details.outputs.chart_package }}
+          subject-name: ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ steps.chart-details.outputs.release_name }}
+          subject-digest: ${{ steps.get-digest.outputs.digest }}
+          push-to-registry: true
 
       # - name: Install sigstore Helm plugin
       #   run: |
