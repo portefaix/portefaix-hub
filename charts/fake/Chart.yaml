@@ -3,7 +3,7 @@ apiVersion: v2
 name: fake
 description: A Helm chart for Kubernetes
 type: application
-version: "v0.9.9"
+version: "v0.9.10"
 appVersion: "v1.0.0"
 keywords:
   - fake
