@@ -17,7 +17,7 @@ api:
   replicaCount: 1
 
   image:
-    repository: mem0/openmemory-api
+    repository: mem0/mem0-api-server
     pullPolicy: IfNotPresent
     tag: "latest"
 
