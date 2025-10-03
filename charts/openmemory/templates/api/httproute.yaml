@@ -1,0 +1,72 @@
+{{- if and .Values.api.enabled .Values.api.gateway.enabled }}
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ include "openmemory.fullname" . }}-api
+  labels:
+    {{- include "openmemory.labels" . | nindent 4 }}
+    app.kubernetes.io/component: api
+  {{- with .Values.api.gateway.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if .Values.api.gateway.parentRefs }}
+  parentRefs:
+    {{- toYaml .Values.api.gateway.parentRefs | nindent 4 }}
+  {{- else }}
+  parentRefs:
+  - name: {{ .Values.api.gateway.gatewayName | default "default-gateway" }}
+    {{- if .Values.api.gateway.gatewayNamespace }}
+    namespace: {{ .Values.api.gateway.gatewayNamespace }}
+    {{- end }}
+    {{- if .Values.api.gateway.sectionName }}
+    sectionName: {{ .Values.api.gateway.sectionName }}
+    {{- end }}
+  {{- end }}
+  {{- if .Values.api.gateway.hostnames }}
+  hostnames:
+    {{- range .Values.api.gateway.hostnames }}
+    - {{ . | quote }}
+    {{- end }}
+  {{- end }}
+  rules:
+  {{- range .Values.api.gateway.rules }}
+  - matches:
+    {{- range .matches }}
+    - path:
+        type: {{ .path.type | default "PathPrefix" }}
+        value: {{ .path.value | default "/" }}
+      {{- if .method }}
+      method: {{ .method }}
+      {{- end }}
+      {{- if .headers }}
+      headers:
+        {{- toYaml .headers | nindent 8 }}
+      {{- end }}
+      {{- if .queryParams }}
+      queryParams:
+        {{- toYaml .queryParams | nindent 8 }}
+      {{- end }}
+    {{- end }}
+    backendRefs:
+    - name: {{ include "openmemory.fullname" $ }}-api
+      port: {{ $.Values.api.service.port }}
+      {{- if .weight }}
+      weight: {{ .weight }}
+      {{- end }}
+    {{- if .filters }}
+    filters:
+      {{- toYaml .filters | nindent 6 }}
+    {{- end }}
+  {{- else }}
+  - matches:
+    - path:
+        type: PathPrefix
+        value: "/"
+    backendRefs:
+    - name: {{ include "openmemory.fullname" . }}-api
+      port: {{ .Values.api.service.port }}
+  {{- end }}
+{{- end }}

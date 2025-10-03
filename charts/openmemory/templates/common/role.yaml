@@ -1,0 +1,19 @@
+{{- if .Values.rbac.create }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ include "openmemory.fullname" . }}
+  labels:
+    {{- include "openmemory.labels" . | nindent 4 }}
+rules:
+- apiGroups: [""]
+  resources: ["configmaps"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get", "list", "watch"]
+{{- with .Values.rbac.rules }}
+{{- toYaml . | nindent 0 }}
+{{- end }}
+{{- end }}

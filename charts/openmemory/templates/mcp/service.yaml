@@ -1,0 +1,20 @@
+{{- if .Values.mcp.enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "openmemory.fullname" . }}-mcp
+  labels:
+    {{- include "openmemory.labels" . | nindent 4 }}
+    app.kubernetes.io/component: mcp
+spec:
+  type: {{ .Values.mcp.service.type }}
+  ports:
+    - port: {{ .Values.mcp.service.port }}
+      targetPort: {{ .Values.mcp.service.targetPort }}
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "openmemory.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: mcp
+{{- end }}

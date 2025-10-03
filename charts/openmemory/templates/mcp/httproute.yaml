@@ -1,0 +1,72 @@
+{{- if and .Values.mcp.enabled .Values.mcp.gateway.enabled }}
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ include "openmemory.fullname" . }}-mcp
+  labels:
+    {{- include "openmemory.labels" . | nindent 4 }}
+    app.kubernetes.io/component: mcp
+  {{- with .Values.mcp.gateway.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if .Values.mcp.gateway.parentRefs }}
+  parentRefs:
+    {{- toYaml .Values.mcp.gateway.parentRefs | nindent 4 }}
+  {{- else }}
+  parentRefs:
+  - name: {{ .Values.mcp.gateway.gatewayName | default "default-gateway" }}
+    {{- if .Values.mcp.gateway.gatewayNamespace }}
+    namespace: {{ .Values.mcp.gateway.gatewayNamespace }}
+    {{- end }}
+    {{- if .Values.mcp.gateway.sectionName }}
+    sectionName: {{ .Values.mcp.gateway.sectionName }}
+    {{- end }}
+  {{- end }}
+  {{- if .Values.mcp.gateway.hostnames }}
+  hostnames:
+    {{- range .Values.mcp.gateway.hostnames }}
+    - {{ . | quote }}
+    {{- end }}
+  {{- end }}
+  rules:
+  {{- range .Values.mcp.gateway.rules }}
+  - matches:
+    {{- range .matches }}
+    - path:
+        type: {{ .path.type | default "PathPrefix" }}
+        value: {{ .path.value | default "/" }}
+      {{- if .method }}
+      method: {{ .method }}
+      {{- end }}
+      {{- if .headers }}
+      headers:
+        {{- toYaml .headers | nindent 8 }}
+      {{- end }}
+      {{- if .queryParams }}
+      queryParams:
+        {{- toYaml .queryParams | nindent 8 }}
+      {{- end }}
+    {{- end }}
+    backendRefs:
+    - name: {{ include "openmemory.fullname" $ }}-mcp
+      port: {{ $.Values.mcp.service.port }}
+      {{- if .weight }}
+      weight: {{ .weight }}
+      {{- end }}
+    {{- if .filters }}
+    filters:
+      {{- toYaml .filters | nindent 6 }}
+    {{- end }}
+  {{- else }}
+  - matches:
+    - path:
+        type: PathPrefix
+        value: "/"
+    backendRefs:
+    - name: {{ include "openmemory.fullname" . }}-mcp
+      port: {{ .Values.mcp.service.port }}
+  {{- end }}
+{{- end }}

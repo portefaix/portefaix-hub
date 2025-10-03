@@ -1,0 +1,43 @@
+🔗 Component endpoints
+
+{{- if .Values.ui.enabled }}
+   - UI: {{ include "openmemory.fullname" . }}-ui:{{ .Values.ui.service.port }}
+{{- end }}
+{{- if .Values.api.enabled }}
+   - API: {{ include "openmemory.fullname" . }}-api:{{ .Values.api.service.port }}
+{{- end }}
+{{- if .Values.mcp.enabled }}
+   - MCP: {{ include "openmemory.fullname" . }}-mcp:{{ .Values.mcp.service.port }}
+{{- end }}
+
+💾 Storage
+
+{{- if .Values.qdrant.enabled }}
+   - Qdrant Vector Database is enabled and available at: {{ .Release.Name }}-qdrant:{{ .Values.qdrant.service.port }}
+{{- else }}
+   - Qdrant is disabled. Configure external vector storage if needed.
+{{- end }}
+
+⚙️ Configuration
+
+- Configure API keys and user settings via environment variables
+- Check the values.yaml file for all available configuration options
+- Network policies are {{ if .Values.networkPolicy.enabled }}enabled{{ else }}disabled{{ end }}
+- Pod disruption budgets are {{ if .Values.podDisruptionBudget.enabled }}enabled{{ else }}disabled{{ end }}
+
+🌐 Traffic Routing
+
+Ingress (Traditional):
+{{- if or .Values.api.ingress.enabled .Values.ui.ingress.enabled .Values.mcp.ingress.enabled }}
+- Ingress resources are enabled for some components
+{{- else }}
+- Ingress resources are disabled. Enable per-component with `<component>.ingress.enabled=true`
+{{- end }}
+
+Gateway API (Recommended):
+{{- if or .Values.api.gateway.enabled .Values.ui.gateway.enabled .Values.mcp.gateway.enabled }}
+- HTTPRoute resources are enabled for some components
+{{- else }}
+- Gateway API HTTPRoutes are disabled. Enable per-component with `<component>.gateway.enabled=true`
+- Requires Gateway API CRDs and a Gateway resource in your cluster
+{{- end }}

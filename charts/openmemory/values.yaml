@@ -1,0 +1,286 @@
+# Default values for openmemory.
+
+global:
+  # Image registry to use for all images
+  imageRegistry: ""
+  # Global image pull secrets
+  imagePullSecrets: []
+
+
+# -- Additional labels to add to all resources
+additionalLabels: {}
+  # app: openmemory
+
+# Openmemory API configuration
+api:
+  enabled: true
+  replicaCount: 1
+
+  image:
+    repository: mem0/openmemory-api
+    pullPolicy: IfNotPresent
+    tag: "v1.0.0"
+
+  service:
+    type: ClusterIP
+    port: 8765
+    targetPort: 8765
+
+  resources: {}
+    # limits:
+    #   cpu: 500m
+    #   memory: 512Mi
+    # requests:
+    #   cpu: 250m
+    #   memory: 256Mi
+
+  env:
+    USER: "default"
+    API_KEY: ""
+
+  # Environment variables from secrets/configmaps
+  envFrom: []
+
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+  # Ingress configuration for API
+  ingress:
+    enabled: false
+    className: ""
+    annotations: {}
+    hosts:
+      - host: api.openmemory.local
+        paths:
+          - path: /
+            pathType: Prefix
+    tls: []
+
+  # Gateway API configuration for API
+  gateway:
+    enabled: false
+    annotations: {}
+    gatewayName: "default-gateway"
+    gatewayNamespace: ""
+    sectionName: ""
+    hostnames:
+      - api.openmemory.local
+    parentRefs: []
+    rules: []
+
+  # Autoscaling configuration for API
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 80
+    targetMemoryUtilizationPercentage: 80
+    customMetrics: []
+    behavior: {}
+
+# Openmemory MCP (Memory Control Protocol) configuration
+mcp:
+  enabled: true
+  replicaCount: 1
+
+  image:
+    repository: mem0/openmemory-mcp
+    pullPolicy: IfNotPresent
+    tag: "v1.0.0"
+
+  service:
+    type: ClusterIP
+    port: 8765
+    targetPort: 8765
+
+  resources: {}
+    # limits:
+    #   cpu: 500m
+    #   memory: 512Mi
+    # requests:
+    #   cpu: 250m
+    #   memory: 256Mi
+
+  env:
+    USER: "default"
+    API_KEY: ""
+
+  # Environment variables from secrets/configmaps
+  envFrom: []
+
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+  # Ingress configuration for MCP
+  ingress:
+    enabled: false
+    className: ""
+    annotations: {}
+    hosts:
+      - host: mcp.openmemory.local
+        paths:
+          - path: /
+            pathType: Prefix
+    tls: []
+
+  # Gateway API configuration for MCP
+  gateway:
+    enabled: false
+    annotations: {}
+    gatewayName: "default-gateway"
+    gatewayNamespace: ""
+    sectionName: ""
+    hostnames:
+      - mcp.openmemory.local
+    parentRefs: []
+    rules: []
+
+  # Autoscaling configuration for MCP
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 80
+    targetMemoryUtilizationPercentage: 80
+    customMetrics: []
+    behavior: {}
+
+# Openmemory UI configuration
+ui:
+  enabled: true
+  replicaCount: 1
+
+  image:
+    repository: mem0/openmemory-ui
+    pullPolicy: IfNotPresent
+    tag: "v1.0.0"
+
+  service:
+    type: ClusterIP
+    port: 3000
+    targetPort: 3000
+
+  resources: {}
+    # limits:
+    #   cpu: 300m
+    #   memory: 256Mi
+    # requests:
+    #   cpu: 150m
+    #   memory: 128Mi
+
+  env:
+    NEXT_PUBLIC_API_URL: "http://openmemory-api:8765"
+    NEXT_PUBLIC_USER_ID: "default"
+
+  # Environment variables from secrets/configmaps
+  envFrom: []
+
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+  # Ingress configuration for UI
+  ingress:
+    enabled: false
+    className: ""
+    annotations: {}
+    hosts:
+      - host: openmemory.local
+        paths:
+          - path: /
+            pathType: Prefix
+    tls: []
+
+  # Gateway API configuration for UI
+  gateway:
+    enabled: false
+    annotations: {}
+    gatewayName: "default-gateway"
+    gatewayNamespace: ""
+    sectionName: ""
+    hostnames:
+      - openmemory.local
+    parentRefs: []
+    rules: []
+
+  # Autoscaling configuration for UI
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 5
+    targetCPUUtilizationPercentage: 80
+    targetMemoryUtilizationPercentage: 80
+    customMetrics: []
+    behavior: {}
+
+# Legacy ingress configuration (deprecated - use individual component ingress instead)
+ingress:
+  enabled: false
+
+# ServiceAccount configuration
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+# RBAC configuration
+rbac:
+  create: true
+  rules: []
+
+# Pod Security Context
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 65534
+  fsGroup: 65534
+  seccompProfile:
+    type: RuntimeDefault
+
+# Security Context
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 65534
+  capabilities:
+    drop:
+    - ALL
+
+# Pod Disruption Budget
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 1
+
+# Network Policy
+networkPolicy:
+  enabled: false
+  ingress: []
+  egress: []
+
+# Update Strategy
+updateStrategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 25%
+    maxSurge: 25%
+
+
+# --------------------------------------------
+# Qdrant dependency configuration
+
+qdrant:
+  enabled: true
+  service:
+    port: 6333
+  persistence:
+    enabled: true
+    size: 8Gi
+  resources:
+    limits:
+      cpu: 500m
+      memory: 1Gi
+    requests:
+      cpu: 250m
+      memory: 512Mi

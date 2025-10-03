@@ -1,0 +1,44 @@
+{{- if and .Values.ui.enabled .Values.networkPolicy.enabled }}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ include "openmemory.fullname" . }}-ui
+  labels:
+    {{- include "openmemory.labels" . | nindent 4 }}
+    app.kubernetes.io/component: ui
+spec:
+  podSelector:
+    matchLabels:
+      {{- include "openmemory.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: ui
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from: []
+      ports:
+        - protocol: TCP
+          port: {{ .Values.ui.service.targetPort }}
+    {{- with .Values.networkPolicy.ingress }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              {{- include "openmemory.selectorLabels" . | nindent 14 }}
+              app.kubernetes.io/component: api
+      ports:
+        - protocol: TCP
+          port: {{ .Values.api.service.port }}
+    - to: []
+      ports:
+        - protocol: TCP
+          port: 53
+        - protocol: UDP
+          port: 53
+    {{- with .Values.networkPolicy.egress }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+{{- end }}

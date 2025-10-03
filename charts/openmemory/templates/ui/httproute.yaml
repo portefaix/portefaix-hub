@@ -1,0 +1,72 @@
+{{- if and .Values.ui.enabled .Values.ui.gateway.enabled }}
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ include "openmemory.fullname" . }}-ui
+  labels:
+    {{- include "openmemory.labels" . | nindent 4 }}
+    app.kubernetes.io/component: ui
+  {{- with .Values.ui.gateway.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if .Values.ui.gateway.parentRefs }}
+  parentRefs:
+    {{- toYaml .Values.ui.gateway.parentRefs | nindent 4 }}
+  {{- else }}
+  parentRefs:
+  - name: {{ .Values.ui.gateway.gatewayName | default "default-gateway" }}
+    {{- if .Values.ui.gateway.gatewayNamespace }}
+    namespace: {{ .Values.ui.gateway.gatewayNamespace }}
+    {{- end }}
+    {{- if .Values.ui.gateway.sectionName }}
+    sectionName: {{ .Values.ui.gateway.sectionName }}
+    {{- end }}
+  {{- end }}
+  {{- if .Values.ui.gateway.hostnames }}
+  hostnames:
+    {{- range .Values.ui.gateway.hostnames }}
+    - {{ . | quote }}
+    {{- end }}
+  {{- end }}
+  rules:
+  {{- range .Values.ui.gateway.rules }}
+  - matches:
+    {{- range .matches }}
+    - path:
+        type: {{ .path.type | default "PathPrefix" }}
+        value: {{ .path.value | default "/" }}
+      {{- if .method }}
+      method: {{ .method }}
+      {{- end }}
+      {{- if .headers }}
+      headers:
+        {{- toYaml .headers | nindent 8 }}
+      {{- end }}
+      {{- if .queryParams }}
+      queryParams:
+        {{- toYaml .queryParams | nindent 8 }}
+      {{- end }}
+    {{- end }}
+    backendRefs:
+    - name: {{ include "openmemory.fullname" $ }}-ui
+      port: {{ $.Values.ui.service.port }}
+      {{- if .weight }}
+      weight: {{ .weight }}
+      {{- end }}
+    {{- if .filters }}
+    filters:
+      {{- toYaml .filters | nindent 6 }}
+    {{- end }}
+  {{- else }}
+  - matches:
+    - path:
+        type: PathPrefix
+        value: "/"
+    backendRefs:
+    - name: {{ include "openmemory.fullname" . }}-ui
+      port: {{ .Values.ui.service.port }}
+  {{- end }}
+{{- end }}
