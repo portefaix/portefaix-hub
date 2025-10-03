@@ -19,7 +19,7 @@ api:
   image:
     repository: mem0/openmemory-api
     pullPolicy: IfNotPresent
-    tag: "v1.0.0"
+    tag: "latest"
 
   service:
     type: ClusterIP
@@ -87,7 +87,7 @@ mcp:
   image:
     repository: mem0/openmemory-mcp
     pullPolicy: IfNotPresent
-    tag: "v1.0.0"
+    tag: "latest"
 
   service:
     type: ClusterIP
@@ -155,7 +155,7 @@ ui:
   image:
     repository: mem0/openmemory-ui
     pullPolicy: IfNotPresent
-    tag: "v1.0.0"
+    tag: "latest"
 
   service:
     type: ClusterIP
