@@ -31,7 +31,7 @@ spec:
               app.kubernetes.io/component: api
       ports:
         - protocol: TCP
-          port: {{ .Values.api.service.port }}
+          port: {{ .Values.api.service.targetPort }}
     - to: []
       ports:
         - protocol: TCP
