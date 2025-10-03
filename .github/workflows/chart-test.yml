@@ -99,7 +99,7 @@ jobs:
 
   install-chart:
     name: install-chart
-    runs-on: [ARM64, ubuntu-latest]
+    runs-on: [ubuntu-24.04-arm64, ubuntu-latest]
     needs:
       - lint-chart
       # - lint-docs
