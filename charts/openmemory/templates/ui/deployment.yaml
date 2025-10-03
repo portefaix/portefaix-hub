@@ -45,11 +45,13 @@ spec:
             - name: http
               containerPort: {{ .Values.ui.service.targetPort }}
               protocol: TCP
+          {{- if .Values.ui.env }}
           env:
             {{- range $key, $value := .Values.ui.env }}
             - name: {{ $key }}
               value: {{ $value | quote }}
             {{- end }}
+          {{- end }}
           {{- with .Values.ui.envFrom }}
           envFrom:
             {{- toYaml . | nindent 12 }}
