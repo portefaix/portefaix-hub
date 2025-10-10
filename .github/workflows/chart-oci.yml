@@ -1,0 +1,162 @@
+# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+name: Charts / Release
+
+on:
+  push:
+    # branches:
+    #   - master
+    # paths:
+    #   - "charts/**"
+    tags:
+      - '*-v*'
+
+permissions:
+  contents: read
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  publish-oci:
+    permissions:
+      attestations: write # need for Artifact Attestations
+      contents: write     # to push chart release and create a release (helm/chart-releaser-action)
+      id-token: write     # needed for keyless signing
+      packages: write     # needed for ghcr access
+
+
+    runs-on: ubuntu-latest
+
+    outputs:
+      digest: ${{ steps.get-digest.outputs.digest }}
+      image: ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ steps.release-details.outputs.release_name }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
+      - name: Extract Helm chart name and version
+        id: release-details
+        run: |
+          # tag names are in the format <chart-name>-v<semantic-version>
+          # so we need to extract the chart name
+          release_name=$(echo -n ${{ github.ref_name }} | awk -F'-v' '{print $1}')
+          echo release_name=$release_name >> $GITHUB_OUTPUT
+
+          # extract the version from the tag name
+          version=$(echo -n ${{ github.ref_name }} | sed "s/^$release_name-//")
+          echo release_version=$version >> $GITHUB_OUTPUT
+
+      - name: Add dependency chart repos
+        run: |
+          helm repo add bitnami https://charts.bitnami.com/bitnami
+          helm repo add grafana https://grafana.github.io/helm-charts
+          helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
+      - name: Package Helm chart
+        run: helm package charts/${{ steps.release-details.outputs.release_name }}
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@184bdaa0721073962dff0199f1fb9940f07167d1 # v3.5.0
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push packaged chart to GHCR
+        run: |
+          helm push ${{ github.ref_name }}.tgz "oci://${{ env.REGISTRY }}/${{ github.repository }}${{ github.repository_owner }}/charts"
+
+      - name: Setup Crane
+        uses: imjasonh/setup-crane@31b88efe9de28ae0ffa220711af4b60be9435f6e # v0.4
+
+      - name: Get pushed chart digest
+        id: get-digest
+        run: |
+          digest=$(crane digest ${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ steps.release-details.outputs.release_name }}:${{ steps.release-details.outputs.release_version }})
+          echo digest=$digest >> "$GITHUB_OUTPUT"
+          echo $digest
+
+      - name: Install cosign
+        uses: sigstore/cosign-installer@d7543c93d881b35a8faa02e8e3605f69b7a1ce62 # v3.10.0
+
+      - name: Use Cosign
+        run: |
+          artifact_digest_uri="${{ env.REGISTRY }}/${{ github.repository_owner }}/charts/${{ steps.release-details.outputs.release_name }}@${{ steps.get-digest.outputs.digest }}"
+          cosign sign --yes "${artifact_digest_uri}"
+          cosign verify "${artifact_digest_uri}" \
+              --certificate-identity-regexp "https://github.com/${{ github.repository }}/*" \
+              --certificate-oidc-issuer https://token.actions.githubusercontent.com
+
+      - name: Attest
+        uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a # v3.0.0
+        with:
+          subject-name: ${{ env.REGISTRY }}/${{ github.repository }}/charts/${{ steps.release-details.outputs.release_name }}
+          subject-digest: ${{ steps.get-digest.outputs.digest }}
+          push-to-registry: true
+
+      # - name: Install sigstore Helm plugin
+      #   run: |
+      #     helm plugin install https://github.com/sigstore/helm-sigstore
+
+      # - name: Upload Helm Charts to Rekor
+      #   run: |
+      #     helm sigstore upload ${{ steps.release-details.outputs.release_name }}-${{ steps.release-details.outputs.release_version }}.tgz
+
+  helm-provenance:
+    needs:
+      - publish-oci
+    permissions:
+      actions: read     # To read the workflow path.
+      id-token: write   # To sign the provenance.
+      packages: write   # To upload assets to release.
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v2.1.0
+    with:
+      digest: "${{ needs.publish-oci.outputs.digest }}"
+      image: "${{ needs.publish-oci.outputs.image }}"
+      registry-username: ${{ github.actor }}
+    secrets:
+      registry-password: ${{ secrets.GITHUB_TOKEN }}
+
+  verification-with-cosign:
+    needs:
+      - publish-oci
+      - helm-provenance
+    runs-on: ubuntu-latest
+    permissions: read-all
+    steps:
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@d7543c93d881b35a8faa02e8e3605f69b7a1ce62 # v3.10.0
+
+      - name: Verify image
+        env:
+          IMAGE: "${{ needs.publish-oci.outputs.image }}"
+          DIGEST: ${{ needs.publish-oci.outputs.digest }}
+        run: |
+          cosign verify-attestation \
+              --type slsaprovenance \
+              --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+              --certificate-identity-regexp '^https://github.com/slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v[0-9]+.[0-9]+.[0-9]+$' \
+              $IMAGE@$DIGEST
