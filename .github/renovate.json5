@@ -15,6 +15,18 @@
   rebaseWhen: "conflicted",
   assignees: ["@nlamirault"],
   reviewersFromCodeOwners: true,
+  packageRules: [
+    {
+      matchManagers: ["helm-values"],
+      postUpgradeTasks: {
+        commands: [
+          "bash ./hack/chart-version.sh '{{{parentDir}}}' '{{{isMajor}}}' '{{{isMinor}}}' '{{{isPatch}}}'",
+        ],
+        fileFilters: ["charts/*/Chart.yaml"],
+        executionMode: "branch",
+      },
+    },
+  ],
   customManagers: [
     {
       customType: "regex",
