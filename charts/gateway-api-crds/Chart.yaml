@@ -4,7 +4,7 @@ description: Gateway API CRDs
 name: gateway-api-crds
 version: v1.3.0
 # renovate: datasource=github-tags depName=kubernetes-sigs/gateway-api
-appVersion: v1.3.0
+appVersion: v1.4.0
 home: https://gateway-api.sigs.k8s.io
 icon: https://avatars.githubusercontent.com/u/36015203?s=400&v=4
 sources:
