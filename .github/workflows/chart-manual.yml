@@ -72,7 +72,7 @@ jobs:
           done
 
       - name: Install cosign
-        uses: sigstore/cosign-installer@v3.10.0
+        uses: sigstore/cosign-installer@v3.10.1
 
       - name: Check Cosign
         run: cosign version
