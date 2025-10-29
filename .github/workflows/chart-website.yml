@@ -42,7 +42,7 @@ jobs:
       - name: Use Node.js 14.x
         uses: actions/setup-node@v6.0.0
         with:
-          node-version: 22.x
+          node-version: 24.x
 
       - run: npx js-yaml index.yaml | npx hbs-cli .github/templates/index.hbs -i - -e md
 
