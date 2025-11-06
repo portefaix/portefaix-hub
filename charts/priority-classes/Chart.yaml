@@ -1,7 +1,7 @@
 ---
 apiVersion: v2
 name: priority-classes
-description: TODO
+description: Helm chart for managing Kubernetes PriorityClass resources with predefined priority levels for Pod scheduling
 home: https://github.com/portefaix/portefaix-hub/charts/priority-classes
 icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.svg
 type: application
