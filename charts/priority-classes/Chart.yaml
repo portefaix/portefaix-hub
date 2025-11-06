@@ -1,0 +1,37 @@
+---
+apiVersion: v2
+name: priority-classes
+description: Helm chart for managing Kubernetes PriorityClass resources with predefined priority levels for Pod scheduling
+home: https://github.com/portefaix/portefaix-hub/charts/priority-classes
+icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.svg
+type: application
+version: 1.0.0
+appVersion: 1.0.0
+keywords:
+  - kubernetes
+  - scheduling
+maintainers:
+  - name: nlamirault
+    email: nicolas.lamirault@gmail.com
+    url: https://github.com/nlamirault
+# https://artifacthub.io/docs/topics/repositories/
+annotations:
+  artifacthub.io/license: Apache-2.0
+  artifacthub.io/links: |
+    - name: Kubernetes scheduling
+      url: https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/
+    - name: Portefaix
+      url: https://portefaix.xyz
+  artifacthub.io/recommendations: |
+    - url: https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/
+  artifacthub.io/maintainers: |
+    - name: nlamirault
+      email: nicolas.lamirault@gmail.com
+  artifacthub.io/signKey: |
+    fingerprint: C39918B3EBDE35C23B8D0B8E5F99269A6FCA437C
+    url: https://keybase.io/nlamirault/pgp_keys.asc
+  # When using the list of objects option the valid supported kinds are:
+  # added, changed, deprecated, removed, fixed and security.
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Init chart
