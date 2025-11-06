@@ -5,8 +5,8 @@ description: Helm chart for managing Kubernetes PriorityClass resources with pre
 home: https://github.com/portefaix/portefaix-hub/charts/priority-classes
 icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.svg
 type: application
-version: 1.0.0
-appVersion: 1.0.0
+version: v1.0.0
+appVersion: v1.0.0
 keywords:
   - kubernetes
   - scheduling
