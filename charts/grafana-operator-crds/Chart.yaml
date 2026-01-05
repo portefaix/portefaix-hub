@@ -4,7 +4,7 @@ description: Grafana Operator CRDs
 name: grafana-operator-crds
 version: 1.1.0
 # renovate: datasource=github-tags depName=grafana/grafana-operator
-appVersion: v5.20.0
+appVersion: v5.21.4
 home: https://grafana.github.io/grafana-operator/
 icon: https://artifacthub.io/image/b4fed1a7-6c8f-4945-b99d-096efa3e4116
 sources:
