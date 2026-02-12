@@ -77,7 +77,7 @@ jobs:
           helm push ${{ github.event.inputs.release_name }}-${{ github.event.inputs.release_version }}.tgz oci://${{ env.REGISTRY }}/${{ github.repository_owner }}/charts
 
       - name: Setup Crane
-        uses: imjasonh/setup-crane@31b88efe9de28ae0ffa220711af4b60be9435f6e # v0.4
+        uses: imjasonh/setup-crane@6da1ae018866400525525ce74ff892880c099987 # v0.5
 
       - name: Get pushed chart digest
         id: get-digest
