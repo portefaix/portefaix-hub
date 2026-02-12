@@ -4,7 +4,7 @@ description: Sealed Secrets CRDs
 name: sealed-secrets-crds
 version: 1.0.1
 # renovate: datasource=github-tags depName=bitnami-labs/sealed-secrets
-appVersion: 0.26.2
+appVersion: 0.35.0
 home: https://sealed-secrets.netlify.app/
 icon: https://bitnami.com/assets/stacks/sealed-secrets/img/sealed-secrets-stack-220x234.png
 sources:
