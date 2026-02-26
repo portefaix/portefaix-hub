@@ -49,7 +49,6 @@ helm.sh/chart: {{ include "kube-state-metrics-mixin.chart" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
-app.kubernetes.io/component: monitoring-mixin
 app.kubernetes.io/part-of: {{ include "kube-state-metrics-mixin.name" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
