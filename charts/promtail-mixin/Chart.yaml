@@ -27,7 +27,7 @@ keywords:
   - promtail
   - monitoring-mixin
   - portefaix
-version: 1.7.0
+version: 1.7.1
 appVersion: 2.9.3
 
 maintainers:

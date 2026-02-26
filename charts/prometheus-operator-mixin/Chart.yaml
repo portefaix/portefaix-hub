@@ -27,7 +27,7 @@ keywords:
   - prometheus-operator
   - monitoring-mixin
   - portefaix
-version: 1.4.0
+version: 1.4.1
 appVersion: 0.78.2
 
 maintainers:

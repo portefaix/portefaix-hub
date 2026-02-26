@@ -27,7 +27,7 @@ keywords:
   - tempo
   - monitoring-mixin
   - portefaix
-version: 1.9.1
+version: 1.9.2
 appVersion: 2.6.1
 
 maintainers:
