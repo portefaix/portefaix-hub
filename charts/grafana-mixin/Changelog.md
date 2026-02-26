@@ -1,5 +1,20 @@
 # Change Log
 
+## 1.5.1
+
+**Release date:** 2026-02-26
+
+![AppVersion: 11.3.1](https://img.shields.io/static/v1?label=AppVersion&message=11.3.1&color=success&logo=)
+![Helm: v3](https://img.shields.io/static/v1?label=Helm&message=v3&color=informational&logo=helm)
+
+- fix(charts): remove redundant component label from helper templates
+
+### Default value changes
+
+```diff
+# No changes in this release
+```
+
 ## 0.8.0
 
 **Release date:** 2021-08-31
