@@ -44,7 +44,7 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v3.5
         with:
-          version: v3.7.1
+          version: v3.21.2
 
       - name: Install sigstore Helm plugin
         run: |
