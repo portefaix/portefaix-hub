@@ -95,7 +95,7 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v4
         with:
-          version: '3.21.2'
+          version: '3.21.4'
 
       - name: Add dependency chart repos
         run: |
