@@ -18,12 +18,11 @@ name: Charts / Release
 
 on:
   push:
-    # branches:
-    #   - master
-    # paths:
-    #   - "charts/**"
+    # Chart tags created by `Charts / Releaser` (`<chart>-<version>`) or pushed
+    # manually. Bare `v*` tags are not chart releases.
     tags:
       - '*'
+      - '!v*'
 
 permissions:
   contents: read
@@ -54,9 +53,19 @@ jobs:
       - name: Get released chart details
         id: chart-details
         run: |
-          # Extract chart name and version from tag
-          release_name=$(echo -n ${{ github.ref_name }} | awk -F'-v' '{print $1}')
-          version=$(echo -n ${{ github.ref_name }} | sed "s/^$release_name-//")
+          # Tags look like `<chart>-<version>`, e.g. `fake-v0.12.0` or
+          # `tempo-mixin-1.9.1`. Chart names contain hyphens, so split on the
+          # last hyphen that precedes a version number (greedy match). The
+          # optional `v` prefix is preserved: it is part of Chart.yaml
+          # `version:` and therefore of the packaged `*.tgz` / OCI tag.
+          TAG="${{ github.ref_name }}"
+          if [[ "$TAG" =~ ^(.+)-(v?[0-9]+\.[0-9]+\.[0-9]+.*)$ ]]; then
+            release_name="${BASH_REMATCH[1]}"
+            version="${BASH_REMATCH[2]}"
+          else
+            echo "Tag '$TAG' does not match '<chart>-<version>'" >&2
+            exit 1
+          fi
 
           # Get the chart package created by chart-releaser
           chart_package="${release_name}-${version}.tgz"
@@ -73,19 +82,42 @@ jobs:
           echo "$CHANGELOG" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2.6.2
+      # The release itself is created by `Charts / Releaser`
+      # (helm/chart-releaser with CR_GENERATE_RELEASE_NOTES=true), whose body
+      # already lists only the PRs merged since this chart's previous release.
+      # Only fall back to creating the release here when the tag was pushed
+      # manually, and use the same per-chart generated notes instead of the
+      # static Chart.yaml content so unrelated PRs never leak in.
+      - name: Create GitHub release (manual tags only)
         if: startsWith(github.ref, 'refs/tags/')
-        with:
-          tag_name: ${{ steps.chart-details.outputs.release_name }}-${{ steps.chart-details.outputs.version }}
-          draft: false
-          prerelease: false
-          body: |
-            ${{ steps.chart-details.outputs.description }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ github.ref_name }}"
+          NAME="${{ steps.chart-details.outputs.release_name }}"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists (created by chart-releaser), keeping its notes."
+            exit 0
+          fi
+          # Previous tag of the SAME chart: the greatest version lower than this
+          # one in version order (handles backport/patch tags pushed out of order).
+          PREV=$(git tag --list "${NAME}-*" \
+            | grep -E "^${NAME}-v?[0-9]+\.[0-9]+\.[0-9]+" \
+            | sort -V \
+            | awk -v tag="$TAG" '$0 == tag {exit} {prev=$0} END {print prev}' || true)
+          if [ -n "$PREV" ]; then
+            echo "Generating notes for $PREV...$TAG"
+            NOTES=$(gh api "repos/${{ github.repository }}/releases/generate-notes" \
+              -f tag_name="$TAG" -f previous_tag_name="$PREV" \
+              --jq '.body')
+          else
+            echo "No previous release for chart $NAME, using chart description."
+            NOTES=""
+          fi
+          BODY="${{ steps.chart-details.outputs.description }}
 
-            🎉 What's Changed
-
-            ${{ steps.chart-details.outputs.changelog }}
+          ${NOTES}"
+          gh release create "$TAG" --title "$TAG" --notes "$BODY"
 
       - name: Configure Git
         run: |

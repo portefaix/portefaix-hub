@@ -16,12 +16,15 @@
 
 name: Charts / Manual
 
+# Manual fallback for `Charts / Releaser`: releases ALL charts with a version
+# bump on master (chart-releaser auto-detects changed charts, there is no
+# per-chart filter). OCI push + signing is handled by `Charts / Release`
+# via the tags created here.
 on:
   workflow_dispatch:
-    inputs:
-      chart:
-        description: "Which chart"
-        required: true
+
+env:
+  REGISTRY: ghcr.io
 
 jobs:
   release:
@@ -45,8 +48,7 @@ jobs:
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.7.0
         with:
-          config: .github/cr.yaml
-          charts_repo_url: https://charts.portefaix.xyz
+          skip_existing: true
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           CR_SKIP_EXISTING: true

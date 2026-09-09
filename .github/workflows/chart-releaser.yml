@@ -1,0 +1,72 @@
+# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+# Same release model as prometheus-community/helm-charts:
+# on every push to master, chart-releaser detects charts whose version was
+# bumped, creates one tag `<chart>-<version>` + one GitHub release per chart,
+# and generates per-chart release notes (only the PRs merged since that
+# chart's previous release) via CR_GENERATE_RELEASE_NOTES=true.
+# Pushing the OCI artifacts + signing is handled by `Charts / Release`
+# (chart-release.yml), which is triggered by the tags created here.
+
+name: Charts / Releaser
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'charts/**'
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    permissions:
+      contents: write # to push chart release tags and create releases (helm/chart-releaser-action)
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Install Helm
+        uses: azure/setup-helm@76531c0f9458afb8d0ad8af2f89f8ff254dc3b8 # v5.0.1
+        with:
+          version: '3.21.4'
+
+      - name: Add dependency chart repos
+        run: |
+          helm repo add bitnami https://charts.bitnami.com/bitnami
+          helm repo add grafana https://grafana.github.io/helm-charts
+          helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@cae68fefc6b5f367a0275617c9f83181ba54714f # v1.7.0
+        with:
+          skip_existing: true
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CR_GENERATE_RELEASE_NOTES: true
