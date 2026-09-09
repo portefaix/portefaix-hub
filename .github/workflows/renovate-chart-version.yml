@@ -1,0 +1,147 @@
+# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+name: Renovate / Chart Version
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - master
+    paths:
+      - "charts/**"
+  workflow_dispatch:
+    inputs:
+      chart:
+        description: "Chart to bump (default 'all' auto-detects changed charts)"
+        required: false
+        default: "all"
+        type: string
+      branch:
+        description: "Renovate branch to target (e.g. renovate/kubernetes-sigs-gateway-api-1.x)"
+        required: true
+        type: string
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'renovate/')
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.inputs.branch || github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Detect changed charts
+        id: detect
+        env:
+          INPUT_CHART: ${{ github.event.inputs.chart }}
+          BASE_REF: ${{ github.base_ref }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [ "${EVENT_NAME}" = "workflow_dispatch" ] && [ -n "${INPUT_CHART}" ] && [ "${INPUT_CHART}" != "all" ]; then
+            echo "Manual dispatch for chart: ${INPUT_CHART}"
+            echo "charts=${INPUT_CHART}" >> "${GITHUB_OUTPUT}"
+            echo "skip=false" >> "${GITHUB_OUTPUT}"
+          else
+            if [ "${EVENT_NAME}" = "workflow_dispatch" ]; then
+              BASE="master"
+            else
+              BASE="${BASE_REF}"
+            fi
+            git fetch origin "${BASE}" --depth=1
+            CHANGED=$(git diff --name-only "origin/${BASE}...HEAD")
+            echo "Changed files:"
+            echo "${CHANGED}"
+            CHARTS=$(echo "${CHANGED}" | grep '^charts/' | cut -d/ -f2 | sort -u | tr '\n' ' ')
+            if [ -z "${CHARTS}" ]; then
+              echo "No chart changes detected, skipping"
+              echo "skip=true" >> "${GITHUB_OUTPUT}"
+            else
+              echo "Detected charts: ${CHARTS}"
+              echo "charts=${CHARTS}" >> "${GITHUB_OUTPUT}"
+              echo "skip=false" >> "${GITHUB_OUTPUT}"
+            fi
+          fi
+
+      - name: Bump chart versions
+        id: bump
+        if: steps.detect.outputs.skip != 'true'
+        env:
+          CHARTS: ${{ steps.detect.outputs.charts }}
+          BASE_REF: ${{ github.base_ref }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [ "${EVENT_NAME}" = "workflow_dispatch" ]; then
+            BASE="master"
+          else
+            BASE="${BASE_REF}"
+          fi
+          chmod +x hack/chart-version.sh
+          BUMPED=""
+          for CHART in ${CHARTS}; do
+            CHART_FILE="charts/${CHART}/Chart.yaml"
+            if [ ! -f "${CHART_FILE}" ]; then
+              echo "Skipping ${CHART}: ${CHART_FILE} not found"
+              continue
+            fi
+            # Idempotency: skip if `version:` already differs from base
+            # (a previous run already bumped it, or author bumped manually).
+            BASE_VERSION=$(git show "origin/${BASE}:charts/${CHART}/Chart.yaml" 2>/dev/null | grep -E '^version:' | awk '{print $2}' || true)
+            HEAD_VERSION=$(grep -E '^version:' "${CHART_FILE}" | awk '{print $2}')
+            if [ -n "${BASE_VERSION}" ] && [ "${BASE_VERSION}" != "${HEAD_VERSION}" ]; then
+              echo "Skipping ${CHART}: version already bumped (${BASE_VERSION} -> ${HEAD_VERSION})"
+              continue
+            fi
+            echo "Bumping ${CHART} (patch)..."
+            bash hack/chart-version.sh "${CHART}" patch
+            BUMPED="${BUMPED} ${CHART}"
+          done
+          BUMPED_TRIMMED=$(echo "${BUMPED}" | xargs)
+          echo "bumped=${BUMPED_TRIMMED}" >> "${GITHUB_OUTPUT}"
+          if [ -z "${BUMPED_TRIMMED}" ]; then
+            echo "No versions to bump, skipping commit"
+            echo "skip=true" >> "${GITHUB_OUTPUT}"
+          else
+            echo "Bumped charts: ${BUMPED_TRIMMED}"
+            echo "skip=false" >> "${GITHUB_OUTPUT}"
+          fi
+
+      - name: Commit to branch
+        if: steps.detect.outputs.skip != 'true' && steps.bump.outputs.skip != 'true'
+        env:
+          BUMPED: ${{ steps.bump.outputs.bumped }}
+          HEAD_REF: ${{ github.head_ref }}
+          INPUT_BRANCH: ${{ github.event.inputs.branch }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add charts/*/Chart.yaml
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -s -m "chore: bump chart version for ${BUMPED}"
+          if [ "${EVENT_NAME}" = "pull_request" ]; then
+            git push origin "HEAD:${HEAD_REF}"
+          else
+            git push origin "HEAD:${INPUT_BRANCH}"
+          fi
